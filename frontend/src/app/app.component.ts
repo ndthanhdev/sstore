@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'sstore-root',
@@ -10,5 +10,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'This app is serving from docker containers!!!!';
+  title = 'This app is serving from docker container!!!!';
 }

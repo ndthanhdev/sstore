@@ -6,8 +6,10 @@ RUN mkdir -p /usr/sstore/frontend
 
 WORKDIR /usr/sstore/frontend
 
-COPY package.json /usr/sstore/frontend
+COPY . /usr/sstore/frontend
 RUN npm install
+
+
 
 EXPOSE 4200
 
