@@ -2,11 +2,11 @@ FROM node:latest
 
 MAINTAINER vunguyenhung
 
-RUN mkdir -p /usr/sstore/front-end
+RUN mkdir -p /usr/sstore/frontend
 
-WORKDIR /usr/sstore/front-end
+WORKDIR /usr/sstore/frontend
 
-COPY package.json /usr/sstore/front-end
+COPY package.json /usr/sstore/frontend
 RUN npm install
 
 EXPOSE 4200

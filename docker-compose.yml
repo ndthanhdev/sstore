@@ -94,14 +94,14 @@ services:
       networks:
         - backend
 
-### Front-end Container ##################################
-    front-end:
-        build: ./front-end
+### Frontend Container ##################################
+    frontend:
+        build: ./frontend
         ports:
           - "4200:4200"
         volumes:
-          - $PWD/../front-end:/usr/sstore/front-end
-          - /usr/sstore/front-end/node_modules # a trick to make docker use the installed node_modules (in images creation phrase). If this line is removed, docker will use node_modules in host mounted folder
+          - $PWD/frontend:/usr/sstore/frontend
+          - /usr/sstore/frontend/node_modules # a trick to make docker use the installed node_modules (in images creation phrase). If this line is removed, docker will use node_modules in host mounted folder
         networks:
           - frontend
 
