@@ -16,3 +16,5 @@
 2017/04/25 14:31:59 [warn] 1#1: conflicting server name "api.localhost" on [::]:80, ignored
 2017/04/25 15:20:24 [warn] 1#1: conflicting server name "api.localhost" on 0.0.0.0:80, ignored
 2017/04/25 15:20:24 [warn] 1#1: conflicting server name "api.localhost" on [::]:80, ignored
+2017/04/25 15:56:43 [warn] 1#1: conflicting server name "api.localhost" on 0.0.0.0:80, ignored
+2017/04/25 15:56:43 [warn] 1#1: conflicting server name "api.localhost" on [::]:80, ignored
