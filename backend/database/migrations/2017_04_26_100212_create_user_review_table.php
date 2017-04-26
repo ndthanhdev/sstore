@@ -4,24 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountsTable extends Migration {
+class CreateUserReviewTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('user_review', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('ip')->nullable();
-            $table->integer('role');
+            $table->boolean('liked')->default(false);
             $table->unsignedInteger('user_id');
-            $table->timestamp('last_login');
+            $table->unsignedInteger('review_id');
         });
-        Schema::table('accounts', function (Blueprint $table) {
+        Schema::table('user_review', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('review_id')->references('id')->on('reviews');
         });
     }
 
@@ -31,6 +29,6 @@ class CreateAccountsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('user_review');
     }
 }

@@ -7,7 +7,7 @@
 #### IN PRODUCTION MODE *(NOT AVAILABLE)*: `docker-compose -f docker-compose.prod.yml up -d --build`
 Application URL: `localhost`
 
-#### IN DEVELOPMENT MODE: `docker-compose up -d --build`
+#### IN DEVELOPMENT MODE: `docker-compose up -d`
 Application URL: `localhost:4200`, hot reload is enabled by default\
 You can attach to sstore_front-end's container to see logs
 

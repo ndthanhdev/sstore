@@ -4,19 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfigurationsTable extends Migration {
+class CreateProductTypesTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('configurations', function (Blueprint $table) {
+        Schema::create('product_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('key');
-            $table->string('value');
+            $table->string('name')->unique();
+            $table->string('default_unit');
         });
-
     }
 
     /**
@@ -25,6 +24,6 @@ class CreateConfigurationsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('configurations');
+        Schema::dropIfExists('product_types');
     }
 }

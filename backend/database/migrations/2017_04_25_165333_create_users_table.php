@@ -13,12 +13,12 @@ class CreateUsersTable extends Migration {
     public function up() {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('full_name');
+            $table->string('full_name'); //auto generate with guest
             $table->date('dob')->nullable();
-            $table->string('tel');
-            $table->string('address')->unique();
+            $table->string('tel')->nullable();
+            $table->string('address')->nullable();
             $table->string('email')->unique();
-            $table->string('gender')->unique();
+            $table->string('gender')->nullable();
             $table->timestamps();
         });
     }
