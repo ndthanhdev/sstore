@@ -40,6 +40,8 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Prettus\\Validator\\' => 18,
+            'Prettus\\Repository\\' => 19,
         ),
         'M' => 
         array (
@@ -150,6 +152,14 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Prettus\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/prettus/laravel-validation/src/Prettus/Validator',
+        ),
+        'Prettus\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/prettus/l5-repository/src/Prettus/Repository',
         ),
         'Monolog\\' => 
         array (
@@ -860,6 +870,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'database\\seeds\\UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
