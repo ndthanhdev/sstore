@@ -21,7 +21,10 @@ All containers, networks, volumes should be deleted. Images is not deleted for c
 #### IN DEVELOPMENT MODE: `docker-compose down`
 All containers, networks should be deleted. Images is not deleted for convenient
 
-
+## MIGRATE & SEED DATABASE 
+1) Access workspace container: `docker-compose exec workspace bash`
+2) Change directory (cd) to backend: `cd backend/`
+3) Migrate database and seed database: `php artisan migrate:refresh --seed`
 
 
 
