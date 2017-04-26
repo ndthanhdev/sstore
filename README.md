@@ -5,11 +5,14 @@
 ## HOW TO RUN
 
 #### IN PRODUCTION MODE *(NOT AVAILABLE)*: `docker-compose -f docker-compose.prod.yml up -d --build`
-Application URL: `localhost`
+Frontend URL: `localhost`\
+Backend URL: `api.localhost`
 
 #### IN DEVELOPMENT MODE: `docker-compose up -d`
-Application URL: `localhost:4200`, hot reload is enabled by default\
-You can attach to sstore_front-end's container to see logs
+Frontend URL: `localhost:4200`, hot reload is enabled by default\
+Backend URL: `api.localhost`\
+*You can attach to sstore_front-end's container to see real-time logs*
+
 
 
 ## CLEAN UP:
@@ -21,10 +24,11 @@ All containers, networks, volumes should be deleted. Images is not deleted for c
 #### IN DEVELOPMENT MODE: `docker-compose down`
 All containers, networks should be deleted. Images is not deleted for convenient
 
-## MIGRATE & SEED DATABASE 
-1) Access workspace container: `docker-compose exec workspace bash`
-2) Change directory (cd) to backend: `cd backend/`
-3) Migrate database and seed database: `php artisan migrate:refresh --seed`
+## MIGRATE & SEED DATABASE
+1) Change Directory (cd) to sstore/laradock.
+2) Access workspace container bash: `docker-compose exec workspace bash`
+3) Change directory (cd) to backend: `cd backend/`
+4) Migrate and seed database: `php artisan migrate:refresh --seed`
 
 
 
