@@ -5,7 +5,7 @@
 
 $factory->define(\App\Entities\ProductType::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->firstNameMale,
+        'name' => $faker->unique()->colorName,
         'default_unit' => $faker->currencyCode,
     ];
 });

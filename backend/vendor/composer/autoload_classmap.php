@@ -562,6 +562,7 @@ return array(
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'database\\seeds\\AccountsTableSeeder' => $baseDir . '/database/seeds/AccountsTableSeeder.php',
     'database\\seeds\\DevicesTableSeeder' => $baseDir . '/database/seeds/DevicesTableSeeder.php',
+    'database\\seeds\\ProductTypeAttributesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributesTableSeeder.php',
     'database\\seeds\\ProductTypesTableSeeder' => $baseDir . '/database/seeds/ProductTypesTableSeeder.php',
     'database\\seeds\\StoresTableSeeder' => $baseDir . '/database/seeds/StoresTableSeeder.php',
     'database\\seeds\\UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
