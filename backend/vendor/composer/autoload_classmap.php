@@ -571,6 +571,7 @@ return array(
     'database\\seeds\\ProductVariantsTableSeeder' => $baseDir . '/database/seeds/ProductVariantsTableSeeder.php',
     'database\\seeds\\ProductVariationValuesTableSeeder' => $baseDir . '/database/seeds/ProductVariationValuesTableSeeder.php',
     'database\\seeds\\ProductsTableSeeder' => $baseDir . '/database/seeds/ProductsTableSeeder.php',
+    'database\\seeds\\ReviewsTableSeeder' => $baseDir . '/database/seeds/ReviewsTableSeeder.php',
     'database\\seeds\\StoreProductTableSeeder' => $baseDir . '/database/seeds/StoreProductTableSeeder.php',
     'database\\seeds\\StoresTableSeeder' => $baseDir . '/database/seeds/StoresTableSeeder.php',
     'database\\seeds\\UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
