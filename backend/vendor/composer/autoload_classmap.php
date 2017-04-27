@@ -563,6 +563,7 @@ return array(
     'database\\seeds\\AccountsTableSeeder' => $baseDir . '/database/seeds/AccountsTableSeeder.php',
     'database\\seeds\\CatalogsTableSeeder' => $baseDir . '/database/seeds/CatalogsTableSeeder.php',
     'database\\seeds\\CategoriesTableSeeder' => $baseDir . '/database/seeds/CategoriesTableSeeder.php',
+    'database\\seeds\\CustomAttributesTableSeeder' => $baseDir . '/database/seeds/CustomAttributesTableSeeder.php',
     'database\\seeds\\DevicesTableSeeder' => $baseDir . '/database/seeds/DevicesTableSeeder.php',
     'database\\seeds\\ProductTypeAttributeValuesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributeValuesTableSeeder.php',
     'database\\seeds\\ProductTypeAttributesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributesTableSeeder.php',

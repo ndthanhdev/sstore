@@ -3,6 +3,7 @@
 use database\seeds\AccountsTableSeeder;
 use database\seeds\CatalogsTableSeeder;
 use database\seeds\CategoriesTableSeeder;
+use database\seeds\CustomAttributesTableSeeder;
 use database\seeds\DevicesTableSeeder;
 use database\seeds\ProductsTableSeeder;
 use database\seeds\ProductTypeAttributesTableSeeder;
@@ -30,5 +31,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(CategoriesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
         $this->call(ProductTypeAttributeValuesTableSeeder::class);
+        $this->call(CustomAttributesTableSeeder::class);
     }
 }
