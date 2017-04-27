@@ -561,6 +561,7 @@ return array(
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'database\\seeds\\AccountsTableSeeder' => $baseDir . '/database/seeds/AccountsTableSeeder.php',
+    'database\\seeds\\CatalogsTableSeeder' => $baseDir . '/database/seeds/CatalogsTableSeeder.php',
     'database\\seeds\\DevicesTableSeeder' => $baseDir . '/database/seeds/DevicesTableSeeder.php',
     'database\\seeds\\ProductTypeAttributesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributesTableSeeder.php',
     'database\\seeds\\ProductTypesTableSeeder' => $baseDir . '/database/seeds/ProductTypesTableSeeder.php',

@@ -1,6 +1,7 @@
 <?php
 
 use database\seeds\AccountsTableSeeder;
+use database\seeds\CatalogsTableSeeder;
 use database\seeds\DevicesTableSeeder;
 use database\seeds\ProductTypeAttributesTableSeeder;
 use database\seeds\ProductTypesTableSeeder;
@@ -22,5 +23,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(DevicesTableSeeder::class);
         $this->call(ProductTypesTableSeeder::class);
         $this->call(ProductTypeAttributesTableSeeder::class);
+        $this->call(CatalogsTableSeeder::class);
     }
 }
