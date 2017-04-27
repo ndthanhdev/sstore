@@ -15,11 +15,11 @@ class CreateProductTypeAttributeValuesTable extends Migration {
             $table->increments('id');
             $table->string('value');
             $table->unsignedInteger('product_id');
-            $table->unsignedInteger('product_type_id');
+            $table->unsignedInteger('product_type_attribute_id');
         });
         Schema::table('product_type_attribute_values', function (Blueprint $table) {
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('product_type_id')->references('id')->on('product_types');
+            $table->foreign('product_type_attribute_id')->references('id')->on('product_type_attributes');
         });
     }
 

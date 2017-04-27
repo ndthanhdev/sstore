@@ -15,4 +15,10 @@ class Product extends Model {
         'description',
         'img_url'
     ];
+
+    public function productTypeAttributeValues() {
+        return $this
+            ->belongsToMany('App\Entities\ProductTypeAttribute', 'product_type_attribute_values')
+            ->withPivot('value');
+    }
 }

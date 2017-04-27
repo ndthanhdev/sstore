@@ -14,4 +14,12 @@ class ProductType extends Model {
         'name',
         'default_unit'
     ];
+
+    public function products() {
+        return $this->hasMany('App\Entities\Product');
+    }
+
+    public function productTypeAttributes() {
+        return $this->hasMany('App\Entities\ProductTypeAttribute');
+    }
 }

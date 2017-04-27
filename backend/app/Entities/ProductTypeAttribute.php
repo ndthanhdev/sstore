@@ -8,7 +8,7 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductTypeAttributes extends Model {
+class ProductTypeAttribute extends Model {
     public $timestamps = false;
     protected $fillable = [
         'name'
