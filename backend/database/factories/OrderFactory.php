@@ -14,9 +14,3 @@ $factory->define(\App\Entities\Order::class, function (Faker\Generator $faker) {
         'updated_at' => $dateTimeThisYear
     ];
 });
-
-//$factory->state(\App\Entities\Orders::class, 'relation', function (\Faker\Generator $faker) {
-//    return [
-//        'shopping_cart_id' => $faker->numberBetween(1, config('factory.MANAGER_AMOUNT'))
-//    ];
-//});

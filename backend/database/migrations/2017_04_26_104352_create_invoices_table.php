@@ -14,10 +14,10 @@ class CreateInvoicesTable extends Migration {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->unsignedInteger('shopping_cart_id');
+            $table->unsignedInteger('order_id');
         });
         Schema::table('invoices', function (Blueprint $table) {
-            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 

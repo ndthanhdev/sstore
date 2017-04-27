@@ -5,6 +5,7 @@ use database\seeds\CatalogsTableSeeder;
 use database\seeds\CategoriesTableSeeder;
 use database\seeds\CustomAttributesTableSeeder;
 use database\seeds\DevicesTableSeeder;
+use database\seeds\InvoicesTableSeeder;
 use database\seeds\OrdersTableSeeder;
 use database\seeds\ProductsTableSeeder;
 use database\seeds\ProductTypeAttributesTableSeeder;
@@ -48,5 +49,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(ShoppingCartsTableSeeder::class);
         $this->call(ShoppingCartDetailsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
+        $this->call(InvoicesTableSeeder::class);
     }
 }
