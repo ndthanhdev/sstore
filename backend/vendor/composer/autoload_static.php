@@ -879,6 +879,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'database\\seeds\\ProductTypeAttributesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTypeAttributesTableSeeder.php',
         'database\\seeds\\ProductTypesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTypesTableSeeder.php',
         'database\\seeds\\ProductsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductsTableSeeder.php',
+        'database\\seeds\\StoreProductTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StoreProductTableSeeder.php',
         'database\\seeds\\StoresTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StoresTableSeeder.php',
         'database\\seeds\\UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
     );

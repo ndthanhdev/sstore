@@ -569,6 +569,7 @@ return array(
     'database\\seeds\\ProductTypeAttributesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributesTableSeeder.php',
     'database\\seeds\\ProductTypesTableSeeder' => $baseDir . '/database/seeds/ProductTypesTableSeeder.php',
     'database\\seeds\\ProductsTableSeeder' => $baseDir . '/database/seeds/ProductsTableSeeder.php',
+    'database\\seeds\\StoreProductTableSeeder' => $baseDir . '/database/seeds/StoreProductTableSeeder.php',
     'database\\seeds\\StoresTableSeeder' => $baseDir . '/database/seeds/StoresTableSeeder.php',
     'database\\seeds\\UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
 );

@@ -21,4 +21,10 @@ class Product extends Model {
             ->belongsToMany('App\Entities\ProductTypeAttribute', 'product_type_attribute_values')
             ->withPivot('value');
     }
+
+    public function stores() {
+        return $this
+            ->belongsToMany('App\Entities\Store', 'store_product')
+            ->withPivot(['in_stock_default', 'price_default']);
+    }
 }

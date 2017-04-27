@@ -17,4 +17,10 @@ class Store extends Model {
         'latitude',
         'longitude'
     ];
+
+    public function products() {
+        return $this
+            ->belongsToMany('App\Entities\Product', 'store_product')
+            ->withPivot(['in_stock_default', 'price_default']);
+    }
 }
