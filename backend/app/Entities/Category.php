@@ -8,14 +8,18 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Catalog extends Model {
+class Category extends Model {
     public $timestamps = false;
     protected $fillable = [
         'name',
         'description'
     ];
 
-    public function categories() {
+    public function parent() {
+        return $this->belongsTo('App\Entities\Category');
+    }
+
+    public function childs() {
         return $this->hasMany('App\Entities\Category');
     }
 }

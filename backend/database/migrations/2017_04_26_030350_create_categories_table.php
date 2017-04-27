@@ -20,8 +20,6 @@ class CreateCategoriesTable extends Migration {
         });
         Schema::table('categories', function (Blueprint $table) {
             $table->foreign('parent_id')->references('id')->on('categories');
-        });
-        Schema::table('categories', function (Blueprint $table) {
             $table->foreign('catalog_id')->references('id')->on('catalogs');
         });
     }
