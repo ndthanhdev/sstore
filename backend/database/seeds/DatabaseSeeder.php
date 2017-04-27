@@ -12,6 +12,7 @@ use database\seeds\ProductTypesTableSeeder;
 use database\seeds\ProductVariantsTableSeeder;
 use database\seeds\ProductVariationValuesTableSeeder;
 use database\seeds\ReviewsTableSeeder;
+use database\seeds\ShoppingCartDetailsTableSeeder;
 use database\seeds\ShoppingCartsTableSeeder;
 use database\seeds\StoreProductTableSeeder;
 use database\seeds\StoresTableSeeder;
@@ -44,5 +45,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(ReviewsTableSeeder::class);
         $this->call(UserReviewTableSeeder::class);
         $this->call(ShoppingCartsTableSeeder::class);
+        $this->call(ShoppingCartDetailsTableSeeder::class);
     }
 }
