@@ -24,3 +24,14 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'updated_at' => $dateTimeThisYear
     ];
 });
+
+$factory->state(App\Entities\User::class, 'admin', function (Faker\Generator $faker) {
+    return [
+        'full_name' => 'Vu Nguyen Hung',
+        'dob' => new DateTime('1996-02-25'),
+        'tel' => '0908076542',
+        'address' => '61/53A Pham Hung',
+        'email' => 'vunguyenhung@outlook.com',
+        'gender' => 'Male',
+    ];
+});

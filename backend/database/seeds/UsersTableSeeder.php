@@ -18,6 +18,8 @@ class UsersTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        factory(User::class)->states(['admin'])->create();
         factory(User::class, config('factory.USER_AMOUNT'))->create();
+        factory(User::class, config('factory.MANAGER_AMOUNT'))->create();
     }
 }

@@ -15,8 +15,8 @@ class CreateAccountsTable extends Migration {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('ip')->nullable();
-            $table->integer('role');
+            $table->string('IP')->unique()->nullable();
+            $table->integer('role'); // 0 - Guest, 1 - Member, 2 - Manager, 3 - Admin.
             $table->unsignedInteger('user_id');
             $table->timestamp('last_login');
         });

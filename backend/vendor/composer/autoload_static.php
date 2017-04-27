@@ -870,6 +870,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'database\\seeds\\AccountsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AccountsTableSeeder.php',
         'database\\seeds\\UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
     );
 

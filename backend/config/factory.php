@@ -5,4 +5,5 @@
 
 return [
     'USER_AMOUNT' => 10,
+    'MANAGER_AMOUNT' => 3,
 ];
