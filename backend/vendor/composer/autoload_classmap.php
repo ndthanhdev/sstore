@@ -574,5 +574,6 @@ return array(
     'database\\seeds\\ReviewsTableSeeder' => $baseDir . '/database/seeds/ReviewsTableSeeder.php',
     'database\\seeds\\StoreProductTableSeeder' => $baseDir . '/database/seeds/StoreProductTableSeeder.php',
     'database\\seeds\\StoresTableSeeder' => $baseDir . '/database/seeds/StoresTableSeeder.php',
+    'database\\seeds\\UserReviewTableSeeder' => $baseDir . '/database/seeds/UserReviewTableSeeder.php',
     'database\\seeds\\UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
 );

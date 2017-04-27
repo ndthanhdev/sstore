@@ -18,4 +18,9 @@ class User extends Model {
         'gender'
     ];
 
+    public function interactedReviews() {
+        return $this
+            ->belongsToMany('App\Entities\Review', 'user_review')
+            ->withPivot('liked');
+    }
 }
