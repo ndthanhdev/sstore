@@ -14,7 +14,7 @@ class CreateDevicesTable extends Migration {
         Schema::create('devices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('macAddress')->unique();
+            $table->string('mac_address')->unique();
             $table->unsignedInteger('store_id');
         });
         Schema::table('devices', function (Blueprint $table) {
