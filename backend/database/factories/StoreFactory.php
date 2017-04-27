@@ -14,8 +14,8 @@ $factory->define(\App\Entities\Store::class, function (Faker\Generator $faker) {
 });
 
 $factory->state(\App\Entities\Store::class, 'relation', function (\Faker\Generator $faker) {
-    $fakerAlt = Faker\Factory::create();
+    //TODO: fix unique on this!
     return [
-        'manager_id' => $fakerAlt->unique()->numberBetween(config('factory.USER_AMOUNT') + 1, config('factory.USER_AMOUNT') + 1 + config('factory.MANAGER_AMOUNT'))
+        'manager_id' => $faker->unique(true)->numberBetween(config('factory.USER_AMOUNT') + 1, config('factory.USER_AMOUNT') + 1 + config('factory.MANAGER_AMOUNT'))
     ];
 });
