@@ -9,6 +9,7 @@ use database\seeds\ProductsTableSeeder;
 use database\seeds\ProductTypeAttributesTableSeeder;
 use database\seeds\ProductTypeAttributeValuesTableSeeder;
 use database\seeds\ProductTypesTableSeeder;
+use database\seeds\ProductVariantsTableSeeder;
 use database\seeds\ProductVariationValuesTableSeeder;
 use database\seeds\StoreProductTableSeeder;
 use database\seeds\StoresTableSeeder;
@@ -36,5 +37,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(CustomAttributesTableSeeder::class);
         $this->call(StoreProductTableSeeder::class);
         $this->call(ProductVariationValuesTableSeeder::class);
+        $this->call(ProductVariantsTableSeeder::class);
     }
 }

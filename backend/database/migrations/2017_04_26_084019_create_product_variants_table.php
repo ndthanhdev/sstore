@@ -13,8 +13,8 @@ class CreateProductVariantsTable extends Migration {
     public function up() {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('name');
-            $table->decimal('value');
+            $table->string('name');
+            $table->string('value');
             $table->unsignedInteger('product_variation_value_id');
         });
         Schema::table('product_variants', function (Blueprint $table) {
