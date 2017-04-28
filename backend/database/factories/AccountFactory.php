@@ -15,17 +15,8 @@ $factory->define(App\Entities\Account::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->state(App\Entities\Account::class, 'relation', function (Faker\Generator $faker) {
-    return [
-        'user_id' => $faker->unique()->numberBetween(2, config('factory.USER_AMOUNT') + 1),
-    ];
-});
-
 $factory->state(App\Entities\Account::class, 'manager', function ($faker) {
-    return [
-        'user_id' => $faker->unique()->numberBetween(config('factory.USER_AMOUNT') + 1, config('factory.USER_AMOUNT') + 1 + config('factory.MANAGER_AMOUNT')),
-        'role' => 2
-    ];
+    return ['role' => 2];
 });
 
 $factory->state(App\Entities\Account::class, 'admin', function ($faker) {

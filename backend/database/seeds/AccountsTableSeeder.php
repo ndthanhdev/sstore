@@ -7,6 +7,7 @@ namespace database\seeds;
 
 
 use App\Entities\Account;
+use App\Entities\User;
 use Illuminate\Database\Seeder;
 
 class AccountsTableSeeder extends Seeder {
@@ -17,8 +18,17 @@ class AccountsTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(Account::class)->states(['admin'])->create();
-        factory(Account::class, config('factory.USER_AMOUNT'))->states(['relation'])->create();
-        factory(Account::class, config('factory.MANAGER_AMOUNT'))->states(['manager'])->create();
+        $users = User::all();
+        factory(Account::class)->states(['admin'])->create(['user_id' => $users->first()->id]);
+
+        $users->slice(1, config('factory.USER_AMOUNT'))->each(function ($user, $key) {
+            factory(Account::class)->create(['user_id' => $user->id]);
+        });
+
+        $users->slice(1 + config('factory.USER_AMOUNT'), config('factory.MANAGER_AMOUNT'))->each(function ($user, $key) {
+            factory(Account::class)->states(['manager'])->create([
+                'user_id' => $user->id
+            ]);
+        });
     }
 }
