@@ -19,4 +19,3 @@ $app->get('configurations', [
     'as' => 'configurations.GET',
     'uses' => 'ConfigurationController@index'
 ]);
-

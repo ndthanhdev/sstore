@@ -59,13 +59,13 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    \Barryvdh\Cors\HandleCors::class
+]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ $app->routeMiddleware([
+     'auth' => App\Http\Middleware\Authenticate::class
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +81,7 @@ $app->singleton(
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(Barryvdh\Cors\ServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
@@ -98,7 +99,18 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__ . '/../routes/web.php';
 });
 
+/*
+|--------------------------------------------------------------------------
+| Load The Application Configs
+|--------------------------------------------------------------------------
+|
+| Finally, we include all config files stored in root/config/
+| These configs will be accessible via config() helper function
+|
+*/
 
 $app->configure('factory');
+$app->configure('cors');
+
 
 return $app;
