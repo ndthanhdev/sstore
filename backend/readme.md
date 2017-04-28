@@ -79,6 +79,7 @@ __Entity References:__
 | address | string | Store's address |
 | latitude | string | Store's latitude | @NotNull |
 | longitude | string | Store's longitude | @NotNull |
+| primary | boolean | Will this store be viewed if user denied to provide their GPS? | @NotNull |
 
 ### Device
 
@@ -102,19 +103,9 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has many Variation values |
+|[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has *at lease 01* Variation values |
 |[Store](#store)| Many To One | A Product can be belonged to _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store can has _many_ Products |
-
-__Entity References:__
-
-| Attribute name |     Type     |                   Description                        |    Validation   |
-| :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| in_stock_default | number | Number of product (without variants) left in a store | @NotNull|
-| price_default | number | Price of product (without variant) in a store |@NotNull|
-| primary | boolean | Is the price of this Product on this store will be shown in online store? |@NotNull|
-
-*Note: For each product, there's only one __primary__ Store Product record at any point of time*
 
 ### Product Variant
 
@@ -154,7 +145,7 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged to a Product in Store |
-|[Product Variant](#product-variant)| One To Many | a Product Variation Value has _at lease 01_ product variants.|
+|[Product Variant](#product-variant)| One To Many | a Product Variation Value has _at lease 01_ Product variants.|
 
 
 __Entity References:__
@@ -163,6 +154,7 @@ __Entity References:__
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | in_stock | string | Number of products has specified variants | @NotNull|
 | price | string | Price of a product has specified variants |@NotNull|
+| default | boolean | Is this Variation value represent the Product on online store? |@NotNull|
 
  *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
     ```
