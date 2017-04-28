@@ -14,6 +14,7 @@
 | :------------: | :---------- | :--------------------------------------------------- |
 |Gender| 0 - Male <br> 1 - Female <br> 2 - Others|User's gender|
 |Role| 0 - Guest (Anonymous User) <br> 1 - Member <br> 2 - Store Manager <br> 3 - Admin| Account's role|
+|State| 0 - Processing <br> 1 - Delivering <br> 2 - Done| Order's state|
 
 
 ### Configuration
@@ -49,6 +50,11 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[Account](#account)|One To One| A User has _01_ Account |
+|[Store](#store)|One To One| A Manager manages _01_ Store |
+|[Review](#review)|One To Many| A User can write _many_ Reviews |
+|[Review](#review)|Many To Many| A User can upvote/downvote _many_ Reviews. Pivot: [User Review]($user-review) |
+|[Shopping Cart](#shopping-cart)|One To Many| A User can have _many_ Shopping cart. |
+|[Invoice](#invoice)|One To Many| A User can have _many_ Invoice. |
 
 __Entity References:__
 
@@ -185,7 +191,7 @@ __Relationships:__
 |[Category](#category)| Many To One | A Product belonged with _01_ Category.|
 |[Store](#store)| Many To Many | A Product can belonged with _many_ Store. Pivot: [Store Product](#store-product-pivot)|
 |[Product Type Attribute](#product-type-attribute)| Many To Many | A Product has _many_ Product Type's Attribute. Pivot: [Product Type Attribute Value](#product-type-attribute-value-pivot)|
-|[Shopping Cart](#shopping-cart)| Many To Many | A Product can belonged with _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail)|
+|[Shopping Cart](#shopping-cart)| Many To Many | A Product can belonged with _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
 
 
 __Entity References:__
@@ -338,3 +344,116 @@ Product "sample book 1" belonged with "Book" has Product Type Attribute Value se
         ...
     ]
     ```
+
+### Shopping Cart
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Oder](#order)| One To One | A Shopping Cart can become _01_ Order |
+|[User](#user)| Many To One | A Shopping Cart belonged with _01_ User |
+|[Product](#product)| Many To Many | A Shopping Cart has _at lease 01_ Products. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| active | boolean | Is this shopping cart currently active? | @NotNull|
+| created_at | date | Shopping Cart's creation time| @NotNull |
+| updated_at | date | Shopping Cart's last updated time | @NotNull |
+
+
+### Shopping Cart Detail (Pivot)
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Shopping Cart](#shopping-cart)| Many To One | A Shopping Cart Detail belonged with _01_ Shopping Cart |
+|[Product](#product)| Many To One | A Shopping Cart Detail belonged with _01_ Product |
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| quantity | number | number of product user put in | @NotNull|
+
+
+### Order
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Shopping Cart](#shopping-cart)| One To One | An Order has _01_ Shopping Cart |
+|[Invoice](#invoice)| One To One | An Order (at Done state) has _01_ Order |
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| code | string | Order's code | @NotNull, @Unique|
+| rating | number | Order's rating by Owned User | @NotNull|
+| comment | string | Order's comment by Owned User | @NotNull|
+| state | [State](#enums) | Order's current state | @NotNull|
+| created_at | date | Order's creation time| @NotNull |
+| updated_at | date | Order's last updated time | @NotNull |
+
+
+### Invoice
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Order](#order)| One To One | An Invoice has _01_ Order |
+|[User](#user)| Many To One | An Invoice belonged with _01_ User |
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| created_at | date | Invoice's creation time| @NotNull |
+| updated_at | date | Invoice's last updated time | @NotNull |
+
+
+### Review
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Product](#product)| Many To One | A Review is belonged with _01_ Product |
+|[User](#user)| Many To One | A Review is written by _01_ User |
+|[User](#user)| Many To Many | A Review can be upvote/downvote by _many_ User. Pivot: [User Review](#user-review-pivot) |
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| content | string | Review's content| @NotNull |
+| created_at | date | Review's creation time| @NotNull |
+| updated_at | date | Review's last updated time | @NotNull |
+
+
+### User Review (Pivot) 
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Review](#review)| Many To One | The upvoted/downvoted the Review |
+|[User](#user)| Many To One | The user upvoted/downvoted the Review |
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| liked | boolean | Upvoted - liked = true, Downvoteed - liked = false. Null - User don't not like the review.| @NotNull |
