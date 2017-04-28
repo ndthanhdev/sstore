@@ -5,7 +5,7 @@
 
 $factory->define(\App\Entities\Device::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->userName,
+        'name' => $faker->unique()->regexify('SSDV[0-9]{5}'),
         'mac_address' => $faker->macAddress,
     ];
 });
