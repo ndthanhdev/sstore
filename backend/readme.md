@@ -9,7 +9,7 @@
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
-| :------------: | :----------: | :--------------------------------------------------- |
+| :------------: | :---------- | :--------------------------------------------------- |
 |Gender| 0 - Male <br> 1 - Female <br> 2 - Others|User's gender|
 |Role| 0 - Guest (Anonymous User) <br> 1 - Member <br> 2 - Store Manager <br> 3 - Admin| Account's role|
 
@@ -37,7 +37,7 @@ __Entity References:__
 | password | string | Hashed password (Bcrypt)| @NotNull |
 | IP | string | User's last logged in IP | @NotNull, @IPv4 |
 | last_login | date | Last time when user login | |
-| role | [Role](#enum) | Account's role | @NotNull |
+| role | [Role](#enums) | Account's role | @NotNull |
 
 
 ### User
@@ -57,7 +57,7 @@ __Entity References:__
 | tel | string | User's phone number | @NotNull |
 | address | string | User's address| @NotNull |
 | email | string | User's email| @NotNull, @Unique |
-| gender | [Gender](#enum) | User's gender| @NotNull|
+| gender | [Gender](#enums) | User's gender| @NotNull|
 | created_at | date | Time when user is created| @NotNull |
 | updated_at | date | Time when user is last updated| @NotNull |
 
@@ -68,8 +68,8 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[Device](#device)| One To Many | A Store has _many_ Devices |
-|[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store_Product](#store_product)|
-|[User](#product)| One To One | A Store is managed by _01_ Store Manager |
+|[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store_Product](#store-product-pivot)|
+|[User](#user)| One To One | A Store is managed by _01_ Store Manager |
 
 __Entity References:__
 
@@ -86,7 +86,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Store](#device)| Many To One | A Device belonged to _01_ Store |
+|[Store](#store)| Many To One | A Device belonged to _01_ Store |
 
 __Entity References:__
 
@@ -102,7 +102,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variation Values](#productvariationvalue)| One To Many | A Product in Store has many Variation values |
+|[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has many Variation values |
 |[Store](#store)| Many To One | A Product can be belonged to _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store can has _many_ Products |
 
