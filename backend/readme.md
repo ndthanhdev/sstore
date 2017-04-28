@@ -7,7 +7,7 @@
 
 ## II. ENTITIES
 
-![](ERD_v1.1.16.png?raw=true)
+![](ERD_v1.1.17.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
@@ -29,7 +29,7 @@ __Relationships:__
 
 | Entity | Relationship | Description |
 | :------------: | :----------: |:---------- |
-|[User](#user)|One To One| An Account belonged to _01_ User |
+|[User](#user)|One To One| An Account belonged with _01_ User |
 
 __Entity References:__
 
@@ -89,7 +89,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Store](#store)| Many To One | A Device belonged to _01_ Store |
+|[Store](#store)| Many To One | A Device belonged with _01_ Store |
 
 __Entity References:__
 
@@ -106,7 +106,7 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has *at lease 01* Variation values |
-|[Store](#store)| Many To One | A Product can be belonged to _at lease 01_ Store  |
+|[Store](#store)| Many To One | A Product can be belonged with _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store can have _many_ Products |
 
 ### Product Variant
@@ -115,7 +115,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variation Value](#product-variation-value)| Many To One | A Product Variant belonged to _01_ Product Variation Values|
+|[Product Variation Value](#product-variation-value)| Many To One | A Product Variant belonged with _01_ Product Variation Values|
 
 
 __Entity References:__
@@ -146,7 +146,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged to a Product in Store |
+|[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged with a Product in Store |
 |[Product Variant](#product-variant)| One To Many | a Product Variation Value has _at lease 01_ Product variants.|
 
 
@@ -173,64 +173,168 @@ __Entity References:__
     ```\
  *has 4 unit in stock with price 40$/each.*
  
- ### Product
+### Product
  
- __Relationships:__
- 
- | Entity |     Relationship     | Description |
- | :------------: | :----------: | :----------|
- |[Review](#review)| One To Many | A Product has _many_ Reviews |
- |[Custom Attribute](#custom-attribute)| One To Many | A Product has _many_ Custom Attribute.|
- |[Product Type](#product-type)| Many To One | A Product belonged to _01_ Product Type.|
- |[Category](#category)| Many To One | A Product belonged to _01_ Category.|
- |[Store](#store)| Many To Many | A Product can belonged to _many_ Store. Pivot: [Store Product](#store-product-pivot)|
- |[Product Type Attribute](#product-type-attribute)| Many To Many | A Product has _many_ Product Type's Attribute. Pivot: [Product Type Attribute Value](#product-type-attribute-value)|
- |[Shopping Cart](#shopping-cart)| Many To Many | A Product can belonged to _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail)|
+__Relationships:__
 
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Review](#review)| One To Many | A Product has _many_ Reviews |
+|[Custom Attribute](#custom-attribute)| One To Many | A Product has _many_ Custom Attribute.|
+|[Product Type](#product-type)| Many To One | A Product belonged with _01_ Product Type.|
+|[Category](#category)| Many To One | A Product belonged with _01_ Category.|
+|[Store](#store)| Many To Many | A Product can belonged with _many_ Store. Pivot: [Store Product](#store-product-pivot)|
+|[Product Type Attribute](#product-type-attribute)| Many To Many | A Product has _many_ Product Type's Attribute. Pivot: [Product Type Attribute Value](#product-type-attribute-value-pivot)|
+|[Shopping Cart](#shopping-cart)| Many To Many | A Product can belonged with _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail)|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| name | string | Product's name | @NotNull, @Unique|
+| barcode | string | Product's barcode |@NotNull, @Unique |
+| description | string | Product's description |
+| img_url | string | Product's image URL | @NotNull |
+| created_at | date | Product's creation time | @NotNull |
+| updated_at | date | Product's last updated time | @NotNull |
  
- __Entity References:__
- 
- | Attribute name |     Type     |                   Description                        |    Validation   |
- | :------------: | :----------: | :--------------------------------------------------- |:----------------|
- | name | string | Product's name | @NotNull, @Unique|
- | barcode | string | Product's barcode |@NotNull, @Unique |
- | description | string | Product's description |
- | img_url | string | Product's image URL | @NotNull |
- | created_at | date | Product's creation time | @NotNull |
- | updated_at | date | Product's last updated time | @NotNull |
- 
- ### Catalog
-  
-  __Relationships:__
-  
-  | Entity |     Relationship     | Description |
-  | :------------: | :----------: | :----------|
-  |[Category](#category)| One To Many | A Catalog has _many_ Categories |
- 
-  
-  __Entity References:__
-  
-  | Attribute name |     Type     |                   Description                        |    Validation   |
-  | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-  | name | string | Catalog's name | @NotNull, @Unique|
-  | description | string | Catalog's description |
-  
-  
-   ### Category
+### Catalog
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Category](#category)| One To Many | A Catalog has _many_ Categories |
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| name | string | Catalog's name | @NotNull, @Unique|
+| description | string | Catalog's description |
+
+
+### Category
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Catalog](#catalog)| Many To One | A Category belonged with _01_ Catalog.|
+|[Category](#category)| Many To One | A Category can belonged with a parent Category.|
+|[Category](#category)| One To Many | A Category can have _many_ child Category.|
+|[Product](#product)| One To Many | A Category can have _many_ Products|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| name | string | Category's name | @NotNull, @Unique|
+| description | string | Category's description |
+
+### Custom Attribute
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Product](#product)| Many To One | A Custom Attribute belonged with _01_ product|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| name | string | Custom Attribute's name | @NotNull|
+| value | string | Custom Attribute's value| @NotNull | 
+
+### Product Type
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Product](#product)| One To Many | A Product Type has _many_ Products|
+|[Product Type Attribute](#product-type-attribute)| One To Many | A Product Type can have _many_ Product Type Attribute|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| name | string | Custom Attribute's name | @NotNull|
+| default_unit | string | Custom Attribute's value| @NotNull |
+
+### Product Type Attribute
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Product Type](#product)| Many To One | A Product Attribute belonged with _01_ Product Type|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| name | string | Product Type Attribute's name | @NotNull|
+
+*E.g: Product Type "Book" has Product Type Attribute set:*\
+    ```
+        [
+            {
+                name: 'page', 
+            },
+            {
+                name: 'cover', 
+            },
+            ...
+        ]
+    ```
    
-   __Relationships:__
-   
-   | Entity |     Relationship     | Description |
-   | :------------: | :----------: | :----------|
-   |[Catalog](#catalog)| Many To One | A Category belonged to _01_ Catalog.|
-   |[Category](#category)| Many To One | A Category can belonged to a parent Category.|
-   |[Category](#category)| One To Many | A Category can have _many_ child Category.|
-   |[Product](#product)| One To Many | A Category can have _many_ Products|
-  
-   
-   __Entity References:__
-   
-   | Attribute name |     Type     |                   Description                        |    Validation   |
-   | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-   | name | string | Category's name | @NotNull, @Unique|
-   | description | string | Category's description |
+### Product Type Attribute Value (Pivot)
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Product](#product)| Many To One | A Product Type Attribute Value can belonged with _01_ Product|
+|[Product Type Attribute](#product-type-attribute)| Many To One | A Product Type Attribute Value belonged with _01_ Product Type Attribute|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| value | string | Product Type Attribute's value | @NotNull|
+
+*E.g: Product Type "Book" has Product Type Attribute set:*\
+    ```
+    [
+        {
+            name: 'page', 
+        },
+        {
+            name: 'cover', 
+        },
+        ...
+    ]
+    ```\
+Product "sample book 1" belonged with "Book" has Product Type Attribute Value set:\
+    ```
+    [
+        {
+            product_type_id: 1 ('page')
+            value: 120, 
+        },
+        {
+            product_type_id: 2 ('cover')
+            value: 'hardcover'', 
+        },
+        ...
+    ]
+    ```
