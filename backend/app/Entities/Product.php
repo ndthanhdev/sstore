@@ -23,7 +23,9 @@ class Product extends Model {
     }
 
     public function variationValues() {
-        return $this->hasManyThrough('App\Entities\ProductVariationValue', 'App\Entities\StoreProduct');
+        return $this
+            ->hasManyThrough('App\Entities\ProductVariationValue', 'App\Entities\StoreProduct')
+            ->with(['storeProduct']);
     }
 
     public function stores() {

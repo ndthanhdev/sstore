@@ -14,4 +14,8 @@ class ProductVariationValue extends Model {
         'in_stock',
         'price'
     ];
+
+    public function storeProduct() {
+        return $this->belongsTo('App\Entities\StoreProduct');
+    }
 }
