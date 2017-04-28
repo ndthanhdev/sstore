@@ -9,13 +9,14 @@ $factory->define(\App\Entities\Store::class, function (Faker\Generator $faker) {
         'address' => $faker->address,
         //TODO: collect real latitude and longitude
         'latitude' => $faker->latitude,
-        'longitude' => $faker->longitude
+        'longitude' => $faker->longitude,
+        'primary' => false
     ];
 });
 
-$factory->state(\App\Entities\Store::class, 'relation', function (\Faker\Generator $faker) {
+$factory->state(\App\Entities\Store::class, 'primary', function (\Faker\Generator $faker) {
     //TODO: fix unique on this!
     return [
-        'manager_id' => $faker->unique(true)->numberBetween(config('factory.USER_AMOUNT') + 1, config('factory.USER_AMOUNT') + 1 + config('factory.MANAGER_AMOUNT'))
+        'primary' => true
     ];
 });

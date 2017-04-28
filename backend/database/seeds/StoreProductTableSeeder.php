@@ -19,7 +19,7 @@ class StoreProductTableSeeder extends Seeder {
         $products = Product::all();
         foreach ($products as $product) {
             foreach ($stores as $store) {
-                if ($faker->optional(0.6, false)->randomDigit)
+                if ($faker->optional(0.8, false)->randomDigit)
                     $product->stores()->attach($store->id);
             }
         }

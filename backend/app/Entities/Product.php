@@ -22,9 +22,11 @@ class Product extends Model {
             ->withPivot('value');
     }
 
+    public function variationValues() {
+        return $this->hasManyThrough('App\Entities\ProductVariationValue', 'App\Entities\StoreProduct');
+    }
+
     public function stores() {
-        return $this
-            ->belongsToMany('App\Entities\Store', 'store_product')
-            ->withPivot(['in_stock_default', 'price_default', 'primary']);
+        return $this->belongsToMany('App\Entities\Store', 'store_product');
     }
 }

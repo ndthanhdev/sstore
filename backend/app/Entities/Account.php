@@ -18,4 +18,8 @@ class Account extends Model {
         'last_login',
         'role'
     ];
+
+    public function user() {
+        return $this->belongsTo('App\Entities\User');
+    }
 }

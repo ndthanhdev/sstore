@@ -6,11 +6,21 @@
 namespace database\seeds;
 
 
+use App\Entities\Account;
 use App\Entities\Store;
 use Illuminate\Database\Seeder;
 
 class StoresTableSeeder extends Seeder {
     public function run() {
-        factory(Store::class, config('factory.MANAGER_AMOUNT'))->states(['relation'])->create();
+        $managerAccounts = Account::where('role', 2)->get();
+        factory(Store::class)->states(['primary'])->create([
+            'manager_id' => $managerAccounts->first()->user->id
+        ]);
+
+        foreach ($managerAccounts->slice(1) as $account) {
+            factory(Store::class)->create([
+                'manager_id' => $account->user->id
+            ]);
+        }
     }
 }

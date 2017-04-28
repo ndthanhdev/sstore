@@ -17,6 +17,7 @@ class CreateStoresTable extends Migration {
             $table->string('address')->nullable();
             $table->string('longitude');
             $table->string('latitude');
+            $table->boolean('primary')->default(false);
             $table->unsignedInteger('manager_id');
         });
         Schema::table('stores', function (Blueprint $table) {
