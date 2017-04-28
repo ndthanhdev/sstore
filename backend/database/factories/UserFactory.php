@@ -19,7 +19,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'tel' => $faker->phoneNumber,
         'address' => $faker->address,
         'email' => $faker->email,
-        'gender' => $faker->randomElement(['Male', 'Female', 'Other']),
+        'gender' => $faker->numberBetween(0, 2),// 0 - Male, 1 - Female, 3 - Others
         'created_at' => $dateTimeThisYear,
         'updated_at' => $dateTimeThisYear
     ];
@@ -32,6 +32,6 @@ $factory->state(App\Entities\User::class, 'admin', function (Faker\Generator $fa
         'tel' => '0908076542',
         'address' => '61/53A Pham Hung',
         'email' => 'vunguyenhung@outlook.com',
-        'gender' => 'Male',
+        'gender' => 0,
     ];
 });
