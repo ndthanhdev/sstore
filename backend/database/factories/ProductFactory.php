@@ -6,7 +6,7 @@
 $factory->define(\App\Entities\Product::class, function (Faker\Generator $faker) {
     $dateTimeThisYear = $faker->dateTimeThisYear;
     return [
-        'name' => $faker->unique()->state,
+        'name' => $faker->unique()->streetName,
         'barcode' => $faker->creditCardNumber,
         'description' => $faker->sentence,
         'img_url' => $faker->imageUrl(1000, 1300, 'cats'),

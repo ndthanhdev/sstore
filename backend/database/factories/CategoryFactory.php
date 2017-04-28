@@ -5,7 +5,7 @@
 
 $factory->define(\App\Entities\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->streetName, // category name needs unique
+        'name' => $faker->unique()->city, // category name needs unique
         'description' => $faker->sentence
     ];
 });

@@ -5,7 +5,7 @@
 
 $factory->define(\App\Entities\Catalog::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->streetName,
+        'name' => $faker->unique()->state,
         'description' => $faker->sentence
     ];
 });
