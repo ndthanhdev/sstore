@@ -52,7 +52,7 @@ __Relationships:__
 |[Account](#account)|One To One| A User has _01_ Account |
 |[Store](#store)|One To One| A Manager manages _01_ Store |
 |[Review](#review)|One To Many| A User can write _many_ Reviews |
-|[Review](#review)|Many To Many| A User can upvote/downvote _many_ Reviews. Pivot: [User Review]($user-review) |
+|[Review](#review)|Many To Many| A User can upvote/downvote _many_ Reviews. Pivot: [User Review](#user-review-pivot) |
 |[Shopping Cart](#shopping-cart)|One To Many| A User can have _many_ Shopping cart. |
 |[Invoice](#invoice)|One To Many| A User can have _many_ Invoice. |
 
