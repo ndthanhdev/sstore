@@ -115,3 +115,66 @@ __Entity References:__
 | primary | boolean | Is the price of this Product on this store will be shown in online store? |@NotNull|
 
 *Note: For each product, there's only one __primary__ Store Product record at any point of time*
+
+### Product Variant
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Product Variation Value](#product-variation-value)| Many To One | A Product Variant belonged to _01_ Product Variation Values|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| in_stock | string | Number of products has specified variants | @NotNull|
+| price | string | Price of a product has specified variants |@NotNull|
+
+ *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
+    ```
+    [
+        {
+            name: 'volume', 
+            value: '350ML'
+        },
+        {
+            name: 'taste', 
+            value: 'chocolate'
+        }
+    ]
+    ```
+
+
+### Product Variation Value
+
+__Relationships:__
+
+| Entity |     Relationship     | Description |
+| :------------: | :----------: | :----------|
+|[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged to a Product in Store |
+|[Product Variant](#product-variant)| One To Many | a Product Variation Value has _at lease 01_ product variants.|
+
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| in_stock | string | Number of products has specified variants | @NotNull|
+| price | string | Price of a product has specified variants |@NotNull|
+
+ *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
+    ```
+    [
+        {
+            name: 'volume', 
+            value: '350ML'
+        },
+        {
+            name: 'taste', 
+            value: 'chocolate'
+        }
+    ]
+    ```\
+ *has 4 unit in stock with price 40$/each.*
