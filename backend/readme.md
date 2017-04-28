@@ -328,11 +328,11 @@ Product "sample book 1" belonged with "Book" has Product Type Attribute Value se
     ```
     [
         {
-            product_type_id: 1 ('page')
+            product_type_id: 1 (page)
             value: 120, 
         },
         {
-            product_type_id: 2 ('cover')
+            product_type_id: 2 (cover)
             value: 'hardcover'', 
         },
         ...
