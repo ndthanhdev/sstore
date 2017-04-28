@@ -19,3 +19,12 @@ $app->get('configurations', [
     'as' => 'configurations.GET',
     'uses' => 'ConfigurationController@index'
 ]);
+
+$app->group(['prefix' => 'products'], function () use ($app) {
+
+    $app->get('/', [
+        'as' => 'products.GET',
+        'uses' => 'ProductController@index'
+    ]);
+
+});
