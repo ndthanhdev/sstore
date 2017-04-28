@@ -70,7 +70,7 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[Device](#device)| One To Many | A Store has _many_ Devices |
-|[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store_Product](#store-product-pivot)|
+|[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product](#store-product-pivot)|
 |[User](#user)| One To One | A Store is managed by _01_ Store Manager |
 
 __Entity References:__
@@ -156,7 +156,7 @@ __Entity References:__
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | in_stock | string | Number of products has specified variants | @NotNull|
 | price | string | Price of a product has specified variants |@NotNull|
-| default | boolean | Is this Variation value represent the Product on online store? |@NotNull|
+| default | boolean | Is this Variation Value represent the default value for the Product? |@NotNull|
 
  *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
     ```
@@ -172,3 +172,29 @@ __Entity References:__
     ]
     ```\
  *has 4 unit in stock with price 40$/each.*
+ 
+ ### Product
+ 
+ __Relationships:__
+ 
+ | Entity |     Relationship     | Description |
+ | :------------: | :----------: | :----------|
+ |[Review](#review)| One To Many | A Product has _many_ Reviews |
+ |[Custom Attribute](#custom-attribute)| One To Many | A Product has _many_ Custom Attribute.|
+ |[Product Type](#product-type)| Many To One | A Product belonged to _01_ Product Type.|
+ |[Category](#category)| Many To One | A Product belonged to _01_ Category.|
+ |[Store](#store)| Many To Many | A Product can belonged to _many_ Store. Pivot: [Store Product](#store-product-pivot)|
+ |[Product Type Attribute](#product-type-attribute)| Many To Many | A Product has _many_ Product Type's Attribute. Pivot: [Product Type Attribute Value](#product-type-attribute-value)|
+ |[Shopping Cart](#shopping-cart)| Many To Many | A Product can belonged to _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail)|
+
+ 
+ __Entity References:__
+ 
+ | Attribute name |     Type     |                   Description                        |    Validation   |
+ | :------------: | :----------: | :--------------------------------------------------- |:----------------|
+ | name | string | Product's name | @NotNull, @Unique|
+ | barcode | string | Product's barcode |@NotNull, @Unique |
+ | description | string | Product's description |
+ | img_url | string | Product's image URL | @NotNull |
+ | created_at | date | Product's creation time | @NotNull |
+ | updated_at | date | Product's last updated time | @NotNull |
