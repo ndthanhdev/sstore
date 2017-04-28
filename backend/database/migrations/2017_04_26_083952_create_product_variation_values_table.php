@@ -15,6 +15,7 @@ class CreateProductVariationValuesTable extends Migration {
             $table->increments('id');
             $table->integer('in_stock');
             $table->decimal('price');
+            $table->boolean('default')->default(false);
             $table->unsignedInteger('store_product_id');
         });
         Schema::table('product_variation_values', function (Blueprint $table) {

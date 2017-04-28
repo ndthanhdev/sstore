@@ -9,9 +9,3 @@ $factory->define(\App\Entities\ProductVariant::class, function (Faker\Generator 
         'value' => $faker->word,
     ];
 });
-
-$factory->state(\App\Entities\ProductVariant::class, 'relation', function (\Faker\Generator $faker) {
-    return [
-        'product_variation_value_id' => $faker->numberBetween(1, config('factory.PRODUCT_VARIATION_VALUE_AMOUNT'))
-    ];
-});

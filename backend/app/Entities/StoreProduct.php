@@ -13,4 +13,5 @@ class StoreProduct extends Model {
         'in_stock_default',
         'price_default'
     ];
+    protected $table = 'store_product';
 }

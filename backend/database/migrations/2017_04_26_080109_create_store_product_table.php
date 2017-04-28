@@ -13,9 +13,6 @@ class CreateStoreProductTable extends Migration {
     public function up() {
         Schema::create('store_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('in_stock_default');
-            $table->decimal('price_default');
-            $table->boolean('primary')->default(false);
             $table->unsignedInteger('store_id');
             $table->unsignedInteger('product_id');
         });

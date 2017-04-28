@@ -18,18 +18,10 @@ class StoreProductTableSeeder extends Seeder {
         $stores = Store::all();
         $products = Product::all();
         foreach ($products as $product) {
-            $primary = true;
             foreach ($stores as $store) {
-                if ($faker->optional(0.6, false)->randomDigit) {
-                    $product->stores()->attach($store->id, [
-                        'in_stock_default' => $faker->numberBetween(0, 50),
-                        'price_default' => $faker->numberBetween(1, 900) * 1000,
-                        'primary' => $primary
-                    ]);
-                    $primary = false;
-                }
+                if ($faker->optional(0.6, false)->randomDigit)
+                    $product->stores()->attach($store->id);
             }
-
         }
     }
 }
