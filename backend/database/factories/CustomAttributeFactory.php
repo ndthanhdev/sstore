@@ -5,7 +5,7 @@
 
 $factory->define(App\Entities\CustomAttribute::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->hexColor,
+        'name' => $faker->hexColor,
         'value' => $faker->word,
     ];
 });
