@@ -7,7 +7,7 @@
 
 ## II. ENTITIES
 
-![](ERD_v1.1.15.png?raw=true)
+![](ERD_v1.1.16.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
@@ -107,7 +107,7 @@ __Relationships:__
 | :------------: | :----------: | :----------|
 |[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has *at lease 01* Variation values |
 |[Store](#store)| Many To One | A Product can be belonged to _at lease 01_ Store  |
-|[Product](#product)| Many To One | A Store can has _many_ Products |
+|[Product](#product)| Many To One | A Store can have _many_ Products |
 
 ### Product Variant
 
@@ -198,3 +198,39 @@ __Entity References:__
  | img_url | string | Product's image URL | @NotNull |
  | created_at | date | Product's creation time | @NotNull |
  | updated_at | date | Product's last updated time | @NotNull |
+ 
+ ### Catalog
+  
+  __Relationships:__
+  
+  | Entity |     Relationship     | Description |
+  | :------------: | :----------: | :----------|
+  |[Category](#category)| One To Many | A Catalog has _many_ Categories |
+ 
+  
+  __Entity References:__
+  
+  | Attribute name |     Type     |                   Description                        |    Validation   |
+  | :------------: | :----------: | :--------------------------------------------------- |:----------------|
+  | name | string | Catalog's name | @NotNull, @Unique|
+  | description | string | Catalog's description |
+  
+  
+   ### Category
+   
+   __Relationships:__
+   
+   | Entity |     Relationship     | Description |
+   | :------------: | :----------: | :----------|
+   |[Catalog](#catalog)| Many To One | A Category belonged to _01_ Catalog.|
+   |[Category](#category)| Many To One | A Category can belonged to a parent Category.|
+   |[Category](#category)| One To Many | A Category can have _many_ child Category.|
+   |[Product](#product)| One To Many | A Category can have _many_ Products|
+  
+   
+   __Entity References:__
+   
+   | Attribute name |     Type     |                   Description                        |    Validation   |
+   | :------------: | :----------: | :--------------------------------------------------- |:----------------|
+   | name | string | Category's name | @NotNull, @Unique|
+   | description | string | Category's description |
