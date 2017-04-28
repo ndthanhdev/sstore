@@ -25,6 +25,6 @@ class Product extends Model {
     public function stores() {
         return $this
             ->belongsToMany('App\Entities\Store', 'store_product')
-            ->withPivot(['in_stock_default', 'price_default']);
+            ->withPivot(['in_stock_default', 'price_default', 'primary']);
     }
 }
