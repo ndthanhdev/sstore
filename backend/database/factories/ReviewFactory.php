@@ -7,6 +7,7 @@ $factory->define(\App\Entities\Review::class, function (Faker\Generator $faker) 
     $dateTimeThisYear = $faker->dateTimeThisYear;
     return [
         'content' => $faker->paragraph(6),
+        'rating' => $faker->numberBetween(1, 5),
         'created_at' => $dateTimeThisYear,
         'updated_at' => $dateTimeThisYear
     ];

@@ -7,7 +7,7 @@
 
 ## II. ENTITIES
 
-![](ERD_v1.1.17.png?raw=true)
+![](ERD_v1.1.18.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
@@ -438,6 +438,7 @@ __Entity References:__
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | content | string | Review's content| @NotNull |
+| rating | number | Review's rating about product| @NotNull, @Min(1), @Max(5) |
 | created_at | date | Review's creation time| @NotNull |
 | updated_at | date | Review's last updated time | @NotNull |
 
