@@ -12,9 +12,9 @@
 ### Enums
 | Name |     Enum list     |                   Description                        |
 | :------------: | :---------- | :--------------------------------------------------- |
-|Gender| 0 - Male <br> 1 - Female <br> 2 - Others|User's gender|
-|Role| 0 - Guest (Anonymous User) <br> 1 - Member <br> 2 - Store Manager <br> 3 - Admin| Account's role|
-|State| 0 - Processing <br> 1 - Delivering <br> 2 - Done| Order's state|
+|Gender| 0 - Male <br> 1 - Female <br> 2 - Others|[User](#user)'s gender|
+|Role| 0 - Guest (Anonymous User) <br> 1 - Member <br> 2 - Store Manager <br> 3 - Admin| [Account](#account)'s role|
+|State| 0 - Processing <br> 1 - Delivering <br> 2 - Done| [Order](Order)'s state|
 
 
 ### Configuration
@@ -52,9 +52,9 @@ __Relationships:__
 |[Account](#account)|One To One| A User has _01_ Account |
 |[Store](#store)|One To One| A Manager manages _01_ Store |
 |[Review](#review)|One To Many| A User can write _many_ Reviews |
-|[Review](#review)|Many To Many| A User can upvote/downvote _many_ Reviews. Pivot: [User Review](#user-review-pivot) |
 |[Shopping Cart](#shopping-cart)|One To Many| A User can have _many_ Shopping cart. |
 |[Invoice](#invoice)|One To Many| A User can have _many_ Invoice. |
+|[Review](#review)|Many To Many| A User can upvote/downvote _many_ Reviews. Pivot: [User Review](#user-review-pivot) |
 
 __Entity References:__
 
@@ -66,8 +66,8 @@ __Entity References:__
 | address | string | User's address| @NotNull |
 | email | string | User's email| @NotNull, @Unique |
 | gender | [Gender](#enums) | User's gender| @NotNull|
-| created_at | date | Time when user is created| @NotNull |
-| updated_at | date | Time when user is last updated| @NotNull |
+| created_at | date | Time when user's created | @NotNull |
+| updated_at | date | Time when user's last updated| @NotNull |
 
 ### Store
 
@@ -75,9 +75,10 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
+|[User](#user)| One To One | A Store is managed by _01_ Store Manager |
 |[Device](#device)| One To Many | A Store has _many_ Devices |
 |[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product](#store-product-pivot)|
-|[User](#user)| One To One | A Store is managed by _01_ Store Manager |
+
 
 __Entity References:__
 
@@ -87,7 +88,7 @@ __Entity References:__
 | address | string | Store's address |
 | latitude | string | Store's latitude | @NotNull |
 | longitude | string | Store's longitude | @NotNull |
-| primary | boolean | Will this store be viewed if user denied to provide their GPS? | @NotNull |
+| primary | boolean | Marks store as primary | @NotNull |
 
 ### Device
 
@@ -113,7 +114,7 @@ __Relationships:__
 | :------------: | :----------: | :----------|
 |[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has *at lease 01* Variation values |
 |[Store](#store)| Many To One | A Product can be belonged with _at lease 01_ Store  |
-|[Product](#product)| Many To One | A Store can have _many_ Products |
+|[Product](#product)| Many To One | A Store have _at lease 01_ Products |
 
 ### Product Variant
 
@@ -128,8 +129,8 @@ __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| in_stock | string | Number of products has specified variants | @NotNull|
-| price | string | Price of a product has specified variants |@NotNull|
+| name | string | Product Variant's name | @NotNull|
+| value | string | Product Variant's value |@NotNull|
 
  *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
     ```
@@ -153,8 +154,9 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged with a Product in Store |
 |[Product Variant](#product-variant)| One To Many | a Product Variation Value has _at lease 01_ Product variants.|
+|[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged with _01_ Product in Store |
+
 
 
 __Entity References:__
@@ -187,13 +189,13 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Review](#review)| One To Many | A Product has _many_ Reviews |
-|[Custom Attribute](#custom-attribute)| One To Many | A Product has _many_ Custom Attribute.|
+|[Review](#review)| One To Many | A Product may have _many_ Reviews |
+|[Custom Attribute](#custom-attribute)| One To Many | A Product may have _many_ Custom Attribute.|
 |[Product Type](#product-type)| Many To One | A Product belonged with _01_ Product Type.|
 |[Category](#category)| Many To One | A Product belonged with _01_ Category.|
-|[Store](#store)| Many To Many | A Product can belonged with _many_ Store. Pivot: [Store Product](#store-product-pivot)|
+|[Store](#store)| Many To Many | A Product may belonged with _many_ Store. Pivot: [Store Product](#store-product-pivot)|
 |[Product Type Attribute](#product-type-attribute)| Many To Many | A Product has _many_ Product Type's Attribute. Pivot: [Product Type Attribute Value](#product-type-attribute-value-pivot)|
-|[Shopping Cart](#shopping-cart)| Many To Many | A Product can belonged with _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
+|[Shopping Cart](#shopping-cart)| Many To Many | A Product may belonged with _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
 
 
 __Entity References:__
@@ -213,7 +215,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Category](#category)| One To Many | A Catalog has _many_ Categories |
+|[Category](#category)| One To Many | A Catalog may have _many_ Categories |
 
 
 __Entity References:__
@@ -230,10 +232,11 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
+|[Category](#category)| One To Many | A Category may have _many_ child Category.|
+|[Product](#product)| One To Many | A Category may have _many_ Products|
 |[Catalog](#catalog)| Many To One | A Category belonged with _01_ Catalog.|
-|[Category](#category)| Many To One | A Category can belonged with a parent Category.|
-|[Category](#category)| One To Many | A Category can have _many_ child Category.|
-|[Product](#product)| One To Many | A Category can have _many_ Products|
+|[Category](#category)| Many To One | A Category may belonged with a parent Category.|
+
 
 
 __Entity References:__
@@ -266,15 +269,15 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[Product](#product)| One To Many | A Product Type has _many_ Products|
-|[Product Type Attribute](#product-type-attribute)| One To Many | A Product Type can have _many_ Product Type Attribute|
+|[Product Type Attribute](#product-type-attribute)| One To Many | A Product Type may have _many_ Product Type Attribute|
 
 
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| name | string | Custom Attribute's name | @NotNull|
-| default_unit | string | Custom Attribute's value| @NotNull |
+| name | string | Product Type's name | @NotNull|
+| default_unit | string | Product Type's default unit| @NotNull |
 
 ### Product Type Attribute
 
