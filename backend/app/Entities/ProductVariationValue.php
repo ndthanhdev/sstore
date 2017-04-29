@@ -18,4 +18,8 @@ class ProductVariationValue extends Model {
     public function storeProduct() {
         return $this->belongsTo('App\Entities\StoreProduct');
     }
+
+    public function variants() {
+        return $this->hasMany('App\Entities\ProductVariant');
+    }
 }
