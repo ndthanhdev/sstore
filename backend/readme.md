@@ -141,7 +141,8 @@ __Entity References:__
         {
             name: 'taste', 
             value: 'chocolate'
-        }
+        },
+        ...
     ]
     ```
 
@@ -174,7 +175,8 @@ __Entity References:__
         {
             name: 'taste', 
             value: 'chocolate'
-        }
+        },
+        ...
     ]
     ```\
  *has 4 unit in stock with price 40$/each.*
@@ -293,9 +295,11 @@ __Entity References:__
     ```
         [
             {
+                id: 1,
                 name: 'page', 
             },
             {
+                id: 2,
                 name: 'cover', 
             },
             ...
@@ -322,9 +326,11 @@ __Entity References:__
     ```
     [
         {
+            id: 1,
             name: 'page', 
         },
         {
+            id: 2,
             name: 'cover', 
         },
         ...
@@ -334,11 +340,11 @@ Product "sample book 1" belonged with "Book" has Product Type Attribute Value se
     ```
     [
         {
-            product_type_id: 1 (page)
+            product_type_attribute_id: 1 (page),
             value: 120, 
         },
         {
-            product_type_id: 2 (cover)
+            product_type_attribute_id: 2 (cover),
             value: 'hardcover'', 
         },
         ...
