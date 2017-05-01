@@ -20,6 +20,16 @@ $app->get('configurations', [
     'uses' => 'ConfigurationController@index'
 ]);
 
+$app->group(['prefix' => 'users'], function () use ($app) {
+
+    $app->get('/count', [
+        'as' => 'users.COUNT',
+        'uses' => 'UserController@count'
+    ]);
+
+});
+
+
 $app->group(['prefix' => 'products'], function () use ($app) {
 
     $app->get('/', [
