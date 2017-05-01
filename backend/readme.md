@@ -4,10 +4,11 @@
 | Revision | Created Date |                   Description                  |
 | :------: | :----------: | :---------------------------------------------:|
 | 0.0.1  | 28/4/2017    | Add entities |
+| 0.0.2  | 1/5/2017    | Update entities to match with ERD v1.2.2 |
 
 ## II. ENTITIES
 
-![](ERD_v1.1.18.png?raw=true)
+![](ERD_v1.2.2.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
@@ -77,7 +78,8 @@ __Relationships:__
 | :------------: | :----------: | :----------|
 |[User](#user)| One To One | A Store is managed by _01_ Store Manager |
 |[Device](#device)| One To Many | A Store has _many_ Devices |
-|[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product](#store-product-pivot)|
+|[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product Variant](#store-product-variant-pivot)|
+|[Product Variant](#product-variant)| Many To Many | A Store has their own Product Variant, each Product Variant has its own price and in_stock. Pivot: [Store Product Variant](#store-product-variant-pivot)|
 
 
 __Entity References:__
@@ -106,15 +108,22 @@ __Entity References:__
 | mac_address | string | Device's mac address |@NotNull, @Unique |
 
 
-### Store Product (Pivot)
+### Store Product Variant (Pivot)
 
 __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variation Value](#product-variation-value)| One To Many | A Product in Store has *at lease 01* Variation values |
+|[Product Variation](#product-variant)| Many To One | A Product in Store has *at lease 01* Product Variant |
 |[Store](#store)| Many To One | A Product can be belonged with _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store have _at lease 01_ Products |
+
+__Entity References:__
+
+| Attribute name |     Type     |                   Description                        |    Validation   |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|
+| price | number | A Product (with variant) in Store has it own price | @NotNull|
+| in_stock | number | A Product (with variant) in Store has it own in_stock amount |@NotNull|
 
 ### Product Variant
 
@@ -122,31 +131,16 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variation Value](#product-variation-value)| Many To One | A Product Variant belonged with _01_ Product Variation Values|
+|[Product Variation Value](#product-variation-value)| One To Many | A Product Variant has *at lease 01* Product Variation Values|
 
 
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| name | string | Product Variant's name | @NotNull|
-| value | string | Product Variant's value |@NotNull|
+| default | boolean | Is this the default Variant of Product? | @NotNull, @Default(false)|
 
- *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
-    ```
-    [
-        {
-            name: 'volume', 
-            value: '350ML'
-        },
-        {
-            name: 'taste', 
-            value: 'chocolate'
-        },
-        ...
-    ]
-    ```
-
+ *E.g: A Product "vinamilk"(Milk) in "store 1" has 5 Product Variants, one of those is default Variant:* 
 
 ### Product Variation Value
 
@@ -154,20 +148,17 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variant](#product-variant)| One To Many | a Product Variation Value has _at lease 01_ Product variants.|
-|[Store Product](#store-product-pivot)| Many To One | a Product Variation Value belonged with _01_ Product in Store |
-
+|[Product Variant](#product-variant)| Many To One | a Product Variation Value belonged to _01_ Product Variant.|
 
 
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| in_stock | string | Number of products has specified variants | @NotNull|
-| price | string | Price of a product has specified variants |@NotNull|
-| default | boolean | Is this Variation Value represent the default value for the Product? |@NotNull|
+| name | string | Product Variation Value's name | @NotNull|
+| value | string | Product Variation Value's vallues |@NotNull|
 
- *E.g: A Product "vinamilk"(Milk) in "store 1" has Product Variant set:* \
+  *E.g: A Product "vinamilk"(Milk) in "store 1" has 5 Product Variants, one of those is default Product Variant. That Product Variant has has 4 unit in stock with price 40$/each and has Product Variation set:*   
     ```
     [
         {
@@ -181,7 +172,6 @@ __Entity References:__
         ...
     ]
     ```\
- *has 4 unit in stock with price 40$/each.*
  
 ### Product
  
@@ -193,7 +183,8 @@ __Relationships:__
 |[Custom Attribute](#custom-attribute)| One To Many | A Product may have _many_ Custom Attribute.|
 |[Product Type](#product-type)| Many To One | A Product belonged with _01_ Product Type.|
 |[Category](#category)| Many To One | A Product belonged with _01_ Category.|
-|[Store](#store)| Many To Many | A Product may belonged with _many_ Store. Pivot: [Store Product](#store-product-pivot)|
+|[Store](#store)| Many To Many | A Product may belonged with _many_ Store. Pivot: [Store Product Variant](#store-product-variant-pivot)|
+|[Product Variant](#product-variant)| Many To Many | A Product has _many_ Product Variants. Pivot: [Store Product Variant](#store-product-variant-pivot)|
 |[Product Type Attribute](#product-type-attribute)| Many To Many | A Product has _many_ Product Type's Attribute. Pivot: [Product Type Attribute Value](#product-type-attribute-value-pivot)|
 |[Shopping Cart](#shopping-cart)| Many To Many | A Product may belonged with _many_ Shopping Cart. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
 
