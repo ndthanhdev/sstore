@@ -11,15 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 class ProductVariationValue extends Model {
     public $timestamps = false;
     protected $fillable = [
-        'in_stock',
-        'price'
+        'name',
+        'value'
     ];
 
-    public function storeProduct() {
-        return $this->belongsTo('App\Entities\StoreProduct');
-    }
-
-    public function variants() {
-        return $this->hasMany('App\Entities\ProductVariant');
+    public function variant() {
+        return $this->belongsTo('App\Entities\ProductVariant');
     }
 }

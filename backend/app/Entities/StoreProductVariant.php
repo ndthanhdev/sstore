@@ -7,11 +7,11 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StoreProduct extends Model {
+class StoreProductVariant extends Model {
     public $timestamps = false;
     protected $fillable = [
-        'in_stock_default',
-        'price_default'
+        'in_stock',
+        'price'
     ];
-    protected $table = 'store_product';
+    protected $table = 'store_product_variant';
 }

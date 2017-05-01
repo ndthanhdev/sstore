@@ -11,7 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 class ProductVariant extends Model {
     public $timestamps = false;
     protected $fillable = [
-        'name',
-        'value'
+        'default'
     ];
+
+    public function variationValues() {
+        return $this->hasMany('App\Entities\ProductVariationValue');
+    }
 }

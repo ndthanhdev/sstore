@@ -20,7 +20,14 @@ class Store extends Model {
 
     public function products() {
         return $this
-            ->belongsToMany('App\Entities\Product', 'store_product')
-            ->withPivot(['in_stock_default', 'price_default']);
+            ->belongsToMany('App\Entities\Product', 'store_product_variant')
+            ->withPivot(['price', 'in_stock']);
+    }
+
+
+    public function productVariations() {
+        return $this
+            ->belongsToMany('App\Entities\ProductVariation', 'store_product_variant')
+            ->withPivot(['price', 'in_stock']);
     }
 }

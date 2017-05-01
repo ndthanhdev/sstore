@@ -5,7 +5,6 @@
 
 $factory->define(\App\Entities\ProductVariant::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->hexColor,
-        'value' => $faker->word,
+        'default' => false
     ];
 });

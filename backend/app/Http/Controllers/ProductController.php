@@ -18,9 +18,7 @@ class ProductController extends Controller {
     }
 
     public function index() {
-        return $this->productRepo->with(['variationValues' => function ($query) {
-            $query->where('default', true);
-        }, 'variationValues.variants'])->paginate(10); // 10 product per page
+        return $this->productRepo->with(['variants', 'variants.variationValues'])->paginate(10); // 10 product per page
     }
 
     public function featuredProducts() {

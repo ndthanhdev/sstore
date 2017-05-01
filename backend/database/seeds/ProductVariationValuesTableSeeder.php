@@ -6,8 +6,8 @@
 namespace database\seeds;
 
 
+use App\Entities\ProductVariant;
 use App\Entities\ProductVariationValue;
-use App\Entities\StoreProduct;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -15,21 +15,22 @@ class ProductVariationValuesTableSeeder extends Seeder {
 
     public function run() {
         $faker = Factory::create();
-        $storeProducts = StoreProduct::all();
 
-        foreach ($storeProducts as $storeProduct) {
-            $numberOfProductVariationValues = $faker->numberBetween(1, config('factory.MAX_PRODUCT_VARIATION_VALUES_PER_STORE_PRODUCT'));
-            //at lease 1 product variation value in a store product
+        ProductVariant::all()->each(function ($productVariant, $key) use ($faker) {
+
+            //each product variant has at lease 01 product variation values
             factory(ProductVariationValue::class)->create([
-                'store_product_id' => $storeProduct->id,
-                'default' => true
+                'product_variant_id' => $productVariant->id
             ]);
-            for ($i = 1; $i < $numberOfProductVariationValues; $i++) {
+
+
+            $numberOfVariantValues = $faker->numberBetween(1, config('factory.MAX_PRODUCT_VARIATION_VALUES_PER_PRODUCT_VARIANT'));
+            for ($i = 1; $i < $numberOfVariantValues; $i++) {
                 factory(ProductVariationValue::class)->create([
-                    'store_product_id' => $storeProduct->id
+                    'product_variant_id' => $productVariant->id
                 ]);
             }
-        }
+        });
 
     }
 }

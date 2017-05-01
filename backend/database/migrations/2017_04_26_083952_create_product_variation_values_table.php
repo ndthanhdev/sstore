@@ -13,13 +13,12 @@ class CreateProductVariationValuesTable extends Migration {
     public function up() {
         Schema::create('product_variation_values', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('in_stock');
-            $table->decimal('price');
-            $table->boolean('default')->default(false);
-            $table->unsignedInteger('store_product_id');
+            $table->string('name');
+            $table->string('value');
+            $table->unsignedInteger('product_variant_id');
         });
         Schema::table('product_variation_values', function (Blueprint $table) {
-            $table->foreign('store_product_id')->references('id')->on('store_product');
+            $table->foreign('product_variant_id')->references('id')->on('product_variants');
         });
     }
 
