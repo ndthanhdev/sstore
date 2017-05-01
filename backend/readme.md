@@ -114,7 +114,7 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Product Variation](#product-variant)| Many To One | A Product in Store has *at lease 01* Product Variant |
+|[Product Variant](#product-variant)| Many To One | A Product in Store has *at lease 01* Product Variant |
 |[Store](#store)| Many To One | A Product can be belonged with _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store have _at lease 01_ Products |
 
