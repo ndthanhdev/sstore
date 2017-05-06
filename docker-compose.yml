@@ -105,6 +105,17 @@ services:
         networks:
           - frontend
 
+### Frontend-admin Container ##################################
+    frontend-admin:
+        build: ./frontend-admin
+        ports:
+          - "4300:4200"
+        volumes:
+          - $PWD/frontend-admin:/usr/sstore/frontend-admin
+          - /usr/sstore/frontend-admin/node_modules # a trick to make docker use the installed node_modules (in images creation phrase). If this line is removed, docker will use node_modules in host mounted folder
+        networks:
+          - frontend
+
 ### Networks Setup ############################################
 
 networks:
