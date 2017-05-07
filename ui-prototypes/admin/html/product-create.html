@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Create</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/store-create.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<!--START NAV BAR-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#app-navbar" aria-controls="app-navbar-control" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" routerLink="/">SSTORE<i class="fa fa-shopping-cart"></i></a>
+
+    <div class="collapse navbar-collapse" id="app-navbar">
+        <div class="navbar-nav mr-auto mt-2 mt-md-0">
+            <a class="nav-item nav-link" routerLink="/">
+                <small>Hello, Vu Nguyen Hung</small>
+                <small class="text-primary">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    <span>Admin</span>
+                </small>
+            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Store</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Review</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Logout</button>
+    </div>
+</nav>
+<!--END NAV BAR-->
+
+<!--START JUMBOTRON-->
+<div class="jumbotron bg-primary text-white">
+    <div class="container">
+        <h1 class="display-3">Product Create</h1>
+    </div>
+</div>
+<!--END JUMBOTRON-->
+
+<div class="container">
+
+    <!--START PRODUCT INFORMATION FORM-->
+    <span class="col-12 display-4">
+        Product Information:
+    </span>
+    <hr>
+    <div class="row mb-3">
+        <!--START STORE FORM-->
+        <div class="col-12 col-lg-6 d-flex align-items-center">
+            <div class="card image-placeholder bg-faded d-flex align-items-center justify-content-center mx-auto d-block">
+                <i class="fa fa-picture-o fa-5x text-muted mb-2 cursor-pointer"></i>
+                <span class="lead text-muted">Drag image here</span>
+            </div>
+        </div>
+
+        <form class="col-12 col-lg-6">
+            <div class="form-group">
+                <label for="product-name-input">Name:</label>
+                <input type="text"
+                       class="form-control"
+                       id="product-name-input">
+            </div>
+
+            <div class="form-group">
+                <label for="product-barcode-input">Barcode:</label>
+                <input type="text"
+                       class="form-control"
+                       id="product-barcode-input">
+            </div>
+
+
+            <div class="form-group">
+                <label for="product-category-input">Categories: </label>
+                <select class="form-control" id="product-category-input">
+                    <option>Household</option>
+                    <option>Cheap</option>
+                    <option>Entertainment</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-type-input">Product Type: </label>
+                <select class="form-control" id="product-type-input">
+                    <option>Book</option>
+                    <option>Milk</option>
+                    <option>Phone</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-description-input">Description</label>
+                <textarea class="form-control" id="product-description-input" rows="3"></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <label for="store-image-input">Image:</label>
+                <div class="row px-3">
+                    <input disabled
+                           type="text"
+                           class="form-control col-8"
+                           id="store-image-input">
+                    <button class="btn btn-outline-primary col-3 offset-1">Upload</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!--END PRODUCT INFORMATION FORM-->
+
+    <!--START PRODUCT ATTRIBUTE FORM-->
+    <span class="col-12 display-4">
+        Product Attributes:
+    </span>
+    <hr>
+    <div class="row px-3 mb-3">
+        <div class="col-lg-6 col-12">
+            <p class="lead">Product Type Attributes: <span class="badge badge-pill badge-primary">Book</span></p>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">0</th>
+                    <td>Color</td>
+                    <td>
+                        <input type="text" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Size</td>
+                    <td>
+                        <input type="text" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Cover</td>
+                    <td>
+                        <input type="text" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Page</td>
+                    <td>
+                        <input type="text" class="form-control">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-lg-6 col-12 mb-3">
+            <div class="d-flex justify-content-between align-items-start">
+                <p class="lead">Custom Attributes:</p>
+                <button class="btn btn-outline-primary">+</button>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">0</th>
+                    <td>
+                        <input type="text" class="form-control">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control">
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--END PRODUCT ATTRIBUTE FORM-->
+
+
+    <!--START PRODUCT VARIANTS FORM-->
+    <div class="d-flex justify-content-between align-items-end">
+        <span class="display-4">Product Variants:</span>
+        <button class="btn btn-outline-primary">+</button>
+    </div>
+    <hr>
+    <!--START VARIANT CARD FORM-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <span class="lead mr-2">New Variant</span>
+            <button class="btn btn-sm btn-outline-primary">Mark as Default</button>
+        </div>
+
+        <div class="card-block row">
+            <div class="col-lg-6 col-12">
+                <div class="d-flex justify-content-between align-items-start">
+                    <p class="lead">Variation Values:</p>
+                    <button class="btn btn-outline-primary">+</button>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">0</th>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-6 col-12 mb-3">
+                <p class="lead">Availability:</p>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Store name</th>
+                        <th>Price</th>
+                        <th width="20%">In stock</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">0</th>
+                        <td><a href="#">Store To Hien 1</a></td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="#">Store Ta Quang Buu 1</a></td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td><a href="#">Store Ba Thang Hai 1</a></td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--END VARIANT CARD FORM-->
+    <!--END PRODUCT VARIANTS FORM-->
+
+    <hr>
+
+    <div class="d-flex justify-content-end mb-5">
+        <button class="btn btn-link btn-lg">Reset</button>
+        <button class="btn btn-outline-primary btn-lg">Save</button>
+    </div>
+</div>
+
+
+</body>
+</html>
