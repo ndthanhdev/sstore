@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Store Detail</title>
+    <title>Store Create</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../style/global.css">
-    <link rel="stylesheet" href="../style/store-detail.css">
+    <link rel="stylesheet" href="../style/store-create.css">
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
             integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
@@ -24,7 +24,7 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACGaDxyjAqy8uZMSq7uGGqPcinO_Z0IsU&callback=initMap">
     </script>
-    <script type="text/javascript" src="../scripts/store-detail.js"></script>
+    <script type="text/javascript" src="../scripts/store-create.js"></script>
 </head>
 <body>
 <!--START NAV BAR-->
@@ -70,7 +70,7 @@
 <!--START JUMBOTRON-->
 <div class="jumbotron bg-primary text-white">
     <div class="container">
-        <h1 class="display-3">Store To Hien Thanh 1</h1>
+        <h1 class="display-3">Create Store</h1>
         <span class="lead"></span>
     </div>
 </div>
@@ -78,55 +78,79 @@
 
 <div class="container">
 
+    <!--START STORE LOCATION-->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header"><h3 class="mb-0">Store Location</h3>
+                    <small class="text-muted">Drag the shopping cart to appropriate location or <a href="#">use current
+                        location</a></small>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+    <!--END STORE LOCATION-->
+
     <!--START STORE FORM-->
     <div class="row mb-3">
         <div class="col-12">
             <div class="card">
                 <h3 class="card-header">Store Information</h3>
                 <div class="card-block row">
-                    <div class="col-6">
-                        <img src="http://lorempixel.com/500/500/city" alt="city" class="img-thumbnail">
+
+                    <div class="col-12 d-flex col-lg-6">
+                        <div class="card image-placeholder bg-faded d-flex align-items-center justify-content-center mx-auto d-block">
+                            <i class="fa fa-picture-o fa-5x text-muted mb-2 cursor-pointer"></i>
+                            <span class="lead text-muted">Drag image here</span>
+                        </div>
                     </div>
-                    <form class="col-6">
+
+                    <form class="col-12 col-lg-6">
                         <div class="form-group">
                             <label for="store-name-input">Name:</label>
-                            <input disabled
-                                   type="text"
+                            <input type="text"
                                    class="form-control"
-                                   id="store-name-input"
-                                   value="Store To Hien Thanh 1">
+                                   id="store-name-input">
                         </div>
                         <div class="form-group">
                             <label for="store-address-input">Address:</label>
-                            <input disabled
-                                   type="text"
+                            <input type="text"
                                    class="form-control"
-                                   id="store-address-input"
-                                   value="224 To Hien Thanh">
+                                   id="store-address-input">
                         </div>
                         <div class="form-group">
                             <label for="store-latitude-input">Latitude:</label>
-                            <input disabled
-                                   type="text"
+                            <input type="text"
                                    class="form-control"
-                                   id="store-latitude-input"
-                                   value="10.772603">
+                                   id="store-latitude-input">
                         </div>
+
                         <div class="form-group">
                             <label for="store-longitude-input">Longitude:</label>
-                            <input disabled
-                                   type="text"
+                            <input type="text"
                                    class="form-control"
-                                   id="store-longitude-input"
-                                   value="106.6602087020874">
+                                   id="store-longitude-input">
                         </div>
+
                         <div class="form-group">
-                            <label for="store-manager-input">Manager:</label>
-                            <input disabled
-                                   type="text"
-                                   class="form-control"
-                                   id="store-manager-input"
-                                   value="Vu Nguyen Hung">
+                            <label for="store-manager-input">Manager: </label>
+                            <select class="form-control" id="store-manager-input">
+                                <option>Vu Nguyen Hung</option>
+                                <option>Nguyen Van A</option>
+                                <option>Tran Van C</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="store-image-input">Image:</label>
+                            <div class="row px-3">
+                                <input disabled
+                                       type="text"
+                                       class="form-control col-8"
+                                       id="store-image-input">
+                                <button class="btn btn-outline-primary col-3 offset-1">Upload</button>
+                            </div>
                         </div>
 
                     </form>
@@ -135,30 +159,6 @@
         </div>
     </div>
     <!--END STORE FORM-->
-
-    <!--START STORE LOCATION-->
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="card">
-                <h3 class="card-header">Store Location</h3>
-                <div id="map"></div>
-            </div>
-        </div>
-    </div>
-    <!--END STORE LOCATION-->
-
-    <!--START TODAY SALES CHART-->
-    <div class="row mb-5">
-        <div class="col-12">
-            <div class="card">
-                <h3 class="card-header">Today sales</h3>
-                <div id="today-sales-chart"></div>
-            </div>
-        </div>
-    </div>
-    <!--END TODAY SALES CHART-->
-
 </div>
-
 </body>
 </html>
