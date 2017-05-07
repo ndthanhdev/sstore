@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/store-detail.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACGaDxyjAqy8uZMSq7uGGqPcinO_Z0IsU&callback=initMap">
+    </script>
+    <script type="text/javascript" src="../scripts/store-detail.js"></script>
+</head>
+<body>
+<!--START NAV BAR-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#app-navbar" aria-controls="app-navbar-control" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" routerLink="/">SSTORE<i class="fa fa-shopping-cart"></i></a>
+
+    <div class="collapse navbar-collapse" id="app-navbar">
+        <div class="navbar-nav mr-auto mt-2 mt-md-0">
+            <a class="nav-item nav-link" routerLink="/">
+                <small>Hello, Vu Nguyen Hung</small>
+                <small class="text-primary">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    <span>Admin</span>
+                </small>
+            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Store</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Review</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Logout</button>
+    </div>
+</nav>
+<!--END NAV BAR-->
+
+<!--START JUMBOTRON-->
+<div class="jumbotron bg-primary text-white">
+    <div class="container">
+        <h1 class="display-3">Store To Hien Thanh 1</h1>
+        <span class="lead"></span>
+    </div>
+</div>
+<!--END JUMBOTRON-->
+
+<div class="container">
+
+    <!--START TODAY SALES CHART-->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <h3 class="card-header">Store Information</h3>
+                <div class="card-block row">
+                    <div class="col-6">
+                        <img src="http://lorempixel.com/500/500/city" alt="city" class="img-thumbnail">
+                    </div>
+                    <form class="col-6">
+                        <div class="form-group">
+                            <label for="store-name-input">Name:</label>
+                            <input disabled
+                                   type="text"
+                                   class="form-control"
+                                   id="store-name-input"
+                                   value="Store To Hien Thanh 1">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-address-input">Address:</label>
+                            <input disabled
+                                   type="text"
+                                   class="form-control"
+                                   id="store-address-input"
+                                   value="224 To Hien Thanh">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-latitude-input">Latitude:</label>
+                            <input disabled
+                                   type="text"
+                                   class="form-control"
+                                   id="store-latitude-input"
+                                   value="10.772603">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-longitude-input">Longitude:</label>
+                            <input disabled
+                                   type="text"
+                                   class="form-control"
+                                   id="store-longitude-input"
+                                   value="106.6602087020874">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-manager-input">Manager:</label>
+                            <input disabled
+                                   type="text"
+                                   class="form-control"
+                                   id="store-manager-input"
+                                   value="Vu Nguyen Hung">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END TODAY SALES CHART-->
+
+    <!--START STORE LOCATION-->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <h3 class="card-header">Store Location</h3>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+    <!--END STORE LOCATION-->
+
+    <!--START TODAY SALES CHART-->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <h3 class="card-header">Today sales</h3>
+                <div id="today-sales-chart"></div>
+            </div>
+        </div>
+    </div>
+    <!--END TODAY SALES CHART-->
+
+</div>
+
+</body>
+</html>
