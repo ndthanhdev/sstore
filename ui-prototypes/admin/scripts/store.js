@@ -47,7 +47,7 @@ function initMap() {
         map: map,
         animation: google.maps.Animation.DROP,
         label: '1',
-        icon: 'http://maps.google.com/mapfiles/ms/micons/convienancestore.png'
+        icon: 'http://maps.google.com/mapfiles/kml/pal4/icon47.png'
     });
 
     marker1.addListener('click', function () {
