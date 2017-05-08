@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../styles/global.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<!--START NAV BAR-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#app-navbar" aria-controls="app-navbar-control" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--START NAVBAR BRAND-->
+    <div class="mr-2">
+        <a class="navbar-brand" routerLink="/">
+            <small class="text-xs text-bottom-half">Ba Thang Hai 1</small>
+            SSTORE<i class="fa fa-shopping-cart"></i>
+        </a>
+    </div>
+    <!--END NAVBAR BRAND-->
+
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="app-navbar">
+
+        <button class="btn btn-link mr-2" type="button">
+            <i class="fa fa-shopping-cart mr-1"></i>Cart
+            <span class="badge badge-pill badge-primary">1</span>
+        </button>
+
+        <div class="btn-group">
+            <button class="btn btn-link dropdown-toggle" href="#"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login
+            </button>
+            <div class="dropdown-menu dropdown-menu-right p-3 w-250-px" aria-labelledby="navbarDropdownMenuLink">
+                <form>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input type="text" class="form-control" placeholder="Username">
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        Remember me
+                    </label>
+
+                    <button class="btn btn-sm btn-outline-primary float-right">Login</button>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</nav>
+<!--END NAV BAR-->
+
+<!--START JUMBOTRON-->
+<div class="jumbotron bg-primary text-white">
+    <div class="container">
+        <h1 class="display-3">Shopping Cart</h1>
+    </div>
+</div>
+<!--END JUMBOTRON-->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <span class="lead">Product</span>
+        </div>
+        <div class="col-2">
+            <span class="lead">Price</span>
+        </div>
+        <div class="col-2">
+            <span class="lead">Quantity</span>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <!--START PRODUCT IMAGE-->
+                <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
+                    <img src="http://lorempixel.com/350/350/cats/" alt="cats" class="img-thumbnail">
+                </div>
+                <!--END PRODUCT IMAGE-->
+
+                <!--START PRODUCT INFO-->
+                <div class="col-lg-8 col-12">
+                    <div class="mb-1">
+                        <h4 class="lead d-inline-block"><strong>Name: </strong>Kavan Cliffs</h4>
+                        <button class="btn btn-outline-danger btn-sm float-right">Delete</button>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="lead"><strong>Variants:</strong></span>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Color</td>
+                                <td>Red</td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>Cover</td>
+                                <td>Hardcover</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--END PRODUCT INFO-->
+
+            </div>
+        </div>
+        <div class="col-2">
+            <span class="lead">200.000 VND</span>
+        </div>
+
+        <div class="col-2">
+            <div class="form-group mb-0 row">
+                <input type="number" class="form-control col-8" value="5">
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <!--START PRODUCT IMAGE-->
+                <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
+                    <img src="http://lorempixel.com/350/350/cats/" alt="cats" class="img-thumbnail">
+                </div>
+                <!--END PRODUCT IMAGE-->
+
+                <!--START PRODUCT INFO-->
+                <div class="col-lg-8 col-12">
+                    <div class="mb-1">
+                        <h4 class="lead d-inline-block"><strong>Name: </strong>Kavan Cliffs</h4>
+                        <button class="btn btn-outline-danger btn-sm float-right">Delete</button>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="lead"><strong>Variants:</strong></span>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Color</td>
+                                <td>Red</td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>Cover</td>
+                                <td>Hardcover</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--END PRODUCT INFO-->
+
+            </div>
+        </div>
+        <div class="col-2">
+            <span class="lead">200.000 VND</span>
+        </div>
+
+        <div class="col-2">
+            <div class="form-group mb-0 row">
+                <input type="number" class="form-control col-8" value="5">
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <!--START PRODUCT IMAGE-->
+                <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
+                    <img src="http://lorempixel.com/350/350/cats/" alt="cats" class="img-thumbnail">
+                </div>
+                <!--END PRODUCT IMAGE-->
+
+                <!--START PRODUCT INFO-->
+                <div class="col-lg-8 col-12">
+                    <div class="mb-1">
+                        <h4 class="lead d-inline-block"><strong>Name: </strong>Kavan Cliffs</h4>
+                        <button class="btn btn-outline-danger btn-sm float-right">Delete</button>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="lead"><strong>Variants:</strong></span>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Color</td>
+                                <td>Red</td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>Cover</td>
+                                <td>Hardcover</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--END PRODUCT INFO-->
+
+            </div>
+        </div>
+        <div class="col-2">
+            <span class="lead">200.000 VND</span>
+        </div>
+
+        <div class="col-2">
+            <div class="form-group mb-0 row">
+                <input type="number" class="form-control col-8" value="5">
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row justify-content-end mb-5">
+        <span class="lead mr-5">Subtotal (3 items): 600.000 VND</span>
+    </div>
+
+    <div class="row justify-content-end mr-4 mb-5">
+        <button class="btn btn-link btn-lg">Continue shopping</button>
+        <button class="btn btn-outline-primary btn-lg">Checkout</button>
+    </div>
+
+</div>
+
+
+</body>
+</html>
