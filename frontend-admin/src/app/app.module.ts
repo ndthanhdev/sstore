@@ -9,6 +9,8 @@ import {SharedModule} from "./shared/shared.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {CoreModule} from "./core/core.module";
+import {StoreModule} from "./store/store.module";
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import {CoreModule} from "./core/core.module";
     AppRoutingModule,
     DashboardModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    StoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

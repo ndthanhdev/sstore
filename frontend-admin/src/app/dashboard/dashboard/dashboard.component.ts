@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Constant} from "./constant";
+import {Constant} from "../constant";
 
 @Component({
   selector: 'frontend-admin-dashboard',

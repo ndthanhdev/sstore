@@ -3,11 +3,11 @@
           aria-controls="app-navbar-control" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" routerlink="/">SSTORE<i class="fa fa-shopping-cart"></i></a>
+  <a class="navbar-brand" routerLink="/dashboard" routerLinkActive="active">SSTORE<i class="fa fa-shopping-cart"></i></a>
 
   <div class="collapse navbar-collapse" id="app-navbar">
     <div class="navbar-nav mr-auto mt-2 mt-md-0">
-      <a class="nav-item nav-link" routerlink="/">
+      <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">
         <small>Hello,&nbsp;{{fullName}}</small>
         <small class="text-primary">
           <i class="fa fa-circle" aria-hidden="true"></i>
@@ -16,7 +16,7 @@
       </a>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Store</a>
+          <a class="nav-link" routerLink="/store" routerLinkActive="active">Store</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Product</a>
