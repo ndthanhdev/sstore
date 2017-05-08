@@ -5,9 +5,10 @@ import {HttpModule} from '@angular/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ShareModule} from "./share/share.module";
+import {SharedModule} from "./shared/shared.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     NgbModule.forRoot(),
     AppRoutingModule,
     DashboardModule,
-    ShareModule
+    SharedModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

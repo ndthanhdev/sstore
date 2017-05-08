@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {OverviewCard} from "../overview-card/overview-card.model";
 
 @Component({
   selector: 'frontend-admin-overview-cards',
@@ -16,12 +15,6 @@ export class OverviewCardsComponent implements OnInit {
 
   @Input()
   badReviews: number;
-
-  private totalUserOverviewCard: OverviewCard;
-
-  private newOrdersOverviewCard: OverviewCard;
-
-  private badReviewsOverviewCard: OverviewCard;
 
   constructor() {
   }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Constant} from "./constant";
 
 @Component({
   selector: 'frontend-admin-dashboard',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  totalSalesChartOptions: any;
+
+  recentUsersChartOptions: any;
+
+  reviewPercentsChartOptions: any;
+
+  constructor() {
+    this.totalSalesChartOptions = Constant.totalSalesChartOptions;
+    this.reviewPercentsChartOptions = Constant.reviewPercentsChartOptions;
+    this.recentUsersChartOptions = Constant.recentUsersChartOptions;
+
+  }
 
   ngOnInit() {
+
   }
 
 }

@@ -1,11 +1,9 @@
-<div class="row justify-content-md-between pl-3">
-  <div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-3">
-    <frontend-admin-overview-card-total-user [value]="totalUser"></frontend-admin-overview-card-total-user>
-  </div>
-  <div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-3">
-    <frontend-admin-overview-card-new-orders [value]="newOrders"></frontend-admin-overview-card-new-orders>
-  </div>
-  <div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-3">
-    <frontend-admin-overview-card-bad-reviews [value]="badReviews"></frontend-admin-overview-card-bad-reviews>
-  </div>
-</div>
+<frontend-admin-overview-card-total-user
+  class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-3"
+  [value]="totalUser"></frontend-admin-overview-card-total-user>
+<frontend-admin-overview-card-new-orders
+  class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-3"
+  [value]="newOrders"></frontend-admin-overview-card-new-orders>
+<frontend-admin-overview-card-bad-reviews
+  class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-3"
+  [value]="badReviews"></frontend-admin-overview-card-bad-reviews>

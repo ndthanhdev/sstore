@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import {ShareModule} from "../share/share.module";
+import {DashboardRoutingModule} from './dashboard-routing.module';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {SharedModule} from "../shared/shared.module";
 import {OverviewCardsComponent} from "./overview-cards/overview-cards.component";
-import { OverviewCardTotalUserComponent } from './overview-card-total-user/overview-card-total-user.component';
-import { OverviewCardNewOrdersComponent } from './overview-card-new-orders/overview-card-new-orders.component';
-import { OverviewCardBadReviewsComponent } from './overview-card-bad-reviews/overview-card-bad-reviews.component';
-
+import {OverviewCardTotalUserComponent} from './overview-card-total-user/overview-card-total-user.component';
+import {OverviewCardNewOrdersComponent} from './overview-card-new-orders/overview-card-new-orders.component';
+import {OverviewCardBadReviewsComponent} from './overview-card-bad-reviews/overview-card-bad-reviews.component';
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ShareModule
+    SharedModule
   ],
   declarations: [
     DashboardComponent,
@@ -23,4 +22,5 @@ import { OverviewCardBadReviewsComponent } from './overview-card-bad-reviews/ove
     OverviewCardBadReviewsComponent,
   ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}
