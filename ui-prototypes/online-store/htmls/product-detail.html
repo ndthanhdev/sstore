@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/product.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!--START NAV BAR-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#app-navbar" aria-controls="app-navbar-control" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--START NAVBAR BRAND-->
+    <div class="mr-2">
+        <a class="navbar-brand" routerLink="/">
+            <small class="text-xs text-bottom-half">Ba Thang Hai 1</small>
+            SSTORE<i class="fa fa-shopping-cart"></i>
+        </a>
+    </div>
+    <!--END NAVBAR BRAND-->
+
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="app-navbar">
+
+        <button class="btn btn-link mr-2" type="button">
+            <i class="fa fa-shopping-cart mr-1"></i>Cart
+            <span class="badge badge-pill badge-primary">1</span>
+        </button>
+
+        <div class="btn-group">
+            <button class="btn btn-link dropdown-toggle" href="#"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login
+            </button>
+            <div class="dropdown-menu dropdown-menu-right p-3 w-250-px" aria-labelledby="navbarDropdownMenuLink">
+                <form>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input type="text" class="form-control" placeholder="Username">
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        Remember me
+                    </label>
+
+                    <button class="btn btn-sm btn-outline-primary float-right">Login</button>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</nav>
+<!--END NAV BAR-->
+
+<!--START JUMBOTRON-->
+<div class="jumbotron bg-primary text-white">
+    <div class="container">
+        <h1 class="display-3">Kavan Cliffs</h1>
+        <span class="badge badge-pill badge-info">Household</span>
+        <span class="badge badge-pill badge-info">Reading</span>
+        <span class="badge badge-pill badge-info">Cheap</span>
+        <span class="badge badge-pill badge-info">Cheapest</span>
+        <span class="lead"></span>
+    </div>
+</div>
+<!--END JUMBOTRON-->
+
+<div class="container">
+    <!--START PRODUCT INFORMATION-->
+    <span class="col-12 display-4">
+        Product Information:
+    </span>
+    <hr>
+    <div class="row px-3 mb-3">
+        <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
+            <img src="http://lorempixel.com/350/350/cats/" alt="cats" class="img-thumbnail">
+        </div>
+        <div class="col-lg-8 col-12 p-5">
+
+            <div class="mb-1">
+                <h4 class="lead d-inline-block">Kavan Cliffs</h4>
+                <span class="badge badge-pill badge-primary">Book</span>
+            </div>
+
+            <p class="card-text">
+                Donec sed pellentesque purus. Mauris eu consequat sem. Ut malesuada nunc et leo hendrerit
+                ultricies. Donec placerat diam nec efficitur tincidunt. Ut consectetur nisl at libero facilisis,
+                eu auctor tellus bibendum. Integer quis lorem viverra, semper orci sit amet, iaculis dolor.
+                Fusce sodales magna ligula, ac suscipit purus convallis eget. Proin ac ipsum libero. Morbi
+            </p>
+
+            <div class="card">
+                <div class="card-block">
+                    <span class="lead">Product Variants:</span>
+                    <!--START SORT DROPDOWN-->
+                    <div class="btn-group mb-2">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <span class="badge badge-pill badge-info">Household</span>
+                            <span class="badge badge-pill badge-info">Reading</span>
+                            <span class="badge badge-pill badge-info">Household</span>
+                            <span class="badge badge-pill badge-info">Reading</span>
+                            <span class="badge badge-pill badge-info">Household</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item active" href="#">Best seller</a>
+                            <a class="dropdown-item" href="#">Most rating</a>
+                            <a class="dropdown-item" href="#">Price: Highest first</a>
+                            <a class="dropdown-item" href="#">Price: Lowest first</a>
+                        </div>
+                    </div>
+                    <!--END SORT DROPDOWN-->
+                    <div class="lead mb-2">Price: <strong>200.000 VND</strong></div>
+
+                    <div class="form-group mb-0 row">
+                        <span class="lead col-2">Amount: </span>
+                        <input type="number" class="form-control col-3">
+                    </div>
+
+
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <button class="btn btn-link">Reset</button>
+                    <button class="btn btn-outline-primary">Put to Card <i class="fa fa-shopping-cart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END PRODUCT INFORMATION-->
+
+
+    <!--START PRODUCT ATTRIBUTES-->
+    <span class="col-12 display-4">
+        Product Attributes:
+    </span>
+    <hr>
+    <div class="row px-3 mb-3">
+        <div class="col-lg-6 col-12">
+            <p class="lead">Product Type Attributes: <span class="badge badge-pill badge-primary">Book</span></p>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">0</th>
+                    <td>Color</td>
+                    <td>Red</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Size</td>
+                    <td>Medium</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Cover</td>
+                    <td>Hardcover</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Page</td>
+                    <td>129</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-lg-6 col-12 mb-3">
+            <div class="d-flex justify-content-between align-items-start">
+                <p class="lead">Custom Attributes:</p>
+                <button class="btn btn-outline-primary">+</button>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">0</th>
+                    <td>Volume</td>
+                    <td>350ML</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Size</td>
+                    <td>Medium</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--END PRODUCT ATTRIBUTES-->
+
+
+    <!--START PRODUCT REVIEWS-->
+    <span class="col-12 display-4">
+        Product Reviews:
+    </span>
+    <hr>
+
+    <!--START REVIEW WRITER SECTION-->
+    <div class="card mb-3">
+        <div class="card-block">
+            <div class="row align-items-center">
+                <div class="col-2 text-center">
+                    <h1>4/5</h1>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <div>
+                        <small>(5 Reviews)</small>
+                    </div>
+                </div>
+                <div class="col-10">
+                        <textarea class="form-control" id="exampleTextarea" rows="3"
+                                  placeholder="Write your review"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END REVIEW WRITER SECTION-->
+
+
+    <!--START REVIEW LIST SECTION-->
+    <div class="mb-5">
+
+        <div class="card mb-3">
+            <div class="card-header d-flex align-items-center justify-content-start">
+                <span class="lead mr-2">#1 Vu Nguyen Hung</span>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="text-muted ml-auto">5 minutes ago</span>
+            </div>
+            <div class="card-block">
+                It's a great product!!
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header d-flex align-items-center justify-content-start">
+                <span class="lead mr-2">#1 Vu Nguyen Hung</span>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="text-muted ml-auto">5 minutes ago</span>
+            </div>
+            <div class="card-block">
+                It's a great product!!
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header d-flex align-items-center justify-content-start">
+                <span class="lead mr-2">#1 Vu Nguyen Hung</span>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="text-muted ml-auto">5 minutes ago</span>
+            </div>
+            <div class="card-block">
+                It's a great product!!
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header d-flex align-items-center justify-content-start">
+                <span class="lead mr-2">#1 Vu Nguyen Hung</span>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="text-muted ml-auto">5 minutes ago</span>
+            </div>
+            <div class="card-block">
+                It's a great product!!
+            </div>
+        </div>
+
+
+    </div>
+    <!--END REVIEW LIST SECTION-->
+
+
+    <!--END PRODUCT REVIEW-->
+</div>
+
+</body>
+</html>
