@@ -1,0 +1,17 @@
+.text-xs {
+    font-size: 11px;
+}
+
+.text-bottom-half {
+    position: absolute;
+    top: 36px;
+    left: 45px;
+}
+
+.w-250-px {
+    width: 250px;
+}
+
+.jumbotron {
+    margin-top: 55px;
+}
