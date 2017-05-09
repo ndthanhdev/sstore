@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'sstore-root',
+  selector: 'frontend-root',
   template: `
     <h1>
       {{title}}

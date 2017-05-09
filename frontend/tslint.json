@@ -106,13 +106,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "sstore",
+      "frontend",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "sstore",
+      "frontend",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
