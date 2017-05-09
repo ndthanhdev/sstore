@@ -20,4 +20,6 @@ class ConfigurationController extends Controller {
     public function index() {
         return $this->configRepo->all();
     }
+
 }
+

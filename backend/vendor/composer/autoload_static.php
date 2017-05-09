@@ -49,6 +49,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         ),
         'L' => 
         array (
+            'Lightning\\' => 10,
             'Laravel\\Lumen\\' => 14,
         ),
         'I' => 
@@ -168,6 +169,10 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Lightning\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/brandonhudson/lightning/Lightning',
         ),
         'Laravel\\Lumen\\' => 
         array (
@@ -895,7 +900,6 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'database\\seeds\\ProductTypeAttributeValuesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTypeAttributeValuesTableSeeder.php',
         'database\\seeds\\ProductTypeAttributesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTypeAttributesTableSeeder.php',
         'database\\seeds\\ProductTypesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTypesTableSeeder.php',
-        'database\\seeds\\ProductVariantsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductVariantsTableSeeder.php',
         'database\\seeds\\ProductVariationValuesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductVariationValuesTableSeeder.php',
         'database\\seeds\\ProductsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductsTableSeeder.php',
         'database\\seeds\\ReviewsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ReviewsTableSeeder.php',

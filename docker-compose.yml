@@ -121,6 +121,7 @@ services:
         build: ./hivemq
         ports:
           - "11883:1883"
+          - "18000:8000"
         volumes:
           - ~/hivemq-data:/opt/hivemq/data
         networks:

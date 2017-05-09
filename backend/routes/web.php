@@ -38,3 +38,24 @@ $app->group(['prefix' => 'products'], function () use ($app) {
     ]);
 
 });
+
+
+$app->group(['prefix' => 'mqtt'], function () use ($app) {
+
+
+    $app->group(['prefix' => 'tests'], function () use ($app) {
+
+        $app->get('/publish', [
+            'as' => 'mqtt/tests/publish',
+            'uses' => 'MQTTController@testPublish'
+        ]);
+
+        $app->get('/subscribe', [
+            'as' => 'mqtt/tests/subscribe',
+            'uses' => 'MQTTController@testSubscribe'
+        ]);
+
+    });
+
+});
+

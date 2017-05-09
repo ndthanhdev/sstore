@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "176e7da04ac8be71f3be2fd2ff8cc7a0",
+    "content-hash": "76bb00a6191f24d169c836943eb15bbb",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -63,6 +63,44 @@
                 "laravel"
             ],
             "time": "2017-03-22T08:40:10+00:00"
+        },
+        {
+            "name": "brandonhudson/lightning",
+            "version": "0.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brandonhudson/Lightning.git",
+                "reference": "d47c7acfe883d3bd95bdc79d15e8dc8e2f4c8496"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brandonhudson/Lightning/zipball/d47c7acfe883d3bd95bdc79d15e8dc8e2f4c8496",
+                "reference": "d47c7acfe883d3bd95bdc79d15e8dc8e2f4c8496",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lightning\\": "Lightning"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brandon Hudson",
+                    "email": "brandon@brandonhudson.me"
+                }
+            ],
+            "description": "PHP micro framework for MQTT, letting you quickly connect, publish, and subscribe to topics.",
+            "keywords": [
+                "framework",
+                "micro",
+                "mqtt"
+            ],
+            "time": "2017-04-26T19:08:16+00:00"
         },
         {
             "name": "doctrine/inflector",
