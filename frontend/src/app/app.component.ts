@@ -10,5 +10,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'This app is serving from docker container!!!!';
+  title = 'This app is servinasdg from docker container!!!!';
 }
