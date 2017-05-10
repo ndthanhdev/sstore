@@ -6,7 +6,8 @@ import {Tile} from '../../../models/tile.model';
   template: `
     <i class="fa fa-angle-left hidden-md-down fa-3x"
        [ngClass]="{'text-muted': currentSlide <= 1}"
-       (click)="previousSlide()"></i>
+       (click)="previousSlide()">
+    </i>
 
     <ng-template ngFor let-tile [ngForOf]="tiles" let-i="index" [ngForTrackBy]="trackByFn">
       <frontend-category-tile
@@ -18,7 +19,8 @@ import {Tile} from '../../../models/tile.model';
 
     <i class="fa fa-angle-right hidden-md-down fa-3x"
        [ngClass]="{'text-muted': currentSlide*3 >= tiles.length}"
-       (click)="nextSlide()"></i>
+       (click)="nextSlide()">
+    </i>
   `,
   styleUrls: ['./category-tiles.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

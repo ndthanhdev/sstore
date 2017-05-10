@@ -6,7 +6,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'catalogs'
+  },
+  {
+    path: 'categories',
+    loadChildren: 'app/modules/category/category.module#CategoryModule'
+  },
+  {
+    path: 'catalogs',
+    loadChildren: 'app/modules/catalog/catalog.module#CatalogModule'
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
