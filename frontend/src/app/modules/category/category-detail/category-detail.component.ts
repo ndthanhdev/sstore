@@ -8,6 +8,8 @@ import {ActivatedRoute} from '@angular/router';
       Category: {{routeId}}
     </span>
     <hr>
+    <frontend-product-summary-list>
+    </frontend-product-summary-list>
   `,
   styleUrls: ['./category-detail.component.scss']
 })

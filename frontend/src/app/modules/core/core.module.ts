@@ -7,10 +7,15 @@ import {RouterModule} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CategoryTilesComponent} from './categories-tiles/category-tiles.component';
 import {CategoryTileComponent} from './categories-tile/category-tile.component';
+import {ProductSummaryComponent} from './product-summary/product-summary.component';
+import {ProductSummaryListComponent} from './product-summary-list/product-summary-list.component';
+import {SharedModule} from '../shared/shared.module';
+import {ProductSummaryListHeaderComponent} from './product-summary-list-header/product-summary-list-header.component';
 
 @NgModule({
   imports: [
     NgbModule,
+    SharedModule,
 
     RouterModule,
     CommonModule,
@@ -20,9 +25,16 @@ import {CategoryTileComponent} from './categories-tile/category-tile.component';
     NavbarComponent,
     NavbarLoginComponent,
     CategoryTilesComponent,
-    CategoryTileComponent
+    CategoryTileComponent,
+    ProductSummaryComponent,
+    ProductSummaryListComponent,
+    ProductSummaryListHeaderComponent
   ],
-  exports: [NavbarComponent, CategoryTilesComponent]
+  exports: [
+    NavbarComponent,
+    CategoryTilesComponent,
+    ProductSummaryListComponent
+  ]
 })
 export class CoreModule {
 }
