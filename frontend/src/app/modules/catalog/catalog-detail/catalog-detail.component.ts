@@ -27,34 +27,42 @@ export class CatalogDetailComponent implements OnInit {
 
   tiles: Category[] = [ // all category of current catalog
     {
+      id: 1,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book'
     },
     {
+      id: 2,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book1'
     },
     {
+      id: 3,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book2'
     },
     {
+      id: 4,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book3'
     },
     {
+      id: 5,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book4'
     },
     {
+      id: 6,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book5'
     },
     {
+      id: 7,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book6'
     },
     {
+      id: 8,
       icon: 'fa fa-book fa-3x fa-fw',
       name: 'Book7'
     }

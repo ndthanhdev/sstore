@@ -4,7 +4,7 @@ import {Category} from '../../../models/category.model';
 @Component({
   selector: 'frontend-category-tile',
   template: `
-    <div class="card">
+    <div class="card" [routerLink]="['/categories', tile.id]">
       <div class="row">
         <div class="col-4 bg-success text-white p-0 rounded-left d-flex align-items-center justify-content-center">
           <div class="card-img-bottom">
