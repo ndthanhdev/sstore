@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Tile} from '../../../models/tile.model';
+import {Category} from '../../../models/category.model';
 
 @Component({
   selector: 'frontend-category-tiles',
@@ -26,7 +26,7 @@ import {Tile} from '../../../models/tile.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryTilesComponent {
-  @Input() tiles: Tile[];
+  @Input() tiles: Category[];
 
   currentSlide = 1;
 

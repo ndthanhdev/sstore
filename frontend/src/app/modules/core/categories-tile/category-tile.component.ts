@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Tile} from '../../../models/tile.model';
+import {Category} from '../../../models/category.model';
 
 @Component({
   selector: 'frontend-category-tile',
@@ -12,7 +12,7 @@ import {Tile} from '../../../models/tile.model';
           </div>
         </div>
         <div class="card-block col-8 d-flex">
-          <span class="card-title h4 mb-0">{{tile.title}}</span>
+          <span class="card-title h4 mb-0">{{tile.name}}</span>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@ import {Tile} from '../../../models/tile.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryTileComponent {
-  @Input() tile: Tile;
+  @Input() tile: Category;
 
   constructor() {
   }
