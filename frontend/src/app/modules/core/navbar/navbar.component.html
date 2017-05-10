@@ -1,0 +1,30 @@
+<!--START NAV BAR-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#app-navbar" aria-controls="app-navbar-control" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!--START NAVBAR BRAND-->
+  <div class="mr-2">
+    <a class="navbar-brand" routerLink="/">
+      <small class="text-xs text-bottom-half">{{storeName}}</small>
+      SSTORE<i class="fa fa-shopping-cart"></i>
+    </a>
+  </div>
+  <!--END NAVBAR BRAND-->
+
+  <div class="collapse navbar-collapse d-flex justify-content-end" id="app-navbar">
+
+    <button class="btn btn-link mr-2" type="button">
+      <i class="fa fa-shopping-cart mr-1"></i>Cart
+      <span class="badge badge-pill badge-primary">{{itemInCart}}</span>
+    </button>
+
+    <frontend-navbar-login>
+    </frontend-navbar-login>
+
+  </div>
+</nav>
+<!--END NAV BAR-->

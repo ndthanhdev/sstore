@@ -3,12 +3,18 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'frontend-root',
   template: `
-    <h1>
-      {{title}}
-    </h1>
+    <frontend-navbar
+      [storeName]="storeName"
+      [itemInCart]="itemInCart">
+    </frontend-navbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'This app is servinasdg from docker container!!!!';
+  storeName = 'Ba Thang Hai 1';
+  itemInCart = 2;
+
 }
