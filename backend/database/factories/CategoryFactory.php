@@ -6,7 +6,8 @@
 $factory->define(\App\Entities\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->unique()->city, // category name needs unique
-        'description' => $faker->sentence
+        'description' => $faker->sentence,
+        'icon' => 'fa-shopping-cart'
     ];
 });
 

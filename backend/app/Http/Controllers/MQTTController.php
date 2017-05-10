@@ -24,14 +24,13 @@ class MQTTController extends Controller {
     }
 
     public function testPublish() {
-        $this->mqtt->publish("123", '{"hello":"world"}', 1);
-        $this->mqtt->publish("test/request/hello/world", '{"hello":"world"}', 1);
+        $this->mqtt->publish("s2a", '123', 0);
         $this->mqtt->close();
         return 'message sent';
     }
 
     public function testSubscribe() {
-        $this->mqtt->subscribe('123', 1, function (\Lightning\Response $response) {
+        $this->mqtt->subscribe('a2s', 0, function (\Lightning\Response $response) {
             echo $response->getMessage();
             exit(1);
         });
