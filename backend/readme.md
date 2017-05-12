@@ -471,6 +471,14 @@ __Entity References:__
 | __index__ | /catalogs | GET | Get all catalog | 200 - OK |
 | __categories__ | /catalogs/{id:[0-9]+}/categories | GET | Get all Parent Category (parent_id = null) of specified Catalog | 200 - OK |
 
+
+### Category
+
+| Method |     URL     |                   HTTP verb                        |    Description   |        Response Code |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|:---- |
+| __childCategories__ | /categories/{id:[0-9]+} | GET | Get all child categories of specified Category | 200 - OK |
+
+
 ## III. API Examples
 
 ### [Catalog](#catalog-1)
@@ -518,5 +526,29 @@ __Entity References:__
     ]
     ```    
 
- 
+### [Category](#category-1)
 
+- GET `/categories/{id:[0-9]+}/categories`:\
+    Sample URL: `/categories/5/categories`
+      
+    Sample Response:    
+    ```json
+   [
+     {
+       "id": 1,
+       "name": "Skilesfurt",
+       "description": "Cupiditate id dolorem quaerat vitae nihil reiciendis id.",
+       "icon": "fa-shopping-cart",
+       "parent_id": 5,
+       "catalog_id": 1
+     },
+     {
+       "id": 3,
+       "name": "Meaganburgh",
+       "description": "Odio labore officiis modi quas illum.",
+       "icon": "fa-shopping-cart",
+       "parent_id": 5,
+       "catalog_id": 1
+     }
+   ]
+    ```

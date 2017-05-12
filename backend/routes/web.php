@@ -11,19 +11,7 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
 
-$app->get('configurations', [
-    'as' => 'configurations.GET',
-    'uses' => 'ConfigurationController@index'
-]);
-
-$app->get('catalogs', [
-    'as' => 'catalogs.GET',
-    'uses' => 'CatalogController@index'
-]);
 
 $app->group(['prefix' => 'catalogs'], function () use ($app) {
 
@@ -38,6 +26,22 @@ $app->group(['prefix' => 'catalogs'], function () use ($app) {
     ]);
 
 });
+
+
+$app->group(['prefix' => 'categories'], function () use ($app) {
+
+    $app->get('/{id}/categories', [
+        'as' => 'categories/{id}/categories.GET',
+        'uses' => 'CategoryController@childCategories'
+    ]);
+
+});
+
+
+$app->get('configurations', [
+    'as' => 'configurations.GET',
+    'uses' => 'ConfigurationController@index'
+]);
 
 
 $app->group(['prefix' => 'users'], function () use ($app) {
