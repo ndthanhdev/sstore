@@ -21,4 +21,9 @@ class CatalogRepository extends BaseRepository implements CacheableInterface {
     public function parentCategories($catalogId) {
         return Category::whereNull('parent_id')->where('catalog_id', $catalogId)->get();
     }
+
+    public function products($catalogId, $storeId) {
+
+    }
+
 }

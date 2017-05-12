@@ -25,6 +25,11 @@ $app->group(['prefix' => 'catalogs'], function () use ($app) {
         'uses' => 'CatalogController@categories'
     ]);
 
+    $app->get('/{id}/products', [
+        'as' => 'catalogs/{id}/products.GET',
+        'uses' => 'CatalogController@products'
+    ]);
+
 });
 
 
@@ -33,6 +38,11 @@ $app->group(['prefix' => 'categories'], function () use ($app) {
     $app->get('/{id}/categories', [
         'as' => 'categories/{id}/categories.GET',
         'uses' => 'CategoryController@childCategories'
+    ]);
+
+    $app->get('/{id}/products', [
+        'as' => 'categories/{id}/products.GET',
+        'uses' => 'CategoryController@products'
     ]);
 
 });

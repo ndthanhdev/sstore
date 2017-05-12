@@ -26,4 +26,9 @@ class CatalogController extends Controller {
         return $this->catalogRepository->parentCategories($catalogId);
     }
 
+    public function products(Request $request, $catalogId) {
+        $storeId = 1;
+        return $this->catalogRepository->products($catalogId, $storeId);
+    }
+
 }

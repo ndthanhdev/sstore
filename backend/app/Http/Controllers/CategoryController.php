@@ -22,4 +22,11 @@ class CategoryController extends Controller {
         return $this->categoryRepository->childCategories($parentCategoryId);
     }
 
+    public function products(Request $request, $categoryId) {
+
+        $storeId = 1;
+
+        return $this->categoryRepository->products($categoryId, $storeId);
+    }
+
 }

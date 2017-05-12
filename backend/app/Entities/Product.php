@@ -28,9 +28,39 @@ class Product extends Model {
             ->withPivot(['price', 'in_stock', 'store_id']);
     }
 
+    public function defaultVariant() {
+        return $this
+            ->belongsToMany('App\Entities\ProductVariant', 'store_product_variant')
+            ->withPivot(['price', 'in_stock', 'store_id'])
+            ->where('default', true);
+    }
+
+
     public function stores() {
         return $this
             ->belongsToMany('App\Entities\Store', 'store_product_variant')
             ->withPivot(['price', 'in_stock', 'store_id']);
     }
+
+
+    public function reviews_1_rating() {
+        return $this->hasMany('App\Entities\Review')->where('rating', 1);
+    }
+
+    public function reviews_2_rating() {
+        return $this->hasMany('App\Entities\Review')->where('rating', 2);
+    }
+
+    public function reviews_3_rating() {
+        return $this->hasMany('App\Entities\Review')->where('rating', 3);
+    }
+
+    public function reviews_4_rating() {
+        return $this->hasMany('App\Entities\Review')->where('rating', 4);
+    }
+
+    public function reviews_5_rating() {
+        return $this->hasMany('App\Entities\Review')->where('rating', 5);
+    }
+
 }

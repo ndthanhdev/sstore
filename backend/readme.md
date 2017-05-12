@@ -476,7 +476,8 @@ __Entity References:__
 
 | Method |     URL     |                   HTTP verb                        |    Description   |        Response Code |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|:---- |
-| __childCategories__ | /categories/{id:[0-9]+} | GET | Get all child categories of specified Category | 200 - OK |
+| __childCategories__ | /categories/{id:[0-9]+}/categories | GET | Get all child categories of specified Category | 200 - OK |
+| __products__ | /categories/{id:[0-9]+}/products | GET | Get all product belonged to specified Category | 200 - OK |
 
 
 ## III. API Examples
@@ -550,5 +551,56 @@ __Entity References:__
        "parent_id": 5,
        "catalog_id": 1
      }
+   ]
+    ```
+- GET `/categories/{id:[0-9]+}/products`:\
+    Sample URL: `/categories/5/products`
+      
+    Sample Response:    
+    ```json
+   {
+       "id": 7,
+       "name": "Schimmel Extension",
+       "barcode": "5133718925232445",
+       "description": "Illum inventore et recusandae harum et ut.",
+       "img_url": "http://lorempixel.com/1000/1300/cats/?69767",
+       "created_at": "2017-01-04 17:51:52",
+       "updated_at": "2017-01-04 17:51:52",
+       "category_id": 5,
+       "product_type_id": 4,
+       "reviews_1_rating_count": 2,
+       "reviews_2_rating_count": 0,
+       "reviews_3_rating_count": 0,
+       "reviews_4_rating_count": 1,
+       "reviews_5_rating_count": 0,
+       "default_variant": [
+         {
+           "id": 22,
+           "default": true,
+           "pivot": {
+             "product_id": 7,
+             "product_variant_id": 22,
+             "price": "588000.00",
+             "in_stock": 57,
+             "store_id": 1
+           },
+           "variation_values": [
+             {
+               "id": 56,
+               "name": "#c79a0a",
+               "value": "distinctio",
+               "product_variant_id": 22
+             },
+             {
+               "id": 57,
+               "name": "#621417",
+               "value": "quibusdam",
+               "product_variant_id": 22
+             }
+           ]
+         }
+       ]
+     },
+   ...
    ]
     ```
