@@ -8,7 +8,7 @@
 
 ## II. ENTITIES
 
-![](ERD_v1.2.2.png?raw=true)
+![](ERD_v1.2.3.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
@@ -69,6 +69,7 @@ __Entity References:__
 | gender | [Gender](#enums) | User's gender| @NotNull|
 | created_at | date | Time when user's created | @NotNull |
 | updated_at | date | Time when user's last updated| @NotNull |
+| avatar | string | Link to User's avatar | @NotNull |
 
 ### Store
 
@@ -229,13 +230,14 @@ __Relationships:__
 |[Category](#category)| Many To One | A Category may belonged with a parent Category.|
 
 
-
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | name | string | Category's name | @NotNull, @Unique|
 | description | string | Category's description |
+| icon | string | Category's fontawesome icon class |
+
 
 ### Custom Attribute
 
@@ -458,3 +460,63 @@ __Entity References:__
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | liked | boolean | Upvoted - liked = true, Downvoteed - liked = false. Null - User don't not like the review.| @NotNull |
+
+
+## III. API REFERENCES
+
+### Catalog
+
+| Method |     URL     |                   HTTP verb                        |    Description   |        Response Code |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|:---- |
+| __index__ | /catalogs | GET | Get all catalog | 200 - OK |
+| __categories__ | /catalogs/{id:[0-9]+}/categories | GET | Get all Parent Category (parent_id = null) of specified Catalog | 200 - OK |
+
+## III. API Examples
+
+### [Catalog](#catalog)
+
+- GET `/catalogs`:\
+    Sample URL: `/catalogs`
+      
+    Sample Response:    
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "West Virginia",
+        "description": "Harum aliquid nam quas qui animi ut molestiae."
+      },
+      {
+        "id": 2,
+        "name": "California",
+        "description": "Voluptate qui autem ut dignissimos ex ratione saepe."
+      }
+    ]
+    ```
+- GET `/catalogs/{id:[0-9]+}`:\
+    Sample URL: `/catalogs/1/categories`
+      
+    Sample Response:    
+    ```json
+    [
+      {
+        "id": 6,
+        "name": "Dickensmouth",
+        "description": "Ut et dolores atque quo vero tempore.",
+        "icon": "fa-shopping-cart",
+        "parent_id": null,
+        "catalog_id": 1
+      },
+      {
+        "id": 10,
+        "name": "Lemkeport",
+        "description": "Non aut maxime quo in aut a quisquam aliquid.",
+        "icon": "fa-shopping-cart",
+        "parent_id": null,
+        "catalog_id": 1
+      }
+    ]
+    ```    
+
+ 
+

@@ -20,6 +20,26 @@ $app->get('configurations', [
     'uses' => 'ConfigurationController@index'
 ]);
 
+$app->get('catalogs', [
+    'as' => 'catalogs.GET',
+    'uses' => 'CatalogController@index'
+]);
+
+$app->group(['prefix' => 'catalogs'], function () use ($app) {
+
+    $app->get('/', [
+        'as' => 'catalogs.GET',
+        'uses' => 'CatalogController@index'
+    ]);
+
+    $app->get('/{id}/categories', [
+        'as' => 'catalogs/{id}/categories.GET',
+        'uses' => 'CatalogController@categories'
+    ]);
+
+});
+
+
 $app->group(['prefix' => 'users'], function () use ($app) {
 
     $app->get('/count', [
