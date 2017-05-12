@@ -17,10 +17,11 @@ import {ProductSummary} from '../../../models/product.model';
         <div class="mb-2"><strong>Price: </strong>{{productSummary.defaultVariant.price}}</div>
 
         <div class="mb-2">
-          <frontend-product-reviews
-            [rating]="productSummary.rating"
-            [reviews]="productSummary.reviews">
-          </frontend-product-reviews>
+          <strong>Rating:</strong>
+          <frontend-product-review-rating
+            [rating]="productSummary.rating">
+          </frontend-product-review-rating>
+          <span>({{productSummary.reviews}} Reviews)</span>
         </div>
 
         <div class="mt-2 float-right">
@@ -49,5 +50,4 @@ export class ProductSummaryComponent implements OnInit {
   onPutToCartButtonClick() {
     this.putToCartButtonClicked.emit({id: this.productSummary.id});
   }
-
 }

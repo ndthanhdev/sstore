@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'catalogs',
     loadChildren: 'app/modules/catalog/catalog.module#CatalogModule'
   },
+  {
+    path: 'products',
+    loadChildren: 'app/modules/product/product.module#ProductModule'
+  },
 ];
 
 @NgModule({

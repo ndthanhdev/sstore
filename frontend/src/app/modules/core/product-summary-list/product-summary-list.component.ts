@@ -8,7 +8,7 @@ import {PRODUCT_SUMMARY_LIST} from '../../../constant/data.constant';
     <frontend-product-summary-list-header
       class="row px-3 d-flex align-items-start">
     </frontend-product-summary-list-header>
-    <div class="row px-3 ">
+    <div class="row px-3">
       <frontend-product-summary
         class="col-lg-4 col-md-6 col-12 mb-3"
         [productSummary]="products[0]">
@@ -25,7 +25,6 @@ import {PRODUCT_SUMMARY_LIST} from '../../../constant/data.constant';
         class="col-lg-4 col-md-6 col-12 mb-3"
         [productSummary]="products[0]">
       </frontend-product-summary>
-
     </div>
   `,
   styleUrls: ['./product-summary-list.component.scss']
