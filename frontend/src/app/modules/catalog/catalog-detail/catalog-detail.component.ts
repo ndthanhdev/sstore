@@ -15,9 +15,12 @@ import {Category} from '../../../models/category.model';
       </div>
     </div>
     <div class="container">
-      <p>
-        catalog-detail works! {{routeId}}
-      </p>
+      <span class="col-12 display-4">
+        Catalog: {{routeId}}
+      </span>
+      <hr>
+      <frontend-product-summary-list>
+      </frontend-product-summary-list>
     </div>
   `,
   styleUrls: ['./catalog-detail.component.scss']
