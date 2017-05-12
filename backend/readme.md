@@ -473,7 +473,7 @@ __Entity References:__
 
 ## III. API Examples
 
-### [Catalog](#catalog)
+### [Catalog](#catalog-1)
 
 - GET `/catalogs`:\
     Sample URL: `/catalogs`
