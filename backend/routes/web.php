@@ -29,7 +29,6 @@ $app->group(['prefix' => 'catalogs'], function () use ($app) {
         'as' => 'catalogs/{id}/products.GET',
         'uses' => 'CatalogController@products'
     ]);
-
 });
 
 

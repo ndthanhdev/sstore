@@ -470,6 +470,7 @@ __Entity References:__
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|:---- |
 | __index__ | /catalogs | GET | Get all catalog | 200 - OK |
 | __categories__ | /catalogs/{id:[0-9]+}/categories | GET | Get all Parent Category (parent_id = null) of specified Catalog | 200 - OK |
+| __products__ | /catalogs/{id:[0-9]+}/products | GET | Get all products of all category belonged to specified catalog | 200 - OK |
 
 
 ### Category
@@ -502,7 +503,7 @@ __Entity References:__
       }
     ]
     ```
-- GET `/catalogs/{id:[0-9]+}`:\
+- GET `/catalogs/{id:[0-9]+}/categories`:\
     Sample URL: `/catalogs/1/categories`
       
     Sample Response:    
@@ -524,6 +525,59 @@ __Entity References:__
         "parent_id": null,
         "catalog_id": 1
       }
+    ]
+    ```    
+
+- GET `/catalogs/{id:[0-9]+}/products`:\
+    Sample URL: `/catalogs/1/products`
+      
+    Sample Response:    
+    ```json
+    [
+      {
+         "id": 1,
+         "name": "Stiedemann Ridges",
+         "barcode": "5471111339012969",
+         "description": "Ad id nemo tenetur est quos voluptas.",
+         "img_url": "http://lorempixel.com/1000/1300/cats/?47619",
+         "created_at": "2016-12-11 17:20:38",
+         "updated_at": "2016-12-11 17:20:38",
+         "category_id": 3,
+         "product_type_id": 1,
+         "reviews_1_rating_count": 0,
+         "reviews_2_rating_count": 1,
+         "reviews_3_rating_count": 0,
+         "reviews_4_rating_count": 0,
+         "reviews_5_rating_count": 1,
+         "default_variant": [
+           {
+             "id": 1,
+             "default": true,
+             "pivot": {
+               "product_id": 1,
+               "product_variant_id": 1,
+               "price": "675000.00",
+               "in_stock": 7,
+               "store_id": 1
+             },
+             "variation_values": [
+               {
+                 "id": 1,
+                 "name": "#4dc36b",
+                 "value": "unde",
+                 "product_variant_id": 1
+               },
+               {
+                 "id": 2,
+                 "name": "#bf4150",
+                 "value": "dicta",
+                 "product_variant_id": 1
+               }
+             ]
+           }
+         ]
+       },
+     ...
     ]
     ```    
 
@@ -558,7 +612,7 @@ __Entity References:__
       
     Sample Response:    
     ```json
-   {
+    {
        "id": 7,
        "name": "Schimmel Extension",
        "barcode": "5133718925232445",
