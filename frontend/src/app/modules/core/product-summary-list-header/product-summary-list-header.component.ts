@@ -6,23 +6,22 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
     <ngb-pagination class="col-lg-4 col-6"
                     (pageChange)="onPageChange($event)"
                     [collectionSize]="collectionSize"
-                    [maxSize]="3"
+                    [maxSize]="5"
                     [pageSize]="pageSize"
                     [boundaryLinks]="true"
                     [page]="page"></ngb-pagination>
 
     <!--START NAME FILTER-->
     <div class="input-group col-4">
-      <span class="input-group-addon"><i class="fa fa-search"></i></span>
-      <input type="text" class="form-control" placeholder="Name filter" aria-describedby="sizing-addon2">
+      <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+      <input type="text" class="form-control" placeholder="Name filter">
     </div>
     <!--END NAME FILTER-->
 
-    <div ngbDropdown class="d-inline-block col-2">
-      <button class="btn btn-secondary" ngbDropdownToggle>Best seller</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item active">Best seller</button>
-        <button class="dropdown-item">Most rating</button>
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-secondary" ngbDropdownToggle>Rating: Highest first</button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item active">Rating: Highest first</button>
         <button class="dropdown-item">Price: Highest first</button>
         <button class="dropdown-item">Price: lowest first</button>
       </div>
