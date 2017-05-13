@@ -8,7 +8,7 @@ import {Category} from '../../models/category.model';
 
 export const ActionTypes = {
   START_CATALOG_PARENT_CATEGORIES_LOAD: type('[Category] Start Catalog Parent Category Load'),
-  LOAD_CATALOG_PARENT_CATEGORIES: type('[Category] Load Cataog Parent Categories')
+  LOAD_CATALOG_PARENT_CATEGORIES: type('[Category] Load Catalog Parent Categories')
 };
 
 

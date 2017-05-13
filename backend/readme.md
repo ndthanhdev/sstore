@@ -533,52 +533,62 @@ __Entity References:__
       
     Sample Response:    
     ```json
-    [
-      {
-         "id": 1,
-         "name": "Stiedemann Ridges",
-         "barcode": "5471111339012969",
-         "description": "Ad id nemo tenetur est quos voluptas.",
-         "img_url": "http://lorempixel.com/1000/1300/cats/?47619",
-         "created_at": "2016-12-11 17:20:38",
-         "updated_at": "2016-12-11 17:20:38",
-         "category_id": 3,
-         "product_type_id": 1,
-         "reviews_1_rating_count": 0,
-         "reviews_2_rating_count": 1,
-         "reviews_3_rating_count": 0,
-         "reviews_4_rating_count": 0,
-         "reviews_5_rating_count": 1,
-         "default_variant": [
-           {
-             "id": 1,
-             "default": true,
-             "pivot": {
-               "product_id": 1,
-               "product_variant_id": 1,
-               "price": "675000.00",
-               "in_stock": 7,
-               "store_id": 1
-             },
-             "variation_values": [
+   {
+     "total": 33,
+     "per_page": 6,
+     "current_page": 1,
+     "last_page": 6,
+     "next_page_url": "http://127.0.0.1/catalogs/1/products?page=2",
+     "prev_page_url": null,
+     "from": 1,
+     "to": 6,
+     "data": [
+            {
+             "id": 2,
+             "name": "Sporer Plains",
+             "barcode": "5343006366966408",
+             "description": "Odio in est dolor repellendus.",
+             "img_url": "http://lorempixel.com/1000/1300/cats/?35086",
+             "created_at": "2016-08-15 01:10:51",
+             "updated_at": "2016-08-15 01:10:51",
+             "category_id": 9,
+             "product_type_id": 8,
+             "reviews_1_rating_count": 1,
+             "reviews_2_rating_count": 1,
+             "reviews_3_rating_count": 0,
+             "reviews_4_rating_count": 0,
+             "reviews_5_rating_count": 0,
+             "default_variant": [
                {
-                 "id": 1,
-                 "name": "#4dc36b",
-                 "value": "unde",
-                 "product_variant_id": 1
-               },
-               {
-                 "id": 2,
-                 "name": "#bf4150",
-                 "value": "dicta",
-                 "product_variant_id": 1
+                 "id": 3,
+                 "default": true,
+                 "pivot": {
+                   "product_id": 2,
+                   "product_variant_id": 3,
+                   "price": "308000.00",
+                   "in_stock": 19,
+                   "store_id": 1
+                 },
+                 "variation_values": [
+                   {
+                     "id": 9,
+                     "name": "#1c602e",
+                     "value": "doloremque",
+                     "product_variant_id": 3
+                   },
+                   {
+                     "id": 10,
+                     "name": "#ffb723",
+                     "value": "consequuntur",
+                     "product_variant_id": 3
+                   }]
                }
              ]
-           }
-         ]
-       },
-     ...
-    ]
+            },
+        ...
+        ]
+    }
+  
     ```    
 
 ### [Category](#category-1)

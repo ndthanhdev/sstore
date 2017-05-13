@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../shared/shared.module';
 import {ProductReviewComponent} from './product-review/product-review.component';
 import {ProductReviewRatingInputComponent} from './product-review-rating-input/product-review-rating-input.component';
+import {ProductService} from './product.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,12 @@ import {ProductReviewRatingInputComponent} from './product-review-rating-input/p
     NgbModule,
     SharedModule
   ],
-  declarations: [ProductDetailComponent, ProductReviewComponent, ProductReviewRatingInputComponent]
+  declarations: [
+    ProductDetailComponent,
+    ProductReviewComponent,
+    ProductReviewRatingInputComponent
+  ],
+  providers: [ProductService]
 })
 export class ProductModule {
 }

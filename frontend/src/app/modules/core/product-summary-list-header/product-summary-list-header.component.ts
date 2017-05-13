@@ -1,15 +1,15 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'frontend-product-summary-list-header',
   template: `
-    <ngb-pagination class="col-lg-2 col-4 mr-4"
+    <ngb-pagination class="col-lg-4 col-6"
                     (pageChange)="onPageChange($event)"
-                    [collectionSize]="10"
-                    [maxSize]="5"
-                    [pageSize]="10"
+                    [collectionSize]="collectionSize"
+                    [maxSize]="3"
+                    [pageSize]="pageSize"
                     [boundaryLinks]="true"
-                    [page]="5"></ngb-pagination>
+                    [page]="page"></ngb-pagination>
 
     <!--START NAME FILTER-->
     <div class="input-group col-4">
@@ -18,7 +18,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     </div>
     <!--END NAME FILTER-->
 
-    <div ngbDropdown class="d-inline-block ml-3">
+    <div ngbDropdown class="d-inline-block col-2">
       <button class="btn btn-secondary" ngbDropdownToggle>Best seller</button>
       <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
         <button class="dropdown-item active">Best seller</button>
@@ -28,9 +28,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       </div>
     </div>
   `,
-  styleUrls: ['./product-summary-list-header.component.scss']
+  styleUrls: ['./product-summary-list-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductSummaryListHeaderComponent implements OnInit {
+  @Input() pageSize: number;
+  @Input() collectionSize: number;
+  @Input() page: number;
+
   @Output() pageChange: EventEmitter<number> = new EventEmitter();
 
   constructor() {

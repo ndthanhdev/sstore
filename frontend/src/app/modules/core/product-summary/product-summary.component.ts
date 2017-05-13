@@ -1,27 +1,27 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ProductSummary} from '../../../models/product.model';
 
 @Component({
   selector: 'frontend-product-summary',
   template: `
     <div class="card">
-      <img class="card-img-top w-100 h-100" src="http://lorempixel.com/500/500/cats" alt="Card image cap">
+      <img class="card-img-top w-100 h-100" [src]="productSummary.img_url" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">{{productSummary.name}}</h4>
         <div class="mb-2">
           <frontend-product-variation-values
-            [variationValues]="productSummary.defaultVariant.values">
+            [variationValues]="productSummary.default_variant[0].variation_values">
           </frontend-product-variation-values>
         </div>
 
-        <div class="mb-2"><strong>Price: </strong>{{productSummary.defaultVariant.price}}</div>
+        <div class="mb-2"><strong>Price: </strong> {{productSummary.default_variant[0].pivot.price | VND}}</div>
 
         <div class="mb-2">
           <strong>Rating:</strong>
           <frontend-product-review-rating
-            [rating]="productSummary.rating">
+            [rating]="rating">
           </frontend-product-review-rating>
-          <span>({{productSummary.reviews}} Reviews)</span>
+          <span>({{totalReviews}} Reviews)</span>
         </div>
 
         <div class="mt-2 float-right">
@@ -34,17 +34,35 @@ import {ProductSummary} from '../../../models/product.model';
       </div>
     </div>
   `,
-  styleUrls: ['./product-summary.component.scss']
+  styleUrls: ['./product-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductSummaryComponent implements OnInit {
+export class ProductSummaryComponent implements OnInit, OnChanges {
   @Input() productSummary: ProductSummary;
 
   @Output() putToCartButtonClicked = new EventEmitter();
+
+  rating;
+  totalReviews;
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(): void {
+    this.totalReviews = this.productSummary.reviews_1_rating_count +
+      this.productSummary.reviews_2_rating_count +
+      this.productSummary.reviews_3_rating_count +
+      this.productSummary.reviews_4_rating_count +
+      this.productSummary.reviews_5_rating_count;
+
+    this.rating = (this.productSummary.reviews_1_rating_count +
+      2 * this.productSummary.reviews_2_rating_count +
+      3 * this.productSummary.reviews_3_rating_count +
+      4 * this.productSummary.reviews_4_rating_count +
+      5 * this.productSummary.reviews_5_rating_count ) / this.totalReviews;
   }
 
   onPutToCartButtonClick() {

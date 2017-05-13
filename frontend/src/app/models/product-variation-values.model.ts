@@ -3,6 +3,8 @@
  */
 
 export class ProductVariationValue {
+  id: number;
   name: string;
   value: string;
+  product_variant_id: number;
 }

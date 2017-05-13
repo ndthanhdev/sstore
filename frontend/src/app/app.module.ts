@@ -15,6 +15,8 @@ import {CatalogEffect} from './store/effects/catalog.effect';
 import {CatalogModule} from './modules/catalog/catalog.module';
 import {CategoryModule} from './modules/category/category.module';
 import {CategoryEffect} from './store/effects/category.effect';
+import {ProductEffect} from './store/effects/product.effect';
+import {ProductModule} from './modules/product/product.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +26,7 @@ import {CategoryEffect} from './store/effects/category.effect';
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(CatalogEffect),
     EffectsModule.run(CategoryEffect),
+    EffectsModule.run(ProductEffect),
 
     NgbModule.forRoot(),
 
@@ -34,7 +37,8 @@ import {CategoryEffect} from './store/effects/category.effect';
 
     CoreModule,
     CatalogModule,
-    CategoryModule
+    CategoryModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]

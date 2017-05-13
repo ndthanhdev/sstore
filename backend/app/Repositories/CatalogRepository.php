@@ -36,7 +36,7 @@ class CatalogRepository extends BaseRepository implements CacheableInterface {
                 'reviews_5_rating',
             ])
             ->whereIn('category_id', $categoryIds)
-            ->get();
+            ->paginate(6);
 
 
     }

@@ -10,11 +10,14 @@ import 'rxjs/add/operator/filter';
 
 
 import {Observable} from 'rxjs/Observable';
+import {Catalog} from '../../../models/catalog.model';
+import {Subscription} from 'rxjs/Subscription';
 
 import * as fromRoot from '../../../store/reducers';
 import * as categoryActions from '../../../store/actions/category.action';
-import {Catalog} from '../../../models/catalog.model';
-import {Subscription} from 'rxjs/Subscription';
+import * as productActions from '../../../store/actions/product.action';
+import {ProductSummary} from '../../../models/product.model';
+import {Page} from '../../../models/page.model';
 
 @Component({
   selector: 'frontend-catalog-detail',
@@ -32,8 +35,14 @@ import {Subscription} from 'rxjs/Subscription';
         Catalog: {{selectedCatalog?.name}}
       </span>
       <hr>
-      <frontend-product-summary-list>
+      <frontend-product-summary-list
+        *ngIf="!(productLoading | async);else loading"
+        [productPage]="productPage | async">
       </frontend-product-summary-list>
+      <ng-template #loading>
+        <frontend-loading></frontend-loading>
+      </ng-template>
+
     </div>
   `,
   styleUrls: ['./catalog-detail.component.scss']
@@ -42,6 +51,10 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
 
   catalogParentCategories: Observable<Category[]>;
   catalogs: Observable<Catalog[]>;
+  productPage: Observable<Page<ProductSummary>>;
+
+  productLoading: Observable<boolean>;
+
   selectedCatalog: Catalog;
   selectedCatalogSub: Subscription;
 
@@ -49,6 +62,9 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) {
     this.catalogParentCategories = this.store.select(fromRoot.getCategoryCatalogParentCategories);
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
+    this.productPage = this.store.select(fromRoot.getProductCatalogProducts)
+      .filter(productPage => !!productPage);
+    this.productLoading = this.store.select(fromRoot.getProductloading);
   }
 
   ngOnInit() {
@@ -58,6 +74,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
       .subscribe(([catalogs, params]) => {
         const catalogId = params['id'];
         this.store.dispatch(new categoryActions.StartCatalogParentCategoriesLoadAction({catalogId: catalogId}));
+        this.store.dispatch(new productActions.StartCatalogProductsLoadAction({catalogId: catalogId}));
         this.selectedCatalog = catalogs.find(catalog => catalog.id === +catalogId);
       });
   }
