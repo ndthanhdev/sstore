@@ -13,7 +13,7 @@ class CreateStoreProductVariantTable extends Migration {
     public function up() {
         Schema::create('store_product_variant', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('price');
+            $table->string('price');
             $table->integer('in_stock');
             $table->unsignedInteger('store_id')->nullable();
             $table->unsignedInteger('product_id');
