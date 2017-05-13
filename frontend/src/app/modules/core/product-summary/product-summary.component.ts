@@ -16,7 +16,7 @@ import {ProductSummary} from '../../../models/product.model';
 
         <div class="mb-2"><strong>Price: </strong> {{productSummary.default_variant[0].pivot.price | VND}}</div>
 
-        <div class="mb-2">
+        <div class="mb-2" *ngIf="totalReviews > 0">
           <strong>Rating:</strong>
           <frontend-product-review-rating
             [rating]="rating">

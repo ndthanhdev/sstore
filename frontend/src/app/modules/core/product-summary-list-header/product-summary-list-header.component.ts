@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
 @Component({
   selector: 'frontend-product-summary-list-header',
   template: `
-    <ngb-pagination class="col-lg-4 col-6"
+    <ngb-pagination class="col-lg-5 col-6"
                     (pageChange)="onPageChange($event)"
                     [collectionSize]="collectionSize"
                     [maxSize]="5"
