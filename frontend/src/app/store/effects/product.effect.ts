@@ -23,7 +23,7 @@ export class ProductEffect {
   @Effect()
   catalogProductsLoad$: Observable<Action> = this.actions$
     .ofType(productActions.ActionTypes.START_CATALOG_PRODUCTS_LOAD)
-    .switchMap(action => this.productService.loadCatalogProducts(action.payload.catalogId)
+    .switchMap(action => this.productService.loadCatalogProducts(action.payload.catalogId, action.payload.page)
       .concatMap(catalogProducts => of(new productActions.LoadCatalogProductsAction({catalogProducts: catalogProducts}))));
 
 }

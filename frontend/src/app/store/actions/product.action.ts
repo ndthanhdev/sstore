@@ -14,7 +14,7 @@ export const ActionTypes = {
 export class StartCatalogProductsLoadAction implements Action {
   type = ActionTypes.START_CATALOG_PRODUCTS_LOAD;
 
-  constructor(public payload: { catalogId: number }) {
+  constructor(public payload: { catalogId: number, page: number }) {
 
   }
 }

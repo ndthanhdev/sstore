@@ -36,13 +36,11 @@ import {Page} from '../../../models/page.model';
       </span>
       <hr>
       <frontend-product-summary-list
-        *ngIf="!(productLoading | async);else loading"
-        [productPage]="productPage | async">
+        [productPage]="productPage | async"
+        [page]="currentPage"
+        [loading]="productLoading | async"
+        (pageChanged)="onPageChange($event)">
       </frontend-product-summary-list>
-      <ng-template #loading>
-        <frontend-loading></frontend-loading>
-      </ng-template>
-
     </div>
   `,
   styleUrls: ['./catalog-detail.component.scss']
@@ -57,6 +55,8 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
 
   selectedCatalog: Catalog;
   selectedCatalogSub: Subscription;
+
+  currentPage = 1;
 
   constructor(private store: Store<fromRoot.State>,
               private route: ActivatedRoute) {
@@ -74,12 +74,18 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
       .subscribe(([catalogs, params]) => {
         const catalogId = params['id'];
         this.store.dispatch(new categoryActions.StartCatalogParentCategoriesLoadAction({catalogId: catalogId}));
-        this.store.dispatch(new productActions.StartCatalogProductsLoadAction({catalogId: catalogId}));
+        this.store.dispatch(new productActions.StartCatalogProductsLoadAction({catalogId: catalogId, page: 1}));
         this.selectedCatalog = catalogs.find(catalog => catalog.id === +catalogId);
       });
   }
 
   ngOnDestroy(): void {
     this.selectedCatalogSub.unsubscribe();
+  }
+
+
+  onPageChange($event) {
+    this.currentPage = $event;
+    this.store.dispatch(new productActions.StartCatalogProductsLoadAction({catalogId: this.selectedCatalog.id, page: $event}));
   }
 }

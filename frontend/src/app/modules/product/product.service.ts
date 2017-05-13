@@ -17,9 +17,9 @@ export class ProductService extends GenericService {
     this.BASE_URL += '/products';
   }
 
-  public loadCatalogProducts(catalogId: number): Observable<Page<ProductSummary>> {
+  public loadCatalogProducts(catalogId: number, page: number): Observable<Page<ProductSummary>> {
     return this.get(new RequestOptions({
-      url: `http://127.0.0.1/catalogs/${catalogId}/products`
+      url: `http://127.0.0.1/catalogs/${catalogId}/products?page=${page}`,
     }));
   }
 }

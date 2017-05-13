@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductSummary} from '../../../models/product.model';
 import {Page} from '../../../models/page.model';
 
@@ -8,27 +8,39 @@ import {Page} from '../../../models/page.model';
     <frontend-product-summary-list-header
       class="row px-3 d-flex align-items-start"
       [pageSize]="6"
-      [page]="1"
-      [collectionSize]="productPage?.total">
+      [page]="page"
+      [collectionSize]="productPage?.total"
+      (pageChange)="onPageChange($event)">
     </frontend-product-summary-list-header>
-    <div class="row px-3">
+    <div class="row px-3" *ngIf="!loading;else spinning">
       <frontend-product-summary
         class="col-lg-4 col-md-6 col-12 mb-3"
         *ngFor="let product of productPage?.data"
         [productSummary]="product">
       </frontend-product-summary>
     </div>
+    <ng-template #spinning>
+      <frontend-loading></frontend-loading>
+    </ng-template>
   `,
   styleUrls: ['./product-summary-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductSummaryListComponent implements OnInit {
   @Input() productPage: Page<ProductSummary>;
+  @Input() page: number;
+  @Input() loading: boolean;
+
+  @Output() pageChanged = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  onPageChange($event) {
+    this.pageChanged.emit($event);
   }
 
 }
