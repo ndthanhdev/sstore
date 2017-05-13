@@ -11,7 +11,7 @@ export class GenericService {
   protected http;
   protected authHttp;
 
-  protected BASE_URL = 'http://127.0.0.1/'; // nginx || backend
+  protected BASE_URL = 'http://127.0.0.1';
 
   constructor(injector: Injector) {
     this.http = injector.get(Http);
