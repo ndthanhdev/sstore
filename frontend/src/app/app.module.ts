@@ -13,6 +13,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {CatalogEffect} from './store/effects/catalog.effect';
 import {CatalogModule} from './modules/catalog/catalog.module';
+import {CategoryModule} from './modules/category/category.module';
+import {CategoryEffect} from './store/effects/category.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,7 @@ import {CatalogModule} from './modules/catalog/catalog.module';
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(CatalogEffect),
+    EffectsModule.run(CategoryEffect),
 
     NgbModule.forRoot(),
 
@@ -30,7 +33,8 @@ import {CatalogModule} from './modules/catalog/catalog.module';
     HttpModule,
 
     CoreModule,
-    CatalogModule
+    CatalogModule,
+    CategoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

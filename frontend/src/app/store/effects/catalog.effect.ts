@@ -22,7 +22,7 @@ export class CatalogEffect {
   }
 
   @Effect()
-  allClassLoad$: Observable<Action> = this.actions$
+  allCatalogLoad$: Observable<Action> = this.actions$
     .ofType(catalogActions.ActionTypes.START_ALL_CATALOG_LOAD)
     .switchMap(action => this.catalogService.loadAllCatalog()
       .concatMap(catalogs => of(new catalogActions.LoadAllCatalogAction({catalogs: catalogs}))));

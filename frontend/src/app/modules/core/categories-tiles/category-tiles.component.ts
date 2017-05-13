@@ -18,7 +18,7 @@ import {Category} from '../../../models/category.model';
     </ng-template>
 
     <i class="fa fa-angle-right hidden-md-down fa-3x"
-       [ngClass]="{'text-muted': currentSlide*3 >= tiles.length}"
+       [ngClass]="{'text-muted': currentSlide*3 >= tiles?.length}"
        (click)="nextSlide()">
     </i>
   `,

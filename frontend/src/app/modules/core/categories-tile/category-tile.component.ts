@@ -8,7 +8,7 @@ import {Category} from '../../../models/category.model';
       <div class="row">
         <div class="col-4 bg-success text-white p-0 rounded-left d-flex align-items-center justify-content-center">
           <div class="card-img-bottom">
-            <i [class]="tile.icon"></i>
+            <i [class]="'fa ' + tile.icon + ' fa-2x fa-fw'"></i>
           </div>
         </div>
         <div class="card-block col-8 d-flex">

@@ -1,7 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
 import {Category} from '../../../models/category.model';
+import {Store} from '@ngrx/store';
+import 'rxjs/add/observable/combineLatest';
+
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+
+
+import {Observable} from 'rxjs/Observable';
+
+import * as fromRoot from '../../../store/reducers';
+import * as categoryActions from '../../../store/actions/category.action';
+import {Catalog} from '../../../models/catalog.model';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'frontend-catalog-detail',
@@ -10,13 +23,13 @@ import {Category} from '../../../models/category.model';
       <div class="container">
         <frontend-category-tiles
           class="row justify-content-md-between align-items-center my-3"
-          [tiles]="tiles">
+          [tiles]="catalogParentCategories | async">
         </frontend-category-tiles>
       </div>
     </div>
     <div class="container">
       <span class="col-12 display-4">
-        Catalog: {{routeId}}
+        Catalog: {{selectedCatalog?.name}}
       </span>
       <hr>
       <frontend-product-summary-list>
@@ -25,57 +38,31 @@ import {Category} from '../../../models/category.model';
   `,
   styleUrls: ['./catalog-detail.component.scss']
 })
-export class CatalogDetailComponent implements OnInit {
-  routeId: number;
+export class CatalogDetailComponent implements OnInit, OnDestroy {
 
-  tiles: Category[] = [ // all category of current catalog
-    {
-      id: 1,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book'
-    },
-    {
-      id: 2,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book1'
-    },
-    {
-      id: 3,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book2'
-    },
-    {
-      id: 4,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book3'
-    },
-    {
-      id: 5,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book4'
-    },
-    {
-      id: 6,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book5'
-    },
-    {
-      id: 7,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book6'
-    },
-    {
-      id: 8,
-      icon: 'fa fa-book fa-3x fa-fw',
-      name: 'Book7'
-    }
-  ];
+  catalogParentCategories: Observable<Category[]>;
+  catalogs: Observable<Catalog[]>;
+  selectedCatalog: Catalog;
+  selectedCatalogSub: Subscription;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private store: Store<fromRoot.State>,
+              private route: ActivatedRoute) {
+    this.catalogParentCategories = this.store.select(fromRoot.getCategoryCatalogParentCategories);
+    this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => this.routeId = params['id']);
+    this.selectedCatalogSub = Observable
+      .combineLatest(this.catalogs, this.route.params)
+      .filter(([catalogs, params]) => catalogs != null && params != null)
+      .subscribe(([catalogs, params]) => {
+        const catalogId = params['id'];
+        this.store.dispatch(new categoryActions.StartCatalogParentCategoriesLoadAction({catalogId: catalogId}));
+        this.selectedCatalog = catalogs.find(catalog => catalog.id === +catalogId);
+      });
   }
 
+  ngOnDestroy(): void {
+    this.selectedCatalogSub.unsubscribe();
+  }
 }
