@@ -5,9 +5,11 @@ import {User} from './user.model';
 
 export class Review {
   id: number;
-  rating: number;
-  user?: User;
   content?: string;
+  rating?: number;
+  user_id?: number;
+  product_id?: number;
   created_at?: Date;
   updated_at?: Date;
+  user?: User;
 }
