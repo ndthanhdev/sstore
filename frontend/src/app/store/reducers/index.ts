@@ -51,4 +51,6 @@ export const getCategoryCatalogParentCategories = Reselect.createSelector(getCat
 
 export const getProductCatalogProducts = Reselect.createSelector(getProductState, fromProduct.getCatalogProducts);
 
-export const getProductloading = Reselect.createSelector(getProductState, fromProduct.getLoading);
+export const getProductProduct = Reselect.createSelector(getProductState, fromProduct.getProduct);
+
+export const getProductLoading = Reselect.createSelector(getProductState, fromProduct.getLoading);

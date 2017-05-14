@@ -1,4 +1,4 @@
-import {ProductSummary} from '../../models/product.model';
+import {Product, ProductSummary} from '../../models/product.model';
 import {Page} from '../../models/page.model';
 import * as productActions from '../actions/product.action';
 /**
@@ -10,18 +10,21 @@ export interface State {
   loaded: boolean;
   error: any;
   catalogProducts: Page<ProductSummary>;
+  product: Product;
 }
 
 export const initialState: State = {
   loading: false,
   loaded: false,
   error: null,
-  catalogProducts: null
+  catalogProducts: null,
+  product: null
 };
 
 
 export function reducer(state: State = initialState, action): State {
   switch (action.type) {
+    case productActions.ActionTypes.START_PRODUCT_LOAD:
     case productActions.ActionTypes.START_CATALOG_PRODUCTS_LOAD:
       return Object.assign({}, state, {
         loading: true,
@@ -35,6 +38,13 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case productActions.ActionTypes.LOAD_PRODUCT:
+      return Object.assign({}, state, {
+        product: action.payload.product,
+        loaded: true,
+        loading: false
+      });
+
     default:
       return state;
   }
@@ -42,6 +52,7 @@ export function reducer(state: State = initialState, action): State {
 }
 
 export const getCatalogProducts = (state: State) => state.catalogProducts;
+export const getProduct = (state: State) => state.product;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
 

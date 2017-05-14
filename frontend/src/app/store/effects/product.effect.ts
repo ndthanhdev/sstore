@@ -26,4 +26,10 @@ export class ProductEffect {
     .switchMap(action => this.productService.loadCatalogProducts(action.payload.catalogId, action.payload.page)
       .concatMap(catalogProducts => of(new productActions.LoadCatalogProductsAction({catalogProducts: catalogProducts}))));
 
+  @Effect()
+  productLoad$: Observable<Action> = this.actions$
+    .ofType(productActions.ActionTypes.START_PRODUCT_LOAD)
+    .switchMap(action => this.productService.loadProduct(action.payload.productId)
+      .concatMap(product => of(new productActions.LoadProductAction({product: product}))));
+
 }

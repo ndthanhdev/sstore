@@ -5,7 +5,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {GenericService} from '../../generic.service';
 import {RequestOptions} from '@angular/http';
-import {ProductSummary} from '../../models/product.model';
+import {Product, ProductSummary} from '../../models/product.model';
 import {Page} from '../../models/page.model';
 import {Observable} from 'rxjs/Observable';
 
@@ -20,6 +20,13 @@ export class ProductService extends GenericService {
   public loadCatalogProducts(catalogId: number, page: number): Observable<Page<ProductSummary>> {
     return this.get(new RequestOptions({
       url: `http://127.0.0.1/catalogs/${catalogId}/products?page=${page}`,
+    }));
+  }
+
+
+  public loadProduct(productId: number): Observable<Product> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/${productId}`,
     }));
   }
 }

@@ -10,7 +10,7 @@ import {Review} from '../../../models/review.model';
         <frontend-product-review-rating
           [rating]="review.rating">
         </frontend-product-review-rating>
-        <span class="text-muted ml-auto">{{review.created_at}}</span>
+        <span class="text-muted ml-auto">{{review.created_at | amTimeAgo}}</span>
       </div>
       <div class="card-block">
         {{review.content}}

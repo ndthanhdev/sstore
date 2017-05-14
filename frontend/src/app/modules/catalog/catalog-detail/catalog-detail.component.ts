@@ -64,7 +64,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
     this.productPage = this.store.select(fromRoot.getProductCatalogProducts)
       .filter(productPage => !!productPage);
-    this.productLoading = this.store.select(fromRoot.getProductloading);
+    this.productLoading = this.store.select(fromRoot.getProductLoading);
   }
 
   ngOnInit() {

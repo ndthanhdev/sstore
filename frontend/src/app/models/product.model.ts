@@ -18,11 +18,16 @@ export class Product {
   category_id: number;
   product_type_id: number;
   variants: ProductVariant[];
+  default_variant: ProductVariant[];
   reviews: Review[];
+  reviews_1_rating_count: number;
+  reviews_2_rating_count: number;
+  reviews_3_rating_count: number;
+  reviews_4_rating_count: number;
+  reviews_5_rating_count: number;
   product_type: ProductType;
   product_type_attribute_values: ProductTypeAttributeValue[];
   custom_attribute_values: CustomAttributeValue[];
-
 }
 
 export class ProductSummary {

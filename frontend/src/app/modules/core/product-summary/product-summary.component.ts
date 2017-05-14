@@ -58,11 +58,11 @@ export class ProductSummaryComponent implements OnInit, OnChanges {
       this.productSummary.reviews_4_rating_count +
       this.productSummary.reviews_5_rating_count;
 
-    this.rating = (this.productSummary.reviews_1_rating_count +
+    this.rating = Math.round((this.productSummary.reviews_1_rating_count +
       2 * this.productSummary.reviews_2_rating_count +
       3 * this.productSummary.reviews_3_rating_count +
       4 * this.productSummary.reviews_4_rating_count +
-      5 * this.productSummary.reviews_5_rating_count ) / this.totalReviews;
+      5 * this.productSummary.reviews_5_rating_count ) / this.totalReviews);
   }
 
   onPutToCartButtonClick() {
