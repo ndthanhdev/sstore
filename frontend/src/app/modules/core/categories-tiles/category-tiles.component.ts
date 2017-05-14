@@ -17,6 +17,11 @@ import {Category} from '../../../models/category.model';
       </frontend-category-tile>
     </ng-template>
 
+    <ng-template [ngIf]="tiles?.length <= 0">
+      <p class="lead">There's no child category on this section</p>
+    </ng-template>
+
+
     <i class="fa fa-angle-right hidden-md-down fa-3x"
        [ngClass]="{'text-muted': currentSlide*3 >= tiles?.length}"
        (click)="nextSlide()">
