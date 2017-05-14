@@ -65,9 +65,9 @@ $app->group(['prefix' => 'users'], function () use ($app) {
 
 $app->group(['prefix' => 'products'], function () use ($app) {
 
-    $app->get('/', [
-        'as' => 'products.GET',
-        'uses' => 'ProductController@index'
+    $app->get('/{id}', [
+        'as' => 'products/{id}.GET',
+        'uses' => 'ProductController@show'
     ]);
 
 });

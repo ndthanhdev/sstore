@@ -22,6 +22,15 @@ class Product extends Model {
             ->withPivot('value');
     }
 
+    public function customAttributeValues() {
+        return $this->hasMany('App\Entities\CustomAttribute');
+    }
+
+    public function productType() {
+        return $this
+            ->belongsTo('App\Entities\ProductType');
+    }
+
     public function variants() {
         return $this
             ->belongsToMany('App\Entities\ProductVariant', 'store_product_variant')
@@ -42,6 +51,9 @@ class Product extends Model {
             ->withPivot(['price', 'in_stock', 'store_id']);
     }
 
+    public function reviews() {
+        return $this->hasMany('App\Entities\Review');
+    }
 
     public function reviews_1_rating() {
         return $this->hasMany('App\Entities\Review')->where('rating', 1);
