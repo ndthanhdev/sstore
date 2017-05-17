@@ -9,6 +9,7 @@ import {Catalog} from 'app/models/catalog.model';
 })
 export class NavbarComponent implements OnInit {
   @Input() catalogs: Catalog[];
+  @Input() cartId: number;
   @Input() itemInCart: number;
   @Input() storeName: string;
 

@@ -28,7 +28,7 @@
 
   <div class="collapse navbar-collapse d-flex justify-content-end" id="app-navbar">
 
-    <button class="btn btn-link mr-2" type="button">
+    <button class="btn btn-link mr-2" type="button" [routerLink]="['/carts', cartId]">
       <i class="fa fa-shopping-cart mr-1"></i>Cart
       <span class="badge badge-pill badge-primary">{{itemInCart}}</span>
     </button>
