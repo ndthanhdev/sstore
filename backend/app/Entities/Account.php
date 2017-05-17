@@ -45,10 +45,13 @@ class Account extends Model implements AuthenticatableContract, AuthorizableCont
      * @return array
      */
     public function getJWTCustomClaims() {
-        $activeCart = $this->user->activeCart->first();
+        $user = $this->user;
+        $activeCart = $user->activeCart->first();
+
         return [
             'id' => $this->id,
             'username' => $this->username,
+            'avatar' => $user->avatar,
             'activeCart' => [
                 'id' => $activeCart->id,
                 'NoI' => $activeCart->item_count
