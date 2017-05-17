@@ -11,6 +11,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'bee9632da3ca00a99623b9c35d0c4f8b' => __DIR__ . '/..' . '/laravel/lumen-framework/src/helpers.php',
     );
@@ -24,8 +25,14 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Tymon\\JWTAuth\\' => 14,
+        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Util\\' => 22,
+            'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Translation\\' => 30,
@@ -42,6 +49,10 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
             'Psr\\Log\\' => 8,
             'Prettus\\Validator\\' => 18,
             'Prettus\\Repository\\' => 19,
+        ),
+        'N' => 
+        array (
+            'Namshi\\JOSE\\' => 12,
         ),
         'M' => 
         array (
@@ -114,6 +125,18 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Tymon\\JWTAuth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tymon/jwt-auth/src',
+        ),
+        'Symfony\\Polyfill\\Util\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
+        ),
+        'Symfony\\Polyfill\\Php56\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -165,6 +188,10 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'Prettus\\Repository\\' => 
         array (
             0 => __DIR__ . '/..' . '/prettus/l5-repository/src/Prettus/Repository',
+        ),
+        'Namshi\\JOSE\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
         ),
         'Monolog\\' => 
         array (
@@ -329,6 +356,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
     );
 
     public static $classMap = array (
+        'CatalogControllerTest' => __DIR__ . '/../..' . '/tests/app/Http/Controllers/CatalogControllerTest.php',
         'CorsKernel' => __DIR__ . '/..' . '/barryvdh/laravel-cors/tests/CorsKernel.php',
         'CorsServiceTest' => __DIR__ . '/..' . '/barryvdh/laravel-cors/tests/CorsServiceTest.php',
         'CreateAccountsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_25_170706_create_accounts_table.php',
@@ -353,7 +381,6 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'CreateUserReviewTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_26_100212_create_user_review_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_25_165333_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
-        'ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',

@@ -27,6 +27,7 @@ class AccountsTableSeeder extends Seeder {
 
         $users->slice(1 + config('factory.USER_AMOUNT'), config('factory.MANAGER_AMOUNT'))->each(function ($user, $key) {
             factory(Account::class)->states(['manager'])->create([
+                'username' => 'store' . $user->id,
                 'user_id' => $user->id
             ]);
         });

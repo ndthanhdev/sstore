@@ -12,6 +12,20 @@
 */
 
 
+$app->group(['prefix' => 'auth'], function () use ($app) {
+
+    $app->post('login', [
+        'as' => 'auth.LOGIN',
+        'uses' => 'AuthController@login'
+    ]);
+
+    $app->post('register', [
+        'as' => 'auth.REGISTER',
+        'uses' => 'AuthController@register'
+    ]);
+
+});
+
 
 $app->group(['prefix' => 'catalogs'], function () use ($app) {
 
