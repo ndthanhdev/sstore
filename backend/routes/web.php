@@ -69,9 +69,15 @@ $app->get('configurations', [
 
 $app->group(['prefix' => 'users'], function () use ($app) {
 
+
     $app->get('/count', [
         'as' => 'users.COUNT',
         'uses' => 'UserController@count'
+    ]);
+
+    $app->get('/{id}', [
+        'as' => 'users/{id}.GET',
+        'uses' => 'UserController@show'
     ]);
 
 });

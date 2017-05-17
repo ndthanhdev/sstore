@@ -34,7 +34,7 @@ class AuthController extends Controller {
             'msg' => config('msg.LOGIN_SUCCESS'),
             'data' => ['token' => $token],
             'link' => [
-                'IP' => $request->ip(),
+                'url' => route('users/{id}.GET', ['id' => $user->id]),
                 'name' => 'VIEW_USER',
                 'method' => 'GET',
                 'authentication' => true,
