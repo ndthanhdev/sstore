@@ -33,8 +33,18 @@
       <span class="badge badge-pill badge-primary">{{itemInCart}}</span>
     </button>
 
-    <frontend-navbar-login>
-    </frontend-navbar-login>
+    <frontend-navbar-utilities
+      *ngIf="user;else navbarLogin"
+      [user]="user"
+      (logoutButtonClicked)="onLogoutButtonClick()">
+    </frontend-navbar-utilities>
+
+    <ng-template #navbarLogin>
+      <frontend-navbar-login
+        [loading]="loading | async"
+        (loginButtonClicked)="onLoginButtonClick($event)">
+      </frontend-navbar-login>
+    </ng-template>
 
   </div>
 </nav>

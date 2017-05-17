@@ -11,6 +11,8 @@ import {ProductSummaryComponent} from './product-summary/product-summary.compone
 import {ProductSummaryListComponent} from './product-summary-list/product-summary-list.component';
 import {SharedModule} from '../shared/shared.module';
 import {ProductSummaryListHeaderComponent} from './product-summary-list-header/product-summary-list-header.component';
+import {AuthService} from './auth.service';
+import {NavbarUtilitiesComponent} from './navbar-utilities/navbar-utilities.component';
 
 @NgModule({
   imports: [
@@ -28,13 +30,15 @@ import {ProductSummaryListHeaderComponent} from './product-summary-list-header/p
     CategoryTileComponent,
     ProductSummaryComponent,
     ProductSummaryListComponent,
-    ProductSummaryListHeaderComponent
+    ProductSummaryListHeaderComponent,
+    NavbarUtilitiesComponent
   ],
   exports: [
     NavbarComponent,
     CategoryTilesComponent,
     ProductSummaryListComponent
-  ]
+  ],
+  providers: [AuthService],
 })
 export class CoreModule {
 }

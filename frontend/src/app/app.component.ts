@@ -17,6 +17,7 @@ import * as catalogActions from './store/actions/catalog.action';
       [cartId]="cartId">
     </frontend-navbar>
     <router-outlet></router-outlet>
+    <simple-notifications [options]="notificationOptions"></simple-notifications>
   `,
   styleUrls: ['./app.component.scss']
 })
@@ -27,6 +28,13 @@ export class AppComponent implements OnInit {
   cartId = 1;
 
   catalogs: Observable<Catalog[]>;
+
+  private notificationOptions = {
+    position: ['bottom', 'right'],
+    timeOut: 2000,
+    showProgressBar: false,
+    preventDuplicates: true
+  };
 
   constructor(private store: Store<fromRoot.State>) {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);

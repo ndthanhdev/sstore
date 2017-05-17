@@ -8,9 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarLoginComponent {
-
   @Input() loading: boolean;
-
   @Output() loginButtonClicked = new EventEmitter();
 
   loginForm: FormGroup;

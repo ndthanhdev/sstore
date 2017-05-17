@@ -2,6 +2,7 @@ import {Injector} from '@angular/core';
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {AuthHttp} from 'angular2-jwt';
 /**
  * Created by vunguyenhung on 5/13/17.
  */
@@ -15,28 +16,28 @@ export class GenericService {
 
   constructor(injector: Injector) {
     this.http = injector.get(Http);
-    // this.authHttp = injector.get(AuthHttp);
+    this.authHttp = injector.get(AuthHttp);
   }
 
-  // protected patchWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
-  //   return this.authHttp.patch(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
-  // }
-  //
-  // protected postWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
-  //   return this.authHttp.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
-  // }
-  //
-  // protected putWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
-  //   return this.authHttp.put(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
-  // }
-  //
-  // protected deleteWithAuth(options?: RequestOptions): Observable<any> {
-  //   return this.authHttp.delete(this.BASE_URL, this.defaultRequestOptions().merge(options));
-  // }
-  //
-  // protected getWithAuth(options?: RequestOptions): Observable<any> {
-  //   return this.authHttp.get(this.BASE_URL, this.defaultRequestOptions().merge(options));
-  // }
+  protected patchWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
+    return this.authHttp.patch(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
+
+  protected postWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
+    return this.authHttp.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
+
+  protected putWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
+    return this.authHttp.put(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
+
+  protected deleteWithAuth(options?: RequestOptions): Observable<any> {
+    return this.authHttp.delete(this.BASE_URL, this.defaultRequestOptions().merge(options));
+  }
+
+  protected getWithAuth(options?: RequestOptions): Observable<any> {
+    return this.authHttp.get(this.BASE_URL, this.defaultRequestOptions().merge(options));
+  }
 
   protected post(options?: RequestOptions, data?: Object | string): Observable<any> {
     return this.http.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
