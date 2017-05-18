@@ -15,7 +15,7 @@ import * as layoutActions from './store/actions/layout.action';
   selector: 'frontend-root',
   template: `
     <frontend-navbar
-      [storeName]="(primaryStore | async)?.name"
+      [storeName]="(selectedStore | async)?.name || (primaryStore | async)?.name"
       [catalogs]="catalogs | async">
     </frontend-navbar>
     <router-outlet></router-outlet>
@@ -27,8 +27,11 @@ export class AppComponent implements OnInit {
 
   catalogs: Observable<Catalog[]>;
   primaryStore: Observable<any>;
+  selectedStore: Observable<any>;
 
   coordinates: Observable<Coordinates>;
+
+  storeName: string;
 
   private notificationOptions = {
     position: ['bottom', 'right'],
@@ -40,7 +43,7 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<fromRoot.State>) {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
     this.primaryStore = this.store.select(fromRoot.getStorePrimaryStore);
-    this.store.select(fromRoot.getLayoutCoordinates).subscribe(coordinates => console.log('get it in real comp', coordinates));
+    this.selectedStore = this.store.select(fromRoot.getStoreStore);
 
     const jwtHelper: JwtHelper = new JwtHelper();
     const jwtToken = localStorage.getItem('id_token');

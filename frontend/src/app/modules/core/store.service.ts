@@ -3,6 +3,7 @@ import {GenericService} from 'app/generic.service';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '../../models/store.model';
 import {RequestOptions} from '@angular/http';
+import {Coordinates} from '../../models/coordinates.model';
 /**
  * Created by vunguyenhung on 5/18/17.
  */
@@ -17,6 +18,13 @@ export class StoreService extends GenericService {
   public loadPrimaryStore(): Observable<Store> {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/primary`
+    }));
+  }
+
+  public loadStore(coordinates: Coordinates): Observable<Store> {
+    console.log('in service: ', coordinates);
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}?latitude=${coordinates.latitude}&&longitude=${coordinates.longitude}`
     }));
   }
 }

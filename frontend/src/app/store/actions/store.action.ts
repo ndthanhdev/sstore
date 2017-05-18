@@ -8,6 +8,7 @@ import {Store} from '../../models/store.model';
 export const ActionTypes = {
   START_PRIMARY_STORE_LOAD: type('[Store] Start Primary Store Load'),
   LOAD_PRIMARY_STORE: type('[Store] Load Primary Store'),
+  LOAD_STORE: type('[Store] Load Store'),
 };
 
 export class StartPrimaryStoreLoadAction implements Action {
@@ -24,4 +25,14 @@ export class LoadPrimaryStoreAction implements Action {
   }
 }
 
-export type Actions = StartPrimaryStoreLoadAction | LoadPrimaryStoreAction;
+export class LoadStoreAction implements Action {
+  type = ActionTypes.LOAD_STORE;
+
+  constructor(public payload: { store: Store }) {
+  }
+}
+
+export type Actions =
+  StartPrimaryStoreLoadAction
+  | LoadPrimaryStoreAction
+  | LoadStoreAction;

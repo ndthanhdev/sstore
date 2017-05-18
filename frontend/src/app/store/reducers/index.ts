@@ -72,6 +72,7 @@ export const getProductProduct = Reselect.createSelector(getProductState, fromPr
 export const getProductLoading = Reselect.createSelector(getProductState, fromProduct.getLoading);
 
 export const getStorePrimaryStore = Reselect.createSelector(getStoreState, fromStore.getPrimaryStore);
+export const getStoreStore = Reselect.createSelector(getStoreState, fromStore.getStore);
 export const getStoreLoading = Reselect.createSelector(getStoreState, fromStore.getLoading);
 
 
