@@ -14,7 +14,7 @@ class ShoppingCart extends Model {
 
     public function details() {
         return $this
-            ->belongsToMany('App\Entities\Product', 'shopping_cart_details')
+            ->belongsToMany('App\Entities\ProductVariant', 'shopping_cart_details')
             ->withPivot('quantity');
     }
 }

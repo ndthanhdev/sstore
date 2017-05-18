@@ -18,7 +18,7 @@ class ShoppingCartDetailsTableSeeder extends Seeder {
             $faker = Factory::create();
             for ($i = 0; $i < $faker->numberBetween(1, 4); $i++)
                 $shoppingCart->details()->attach(
-                    $faker->unique()->numberBetween(1, config('factory.PRODUCT_AMOUNT')),
+                    $faker->numberBetween(1, config('factory.PRODUCT_AMOUNT') * (config('factory.MAX_PRODUCT_VARIANT_PER_PRODUCT') - 1)),
                     ['quantity' => $faker->numberBetween(1, 5)]);
         }
     }

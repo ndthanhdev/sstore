@@ -8,7 +8,7 @@
 
 ## II. ENTITIES
 
-![](ERD_v1.2.3.png?raw=true)
+![](ERD_v1.2.4.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |

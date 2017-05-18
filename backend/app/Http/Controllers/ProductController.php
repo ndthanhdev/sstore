@@ -26,8 +26,4 @@ class ProductController extends Controller {
         $storeId = 1;
         return $this->productRepo->show($productId, $storeId);
     }
-
-    public function featuredProducts() {
-
-    }
 }

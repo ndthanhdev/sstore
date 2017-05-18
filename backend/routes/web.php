@@ -11,7 +11,9 @@
 |
 */
 
-
+///////////
+// AUTHENTICATION API
+///////////
 $app->group(['prefix' => 'auth'], function () use ($app) {
 
     $app->post('login', [
@@ -26,7 +28,9 @@ $app->group(['prefix' => 'auth'], function () use ($app) {
 
 });
 
-
+///////////
+// CATALOG API
+///////////
 $app->group(['prefix' => 'catalogs'], function () use ($app) {
 
     $app->get('/', [
@@ -45,7 +49,9 @@ $app->group(['prefix' => 'catalogs'], function () use ($app) {
     ]);
 });
 
-
+///////////
+// CATEGORY API
+///////////
 $app->group(['prefix' => 'categories'], function () use ($app) {
 
     $app->get('/{id}/categories', [
@@ -60,13 +66,17 @@ $app->group(['prefix' => 'categories'], function () use ($app) {
 
 });
 
-
+///////////
+// CONFIGURATION API
+///////////
 $app->get('configurations', [
     'as' => 'configurations.GET',
     'uses' => 'ConfigurationController@index'
 ]);
 
-
+///////////
+// USER API
+///////////
 $app->group(['prefix' => 'users'], function () use ($app) {
 
 
@@ -82,7 +92,21 @@ $app->group(['prefix' => 'users'], function () use ($app) {
 
 });
 
+///////////
+// CART API
+///////////
+$app->group(['prefix' => 'carts'], function () use ($app) {
 
+    $app->get('/{id}', [
+        'as' => 'carts/{id}.GET',
+        'uses' => 'CartController@show'
+    ]);
+
+});
+
+///////////
+// PRODUCT API
+///////////
 $app->group(['prefix' => 'products'], function () use ($app) {
 
     $app->get('/{id}', [
@@ -92,7 +116,21 @@ $app->group(['prefix' => 'products'], function () use ($app) {
 
 });
 
+///////////
+// STORE API
+///////////
+$app->group(['prefix' => 'stores'], function () use ($app) {
 
+    $app->get('/primary', [
+        'as' => 'stores/primary.GET',
+        'uses' => 'StoreController@primary'
+    ]);
+
+});
+
+///////////
+// MQTT API
+///////////
 $app->group(['prefix' => 'mqtt'], function () use ($app) {
 
 
