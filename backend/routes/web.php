@@ -121,6 +121,11 @@ $app->group(['prefix' => 'products'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'stores'], function () use ($app) {
 
+    $app->get('/', [
+        'as' => 'stores.GET',
+        'uses' => 'StoreController@show'
+    ]);
+
     $app->get('/primary', [
         'as' => 'stores/primary.GET',
         'uses' => 'StoreController@primary'
