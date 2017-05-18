@@ -19,6 +19,6 @@ class StoreRepository extends BaseRepository implements CacheableInterface {
     }
 
     public function primary() {
-        return $this->findWhere(['primary' => true]);
+        return $this->findWhere(['primary' => true])->first();
     }
 }

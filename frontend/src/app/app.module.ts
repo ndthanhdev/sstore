@@ -22,6 +22,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {LayoutEffects} from './store/effects/layout.effect';
 import {AuthEffects} from './store/effects/auth.effect';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
+import {StoreEffect} from './store/effects/store.effect';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -42,6 +43,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     EffectsModule.run(CatalogEffect),
     EffectsModule.run(CategoryEffect),
     EffectsModule.run(ProductEffect),
+    EffectsModule.run(StoreEffect),
 
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),

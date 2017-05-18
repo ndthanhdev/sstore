@@ -8,12 +8,13 @@ import {User} from './models/user.model';
 import * as fromRoot from './store/reducers';
 import * as catalogActions from './store/actions/catalog.action';
 import * as authActions from './store/actions/auth.action';
+import * as storeActions from './store/actions/store.action';
 
 @Component({
   selector: 'frontend-root',
   template: `
     <frontend-navbar
-      [storeName]="storeName"
+      [storeName]="(primaryStore | async).name"
       [itemInCart]="itemInCart"
       [catalogs]="catalogs | async"
       [cartId]="cartId">
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
   cartId = 1;
 
   catalogs: Observable<Catalog[]>;
+  primaryStore: Observable<any>;
 
   private notificationOptions = {
     position: ['bottom', 'right'],
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<fromRoot.State>) {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
+    this.primaryStore = this.store.select(fromRoot.getStorePrimaryStore);
 
     const jwtHelper: JwtHelper = new JwtHelper();
     const jwtToken = localStorage.getItem('id_token');
@@ -52,6 +55,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new catalogActions.StartAlLCatalogLoadAction());
+    this.store.dispatch(new storeActions.StartPrimaryStoreLoadAction());
   }
 
 

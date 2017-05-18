@@ -11,7 +11,7 @@ import * as catalogActions from '../actions/catalog.action';
 
 import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/catch';
-import {of} from 'rxjs/observable/of'; // NOTICE HERE!
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class CatalogEffect {

@@ -13,6 +13,8 @@ import {SharedModule} from '../shared/shared.module';
 import {ProductSummaryListHeaderComponent} from './product-summary-list-header/product-summary-list-header.component';
 import {AuthService} from './auth.service';
 import {NavbarUtilitiesComponent} from './navbar-utilities/navbar-utilities.component';
+import {GeolocationService} from './geolocation.service';
+import {StoreService} from './store.service';
 
 @NgModule({
   imports: [
@@ -38,7 +40,11 @@ import {NavbarUtilitiesComponent} from './navbar-utilities/navbar-utilities.comp
     CategoryTilesComponent,
     ProductSummaryListComponent
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    GeolocationService,
+    StoreService
+  ],
 })
 export class CoreModule {
 }
