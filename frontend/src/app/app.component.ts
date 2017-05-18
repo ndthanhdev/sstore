@@ -14,10 +14,8 @@ import * as storeActions from './store/actions/store.action';
   selector: 'frontend-root',
   template: `
     <frontend-navbar
-      [storeName]="(primaryStore | async).name"
-      [itemInCart]="itemInCart"
-      [catalogs]="catalogs | async"
-      [cartId]="cartId">
+      [storeName]="(primaryStore | async)?.name"
+      [catalogs]="catalogs | async">
     </frontend-navbar>
     <router-outlet></router-outlet>
     <simple-notifications [options]="notificationOptions"></simple-notifications>
@@ -25,10 +23,6 @@ import * as storeActions from './store/actions/store.action';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  storeName = 'Ba Thang Hai 1';
-  itemInCart = 2;
-  cartId = 1;
 
   catalogs: Observable<Catalog[]>;
   primaryStore: Observable<any>;
