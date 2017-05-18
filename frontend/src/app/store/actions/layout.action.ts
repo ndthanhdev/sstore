@@ -1,5 +1,6 @@
 import {type} from '../../util/helper';
 import {Action} from '@ngrx/store';
+import {Coordinates} from '../../models/coordinates.model';
 /**
  * Created by vunguyenhung on 5/5/17.
  */
@@ -7,6 +8,8 @@ import {Action} from '@ngrx/store';
 export const ActionTypes = {
   START_NOTIFY: type('[Layout] Start Notify'),
   NOTIFY_SUCCESS: type('[Layout] Notify Success'),
+  START_COORDINATES_GET: type('[Layout] Start Coordinates Get'),
+  GET_COORDINATES: type('[Layout] Get Coordinates'),
 };
 
 export class StartNotifyAction implements Action {
@@ -23,4 +26,22 @@ export class NotifySuccessAction implements Action {
   }
 }
 
-export type Actions = StartNotifyAction | NotifySuccessAction;
+export class StartCoordinatesGetAction implements Action {
+  type = ActionTypes.START_COORDINATES_GET;
+
+  constructor(public payload?) {
+  }
+}
+
+export class GetCoordinatesAction implements Action {
+  type = ActionTypes.GET_COORDINATES;
+
+  constructor(public payload: { coordinates: Coordinates }) {
+  }
+}
+
+export type Actions
+  = StartNotifyAction
+  | NotifySuccessAction
+  | StartCoordinatesGetAction
+  | GetCoordinatesAction;

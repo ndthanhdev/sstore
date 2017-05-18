@@ -1,7 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Review} from '../../../models/review.model';
-import {REVIEWS} from '../../../constant/data.constant';
 import {Store} from '@ngrx/store';
 
 
@@ -17,8 +15,6 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   productId: number;
-  reviews: Review[];
-
   product: Product;
   productSub: Subscription;
 
@@ -27,7 +23,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<fromRoot.State>,
               private route: ActivatedRoute) {
-    this.reviews = REVIEWS;
     this.productSub = this.store.select(fromRoot.getProductProduct).subscribe(product => this.product = product);
     this.loadingSub = this.store.select(fromRoot.getProductLoading).subscribe(loading => this.loading = loading);
   }

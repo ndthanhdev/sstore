@@ -88,7 +88,6 @@ export class ProductInformationComponent implements OnInit, OnChanges {
   }
 
   onProductVariantChange(productVariant: ProductVariant) {
-    console.log(productVariant.id);
     this.currentProductVariant = productVariant;
   }
 

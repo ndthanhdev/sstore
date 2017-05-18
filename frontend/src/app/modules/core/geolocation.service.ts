@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {Coordinates} from '../../models/coordinates.model';
 /**
  * Created by vunguyenhung on 5/18/17.
  */
@@ -13,14 +14,18 @@ const GEOLOCATION_ERRORS = {
 @Injectable()
 export class GeolocationService {
 
-  public getLocation(opts): Observable<any> {
+  public getLocation(): Observable<Coordinates> {
 
     return Observable.create(observer => {
 
       if (window.navigator && window.navigator.geolocation) {
         window.navigator.geolocation.getCurrentPosition(
           (position) => {
-            observer.next(position);
+            observer.next(new Coordinates({
+              latitude: position.coords.latitude.toString(),
+              longitude: position.coords.longitude.toString(),
+              accuracy: position.coords.accuracy
+            }));
             observer.complete();
           },
           (error) => {
@@ -35,8 +40,7 @@ export class GeolocationService {
                 observer.error(GEOLOCATION_ERRORS['errors.location.timeout']);
                 break;
             }
-          },
-          opts);
+          });
       } else {
         observer.error(GEOLOCATION_ERRORS['errors.location.unsupportedBrowser']);
       }

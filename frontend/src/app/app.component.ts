@@ -9,6 +9,7 @@ import * as fromRoot from './store/reducers';
 import * as catalogActions from './store/actions/catalog.action';
 import * as authActions from './store/actions/auth.action';
 import * as storeActions from './store/actions/store.action';
+import * as layoutActions from './store/actions/layout.action';
 
 @Component({
   selector: 'frontend-root',
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit {
   catalogs: Observable<Catalog[]>;
   primaryStore: Observable<any>;
 
+  coordinates: Observable<Coordinates>;
+
   private notificationOptions = {
     position: ['bottom', 'right'],
     timeOut: 2000,
@@ -37,6 +40,7 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<fromRoot.State>) {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
     this.primaryStore = this.store.select(fromRoot.getStorePrimaryStore);
+    this.store.select(fromRoot.getLayoutCoordinates).subscribe(coordinates => console.log('get it in real comp', coordinates));
 
     const jwtHelper: JwtHelper = new JwtHelper();
     const jwtToken = localStorage.getItem('id_token');
@@ -50,6 +54,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new catalogActions.StartAlLCatalogLoadAction());
     this.store.dispatch(new storeActions.StartPrimaryStoreLoadAction());
+    this.store.dispatch(new layoutActions.StartCoordinatesGetAction());
   }
 
 
