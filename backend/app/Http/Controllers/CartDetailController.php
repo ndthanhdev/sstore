@@ -28,12 +28,12 @@ class CartDetailController extends Controller {
     //"shopping_cart_id": 16,
     //"store_product_variant_id": 44,
 
-    public function store(Request $request) {
+    public function store(Request $request, $cartID) {
         $data = $request->all();
 
         $createdShoppingCartDetail = ShoppingCartDetail::create([
             'quantity' => $data['quantity'],
-            'shopping_cart_id' => $data['shopping_cart_id'],
+            'shopping_cart_id' => $cartID,
             'store_product_variant_id' => $data['store_product_variant_id']
         ]);
 
@@ -43,7 +43,7 @@ class CartDetailController extends Controller {
             'link' => [
                 'name' => 'VIEW_SHOPPING_CART_DETAIL',
                 'url' => route('carts/{cartId}/details/{detailId}.GET', [
-                    'cartId' => $data['shopping_cart_id'],
+                    'cartId' => $cartID,
                     'detailId' => $createdShoppingCartDetail->id
                 ]),
                 'method' => 'GET'
