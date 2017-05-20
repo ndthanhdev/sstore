@@ -17,7 +17,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class NavbarComponent implements OnDestroy {
 
   @Input() catalogs: Catalog[];
-  @Input() storeName: string;
+  @Input() currentStore;
 
   loading: Observable<boolean>;
   user: User;

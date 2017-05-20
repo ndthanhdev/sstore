@@ -15,7 +15,7 @@ import * as layoutActions from './store/actions/layout.action';
   selector: 'frontend-root',
   template: `
     <frontend-navbar
-      [storeName]="(selectedStore | async)?.name || (primaryStore | async)?.name"
+      [currentStore]="(selectedStore | async) || (primaryStore | async)"
       [catalogs]="catalogs | async">
     </frontend-navbar>
     <router-outlet></router-outlet>
@@ -30,8 +30,6 @@ export class AppComponent implements OnInit {
   selectedStore: Observable<any>;
 
   coordinates: Observable<Coordinates>;
-
-  storeName: string;
 
   private notificationOptions = {
     position: ['bottom', 'right'],

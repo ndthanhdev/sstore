@@ -26,15 +26,12 @@ export class StoreEffect {
   primaryStoreLoad$: Observable<Action> = this.actions$
     .ofType(storeActions.ActionTypes.START_PRIMARY_STORE_LOAD)
     .switchMap(action => this.storeService.loadPrimaryStore()
-      .concatMap(primaryStore => of(new storeActions.LoadPrimaryStoreAction({primaryStore: primaryStore}))));
+      .concatMap(store => of(new storeActions.LoadStoreAction({store: store}))));
 
   @Effect()
   storeLoad$: Observable<Action> = this.actions$
     .ofType(layoutActions.ActionTypes.GET_COORDINATES)
-    .switchMap(action => {
-      console.log('in effect: ', action.payload);
-      return this.storeService.loadStore(action.payload.coordinates)
-        .concatMap(store => of(new storeActions.LoadStoreAction({store: store})));
-    });
+    .switchMap(action => this.storeService.loadStore(action.payload.coordinates)
+      .concatMap(store => of(new storeActions.LoadStoreAction({store: store}))));
 
 }

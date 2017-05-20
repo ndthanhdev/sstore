@@ -31,13 +31,6 @@ export function reducer(state: State = initialState, action: storeActions.Action
         loaded: false
       });
 
-    case storeActions.ActionTypes.LOAD_PRIMARY_STORE:
-      return Object.assign({}, state, {
-        primaryStore: action.payload.primaryStore,
-        loaded: true,
-        loading: false
-      });
-
     case storeActions.ActionTypes.LOAD_STORE:
       return Object.assign({}, state, {
         store: action.payload.store,

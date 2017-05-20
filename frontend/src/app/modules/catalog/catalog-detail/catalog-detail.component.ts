@@ -62,8 +62,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) {
     this.catalogParentCategories = this.store.select(fromRoot.getCategoryCatalogParentCategories);
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
-    this.productPage = this.store.select(fromRoot.getProductCatalogProducts)
-      .filter(productPage => !!productPage);
+    this.productPage = this.store.select(fromRoot.getProductCatalogProducts).filter(productPage => !!productPage);
     this.productLoading = this.store.select(fromRoot.getProductLoading);
   }
 
