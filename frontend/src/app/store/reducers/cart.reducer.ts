@@ -1,16 +1,16 @@
-import {Store} from '../../models/store.model';
+import {Cart} from '../../models/cart.model';
 
-import * as storeActions from '../actions/store.action';
+
+import * as cartActions from '../actions/cart.action';
 /**
- * Created by vunguyenhung on 5/18/17.
+ * Created by vunguyenhung on 5/13/17.
  */
-
 
 export interface State {
   loading: boolean;
   loaded: boolean;
   error: any;
-  store: Store;
+  cart: Cart;
 }
 
 
@@ -18,20 +18,20 @@ export const initialState: State = {
   loading: false,
   loaded: false,
   error: null,
-  store: null
+  cart: null,
 };
 
-export function reducer(state: State = initialState, action: storeActions.Actions): State {
+export function reducer(state: State = initialState, action): State {
   switch (action.type) {
-    case storeActions.ActionTypes.START_PRIMARY_STORE_LOAD:
+    case cartActions.ActionTypes.START_CART_LOAD:
       return Object.assign({}, state, {
         loading: true,
         loaded: false
       });
 
-    case storeActions.ActionTypes.LOAD_STORE:
+    case cartActions.ActionTypes.LOAD_CART:
       return Object.assign({}, state, {
-        store: action.payload.store,
+        cart: action.payload.cart,
         loaded: true,
         loading: false
       });
@@ -39,8 +39,9 @@ export function reducer(state: State = initialState, action: storeActions.Action
     default:
       return state;
   }
+
 }
 
+export const getCart = (state: State) => state.cart;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
-export const getStore = (state: State) => state.store;

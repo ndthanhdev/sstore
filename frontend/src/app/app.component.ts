@@ -15,7 +15,7 @@ import * as layoutActions from './store/actions/layout.action';
   selector: 'frontend-root',
   template: `
     <frontend-navbar
-      [currentStore]="(selectedStore | async) || (primaryStore | async)"
+      [currentStore]="(selectedStore | async)"
       [catalogs]="catalogs | async">
     </frontend-navbar>
     <router-outlet></router-outlet>
@@ -26,7 +26,6 @@ import * as layoutActions from './store/actions/layout.action';
 export class AppComponent implements OnInit {
 
   catalogs: Observable<Catalog[]>;
-  primaryStore: Observable<any>;
   selectedStore: Observable<any>;
 
   coordinates: Observable<Coordinates>;
@@ -40,7 +39,6 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store<fromRoot.State>) {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
-    this.primaryStore = this.store.select(fromRoot.getStorePrimaryStore);
     this.selectedStore = this.store.select(fromRoot.getStoreStore);
 
     const jwtHelper: JwtHelper = new JwtHelper();

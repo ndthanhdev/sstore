@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ProductVariationValue} from '../../../models/product-variation-values.model';
 
 @Component({
   selector: 'frontend-cart-product',
@@ -9,19 +10,19 @@ import {Component, OnInit} from '@angular/core';
         <div class="row">
           <!--START PRODUCT IMAGE-->
           <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
-            <img src="http://lorempixel.com/350/350/cats/" alt="cats" class="img-thumbnail">
+            <img [src]="productImage" alt="cats" class="img-thumbnail">
           </div>
           <!--END PRODUCT IMAGE-->
 
           <!--START PRODUCT INFO-->
           <div class="col-lg-8 col-12">
             <div class="mb-1">
-              <h4 class="lead d-inline-block"><strong>Name: </strong>Kavan Cliffs</h4>
+              <h4 class="lead d-inline-block"><strong>Name: </strong>{{productName}}</h4>
               <button class="btn btn-outline-danger btn-sm float-right">Delete</button>
             </div>
 
             <div class="mb-2">
-              <span class="lead"><strong>Variants:</strong></span>
+              <span class="lead"><strong>Variation Values:</strong></span>
               <table class="table table-hover">
                 <thead>
                 <tr>
@@ -30,17 +31,9 @@ import {Component, OnInit} from '@angular/core';
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Color</td>
-                  <td>Red</td>
-                </tr>
-                <tr>
-                  <td>Size</td>
-                  <td>Medium</td>
-                </tr>
-                <tr>
-                  <td>Cover</td>
-                  <td>Hardcover</td>
+                <tr *ngFor="let variationValue of variationValues">
+                  <td>{{variationValue.name}}</td>
+                  <td>{{variationValue.value}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -51,12 +44,12 @@ import {Component, OnInit} from '@angular/core';
         </div>
       </div>
       <div class="col-2">
-        <span class="lead">200.000 VND</span>
+        <span class="lead">{{price | VND}}</span>
       </div>
 
       <div class="col-2">
         <div class="form-group mb-0 row">
-          <input type="number" class="form-control col-8" value="5">
+          <input type="number" class="form-control col-8" [value]="quantity">
         </div>
       </div>
     </div>
@@ -66,6 +59,11 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./cart-product.component.scss']
 })
 export class CartProductComponent implements OnInit {
+  @Input() productImage: string;
+  @Input() productName: string;
+  @Input() price: string;
+  @Input() variationValues: ProductVariationValue[];
+  @Input() quantity: number;
 
   constructor() {
   }

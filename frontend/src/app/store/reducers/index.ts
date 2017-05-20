@@ -15,6 +15,7 @@ import * as fromCatalog from './catalog.reducer';
 import * as fromCategory from './category.reducer';
 import * as fromProduct from './product.reducer';
 import * as fromStore from './store.reducer';
+import * as fromCart from './cart.reducer';
 import * as fromRouter from '@ngrx/router-store';
 
 export interface State {
@@ -24,6 +25,7 @@ export interface State {
   category: fromCategory.State;
   product: fromProduct.State;
   store: fromStore.State;
+  cart: fromCart.State;
   router: fromRouter.RouterState;
 }
 
@@ -34,6 +36,7 @@ export const reducers = {
   category: fromCategory.reducer,
   product: fromProduct.reducer,
   store: fromStore.reducer,
+  cart: fromCart.reducer,
   router: fromRouter.routerReducer,
 };
 
@@ -55,6 +58,7 @@ export const getCatalogState = (state: State) => state.catalog;
 export const getCategoryState = (state: State) => state.category;
 export const getProductState = (state: State) => state.product;
 export const getStoreState = (state: State) => state.store;
+export const getCartState = (state: State) => state.cart;
 
 
 export const getAuthLoading = Reselect.createSelector(getAuthState, fromAuth.getLoading);
@@ -71,8 +75,11 @@ export const getProductCatalogProducts = Reselect.createSelector(getProductState
 export const getProductProduct = Reselect.createSelector(getProductState, fromProduct.getProduct);
 export const getProductLoading = Reselect.createSelector(getProductState, fromProduct.getLoading);
 
-export const getStorePrimaryStore = Reselect.createSelector(getStoreState, fromStore.getPrimaryStore);
 export const getStoreStore = Reselect.createSelector(getStoreState, fromStore.getStore);
 export const getStoreLoading = Reselect.createSelector(getStoreState, fromStore.getLoading);
+
+export const getCartCart = Reselect.createSelector(getCartState, fromCart.getCart);
+export const getCartLoading = Reselect.createSelector(getCartState, fromCart.getLoading);
+
 
 

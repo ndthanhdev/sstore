@@ -22,7 +22,6 @@ export class StoreService extends GenericService {
   }
 
   public loadStore(coordinates: Coordinates): Observable<Store> {
-    console.log('in service: ', coordinates);
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}?latitude=${coordinates.latitude}&&longitude=${coordinates.longitude}`
     }));
