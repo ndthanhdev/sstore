@@ -23,7 +23,7 @@ class ProductController extends Controller {
 //    }
 
     public function show(Request $request, $productId) {
-        $storeId = 1;
+        $storeId = $request->input('storeId');
         return $this->productRepo->show($productId, $storeId);
     }
 }

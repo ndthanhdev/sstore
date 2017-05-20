@@ -12,9 +12,11 @@ class ShoppingCart extends Model {
 
     protected $fillable = ['active'];
 
+    public function storeProductVariant() {
+        return $this->belongsToMany('App\Entities\StoreProductVariant', 'shopping_cart_details')->withPivot('quantity');
+    }
+
     public function details() {
-        return $this
-            ->belongsToMany('App\Entities\ProductVariant', 'shopping_cart_details')
-            ->withPivot('quantity');
+        return $this->hasMany('App\Entities\ShoppingCartDetail');
     }
 }
