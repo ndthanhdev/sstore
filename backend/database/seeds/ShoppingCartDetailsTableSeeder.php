@@ -7,6 +7,7 @@ namespace database\seeds;
 
 
 use App\Entities\ShoppingCart;
+use App\Entities\StoreProductVariant;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +15,12 @@ class ShoppingCartDetailsTableSeeder extends Seeder {
     //TODO: one shopping cart can have many products
     public function run() {
         $shoppingCarts = ShoppingCart::all();
+        $storeProductVariantCount = StoreProductVariant::all()->count();
         foreach ($shoppingCarts as $shoppingCart) {
             $faker = Factory::create();
             for ($i = 0; $i < $faker->numberBetween(1, 4); $i++)
                 $shoppingCart->storeProductVariant()->attach(
-                    $faker->numberBetween(1, config('factory.PRODUCT_AMOUNT') * (config('factory.MAX_PRODUCT_VARIANT_PER_PRODUCT'))),
+                    $faker->numberBetween(1, $storeProductVariantCount - 1),
                     ['quantity' => $faker->numberBetween(1, 5)]);
         }
     }

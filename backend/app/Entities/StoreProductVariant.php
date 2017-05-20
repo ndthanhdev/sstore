@@ -14,4 +14,12 @@ class StoreProductVariant extends Model {
         'price'
     ];
     protected $table = 'store_product_variant';
+
+    public function product() {
+        return $this->belongsTo('App\Entities\Product');
+    }
+
+    public function productVariant() {
+        return $this->belongsTo('App\Entities\ProductVariant');
+    }
 }

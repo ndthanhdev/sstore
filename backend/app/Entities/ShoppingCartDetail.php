@@ -15,8 +15,7 @@ class ShoppingCartDetail extends Model {
 
     protected $table = 'shopping_cart_details';
 
-    public function productVariant() {
+    public function storeProductVariant() {
         return $this->belongsTo('App\Entities\StoreProductVariant');
     }
-
 }

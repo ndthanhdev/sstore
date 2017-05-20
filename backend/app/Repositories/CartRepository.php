@@ -19,7 +19,11 @@ class CartRepository extends BaseRepository implements CacheableInterface {
     }
 
     public function show($cartId, $storeId) {
-        return $this->with(['details.productVariant.variationValues'])->find($cartId);
+        return $this->with([
+            'details.storeProductVariant.product',
+            'details.storeProductVariant.productVariant',
+            'details.storeProductVariant.productVariant.variationValues'
+        ])->find($cartId);
     }
 
 }
