@@ -23,9 +23,7 @@ class CategoryController extends Controller {
     }
 
     public function products(Request $request, $categoryId) {
-
-        $storeId = 1;
-
+        $storeId = $request->input('storeId');
         return $this->categoryRepository->products($categoryId, $storeId);
     }
 

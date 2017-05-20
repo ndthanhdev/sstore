@@ -35,7 +35,10 @@ export class ProductEffect {
   @Effect()
   productLoad$: Observable<Action> = this.actions$
     .ofType(productActions.ActionTypes.START_PRODUCT_LOAD)
-    .switchMap(action => this.productService.loadProduct(action.payload.productId)
+    .map(action => action.payload)
+    .combineLatest(this.store.select(fromRoot.getStoreStore))
+    .filter(([payload, currentStore]) => !!currentStore)
+    .switchMap(([payload, currentStore]) => this.productService.loadProduct(payload.productId, currentStore.id)
       .concatMap(product => of(new productActions.LoadProductAction({product: product}))));
 
   // @Effect()

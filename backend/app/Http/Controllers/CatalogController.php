@@ -27,7 +27,7 @@ class CatalogController extends Controller {
     }
 
     public function products(Request $request, $catalogId) {
-        $storeId = 1;
+        $storeId = $request->input('storeId');
         return $this->catalogRepository->products($catalogId, $storeId);
     }
 

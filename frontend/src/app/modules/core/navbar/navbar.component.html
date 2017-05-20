@@ -10,9 +10,9 @@
   <div class="mr-2">
     <a class="navbar-brand" routerLink="/">
       <small class="text-xs text-bottom-half">
-        <span><i class="fa fa-star fa-fw" *ngIf="currentStore.primary"></i></span>
-        <span><i class="fa fa-location-arrow fa-fw" *ngIf="!currentStore.primary"></i></span>
-        <span>{{currentStore.name}}</span>
+        <span><i class="fa fa-star fa-fw" *ngIf="currentStore?.primary"></i></span>
+        <span><i class="fa fa-location-arrow fa-fw" *ngIf="!currentStore?.primary"></i></span>
+        <span>{{currentStore?.name}}</span>
       </small>
       SSTORE<i class="fa fa-shopping-cart"></i>
     </a>

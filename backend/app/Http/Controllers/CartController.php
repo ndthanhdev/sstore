@@ -19,7 +19,7 @@ class CartController extends Controller {
     }
 
     public function show(Request $request, $cartId) {
-        $storeId = 1;
+        $storeId = $request->input('storeId');
         return $this->cartRepository->show($cartId, $storeId);
     }
 
