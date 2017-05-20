@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 import * as fromRoot from '../../../store/reducers';
 import * as cartActions from '../../../store/actions/cart.action';
 import {CartDetail} from '../../../models/cart-detail.model';
+import {back} from '@ngrx/router-store';
 
 @Component({
   selector: 'frontend-cart-detail',
@@ -54,7 +55,7 @@ import {CartDetail} from '../../../models/cart-detail.model';
       </div>
 
       <div class="row justify-content-end mr-4 mb-5">
-        <button class="btn btn-link btn-lg">Continue shopping</button>
+        <button class="btn btn-link btn-lg" (click)="goBack()">Continue shopping</button>
         <button class="btn btn-outline-primary btn-lg">Checkout</button>
       </div>
 
@@ -91,11 +92,14 @@ export class CartDetailComponent implements OnInit {
     }
   }
 
-
   totalItem(): number {
     if (this.cart) {
       return this.cart.details.reduce((pre, cur) => pre + cur.quantity, 0);
     }
+  }
+
+  goBack() {
+    this.store.dispatch(back());
   }
 
 
