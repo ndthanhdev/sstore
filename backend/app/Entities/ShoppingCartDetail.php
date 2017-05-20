@@ -11,7 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 class ShoppingCartDetail extends Model {
     public $timestamps = false;
 
-    protected $fillable = ['quantity'];
+    protected $fillable = [
+        'quantity',
+        'shopping_cart_id',
+        'store_product_variant_id'
+    ];
 
     protected $table = 'shopping_cart_details';
 

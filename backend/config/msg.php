@@ -21,5 +21,5 @@ return [
 
     'FILE_UPLOAD_SUCCESS' => 'File uploaded successfully!',
 
-    'BID_PLACED' => 'Bid placed successfully!'
+    'SHOPPING_CART_UPDATED' => 'Shopping cart has been updated!'
 ];

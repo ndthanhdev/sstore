@@ -97,10 +97,24 @@ $app->group(['prefix' => 'users'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'carts'], function () use ($app) {
 
-    $app->get('/{id}', [
+    $app->get('/{id:[0-9]+}', [
         'as' => 'carts/{id}.GET',
         'uses' => 'CartController@show'
     ]);
+
+    $app->group(['prefix' => '/{cartId:[0-9]+}/details'], function () use ($app) {
+
+        $app->post('/', [
+            'as' => 'carts/{cartId}/details.POST',
+            'uses' => 'CartDetailController@store'
+        ]);
+
+        $app->get('/{detailId:[0-9]+}', [
+            'as' => 'carts/{cartId}/details/{detailId}.GET',
+            'uses' => 'CartDetailController@show'
+        ]);
+
+    });
 
 });
 
@@ -109,7 +123,7 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'products'], function () use ($app) {
 
-    $app->get('/{id}', [
+    $app->get('/{id:[0-9]+}', [
         'as' => 'products/{id}.GET',
         'uses' => 'ProductController@show'
     ]);
