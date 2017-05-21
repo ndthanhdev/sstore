@@ -1,10 +1,9 @@
-export interface Marker {
+export interface Store {
   id: string;
-  label: string;
   longitude: number;
   latitude: number;
   name: string;
   address: string;
-  isDraggable: boolean;
-  icon:string;
+  phone:string;
+  isPrimary: boolean;
 }

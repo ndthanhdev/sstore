@@ -1,4 +1,4 @@
-<agm-map>
+<agm-map [latitude]="10.762622" [longitude]="106.660172">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"
               [label]="marker.label"
               [draggable]="marker.isDraggable"
@@ -6,7 +6,8 @@
     <agm-info-window [disableAutoPan]="true">
       <div class="lead">{{marker.name}}</div>
       <div>{{marker.address}}</div>
-      <button class="btn btn-link btn-sm pl-0" [routerLink]="['store/detail',marker.id]">Detail</button>
+      <a class="btn btn-link btn-sm pl-0"  [routerLink]="['/store/detail',marker.id]" routerLinkActive="active">Detail</a>
     </agm-info-window>
   </agm-marker>
 </agm-map>
+

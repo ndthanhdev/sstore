@@ -1,4 +1,5 @@
 import {Marker} from "../map/marker.model";
+import {Store} from "../store.model";
 /**
  * Created by duyth on 5/9/2017.
  */
@@ -35,4 +36,33 @@ export class FakeData {
       icon: ''
     }
   ];
+
+  public static Stores: Store[] = [
+    {
+      id: '0',
+      name: 'Store To Hien Thanh 1',
+      latitude: 10.772603,
+      longitude: 106.6602087020874,
+      address: '224 To Hien Thanh P.4 Q.8 Ho Chi Minh',
+      phone: '0908076542',
+      isPrimary: false
+    },
+    {
+      id: '1',
+      latitude: 10.74207841488251,
+      longitude: 106.68033599853516,
+      name: 'Store Ta Quang Buu 1',
+      address: '51 Ta Quang Buu P.4 Q.8 Ho Chi Minh',
+      phone: '0908778929',
+      isPrimary: true
+    },
+    {
+      id: '2',
+      latitude: 10.76927252012046,
+      longitude: 106.67080879211426,
+      name: 'Store Ba Thang Hai 1',
+      address: '31 Ba Thang Hai P.4 Q.8 Ho Chi Minh',
+      phone: '0908664422',
+      isPrimary: false
+    }];
 }

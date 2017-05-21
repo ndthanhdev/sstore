@@ -9,8 +9,8 @@ const routes: Routes = [
   {
     path: '', component: StoreComponent,
     children: [
-      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent},
+      {path: '', redirectTo: 'dashboard/1', pathMatch: 'full'},
+      {path: 'dashboard/:page', component: DashboardComponent,},
       {path: 'create', component: CreateComponent},
       {path: 'detail/:id', component: DetailComponent},
     ]

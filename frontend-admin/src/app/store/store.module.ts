@@ -9,6 +9,7 @@ import {SharedModule} from "../shared/shared.module";
 import {CreateComponent} from './create/create.component';
 import {DetailComponent} from './detail/detail.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyACGaDxyjAqy8uZMSq7uGGqPcinO_Z0IsU'
     }),
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   declarations: [
     StoreComponent,

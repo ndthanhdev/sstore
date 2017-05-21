@@ -1,3 +1,71 @@
-<p>
-  create works!
-</p>
+<frontend-admin-jumbotron [Header]="'Create Store'"></frontend-admin-jumbotron>
+<div class="container">
+  <!--START STORE FORM-->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Store Information</h3>
+        <div class="card-block row">
+
+          <div class="col-12 d-flex col-lg-6">
+            <div
+              class="card image-placeholder bg-faded d-flex align-items-center justify-content-center mx-auto d-block">
+              <i class="fa fa-picture-o fa-5x text-muted mb-2 cursor-pointer"></i>
+              <span class="lead text-muted">Drag image here</span>
+            </div>
+          </div>
+
+          <form class="col-12 col-lg-6">
+            <div class="form-group">
+              <label for="store-name-input">Name:</label>
+              <input type="text"
+                     class="form-control"
+                     id="store-name-input">
+            </div>
+            <div class="form-group">
+              <label for="store-address-input">Address:</label>
+              <input type="text"
+                     class="form-control"
+                     id="store-address-input">
+            </div>
+            <div class="form-group">
+              <label for="store-latitude-input">Latitude:</label>
+              <input type="text"
+                     class="form-control"
+                     id="store-latitude-input">
+            </div>
+
+            <div class="form-group">
+              <label for="store-longitude-input">Longitude:</label>
+              <input type="text"
+                     class="form-control"
+                     id="store-longitude-input">
+            </div>
+
+            <div class="form-group">
+              <label for="store-manager-input">Manager: </label>
+              <select class="form-control" id="store-manager-input">
+                <option>Vu Nguyen Hung</option>
+                <option>Nguyen Van A</option>
+                <option>Tran Van C</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="store-image-input">Image:</label>
+              <div class="row px-3">
+                <input disabled
+                       type="text"
+                       class="form-control col-8"
+                       id="store-image-input">
+                <button class="btn btn-outline-primary col-3 offset-1">Upload</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--END STORE FORM-->
+</div>
