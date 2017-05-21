@@ -27,10 +27,8 @@ import {ProductSummary} from '../../../models/product.model';
         <div class="mt-2 float-right">
           <a [routerLink]="['/products', productSummary.id]" class="btn btn-link">Detail</a>
           <button class="btn btn-outline-primary"
-                  [disabled]="cartLoading"
                   (click)="onPutToCartButtonClick()">
-            <span *ngIf="!cartLoading"><i class="fa fa-shopping-cart"></i> Put to Cart</span>
-            <i class="fa fa-cog fa-spin fa-fw" *ngIf="cartLoading"></i>
+            <span><i class="fa fa-shopping-cart"></i> Put to Cart</span>
           </button>
         </div>
 
@@ -42,7 +40,6 @@ import {ProductSummary} from '../../../models/product.model';
 })
 export class ProductSummaryComponent implements OnInit, OnChanges {
   @Input() productSummary: ProductSummary;
-  @Input() cartLoading: boolean;
 
   @Output() putToCartButtonClicked = new EventEmitter();
 

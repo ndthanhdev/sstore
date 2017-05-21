@@ -21,7 +21,6 @@ import * as fromRoot from '../../../store/reducers';
 import * as categoryActions from '../../../store/actions/category.action';
 import * as productActions from '../../../store/actions/product.action';
 import * as cartActions from '../../../store/actions/cart.action';
-import {AuthService} from '../../core/auth.service';
 import {ActiveCart} from '../../../models/cart.model';
 
 @Component({
@@ -44,7 +43,6 @@ import {ActiveCart} from '../../../models/cart.model';
         [productPage]="productPage | async"
         [page]="currentPage"
         [productLoading]="productLoading | async"
-        [cartLoading]="cartLoading | async"
         (pageChanged)="onPageChange($event)"
         (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary-list>
@@ -65,20 +63,17 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
 
   activeCart: ActiveCart;
   activeCartSub: Subscription;
-  cartLoading: Observable<boolean>;
 
   currentPage = 1;
 
   constructor(private store: Store<fromRoot.State>,
-              private route: ActivatedRoute,
-              private authService: AuthService) {
+              private route: ActivatedRoute) {
     this.catalogParentCategories = this.store.select(fromRoot.getCategoryCatalogParentCategories);
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
 
     this.productPage = this.store.select(fromRoot.getProductCatalogProducts).filter(productPage => !!productPage);
     this.productLoading = this.store.select(fromRoot.getProductLoading);
 
-    this.cartLoading = this.store.select(fromRoot.getCartLoading);
     this.activeCartSub = this.store.select(fromRoot.getCartActiveCart).subscribe(activeCart => this.activeCart = activeCart);
   }
 
