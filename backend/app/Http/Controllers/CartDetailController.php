@@ -24,10 +24,6 @@ class CartDetailController extends Controller {
         return $this->cartDetailRepository->show($cartDetailId);
     }
 
-    //"quantity": 5,
-    //"shopping_cart_id": 16,
-    //"store_product_variant_id": 44,
-
     public function store(Request $request, $cartID) {
         $data = $request->all();
 

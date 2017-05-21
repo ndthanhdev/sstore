@@ -22,6 +22,7 @@ import * as categoryActions from '../../../store/actions/category.action';
 import * as productActions from '../../../store/actions/product.action';
 import * as cartActions from '../../../store/actions/cart.action';
 import {AuthService} from '../../core/auth.service';
+import {ActiveCart} from '../../../models/cart.model';
 
 @Component({
   selector: 'frontend-catalog-detail',
@@ -55,13 +56,15 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
 
   catalogParentCategories: Observable<Category[]>;
   catalogs: Observable<Catalog[]>;
-  productPage: Observable<Page<ProductSummary>>;
 
+  productPage: Observable<Page<ProductSummary>>;
   productLoading: Observable<boolean>;
 
   selectedCatalog: Catalog;
   selectedCatalogSub: Subscription;
 
+  activeCart: ActiveCart;
+  activeCartSub: Subscription;
   cartLoading: Observable<boolean>;
 
   currentPage = 1;
@@ -71,9 +74,12 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
               private authService: AuthService) {
     this.catalogParentCategories = this.store.select(fromRoot.getCategoryCatalogParentCategories);
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
+
     this.productPage = this.store.select(fromRoot.getProductCatalogProducts).filter(productPage => !!productPage);
     this.productLoading = this.store.select(fromRoot.getProductLoading);
+
     this.cartLoading = this.store.select(fromRoot.getCartLoading);
+    this.activeCartSub = this.store.select(fromRoot.getCartActiveCart).subscribe(activeCart => this.activeCart = activeCart);
   }
 
   ngOnInit() {
@@ -90,6 +96,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.selectedCatalogSub.unsubscribe();
+    this.activeCartSub.unsubscribe();
   }
 
   onPageChange($event) {
@@ -100,7 +107,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
   onPutToCartButtonClick($event) {
     this.store.dispatch(new cartActions.StartProductAddAction({
       cartDetail: {
-        shopping_cart_id: this.authService.user.activeCart.id,
+        shopping_cart_id: this.activeCart.id,
         quantity: $event.quantity,
         store_product_variant_id: $event.store_product_variant_id
       }

@@ -36,7 +36,7 @@ export class GenericService {
   }
 
   protected getWithAuth(options?: RequestOptions): Observable<any> {
-    return this.authHttp.get(this.BASE_URL, this.defaultRequestOptions().merge(options));
+    return this.authHttp.get(this.BASE_URL, this.defaultRequestOptions().merge(options)).map(this.extractData);
   }
 
   protected post(options?: RequestOptions, data?: Object | string): Observable<any> {

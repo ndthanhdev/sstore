@@ -79,6 +79,7 @@ export const getStoreStore = Reselect.createSelector(getStoreState, fromStore.ge
 export const getStoreLoading = Reselect.createSelector(getStoreState, fromStore.getLoading);
 
 export const getCartCart = Reselect.createSelector(getCartState, fromCart.getCart);
+export const getCartActiveCart = Reselect.createSelector(getCartState, fromCart.getActiveCart);
 export const getCartLoading = Reselect.createSelector(getCartState, fromCart.getLoading);
 
 

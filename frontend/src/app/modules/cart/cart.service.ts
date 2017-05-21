@@ -6,7 +6,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {GenericService} from '../../generic.service';
 import {Observable} from 'rxjs/Observable';
-import {Cart} from '../../models/cart.model';
+import {ActiveCart, Cart} from '../../models/cart.model';
 import {RequestOptions} from '@angular/http';
 import {CartDetail} from '../../models/cart-detail.model';
 
@@ -17,11 +17,14 @@ export class CartService extends GenericService {
     this.BASE_URL += '/carts';
   }
 
-
   public loadCart(cartId: number): Observable<Cart> {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/${cartId}`
     }));
+  }
+
+  public loadActiveCart(): Observable<ActiveCart> {
+    return this.getWithAuth();
   }
 
   public addProduct(cartDetail: CartDetail): Observable<Response> {

@@ -32,9 +32,9 @@
 
   <div class="collapse navbar-collapse d-flex justify-content-end" id="app-navbar">
 
-    <button class="btn btn-link mr-2" type="button" [routerLink]="['/carts', user?.activeCart.id]">
+    <button class="btn btn-link mr-2" type="button" [routerLink]="['/carts', activeCart?.id || '']">
       <i class="fa fa-shopping-cart mr-1"></i>Cart
-      <span class="badge badge-pill badge-primary">{{user?.activeCart.NoI}}</span>
+      <span class="badge badge-pill badge-primary">{{activeCart?.product_count}}</span>
     </button>
 
     <frontend-navbar-utilities

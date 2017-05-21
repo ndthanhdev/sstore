@@ -9,6 +9,7 @@ import * as fromRoot from './store/reducers';
 import * as catalogActions from './store/actions/catalog.action';
 import * as authActions from './store/actions/auth.action';
 import * as storeActions from './store/actions/store.action';
+import * as cartActions from './store/actions/cart.action';
 import * as layoutActions from './store/actions/layout.action';
 
 @Component({
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
       this.store.dispatch(new authActions.LoginAction({
         user: new User(jwtHelper.decodeToken(jwtToken))
       }));
+      this.store.dispatch(new cartActions.StartActiveCartLoadAction());
     }
   }
 

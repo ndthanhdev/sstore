@@ -1,6 +1,6 @@
 import {type} from '../../util/helper';
 import {Action} from '@ngrx/store';
-import {Cart} from '../../models/cart.model';
+import {ActiveCart, Cart} from '../../models/cart.model';
 import {CartDetail} from '../../models/cart-detail.model';
 /**
  * Created by vunguyenhung on 5/20/17.
@@ -9,6 +9,10 @@ import {CartDetail} from '../../models/cart-detail.model';
 export const ActionTypes = {
   START_CART_LOAD: type('[Cart] Start Cart Load'),
   LOAD_CART: type('[Cart] Load Cart'),
+
+  START_ACTIVE_CART_LOAD: type('[Cart] Start Active Cart Load'),
+  LOAD_ACTIVE_CART: type('[Cart] Load Active Cart'),
+
 
   START_PRODUCT_ADD: type('[Cart] Start Product Add'),
   ADD_PRODUCT: type('[Cart] Add Product')
@@ -27,6 +31,21 @@ export class LoadCartAction implements Action {
   constructor(public payload: { cart: Cart }) {
   }
 }
+
+export class StartActiveCartLoadAction implements Action {
+  type = ActionTypes.START_ACTIVE_CART_LOAD;
+
+  constructor(public payload?) {
+  }
+}
+
+export class LoadActiveCartAction implements Action {
+  type = ActionTypes.LOAD_ACTIVE_CART;
+
+  constructor(public payload: { activeCart: ActiveCart }) {
+  }
+}
+
 export class StartProductAddAction implements Action {
   type = ActionTypes.START_PRODUCT_ADD;
 
@@ -44,5 +63,7 @@ export class AddProductAction implements Action {
 export type Actions =
   StartCartLoadAction
   | LoadCartAction
+  | StartActiveCartLoadAction
+  | LoadActiveCartAction
   | StartProductAddAction
   | AddProductAction;

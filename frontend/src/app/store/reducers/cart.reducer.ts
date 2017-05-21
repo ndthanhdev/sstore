@@ -1,4 +1,4 @@
-import {Cart} from '../../models/cart.model';
+import {ActiveCart, Cart} from '../../models/cart.model';
 
 
 import * as cartActions from '../actions/cart.action';
@@ -11,6 +11,7 @@ export interface State {
   loaded: boolean;
   error: any;
   cart: Cart;
+  activeCart: ActiveCart;
 }
 
 
@@ -19,10 +20,13 @@ export const initialState: State = {
   loaded: false,
   error: null,
   cart: null,
+  activeCart: null
 };
 
 export function reducer(state: State = initialState, action): State {
   switch (action.type) {
+
+    case cartActions.ActionTypes.START_ACTIVE_CART_LOAD:
     case cartActions.ActionTypes.START_CART_LOAD:
       return Object.assign({}, state, {
         loading: true,
@@ -36,6 +40,13 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case cartActions.ActionTypes.LOAD_ACTIVE_CART:
+      return Object.assign({}, state, {
+        activeCart: action.payload.activeCart,
+        loaded: true,
+        loading: false
+      });
+
     case cartActions.ActionTypes.START_PRODUCT_ADD:
       return Object.assign({}, state, {
         loading: true
@@ -43,6 +54,9 @@ export function reducer(state: State = initialState, action): State {
 
     case cartActions.ActionTypes.ADD_PRODUCT:
       return Object.assign({}, state, {
+        activeCart: Object.assign({}, state.activeCart, {
+          product_count: state.activeCart.product_count + 1
+        }),
         loading: false
       });
 
@@ -53,5 +67,6 @@ export function reducer(state: State = initialState, action): State {
 }
 
 export const getCart = (state: State) => state.cart;
+export const getActiveCart = (state: State) => state.activeCart;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;

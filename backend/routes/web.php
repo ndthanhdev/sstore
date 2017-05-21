@@ -97,6 +97,12 @@ $app->group(['prefix' => 'users'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'carts'], function () use ($app) {
 
+    $app->get('/', [
+        'as' => 'carts.GET',
+        'uses' => 'CartController@getActiveCart',
+        'middleware' => ['auth']
+    ]);
+
     $app->get('/{id:[0-9]+}', [
         'as' => 'carts/{id}.GET',
         'uses' => 'CartController@show'
