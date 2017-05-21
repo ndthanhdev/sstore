@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {Catalog} from 'app/models/catalog.model';
 import {Store} from '@ngrx/store';
 
@@ -12,28 +12,32 @@ import {User} from '../../../models/user.model';
 @Component({
   selector: 'frontend-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnDestroy {
   @Input() catalogs: Catalog[];
   @Input() currentStore;
 
-  loading: Observable<boolean>;
+  authLoading: Observable<boolean>;
+
   activeCart: ActiveCart;
   activeCartSub: Subscription;
+  cartLoading: boolean;
+  cartLoadingSub: Subscription;
 
   user: User;
   userSub: Subscription;
 
   constructor(private store: Store<fromRoot.State>) {
-    this.loading = this.store.select(fromRoot.getAuthLoading);
+    this.authLoading = this.store.select(fromRoot.getAuthLoading);
     this.activeCartSub = this.store.select(fromRoot.getCartActiveCart).subscribe(activeCart => this.activeCart = activeCart);
+    this.cartLoadingSub = this.store.select(fromRoot.getCartLoading).subscribe(cartLoading => this.cartLoading = cartLoading);
     this.userSub = this.store.select(fromRoot.getAuthUser).subscribe(user => this.user = user);
   }
 
   ngOnDestroy(): void {
     this.activeCartSub.unsubscribe();
+    this.cartLoadingSub.unsubscribe();
     this.userSub.unsubscribe();
   }
 

@@ -34,7 +34,8 @@
 
     <button class="btn btn-link mr-2" type="button" [routerLink]="['/carts', activeCart?.id || '']">
       <i class="fa fa-shopping-cart mr-1"></i>Cart
-      <span class="badge badge-pill badge-primary">{{activeCart?.product_count}}</span>
+      <span class="badge badge-pill badge-primary" *ngIf="!cartLoading">{{activeCart?.product_count}}</span>
+      <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="cartLoading"></i>
     </button>
 
     <frontend-navbar-utilities
@@ -45,7 +46,7 @@
 
     <ng-template #navbarLogin>
       <frontend-navbar-login
-        [loading]="loading | async"
+        [loading]="authLoading | async"
         (loginButtonClicked)="onLoginButtonClick($event)">
       </frontend-navbar-login>
     </ng-template>
