@@ -16,7 +16,6 @@ import {Subscription} from 'rxjs/Subscription';
 import {ProductSummary} from '../../../models/product.model';
 import {Page} from '../../../models/page.model';
 
-
 import * as fromRoot from '../../../store/reducers';
 import * as categoryActions from '../../../store/actions/category.action';
 import * as productActions from '../../../store/actions/product.action';

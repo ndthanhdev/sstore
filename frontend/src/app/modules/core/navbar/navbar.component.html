@@ -34,8 +34,9 @@
 
     <button class="btn btn-link mr-2" type="button" [routerLink]="['/carts', activeCart?.id || '']">
       <i class="fa fa-shopping-cart mr-1"></i>Cart
-      <span class="badge badge-pill badge-primary" *ngIf="!cartLoading">{{activeCart?.product_count}}</span>
-      <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="cartLoading"></i>
+      <span class="badge badge-pill badge-primary"
+            *ngIf="!cartLoading || activeCart">{{activeCart?.product_count}}</span>
+      <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="cartLoading && !activeCart"></i>
     </button>
 
     <frontend-navbar-utilities
