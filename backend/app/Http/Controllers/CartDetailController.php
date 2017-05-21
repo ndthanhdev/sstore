@@ -24,6 +24,24 @@ class CartDetailController extends Controller {
         return $this->cartDetailRepository->show($cartDetailId);
     }
 
+
+    // DELETE /carts/16/details/1
+    public function delete(Request $request, $cartId, $cartDetailId) {
+        $this->cartDetailRepository->delete($cartDetailId);
+
+        $response = [
+            'msg' => config('msg.SHOPPING_CART_UPDATED'),
+            'link' => [
+                'name' => 'VIEW_SHOPPING_CART',
+                'url' => route('carts/{id}.GET', ['id' => $cartId,]),
+                'method' => 'GET'
+            ]
+        ];
+
+        return response()->json($response, 200);
+    }
+
+
     public function store(Request $request, $cartID) {
         $data = $request->all();
 
@@ -35,7 +53,6 @@ class CartDetailController extends Controller {
 
         $response = [
             'msg' => config('msg.SHOPPING_CART_UPDATED'),
-//            'id' => $createdShoppingCartDetail->id,
             'link' => [
                 'name' => 'VIEW_SHOPPING_CART_DETAIL',
                 'url' => route('carts/{cartId}/details/{detailId}.GET', [

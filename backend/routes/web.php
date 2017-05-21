@@ -120,6 +120,11 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
             'uses' => 'CartDetailController@show'
         ]);
 
+        $app->delete('/{detailId:[0-9]+}', [
+            'as' => 'carts/{cartId}/details/{detailId}.DELETE',
+            'uses' => 'CartDetailController@delete'
+        ]);
+
     });
 
 });
