@@ -16,7 +16,8 @@ import {Page} from '../../../models/page.model';
       <frontend-product-summary
         class="col-lg-4 col-md-6 col-12 mb-3"
         *ngFor="let product of productPage?.data"
-        [productSummary]="product">
+        [productSummary]="product"
+        (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary>
     </div>
     <ng-template #spinning>
@@ -31,7 +32,9 @@ export class ProductSummaryListComponent implements OnInit {
   @Input() page: number;
   @Input() loading: boolean;
 
+
   @Output() pageChanged = new EventEmitter();
+  @Output() putToCartButtonClicked = new EventEmitter();
 
   constructor() {
   }
@@ -41,6 +44,10 @@ export class ProductSummaryListComponent implements OnInit {
 
   onPageChange($event) {
     this.pageChanged.emit($event);
+  }
+
+  onPutToCartButtonClick($event) {
+    this.putToCartButtonClicked.emit($event);
   }
 
 }

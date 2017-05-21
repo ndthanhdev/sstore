@@ -13,11 +13,15 @@ import {Observable} from 'rxjs/Observable';
 import {Catalog} from '../../../models/catalog.model';
 import {Subscription} from 'rxjs/Subscription';
 
+import {ProductSummary} from '../../../models/product.model';
+import {Page} from '../../../models/page.model';
+
+
 import * as fromRoot from '../../../store/reducers';
 import * as categoryActions from '../../../store/actions/category.action';
 import * as productActions from '../../../store/actions/product.action';
-import {ProductSummary} from '../../../models/product.model';
-import {Page} from '../../../models/page.model';
+import * as cartActions from '../../../store/actions/cart.action';
+import {AuthService} from '../../core/auth.service';
 
 @Component({
   selector: 'frontend-catalog-detail',
@@ -39,7 +43,8 @@ import {Page} from '../../../models/page.model';
         [productPage]="productPage | async"
         [page]="currentPage"
         [loading]="productLoading | async"
-        (pageChanged)="onPageChange($event)">
+        (pageChanged)="onPageChange($event)"
+        (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary-list>
     </div>
   `,
@@ -59,7 +64,8 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
   currentPage = 1;
 
   constructor(private store: Store<fromRoot.State>,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private authService: AuthService) {
     this.catalogParentCategories = this.store.select(fromRoot.getCategoryCatalogParentCategories);
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
     this.productPage = this.store.select(fromRoot.getProductCatalogProducts).filter(productPage => !!productPage);
@@ -82,9 +88,18 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
     this.selectedCatalogSub.unsubscribe();
   }
 
-
   onPageChange($event) {
     this.currentPage = $event;
     this.store.dispatch(new productActions.StartCatalogProductsLoadAction({catalogId: this.selectedCatalog.id, page: $event}));
+  }
+
+  onPutToCartButtonClick($event) {
+    this.store.dispatch(new cartActions.StartProductAddAction({
+      cartDetail: {
+        shopping_cart_id: this.authService.user.activeCart.id,
+        quantity: $event.quantity,
+        store_product_variant_id: $event.store_product_variant_id
+      }
+    }));
   }
 }

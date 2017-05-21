@@ -104,7 +104,7 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
 
     $app->group(['prefix' => '/{cartId:[0-9]+}/details'], function () use ($app) {
 
-        $app->post('/', [
+        $app->post('', [
             'as' => 'carts/{cartId}/details.POST',
             'uses' => 'CartDetailController@store'
         ]);

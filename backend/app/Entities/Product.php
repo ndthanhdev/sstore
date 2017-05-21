@@ -40,7 +40,7 @@ class Product extends Model {
     public function defaultVariant() {
         return $this
             ->belongsToMany('App\Entities\ProductVariant', 'store_product_variant')
-            ->withPivot(['price', 'in_stock', 'store_id'])
+            ->withPivot(['id', 'price', 'in_stock', 'store_id'])
             ->where('default', true);
     }
 

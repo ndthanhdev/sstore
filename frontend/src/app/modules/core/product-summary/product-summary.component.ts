@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ProductSummary} from '../../../models/product.model';
+import {CartDetail} from '../../../models/cart-detail.model';
 
 @Component({
   selector: 'frontend-product-summary',
@@ -66,6 +67,11 @@ export class ProductSummaryComponent implements OnInit, OnChanges {
   }
 
   onPutToCartButtonClick() {
-    this.putToCartButtonClicked.emit({id: this.productSummary.id});
+    this.putToCartButtonClicked.emit(
+      {
+        quantity: 1,
+        store_product_variant_id: this.productSummary.default_variant[0].pivot.id
+      }
+    );
   }
 }

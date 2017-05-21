@@ -4,9 +4,9 @@ import {StoreProductVariant} from './store-product-variant';
  */
 
 export class CartDetail {
-  id: number;
+  id?: number;
   shopping_cart_id: number;
   quantity: number;
   store_product_variant_id: number;
-  store_product_variant: StoreProductVariant;
+  store_product_variant?: StoreProductVariant;
 }

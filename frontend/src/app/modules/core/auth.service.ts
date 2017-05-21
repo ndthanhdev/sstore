@@ -1,17 +1,24 @@
-import {Injectable, Injector} from '@angular/core';
+import {Injectable, Injector, OnDestroy, OnInit} from '@angular/core';
 import {RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../models/user.model';
 import {GenericService} from '../../generic.service';
 import {JwtHelper} from 'angular2-jwt';
 import 'rxjs/add/operator/do';
+import {Store} from '@ngrx/store';
+
+import * as fromRoot from '../../store/reducers';
+import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class AuthService extends GenericService {
 
-  constructor(injector: Injector) {
+  public user: User;
+
+  constructor(injector: Injector, private store: Store<fromRoot.State>) {
     super(injector);
     this.BASE_URL += '/auth';
+    this.store.select(fromRoot.getAuthUser).subscribe(user => this.user = user);
   }
 
   public login(username: string, password: string): Observable<User> {
@@ -44,5 +51,4 @@ export class AuthService extends GenericService {
     const rawUser = jwtHelper.decodeToken(token);
     return new User(rawUser);
   }
-
 }

@@ -1,5 +1,7 @@
 import {ActionTypes} from '../actions/auth.action';
 import {User} from '../../models/user.model';
+
+import * as cartActions from '../actions/cart.action';
 /**
  * Created by vunguyenhung on 5/5/17.
  */
@@ -59,6 +61,15 @@ export function reducer(state: State = initialState, action): State {
         message: null
       });
 
+    case cartActions.ActionTypes.ADD_PRODUCT:
+      const copiedUser = Object.assign({}, state.user, {
+        activeCart: Object.assign({}, state.user.activeCart, {
+          NoI: state.user.activeCart.NoI + 1
+        })
+      });
+      return Object.assign({}, state, {
+        user: copiedUser
+      });
 
     default:
       return state;

@@ -29,4 +29,10 @@ export class CartEffect {
     .switchMap(action => this.cartService.loadCart(action.payload.cartId)
       .concatMap(cart => of(new cartActions.LoadCartAction({cart: cart}))));
 
+  @Effect()
+  productAdd$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_PRODUCT_ADD)
+    .switchMap(action => this.cartService.addProduct(action.payload.cartDetail)
+      .concatMap(cart => of(new cartActions.AddProductAction({cartDetail: action.payload.cartDetail}))));
+
 }
