@@ -6,10 +6,12 @@ import {Coordinates} from '../../models/coordinates.model';
 
 export interface State {
   coordinates: Coordinates;
+  error: any;
 }
 
 export const initialState: State = {
-  coordinates: null
+  coordinates: null,
+  error: null
 };
 
 
@@ -19,6 +21,11 @@ export function reducer(state: State = initialState, action: layoutActions.Actio
     case layoutActions.ActionTypes.GET_COORDINATES:
       return Object.assign({}, state, {
         coordinates: action.payload.coordinates,
+      });
+
+    case layoutActions.ActionTypes.GET_COORDINATES_FAIL:
+      return Object.assign({}, state, {
+        error: action.payload.error,
       });
 
     default:

@@ -34,7 +34,8 @@ export class LayoutEffects {
   geolocationLoad$: Observable<Action> = this.actions$
     .ofType(layoutActions.ActionTypes.START_COORDINATES_GET)
     .switchMap(action => this.geolocationService.getLocation()
-      .concatMap(coordinates => of(new layoutActions.GetCoordinatesAction({coordinates: coordinates}))));
+      .concatMap(coordinates => of(new layoutActions.GetCoordinatesAction({coordinates: coordinates}))))
+    .catch(error => of(new layoutActions.GetCoordinatesFailAction({error: error})));
 
   constructor(private actions$: Actions,
               private notificationService: NotificationsService,

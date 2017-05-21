@@ -10,6 +10,7 @@ export const ActionTypes = {
   NOTIFY_SUCCESS: type('[Layout] Notify Success'),
   START_COORDINATES_GET: type('[Layout] Start Coordinates Get'),
   GET_COORDINATES: type('[Layout] Get Coordinates'),
+  GET_COORDINATES_FAIL: type('[Layout] Get Coordinates Fail')
 };
 
 export class StartNotifyAction implements Action {
@@ -39,9 +40,16 @@ export class GetCoordinatesAction implements Action {
   constructor(public payload: { coordinates: Coordinates }) {
   }
 }
+export class GetCoordinatesFailAction implements Action {
+  type = ActionTypes.GET_COORDINATES_FAIL;
+
+  constructor(public payload: { error: any }) {
+  }
+}
 
 export type Actions
   = StartNotifyAction
   | NotifySuccessAction
   | StartCoordinatesGetAction
-  | GetCoordinatesAction;
+  | GetCoordinatesAction
+  | GetCoordinatesFailAction;
