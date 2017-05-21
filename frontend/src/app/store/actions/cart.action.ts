@@ -13,9 +13,11 @@ export const ActionTypes = {
   START_ACTIVE_CART_LOAD: type('[Cart] Start Active Cart Load'),
   LOAD_ACTIVE_CART: type('[Cart] Load Active Cart'),
 
-
   START_PRODUCT_ADD: type('[Cart] Start Product Add'),
-  ADD_PRODUCT: type('[Cart] Add Product')
+  ADD_PRODUCT: type('[Cart] Add Product'),
+
+  START_PRODUCT_DELETE: type('[Cart] Start Product Delete'),
+  DELETE_PRODUCT: type('[Cart] Delete Product')
 };
 
 export class StartCartLoadAction implements Action {
@@ -60,10 +62,26 @@ export class AddProductAction implements Action {
   }
 }
 
+export class StartProductDeleteAction implements Action {
+  type = ActionTypes.START_PRODUCT_DELETE;
+
+  constructor(public payload: { cartId: number, cartDetailId: number }) {
+  }
+}
+
+export class DeleteProductAction implements Action {
+  type = ActionTypes.DELETE_PRODUCT;
+
+  constructor(public payload: { cartDetailId: number }) {
+  }
+}
+
 export type Actions =
   StartCartLoadAction
   | LoadCartAction
   | StartActiveCartLoadAction
   | LoadActiveCartAction
   | StartProductAddAction
-  | AddProductAction;
+  | AddProductAction
+  | StartProductDeleteAction
+  | DeleteProductAction;

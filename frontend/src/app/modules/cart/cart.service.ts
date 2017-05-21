@@ -23,9 +23,16 @@ export class CartService extends GenericService {
     }));
   }
 
+  public deleteProduct(cartId: number, cartDetailId: number): Observable<Response> {
+    return this.deleteWithAuth(new RequestOptions({
+      url: `${this.BASE_URL}/${cartId}/details/${cartDetailId}`
+    }));
+  }
+
   public loadActiveCart(): Observable<ActiveCart> {
     return this.getWithAuth();
   }
+
 
   public addProduct(cartDetail: CartDetail): Observable<Response> {
     return this.post(new RequestOptions({url: `${this.BASE_URL}/${cartDetail.shopping_cart_id}/details`}), {

@@ -36,9 +36,15 @@ export class CartEffect {
       .concatMap(activeCart => of(new cartActions.LoadActiveCartAction({activeCart: activeCart}))));
 
   @Effect()
-  productAdd$: Observable<Action> = this.actions$
+  cartProductAdd$: Observable<Action> = this.actions$
     .ofType(cartActions.ActionTypes.START_PRODUCT_ADD)
     .switchMap(action => this.cartService.addProduct(action.payload.cartDetail)
       .concatMap(cart => of(new cartActions.AddProductAction({cartDetail: action.payload.cartDetail}))));
+
+  @Effect()
+  CartProductDelete$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_PRODUCT_DELETE)
+    .switchMap(action => this.cartService.deleteProduct(action.payload.cartId, action.payload.cartDetailId)
+      .concatMap(cart => of(new cartActions.DeleteProductAction({cartDetailId: action.payload.cartDetailId}))));
 
 }

@@ -35,17 +35,11 @@ import {back} from '@ngrx/router-store';
       <hr>
 
       <ng-template [ngIf]="!(loading | async)">
-        <!--START CART PRODUCT-->
         <frontend-cart-product
           *ngFor="let detail of cart?.details"
-          [quantity]="detail.quantity"
-          [productName]="detail.store_product_variant.product.name"
-          [productImage]="detail.store_product_variant.product.img_url"
-          [price]="detail.store_product_variant.price"
-          [variationValues]="detail.store_product_variant.product_variant.variation_values">
+          [detail]="detail"
+          (deleteButtonClicked)="onDeleteButtonClick($event)">
         </frontend-cart-product>
-        <!--END CART PRODUCT-->
-        <!--START CART PRODUCT-->
       </ng-template>
 
       <frontend-loading *ngIf="(loading | async)"></frontend-loading>
@@ -66,10 +60,9 @@ import {back} from '@ngrx/router-store';
 export class CartDetailComponent implements OnInit {
   cart: Cart;
   cartSub: Subscription;
+  cartId: number;
 
   loading: Observable<boolean>;
-
-  cartId: number;
 
   constructor(private store: Store<fromRoot.State>,
               private route: ActivatedRoute) {
@@ -96,6 +89,13 @@ export class CartDetailComponent implements OnInit {
     if (this.cart) {
       return this.cart.details.reduce((pre, cur) => pre + cur.quantity, 0);
     }
+  }
+
+  onDeleteButtonClick($event) {
+    this.store.dispatch(new cartActions.StartProductDeleteAction({
+      cartId: this.cartId,
+      cartDetailId: $event.cartDetailId
+    }));
   }
 
   goBack() {

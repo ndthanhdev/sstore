@@ -60,6 +60,16 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case cartActions.ActionTypes.DELETE_PRODUCT:
+      return Object.assign({}, state, {
+        cart: Object.assign({}, state.cart, {
+          details: state.cart.details.filter(detail => detail.id !== action.payload.cartDetailId)
+        }),
+        activeCart: Object.assign({}, state.activeCart, {
+          product_count: state.activeCart.product_count - 1
+        })
+      });
+
     default:
       return state;
   }
