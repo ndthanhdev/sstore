@@ -42,7 +42,8 @@ import {AuthService} from '../../core/auth.service';
       <frontend-product-summary-list
         [productPage]="productPage | async"
         [page]="currentPage"
-        [loading]="productLoading | async"
+        [productLoading]="productLoading | async"
+        [cartLoading]="cartLoading | async"
         (pageChanged)="onPageChange($event)"
         (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary-list>
@@ -61,6 +62,8 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
   selectedCatalog: Catalog;
   selectedCatalogSub: Subscription;
 
+  cartLoading: Observable<boolean>;
+
   currentPage = 1;
 
   constructor(private store: Store<fromRoot.State>,
@@ -70,6 +73,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
     this.productPage = this.store.select(fromRoot.getProductCatalogProducts).filter(productPage => !!productPage);
     this.productLoading = this.store.select(fromRoot.getProductLoading);
+    this.cartLoading = this.store.select(fromRoot.getCartLoading);
   }
 
   ngOnInit() {

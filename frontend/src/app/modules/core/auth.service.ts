@@ -1,4 +1,4 @@
-import {Injectable, Injector, OnDestroy, OnInit} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../models/user.model';
@@ -8,7 +8,6 @@ import 'rxjs/add/operator/do';
 import {Store} from '@ngrx/store';
 
 import * as fromRoot from '../../store/reducers';
-import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class AuthService extends GenericService {

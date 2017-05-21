@@ -12,11 +12,12 @@ import {Page} from '../../../models/page.model';
       [collectionSize]="productPage?.total"
       (pageChange)="onPageChange($event)">
     </frontend-product-summary-list-header>
-    <div class="row px-3" *ngIf="!loading;else spinning">
+    <div class="row px-3" *ngIf="!productLoading;else spinning">
       <frontend-product-summary
         class="col-lg-4 col-md-6 col-12 mb-3"
         *ngFor="let product of productPage?.data"
         [productSummary]="product"
+        [cartLoading]="cartLoading"
         (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary>
     </div>
@@ -30,8 +31,8 @@ import {Page} from '../../../models/page.model';
 export class ProductSummaryListComponent implements OnInit {
   @Input() productPage: Page<ProductSummary>;
   @Input() page: number;
-  @Input() loading: boolean;
-
+  @Input() productLoading: boolean;
+  @Input() cartLoading: boolean;
 
   @Output() pageChanged = new EventEmitter();
   @Output() putToCartButtonClicked = new EventEmitter();

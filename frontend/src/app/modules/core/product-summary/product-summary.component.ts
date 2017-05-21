@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ProductSummary} from '../../../models/product.model';
-import {CartDetail} from '../../../models/cart-detail.model';
 
 @Component({
   selector: 'frontend-product-summary',
@@ -27,8 +26,11 @@ import {CartDetail} from '../../../models/cart-detail.model';
 
         <div class="mt-2 float-right">
           <a [routerLink]="['/products', productSummary.id]" class="btn btn-link">Detail</a>
-          <button class="btn btn-outline-primary" (click)="onPutToCartButtonClick()">
-            <i class="fa fa-shopping-cart"></i> Put to Cart
+          <button class="btn btn-outline-primary"
+                  [disabled]="cartLoading"
+                  (click)="onPutToCartButtonClick()">
+            <span *ngIf="!cartLoading"><i class="fa fa-shopping-cart"></i> Put to Cart</span>
+            <i class="fa fa-cog fa-spin fa-fw" *ngIf="cartLoading"></i>
           </button>
         </div>
 
@@ -40,6 +42,7 @@ import {CartDetail} from '../../../models/cart-detail.model';
 })
 export class ProductSummaryComponent implements OnInit, OnChanges {
   @Input() productSummary: ProductSummary;
+  @Input() cartLoading: boolean;
 
   @Output() putToCartButtonClicked = new EventEmitter();
 

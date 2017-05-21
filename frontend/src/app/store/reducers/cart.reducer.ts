@@ -36,6 +36,16 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case cartActions.ActionTypes.START_PRODUCT_ADD:
+      return Object.assign({}, state, {
+        loading: true
+      });
+
+    case cartActions.ActionTypes.ADD_PRODUCT:
+      return Object.assign({}, state, {
+        loading: false
+      });
+
     default:
       return state;
   }
