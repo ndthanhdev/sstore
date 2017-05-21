@@ -1,12 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
-
+import {Product} from '../../../models/product.model';
+import {Subscription} from 'rxjs/Subscription';
+import {ActiveCart} from 'app/models/cart.model';
 
 import * as fromRoot from '../../../store/reducers';
 import * as productActions from '../../../store/actions/product.action';
-import {Product} from '../../../models/product.model';
-import {Subscription} from 'rxjs/Subscription';
+import * as cartActions from '../../../store/actions/cart.action';
+
 
 @Component({
   selector: 'frontend-product-detail',
@@ -21,10 +23,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   loading: boolean;
   loadingSub: Subscription;
 
+  activeCart: ActiveCart;
+  activeCartSub: Subscription;
+
   constructor(private store: Store<fromRoot.State>,
               private route: ActivatedRoute) {
     this.productSub = this.store.select(fromRoot.getProductProduct).subscribe(product => this.product = product);
     this.loadingSub = this.store.select(fromRoot.getProductLoading).subscribe(loading => this.loading = loading);
+    this.activeCartSub = this.store.select(fromRoot.getCartActiveCart).subscribe(activeCart => this.activeCart = activeCart);
   }
 
   ngOnInit() {
@@ -40,7 +46,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   onPutToCartButtonClick($event) {
-    console.log($event);
+    this.store.dispatch(new cartActions.StartProductAddAction({
+      cartDetail: {
+        shopping_cart_id: this.activeCart.id,
+        quantity: $event.quantity,
+        store_product_variant_id: $event.store_product_variant_id
+      }
+    }));
   }
 
 }

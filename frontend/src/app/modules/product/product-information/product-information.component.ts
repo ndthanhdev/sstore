@@ -46,11 +46,11 @@ import {ProductVariant} from '../../../models/product-variant.model';
           <div class="lead mb-2">Price: <strong>{{currentProductVariant.pivot.price | VND}}</strong></div>
 
           <div class="form-group mb-0 row">
-            <span class="lead col-2">Amount: </span>
+            <span class="lead col-2">Quantity: </span>
             <input type="number"
                    class="form-control col-3"
                    name="amount-input"
-                   [(ngModel)]="amount">
+                   [(ngModel)]="quantity">
             <span class="lead ml-2">{{product.product_type.default_unit}}</span>
           </div>
 
@@ -75,7 +75,7 @@ export class ProductInformationComponent implements OnInit, OnChanges {
 
   currentProductVariant: ProductVariant;
 
-  amount = 1;
+  quantity = 1;
 
   constructor() {
   }
@@ -93,14 +93,13 @@ export class ProductInformationComponent implements OnInit, OnChanges {
 
 
   onResetButtonClick() {
-    this.amount = 1;
+    this.quantity = 1;
   }
 
   onPutToCartButtonClick() {
     this.putToCartClicked.emit({
-      productId: this.product.id,
-      productVariantId: this.currentProductVariant.id,
-      amount: this.amount
+      quantity: this.quantity,
+      store_product_variant_id: this.currentProductVariant.pivot.id
     });
   }
 }

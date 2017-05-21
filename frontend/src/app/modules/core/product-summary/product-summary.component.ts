@@ -67,11 +67,9 @@ export class ProductSummaryComponent implements OnInit, OnChanges {
   }
 
   onPutToCartButtonClick() {
-    this.putToCartButtonClicked.emit(
-      {
-        quantity: 1,
-        store_product_variant_id: this.productSummary.default_variant[0].pivot.id
-      }
-    );
+    this.putToCartButtonClicked.emit({
+      quantity: 1,
+      store_product_variant_id: this.productSummary.default_variant[0].pivot.id
+    });
   }
 }
