@@ -9,7 +9,12 @@
 
           <div class="col-12 d-flex col-lg-6">
             <div
-              class="card image-placeholder bg-faded d-flex align-items-center justify-content-center mx-auto d-block">
+              ng2FileDrop
+              class="card image-placeholder bg-faded d-flex align-items-center justify-content-center mx-auto d-block"
+              [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+              (fileOver)="fileOverBase($event)"
+              (onFileDrop)="dropImage($event)"
+              [uploader]="uploader">
               <i class="fa fa-picture-o fa-5x text-muted mb-2 cursor-pointer"></i>
               <span class="lead text-muted">Drag image here</span>
             </div>
@@ -30,14 +35,14 @@
             </div>
             <div class="form-group">
               <label for="store-latitude-input">Latitude:</label>
-              <input type="text"
+              <input type="number"
                      class="form-control"
                      id="store-latitude-input">
             </div>
 
             <div class="form-group">
               <label for="store-longitude-input">Longitude:</label>
-              <input type="text"
+              <input type="number"
                      class="form-control"
                      id="store-longitude-input">
             </div>
@@ -57,7 +62,8 @@
                 <input disabled
                        type="text"
                        class="form-control col-8"
-                       id="store-image-input">
+                       id="store-image-input"
+                       [value]="uploader.queue[0]?.file?.name">
                 <button class="btn btn-outline-primary col-3 offset-1">Upload</button>
               </div>
             </div>

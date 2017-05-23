@@ -8,6 +8,7 @@ import {OverviewCardsComponent} from "./overview-cards/overview-cards.component"
 import {OverviewCardTotalUserComponent} from './overview-card-total-user/overview-card-total-user.component';
 import {OverviewCardNewOrdersComponent} from './overview-card-new-orders/overview-card-new-orders.component';
 import {OverviewCardBadReviewsComponent} from './overview-card-bad-reviews/overview-card-bad-reviews.component';
+import {DashboardService} from "./dashboard.service";
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,9 @@ import {OverviewCardBadReviewsComponent} from './overview-card-bad-reviews/overv
     OverviewCardTotalUserComponent,
     OverviewCardNewOrdersComponent,
     OverviewCardBadReviewsComponent,
+  ],
+  providers:[
+    DashboardService
   ]
 })
 export class DashboardModule {

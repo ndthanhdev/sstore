@@ -1,6 +1,6 @@
 <frontend-admin-jumbotron [Header]="'Dashboard'"></frontend-admin-jumbotron>
 <div class="container">
-  <frontend-admin-overview-cards [totalUser]="459" [newOrders]="5" [badReviews]="15"
+  <frontend-admin-overview-cards [totalUser]="noUsers | async" [newOrders]="5" [badReviews]="15"
                                  class="row justify-content-md-between pl-3"></frontend-admin-overview-cards>
   <div class="row mb-3">
     <frontend-admin-bar-chart class="col-12"
