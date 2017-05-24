@@ -11,19 +11,19 @@ $factory->define(App\Entities\Account::class, function (Faker\Generator $faker) 
         'password' => Hash::make('sstore'),
         'IP' => $faker->ipv4,
         'last_login' => $faker->dateTimeThisYear,
-        'role' => 1,
+        'role' => 0,
     ];
 });
 
 $factory->state(App\Entities\Account::class, 'manager', function ($faker) {
-    return ['role' => 2];
+    return ['role' => 1];
 });
 
 $factory->state(App\Entities\Account::class, 'admin', function ($faker) {
     return [
         'username' => 'admin',
         'password' => Hash::make('admin'),
-        'role' => 3,
+        'role' => 2,
         'user_id' => 1
     ];
 });

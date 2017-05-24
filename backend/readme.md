@@ -15,7 +15,7 @@
 | Name |     Enum list     |                   Description                        |
 | :------------: | :---------- | :--------------------------------------------------- |
 |Gender| 0 - Male <br> 1 - Female <br> 2 - Others|[User](#user)'s gender|
-|Role| 0 - Guest (Anonymous User) <br> 1 - Member <br> 2 - Store Manager <br> 3 - Admin| [Account](#account)'s role|
+|Role| 0 - Member <br> 1 - Store Manager <br> 2 - Admin| [Account](#account)'s role|
 |State| 0 - Processing <br> 1 - Delivering <br> 2 - Done| [Order](Order)'s state|
 
 
@@ -80,7 +80,6 @@ __Relationships:__
 | :------------: | :----------: | :----------|
 |[User](#user)| One To One | A Store is managed by _01_ Store Manager |
 |[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product Variant](#store-product-variant-pivot)|
-|[Product Variant](#product-variant)| Many To Many | A Store has their own Product Variant, each Product Variant has its own price and in_stock. Pivot: [Store Product Variant](#store-product-variant-pivot)|
 
 
 __Entity References:__
@@ -105,7 +104,7 @@ __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| name | string | Device's name | @NotNull|
+| name | string | Device's name | @NotNull, @Unique|
 
 
 ### Store Product Variant (Pivot)
