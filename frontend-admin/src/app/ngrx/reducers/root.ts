@@ -28,5 +28,6 @@ export function reducer(state: any, action: any) {
 // state
 export const getDashboardState = (state: State) => state.dashboard;
 
-export const getDashboardLoading = Reselect.createSelector(getDashboardState, fromDashboard.getLoading);
 export const getDashboardNoUsers = Reselect.createSelector(getDashboardState, fromDashboard.getNoUsers);
+export const getDashboardNoRemainingOrders = Reselect.createSelector(getDashboardState, fromDashboard.getNoRemainingOrders);
+export const getDashboardNoBadReviews = Reselect.createSelector(getDashboardState, fromDashboard.getNoBadReviews);

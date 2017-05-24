@@ -11,9 +11,22 @@ export class DashboardService extends GenericService {
     super(http);
   }
 
-  public loadNumberOfUsers(): Observable<number> {
+  public loadNoUsers(): Observable<number> {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/Users/Count`
     }));
   }
+
+  public loadNoRemainingOrders(): Observable<number> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/Orders/Remaining/Count`
+    }));
+  }
+
+  public loadNoBadReviews(): Observable<number> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/Reviews/Bad/Count`
+    }));
+  }
+
 }

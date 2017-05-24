@@ -13,7 +13,9 @@ import * as dashboardActions from "../../ngrx/actions/dashboard.action";
 })
 export class DashboardComponent implements OnInit {
 
-  noUsers:Observable<number>;
+  noUsers: Observable<number>;
+  noRemainingOrders: Observable<number>;
+  noBadReviews: Observable<number>;
 
   totalSalesChartOptions: any;
 
@@ -27,10 +29,14 @@ export class DashboardComponent implements OnInit {
     this.recentUsersChartOptions = Constant.recentUsersChartOptions;
 
     this.noUsers = this.store.select(rootReducer.getDashboardNoUsers);
+    this.noRemainingOrders = this.store.select(rootReducer.getDashboardNoRemainingOrders);
+    this.noBadReviews = this.store.select(rootReducer.getDashboardNoBadReviews);
   }
 
   ngOnInit() {
     this.store.dispatch(new dashboardActions.StartNoUsersLoadAction());
+    this.store.dispatch(new dashboardActions.StartNoRemainingOrdersLoadAction())
+    this.store.dispatch(new dashboardActions.StartNoBadReviewsLoadAction())
   }
 
 }

@@ -20,7 +20,20 @@ export class DashboardEffect {
 
   @Effect()
   noUsersLoad$: Observable<Action> = this.actions$
-    .ofType(dashboardActions.ActionTypes.START_NOUSERS_LOAD)
-    .switchMap(action => this.dashboardService.loadNumberOfUsers()
+    .ofType(dashboardActions.ActionTypes.START_NO_USERS_LOAD)
+    .switchMap(action => this.dashboardService.loadNoUsers()
       .concatMap(noUsers => of(new dashboardActions.LoadNoUsersAction({noUsers: noUsers}))));
+
+  @Effect()
+  noRemainingOrdersLoad$: Observable<Action> = this.actions$
+    .ofType(dashboardActions.ActionTypes.START_NO_REMAINING_ORDERS_LOAD)
+    .switchMap(action => this.dashboardService.loadNoRemainingOrders()
+      .concatMap(noReamingOrders => of(new dashboardActions.LoadNoRemainingOrdersAction({noRemainingOrders: noReamingOrders}))));
+
+  @Effect()
+  noBadReviewsLoad$: Observable<Action> = this.actions$
+    .ofType(dashboardActions.ActionTypes.START_NO_BAD_REVIEWS_LOAD)
+    .switchMap(action => this.dashboardService.loadNoBadReviews()
+      .concatMap(noBadReviews => of(new dashboardActions.LoadNoBadReviewsAction({noBadReviews: noBadReviews}))));
+
 }
