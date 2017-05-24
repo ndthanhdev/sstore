@@ -5,10 +5,11 @@
 | :------: | :----------: | :---------------------------------------------:|
 | 0.0.1  | 28/4/2017    | Add entities |
 | 0.0.2  | 1/5/2017    | Update entities to match with ERD v1.2.2 |
+| 0.0.3  | 24/5/2017    | Update entities to match with ERD v1.2.6 |
 
 ## II. ENTITIES
 
-![](ERD_v1.2.5.png?raw=true)
+![](ERD_v1.2.6.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
@@ -78,7 +79,6 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[User](#user)| One To One | A Store is managed by _01_ Store Manager |
-|[Device](#device)| One To Many | A Store has _many_ Devices |
 |[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product Variant](#store-product-variant-pivot)|
 |[Product Variant](#product-variant)| Many To Many | A Store has their own Product Variant, each Product Variant has its own price and in_stock. Pivot: [Store Product Variant](#store-product-variant-pivot)|
 
@@ -99,14 +99,13 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Store](#store)| Many To One | A Device belonged with _01_ Store |
+|[Store Product Variant](#store-product-variant-pivot)| One To One | A Device manage a product has specified variant in a store |
 
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | name | string | Device's name | @NotNull|
-| mac_address | string | Device's mac address |@NotNull, @Unique |
 
 
 ### Store Product Variant (Pivot)
@@ -115,9 +114,11 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
+|[Device](#device)| One To One | A Product with specified variant in a store is managed by a device |
 |[Product Variant](#product-variant)| Many To One | A Product in Store has *at lease 01* Product Variant |
 |[Store](#store)| Many To One | A Product can be belonged with _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store have _at lease 01_ Products |
+
 
 __Entity References:__
 
