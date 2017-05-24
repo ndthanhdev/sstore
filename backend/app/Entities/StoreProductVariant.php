@@ -22,4 +22,8 @@ class StoreProductVariant extends Model {
     public function productVariant() {
         return $this->belongsTo('App\Entities\ProductVariant');
     }
+
+    public function device() {
+        return $this->hasOne('App\Entities\Device');
+    }
 }

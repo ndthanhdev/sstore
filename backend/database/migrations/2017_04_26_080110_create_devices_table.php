@@ -14,11 +14,10 @@ class CreateDevicesTable extends Migration {
         Schema::create('devices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('mac_address')->unique();
-            $table->unsignedInteger('store_id');
+            $table->unsignedInteger('store_product_variant_id');
         });
         Schema::table('devices', function (Blueprint $table) {
-            $table->foreign('store_id')->references('id')->on('stores');
+            $table->foreign('store_product_variant_id')->references('id')->on('store_product_variant');
         });
     }
 

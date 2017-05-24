@@ -7,12 +7,16 @@ namespace database\seeds;
 
 
 use App\Entities\Device;
+use App\Entities\StoreProductVariant;
 use Illuminate\Database\Seeder;
 
 class DevicesTableSeeder extends Seeder {
 
     public function run() {
-        factory(Device::class, config('factory.DEVICE_AMOUNT'))->states(['relation'])->create();
+        StoreProductVariant::all()->each(function ($storeProductVariant, $key) {
+            factory(Device::class)->create(['store_product_variant_id' => $storeProductVariant->id]);
+        });
+
     }
 
 }
