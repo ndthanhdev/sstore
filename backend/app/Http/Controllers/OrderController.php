@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\OrderRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Routing\Controller;
 
@@ -23,6 +24,10 @@ class OrderController extends Controller {
         $loggedInUser = Auth::user();
 
         return $this->orderRepository->index($loggedInUser->id);
+    }
+
+    public function show(Request $request, $orderId) {
+        return $this->orderRepository->show($orderId);
     }
 
 }

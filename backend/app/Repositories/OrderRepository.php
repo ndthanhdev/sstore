@@ -31,10 +31,20 @@ class OrderRepository extends BaseRepository implements CacheableInterface {
             ->get()
             ->map(function ($shoppingCart) { return $shoppingCart->id; })
             ->all();
-//        return $shoppingCartIds;
         return Order::whereIn('shopping_cart_id', $shoppingCartIds)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+    }
+
+
+    public function show($orderId) {
+        return $this->with([
+            'shoppingCart',
+            'shoppingCart.user',
+            'shoppingCart.details.storeProductVariant.product',
+            'shoppingCart.details.storeProductVariant.productVariant',
+            'shoppingCart.details.storeProductVariant.productVariant.variationValues'
+        ])->find($orderId);
     }
 
 }

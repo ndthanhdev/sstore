@@ -169,6 +169,11 @@ $app->group(['prefix' => 'orders'], function () use ($app) {
         'middleware' => ['auth']
     ]);
 
+    $app->get('/{id:[0-9]+}', [
+        'as' => 'orders/{id}.GET',
+        'uses' => 'OrderController@show',
+        'middleware' => ['auth']
+    ]);
 });
 
 ///////////
