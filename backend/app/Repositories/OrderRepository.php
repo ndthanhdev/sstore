@@ -31,7 +31,7 @@ class OrderRepository extends BaseRepository implements CacheableInterface {
             ->map(function ($shoppingCart) { return $shoppingCart->id; })
             ->all();
 //        return $shoppingCartIds;
-        return $this->findWhereIn('shopping_cart_id', $shoppingCartIds);
+        return $this->orderBy('created_at', 'desc')->findWhereIn('shopping_cart_id', $shoppingCartIds);
     }
 
 }
