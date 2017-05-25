@@ -5,11 +5,21 @@ namespace BackendAdmin.Models
 {
     public partial class Categories
     {
-        public long Id { get; set; }
+        public Categories()
+        {
+            Products = new HashSet<Products>();
+        }
+
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
-        public long? ParentId { get; set; }
-        public long CatalogId { get; set; }
+        public int? ParentId { get; set; }
+        public int CatalogId { get; set; }
+
+        public virtual ICollection<Products> Products { get; set; }
+        public virtual Catalogs Catalog { get; set; }
+        public virtual Categories Parent { get; set; }
+        public virtual ICollection<Categories> InverseParent { get; set; }
     }
 }

@@ -5,10 +5,20 @@ namespace BackendAdmin.Models
 {
     public partial class ShoppingCarts
     {
-        public long Id { get; set; }
-        public long Active { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
-        public long UserId { get; set; }
+        public ShoppingCarts()
+        {
+            Orders = new HashSet<Orders>();
+            ShoppingCartDetails = new HashSet<ShoppingCartDetails>();
+        }
+
+        public int Id { get; set; }
+        public bool Active { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int UserId { get; set; }
+
+        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<ShoppingCartDetails> ShoppingCartDetails { get; set; }
+        public virtual Users User { get; set; }
     }
 }

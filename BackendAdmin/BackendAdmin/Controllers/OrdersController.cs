@@ -18,14 +18,7 @@ namespace BackendAdmin.Controllers
         public OrdersController(SStoreContext context)
         {
             _context = context;
-        }
-
-        // GET: api/Orders/Remaining/Count
-        [HttpGet("Remaining/Count")]
-        public long GetRemainingCount()
-        {
-            return _context.Orders.Where(order => order.State == 0 || order.State == 1).Count();
-        }
+        }        
 
         // GET: api/Orders
         [HttpGet]

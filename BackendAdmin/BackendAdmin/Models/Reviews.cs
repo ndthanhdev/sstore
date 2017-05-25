@@ -5,12 +5,21 @@ namespace BackendAdmin.Models
 {
     public partial class Reviews
     {
-        public long Id { get; set; }
+        public Reviews()
+        {
+            UserReview = new HashSet<UserReview>();
+        }
+
+        public int Id { get; set; }
         public string Content { get; set; }
-        public long Rating { get; set; }
-        public long UserId { get; set; }
-        public long ProductId { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
+        public int Rating { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+
+        public virtual ICollection<UserReview> UserReview { get; set; }
+        public virtual Products Product { get; set; }
+        public virtual Users User { get; set; }
     }
 }

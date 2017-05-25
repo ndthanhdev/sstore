@@ -5,11 +5,23 @@ namespace BackendAdmin.Models
 {
     public partial class StoreProductVariant
     {
-        public long Id { get; set; }
+        public StoreProductVariant()
+        {
+            Devices = new HashSet<Devices>();
+            ShoppingCartDetails = new HashSet<ShoppingCartDetails>();
+        }
+
+        public int Id { get; set; }
         public string Price { get; set; }
-        public long InStock { get; set; }
-        public long? StoreId { get; set; }
-        public long ProductId { get; set; }
-        public long? ProductVariantId { get; set; }
+        public int InStock { get; set; }
+        public int? StoreId { get; set; }
+        public int ProductId { get; set; }
+        public int? ProductVariantId { get; set; }
+
+        public virtual ICollection<Devices> Devices { get; set; }
+        public virtual ICollection<ShoppingCartDetails> ShoppingCartDetails { get; set; }
+        public virtual Products Product { get; set; }
+        public virtual ProductVariants ProductVariant { get; set; }
+        public virtual Stores Store { get; set; }
     }
 }

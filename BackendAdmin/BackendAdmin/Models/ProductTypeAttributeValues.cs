@@ -5,9 +5,12 @@ namespace BackendAdmin.Models
 {
     public partial class ProductTypeAttributeValues
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Value { get; set; }
-        public long ProductId { get; set; }
-        public long ProductTypeAttributeId { get; set; }
+        public int ProductId { get; set; }
+        public int ProductTypeAttributeId { get; set; }
+
+        public virtual Products Product { get; set; }
+        public virtual ProductTypeAttributes ProductTypeAttribute { get; set; }
     }
 }

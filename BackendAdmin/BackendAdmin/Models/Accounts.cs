@@ -5,12 +5,14 @@ namespace BackendAdmin.Models
 {
     public partial class Accounts
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Ip { get; set; }
-        public long Role { get; set; }
-        public long UserId { get; set; }
-        public string LastLogin { get; set; }
+        public int Role { get; set; }
+        public int UserId { get; set; }
+        public DateTime LastLogin { get; set; }
+
+        public virtual Users User { get; set; }
     }
 }

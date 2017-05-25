@@ -5,9 +5,12 @@ namespace BackendAdmin.Models
 {
     public partial class UserReview
     {
-        public long Id { get; set; }
-        public long Liked { get; set; }
-        public long UserId { get; set; }
-        public long ReviewId { get; set; }
+        public int Id { get; set; }
+        public bool Liked { get; set; }
+        public int UserId { get; set; }
+        public int ReviewId { get; set; }
+
+        public virtual Reviews Review { get; set; }
+        public virtual Users User { get; set; }
     }
 }

@@ -9,9 +9,9 @@
   <div class="row mb-3">
     <frontend-admin-bar-chart class="col-12"
                               *ngIf="totalSalesChartOptions"
-                              [title]="totalSalesChartOptions?.title"
-                              [vAxis]="totalSalesChartOptions?.vAxis"
-                              [hAxis]="totalSalesChartOptions?.hAxis"
+                              [title]="'Today sales'"
+                              [vAxis]="'VND'"
+                              [hAxis]="'Time'"
                               [dataTable]="totalSalesChartOptions?.dataTable"></frontend-admin-bar-chart>
   </div>
   <div class="row mb-3">

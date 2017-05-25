@@ -20,12 +20,7 @@ namespace BackendAdmin.Controllers
             _context = context;
         }
 
-        // GET: api/Users/Count
-        [HttpGet("Count")]
-        public long GetUsersCount()
-        {
-            return _context.Users.Count();
-        }
+        
 
         // GET: api/Users
         [HttpGet]

@@ -5,9 +5,12 @@ namespace BackendAdmin.Models
 {
     public partial class ShoppingCartDetails
     {
-        public long Id { get; set; }
-        public long Quantity { get; set; }
-        public long ShoppingCartId { get; set; }
-        public long StoreProductVariantId { get; set; }
+        public int Id { get; set; }
+        public int Quantity { get; set; }
+        public int ShoppingCartId { get; set; }
+        public int StoreProductVariantId { get; set; }
+
+        public virtual ShoppingCarts ShoppingCart { get; set; }
+        public virtual StoreProductVariant StoreProductVariant { get; set; }
     }
 }

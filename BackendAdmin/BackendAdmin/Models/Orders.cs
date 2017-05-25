@@ -5,13 +5,21 @@ namespace BackendAdmin.Models
 {
     public partial class Orders
     {
-        public long Id { get; set; }
+        public Orders()
+        {
+            Invoices = new HashSet<Invoices>();
+        }
+
+        public int Id { get; set; }
         public string Code { get; set; }
-        public long? Rating { get; set; }
+        public int? Rating { get; set; }
         public string Comment { get; set; }
-        public long State { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
-        public long ShoppingCartId { get; set; }
+        public int State { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int ShoppingCartId { get; set; }
+
+        public virtual ICollection<Invoices> Invoices { get; set; }
+        public virtual ShoppingCarts ShoppingCart { get; set; }
     }
 }

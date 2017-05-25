@@ -5,9 +5,11 @@ namespace BackendAdmin.Models
 {
     public partial class Invoices
     {
-        public long Id { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
-        public long OrderId { get; set; }
+        public int Id { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public int OrderId { get; set; }
+
+        public virtual Orders Order { get; set; }
     }
 }

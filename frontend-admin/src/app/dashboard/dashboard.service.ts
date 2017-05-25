@@ -9,23 +9,24 @@ export class DashboardService extends GenericService {
 
   constructor(http: Http) {
     super(http);
+    this.BASE_URL+='/Dashboard'
   }
 
   public loadNoUsers(): Observable<number> {
     return this.get(new RequestOptions({
-      url: `${this.BASE_URL}/Users/Count`
+      url: `${this.BASE_URL}/NoUsers`
     }));
   }
 
   public loadNoRemainingOrders(): Observable<number> {
     return this.get(new RequestOptions({
-      url: `${this.BASE_URL}/Orders/Remaining/Count`
+      url: `${this.BASE_URL}/NoReaminingOrders`
     }));
   }
 
   public loadNoBadReviews(): Observable<number> {
     return this.get(new RequestOptions({
-      url: `${this.BASE_URL}/Reviews/Bad/Count`
+      url: `${this.BASE_URL}/NoBadReviews`
     }));
   }
 

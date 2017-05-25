@@ -5,8 +5,17 @@ namespace BackendAdmin.Models
 {
     public partial class ProductTypes
     {
-        public long Id { get; set; }
+        public ProductTypes()
+        {
+            Products = new HashSet<Products>();
+            ProductTypeAttributes = new HashSet<ProductTypeAttributes>();
+        }
+
+        public int Id { get; set; }
         public string Name { get; set; }
         public string DefaultUnit { get; set; }
+
+        public virtual ICollection<Products> Products { get; set; }
+        public virtual ICollection<ProductTypeAttributes> ProductTypeAttributes { get; set; }
     }
 }

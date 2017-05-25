@@ -5,7 +5,16 @@ namespace BackendAdmin.Models
 {
     public partial class ProductVariants
     {
-        public long Id { get; set; }
-        public long Default { get; set; }
+        public ProductVariants()
+        {
+            ProductVariationValues = new HashSet<ProductVariationValues>();
+            StoreProductVariant = new HashSet<StoreProductVariant>();
+        }
+
+        public int Id { get; set; }
+        public bool Default { get; set; }
+
+        public virtual ICollection<ProductVariationValues> ProductVariationValues { get; set; }
+        public virtual ICollection<StoreProductVariant> StoreProductVariant { get; set; }
     }
 }

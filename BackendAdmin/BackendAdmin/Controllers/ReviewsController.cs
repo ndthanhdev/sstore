@@ -18,14 +18,7 @@ namespace BackendAdmin.Controllers
         public ReviewsController(SStoreContext context)
         {
             _context = context;
-        }
-
-        // GET: api/Reviews/Bad/Count
-        [HttpGet("Bad/Count")]
-        public long GetBadReviewsCount()
-        {
-            return _context.Reviews.Where(review => review.Rating < 3).Count();
-        }
+        }       
 
         // GET: api/Reviews
         [HttpGet]

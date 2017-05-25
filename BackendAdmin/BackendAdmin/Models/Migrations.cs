@@ -5,8 +5,8 @@ namespace BackendAdmin.Models
 {
     public partial class Migrations
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Migration { get; set; }
-        public long Batch { get; set; }
+        public int Batch { get; set; }
     }
 }
