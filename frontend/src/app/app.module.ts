@@ -25,6 +25,8 @@ import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {StoreEffect} from './store/effects/store.effect';
 import {CartEffect} from './store/effects/cart.effect';
 import {CartModule} from './modules/cart/cart.module';
+import {OrderModule} from './modules/order/order.module';
+import {OrderEffect} from './store/effects/order.effect';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -47,6 +49,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     EffectsModule.run(ProductEffect),
     EffectsModule.run(StoreEffect),
     EffectsModule.run(CartEffect),
+    EffectsModule.run(OrderEffect),
 
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
@@ -61,7 +64,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CatalogModule,
     CategoryModule,
     ProductModule,
-    CartModule
+    CartModule,
+    OrderModule
   ],
   providers: [{
     provide: AuthHttp,
