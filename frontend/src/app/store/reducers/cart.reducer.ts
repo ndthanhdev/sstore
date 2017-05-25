@@ -2,6 +2,8 @@ import {ActiveCart, Cart} from '../../models/cart.model';
 
 
 import * as cartActions from '../actions/cart.action';
+
+import * as authActions from '../actions/auth.action';
 /**
  * Created by vunguyenhung on 5/13/17.
  */
@@ -68,6 +70,12 @@ export function reducer(state: State = initialState, action): State {
         activeCart: Object.assign({}, state.activeCart, {
           product_count: state.activeCart.product_count - 1
         })
+      });
+
+
+    case authActions.ActionTypes.LOGOUT:
+      return Object.assign({}, state, {
+        activeCart: null
       });
 
     default:
