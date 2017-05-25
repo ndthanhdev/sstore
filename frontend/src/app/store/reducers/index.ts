@@ -87,6 +87,7 @@ export const getCartActiveCart = Reselect.createSelector(getCartState, fromCart.
 export const getCartLoading = Reselect.createSelector(getCartState, fromCart.getLoading);
 
 export const getOrderOrders = Reselect.createSelector(getOrderState, fromOrder.getOrders);
+export const getOrderOrder = Reselect.createSelector(getOrderState, fromOrder.getOrder);
 export const getOrderLoading = Reselect.createSelector(getOrderState, fromOrder.getLoading);
 
 

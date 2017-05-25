@@ -33,7 +33,7 @@ export class OrderStateButtonComponent implements OnInit {
       case OrderState.PROCESSING:
         return 'btn btn-sm btn-info';
       case OrderState.DELIVERING:
-        return 'btn btn-sm btn-primary';
+        return 'btn btn-sm btn-primary border-1 border-white';
       case OrderState.DONE:
         return 'btn btn-sm btn-success';
     }

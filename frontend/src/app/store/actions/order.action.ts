@@ -42,4 +42,7 @@ export class LoadOrderAction implements Action {
   }
 }
 
-export type Actions = StartOrdersLoadAction | LoadOrdersAction;
+export type Actions = StartOrdersLoadAction
+  | LoadOrdersAction
+  | StartOrderLoadAction
+  | LoadOrderAction;

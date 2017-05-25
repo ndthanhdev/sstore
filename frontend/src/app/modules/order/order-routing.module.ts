@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: OrderDetailComponent
+    component: OrderDetailComponent,
   }
 ];
 

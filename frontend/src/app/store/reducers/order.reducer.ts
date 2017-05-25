@@ -12,6 +12,7 @@ export interface State {
   loaded: boolean;
   error: any;
   orders: Page<Order>;
+  order: Order;
 }
 
 
@@ -19,12 +20,14 @@ export const initialState: State = {
   loading: false,
   loaded: false,
   error: null,
-  orders: null
+  orders: null,
+  order: null
 };
 
 export function reducer(state: State = initialState, action): State {
   switch (action.type) {
 
+    case orderAction.ActionTypes.START_ORDER_LOAD:
     case orderAction.ActionTypes.START_ORDERS_LOAD:
       return Object.assign({}, state, {
         loading: true,
@@ -38,6 +41,13 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case orderAction.ActionTypes.LOAD_ORDER:
+      return Object.assign({}, state, {
+        order: action.payload.order,
+        loaded: true,
+        loading: false
+      });
+
     default:
       return state;
   }
@@ -45,5 +55,6 @@ export function reducer(state: State = initialState, action): State {
 }
 
 export const getOrders = (state: State) => state.orders;
+export const getOrder = (state: State) => state.order;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;

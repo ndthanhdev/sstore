@@ -19,4 +19,11 @@ export class OrderService extends GenericService {
       url: `${this.BASE_URL}?page=${page}`
     }));
   }
+
+  loadOrder(orderId: number): Observable<Order> {
+    return this.getWithAuth(new RequestOptions({
+      url: `${this.BASE_URL}/${orderId}`
+    }));
+  }
+
 }
