@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 
 import {OrderSummary} from '../../../models/order.model';
@@ -19,31 +19,10 @@ import {Subscription} from 'rxjs/Subscription';
     </div>
     <div class="container">
 
-      <span class="col-12 display-4">Pending Orders:</span>
+      <span class="display-4">Done Orders:</span>
       <hr>
 
-      <!--<div [(ngModel)]="filterMode" ngbRadioGroup name="filter-groups"-->
-      <!--(ngModelChange)="onFilterModeChange()"-->
-      <!--class="btn-group btn-group-sm align-self-start">-->
-      <!--<label class="btn btn-sm btn-outline-primary">-->
-      <!--<input type="radio" [value]="1"> All-->
-      <!--</label>-->
-      <!--<label class="btn btn-sm btn-outline-primary">-->
-      <!--<input type="radio" [value]="2"> Processing-->
-      <!--</label>-->
-      <!--<label class="btn btn-sm btn-outline-primary">-->
-      <!--<input type="radio" [value]="3"> Delivering-->
-      <!--</label>-->
-      <!--<label class="btn btn-sm btn-outline-primary">-->
-      <!--<input type="radio" [value]="4"> Done-->
-      <!--</label>-->
-      <!--</div>-->
-
-
-      <span class="col-12 display-4">Done Orders:</span>
-      <hr>
-
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items-center">
         <ngb-pagination (pageChange)="onPageChange($event)"
                         [collectionSize]="orderPage?.total"
                         [maxSize]="5"
@@ -51,6 +30,23 @@ import {Subscription} from 'rxjs/Subscription';
                         [boundaryLinks]="true"
                         [page]="currentPage">
         </ngb-pagination>
+
+        <div [(ngModel)]="filterMode" ngbRadioGroup name="filter-groups"
+             (ngModelChange)="onFilterModeChange()"
+             class="btn-group btn-group-sm align-self-start">
+          <label class="btn btn-sm btn-outline-primary">
+            <input type="radio" [value]="1"> All
+          </label>
+          <label class="btn btn-sm btn-outline-primary">
+            <input type="radio" [value]="2"> Processing
+          </label>
+          <label class="btn btn-sm btn-outline-primary">
+            <input type="radio" [value]="3"> Delivering
+          </label>
+          <label class="btn btn-sm btn-outline-primary">
+            <input type="radio" [value]="3"> Done
+          </label>
+        </div>
       </div>
 
       <frontend-loading *ngIf="(loading | async);else show"></frontend-loading>
@@ -85,14 +81,15 @@ import {Subscription} from 'rxjs/Subscription';
   `,
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
-
+export class OrderComponent implements OnInit, OnDestroy {
   currentPage = 1;
 
   orderPage: Page<OrderSummary>;
   orderPageSub: Subscription;
 
   loading: Observable<boolean>;
+
+  filterMode = 1;
 
   constructor(private store: Store<fromRoot.State>) {
     this.orderPageSub = this.store.select(fromRoot.getOrderOrders).subscribe(orderPage => this.orderPage = orderPage);
@@ -101,6 +98,10 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new orderActions.StartOrdersLoadAction({page: this.currentPage}));
+  }
+
+  ngOnDestroy(): void {
+    this.orderPageSub.unsubscribe();
   }
 
   onFilterModeChange() {
