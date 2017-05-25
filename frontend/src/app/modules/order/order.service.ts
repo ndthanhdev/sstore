@@ -1,6 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {OrderSummary} from '../../models/order.model';
+import {Order} from '../../models/order.model';
 import {Page} from '../../models/page.model';
 import {GenericService} from '../../generic.service';
 import {RequestOptions} from '@angular/http';
@@ -14,7 +14,7 @@ export class OrderService extends GenericService {
   }
 
 
-  public loadOrders(page: number): Observable<Page<OrderSummary>> {
+  public loadOrders(page: number): Observable<Page<Order>> {
     return this.getWithAuth(new RequestOptions({
       url: `${this.BASE_URL}?page=${page}`
     }));

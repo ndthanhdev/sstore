@@ -4,6 +4,7 @@
 
 export class User {
   id: number;
+  full_name: string;
   username: string;
   avatar: string;
 
@@ -12,6 +13,7 @@ export class User {
       this.id = that.id;
       this.avatar = that.avatar;
       this.username = that.username;
+      this.full_name = that.full_name;
     }
   }
 }

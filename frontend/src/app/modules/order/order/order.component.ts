@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 
-import {OrderSummary} from '../../../models/order.model';
+import {Order} from '../../../models/order.model';
 import {Page} from '../../../models/page.model';
 import {Observable} from 'rxjs/Observable';
 
@@ -19,7 +19,7 @@ import {Subscription} from 'rxjs/Subscription';
     </div>
     <div class="container">
 
-      <span class="display-4">Done Orders:</span>
+      <span class="display-4">Orders:</span>
       <hr>
 
       <div class="d-flex justify-content-between align-items-center">
@@ -84,7 +84,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class OrderComponent implements OnInit, OnDestroy {
   currentPage = 1;
 
-  orderPage: Page<OrderSummary>;
+  orderPage: Page<Order>;
   orderPageSub: Subscription;
 
   loading: Observable<boolean>;

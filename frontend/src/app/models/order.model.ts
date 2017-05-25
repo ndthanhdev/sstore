@@ -2,6 +2,7 @@
  * Created by vunguyenhung on 5/25/17.
  */
 
+import {Cart} from './cart.model';
 export enum OrderState {
   PROCESSING,
   DELIVERING,
@@ -9,7 +10,7 @@ export enum OrderState {
 }
 
 
-export class OrderSummary {
+export class Order {
   id: number;
   code: string;
   rating: number;
@@ -17,5 +18,6 @@ export class OrderSummary {
   state: OrderState;
   created_at: Date;
   updated_at: Date;
-  shopping_cart_id: Date;
+  shopping_cart_id: number;
+  shopping_cart: Cart;
 }

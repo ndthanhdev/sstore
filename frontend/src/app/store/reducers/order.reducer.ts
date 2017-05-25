@@ -1,4 +1,4 @@
-import {OrderSummary} from '../../models/order.model';
+import {Order} from '../../models/order.model';
 import {Page} from '../../models/page.model';
 
 
@@ -11,7 +11,7 @@ export interface State {
   loading: boolean;
   loaded: boolean;
   error: any;
-  orders: Page<OrderSummary>;
+  orders: Page<Order>;
 }
 
 
