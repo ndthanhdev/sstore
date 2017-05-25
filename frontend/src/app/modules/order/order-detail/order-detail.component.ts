@@ -112,7 +112,6 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-
   routeId: number;
 
   constructor(private route: ActivatedRoute) {
