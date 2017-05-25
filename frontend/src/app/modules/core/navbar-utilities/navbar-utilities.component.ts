@@ -11,12 +11,12 @@ import {User} from '../../../models/user.model';
       </button>
 
       <div class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" [routerLink]="['/users', user.id]">
+        <button class="dropdown-item">
           <i class="fa fa-user mr-2"></i>Profile
         </button>
 
-        <button class="dropdown-item" (click)="onLogoutButtonClick()">
-          <i class="fa fa-list-alt mr-2"></i>Orders
+        <button class="dropdown-item" [routerLink]="['/orders']">
+          <i class="fa fa-list-alt mr-2"></i>My Orders
         </button>
 
         <button class="dropdown-item" (click)="onLogoutButtonClick()">

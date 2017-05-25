@@ -6,6 +6,7 @@
 namespace App\Repositories;
 
 
+use App\Entities\Order;
 use App\Entities\ShoppingCart;
 use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -31,7 +32,9 @@ class OrderRepository extends BaseRepository implements CacheableInterface {
             ->map(function ($shoppingCart) { return $shoppingCart->id; })
             ->all();
 //        return $shoppingCartIds;
-        return $this->orderBy('created_at', 'desc')->findWhereIn('shopping_cart_id', $shoppingCartIds);
+        return Order::whereIn('shopping_cart_id', $shoppingCartIds)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
     }
 
 }
