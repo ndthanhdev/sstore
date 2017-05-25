@@ -1,4 +1,5 @@
 import {CartDetail} from './cart-detail.model';
+import {User} from './user.model';
 /**
  * Created by vunguyenhung on 5/18/17.
  */
@@ -12,6 +13,7 @@ export class Cart {
   user_id: number;
   details?: CartDetail[];
   product_count?: number;
+  user: User;
 }
 
 export class ActiveCart {
