@@ -64,7 +64,7 @@ import {Subscription} from 'rxjs/Subscription';
           <tbody>
           <tr *ngFor="let order of orderPage?.data; let i = index">
             <th scope="row">{{i + 1}}</th>
-            <td><a href="#">{{order.code}}</a></td>
+            <td><a [routerLink]="['/orders', order.id]">{{order.code}}</a></td>
             <td>
               <frontend-order-state-button
                 [state]="order.state">
