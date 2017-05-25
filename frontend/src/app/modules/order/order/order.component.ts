@@ -44,7 +44,7 @@ import {Subscription} from 'rxjs/Subscription';
             <input type="radio" [value]="3"> Delivering
           </label>
           <label class="btn btn-sm btn-outline-primary">
-            <input type="radio" [value]="3"> Done
+            <input type="radio" [value]="4"> Done
           </label>
         </div>
       </div>
