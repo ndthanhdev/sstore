@@ -5,10 +5,11 @@
 
 $factory->define(\App\Entities\Order::class, function (Faker\Generator $faker) {
     $dateTimeThisYear = $faker->dateTimeThisYear;
+    $isCommented = is_null($faker->optional(0.6)->numberBetween(0, 1));
     return [
         'code' => $faker->unique()->regexify('SSORD[0-9]{5}'),
-        'rating' => $faker->optional(0.6)->numberBetween(1, 5),
-        'comment' => $faker->optional(0.6)->sentence(),
+        'rating' => $isCommented ? $faker->numberBetween(1, 5) : null,
+        'comment' => $isCommented ? $faker->sentence() : null,
         'state' => 3, // default is DONE!
         'created_at' => $dateTimeThisYear,
         'updated_at' => $dateTimeThisYear

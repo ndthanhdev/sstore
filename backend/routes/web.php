@@ -159,6 +159,19 @@ $app->group(['prefix' => 'stores'], function () use ($app) {
 });
 
 ///////////
+// ORDER API
+///////////
+$app->group(['prefix' => 'orders'], function () use ($app) {
+
+    $app->get('/', [
+        'as' => 'orders.GET',
+        'uses' => 'OrderController@index',
+        'middleware' => ['auth']
+    ]);
+
+});
+
+///////////
 // MQTT API
 ///////////
 $app->group(['prefix' => 'mqtt'], function () use ($app) {
