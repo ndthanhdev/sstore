@@ -16,8 +16,13 @@ import {User} from '../../../models/user.model';
         </button>
 
         <button class="dropdown-item" (click)="onLogoutButtonClick()">
+          <i class="fa fa-list-alt mr-2"></i>Orders
+        </button>
+
+        <button class="dropdown-item" (click)="onLogoutButtonClick()">
           <i class="fa fa-sign-out mr-2"></i>Logout
         </button>
+
       </div>
     </div>
   `,
