@@ -172,7 +172,7 @@ __Entity References:__
         },
         ...
     ]
-    ```\
+    ```
  
 ### Product
  
@@ -355,7 +355,7 @@ __Relationships:__
 | :------------: | :----------: | :----------|
 |[Oder](#order)| One To One | A Shopping Cart can become _01_ Order |
 |[User](#user)| Many To One | A Shopping Cart belonged with _01_ User |
-|[Product](#product)| Many To Many | A Shopping Cart has _at lease 01_ Products. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
+|[Product](#product)| Many To Many | A Shopping Cart can have many Products. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
 
 
 __Entity References:__
@@ -399,8 +399,8 @@ __Entity References:__
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | code | string | Order's code | @NotNull, @Unique|
-| rating | number | Order's rating by Owned User | @NotNull|
-| comment | string | Order's comment by Owned User | @NotNull|
+| rating | number | Order's rating by Owned User | |
+| comment | string | Order's comment by Owned User | |
 | state | [State](#enums) | Order's current state | @NotNull|
 | created_at | date | Order's creation time| @NotNull |
 | updated_at | date | Order's last updated time | @NotNull |
