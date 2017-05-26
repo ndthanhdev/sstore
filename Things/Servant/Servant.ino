@@ -4,6 +4,7 @@
  Author:	duyth
 */
 
+#include <PubSubClient.h>
 #include <SoftwareSerial.h>
 
 #define BAUD (9600)	
@@ -96,6 +97,7 @@ void releasePayload(int n) {
 		delay(1000); // wait for package pass
 	}
 	disableMotor();
+	commandTransporter.println("OK");
 }
 
 void enableMotor() {

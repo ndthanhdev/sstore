@@ -1,0 +1,34 @@
+C:\Users\duyth\AppData\Local\Temp\VMBuilds\Master\uno\Debug\Master.cpp.o: \
+ C:\Users\duyth\AppData\Local\Temp\VMBuilds\Master\uno\Debug\Master.cpp \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/WCharacter.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/WString.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/HardwareSerial.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Printable.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/USBAPI.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/EthernetUdp.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Udp.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/IPAddress.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/EthernetServer.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Server.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/EthernetClient.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Client.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/IPAddress.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/Dns.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/Dhcp.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/EthernetUdp.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\libraries\SoftwareSerial\src/SoftwareSerial.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\libraries\SPI\src/SPI.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/Ethernet.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/EthernetClient.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/EthernetServer.h \
+ C:\Users\duyth\Portable\arduino-1.8.2\libraries\Ethernet\src/Dhcp.h \
+ C:\Users\duyth\Documents\Arduino\libraries\PubSubClient\src/PubSubClient.h
