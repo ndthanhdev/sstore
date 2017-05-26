@@ -68,7 +68,6 @@ export class StartReviewPercentsLoadAction implements Action {
 
 export class LoadReviewPercentsAction implements Action {
   type = ActionTypes.LOAD_REVIEW_PERCENTS;
-
-  constructor(public payload: { noReviewPercent: Array<Array<number>> }) {
+  constructor(public payload: { reviewPercents: number[][] }) {
   }
 }

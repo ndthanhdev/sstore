@@ -30,4 +30,10 @@ export class DashboardService extends GenericService {
     }));
   }
 
+  public loadReviewPercents(): Observable<number[][]> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/ReviewPercents`
+    }));
+  }
+
 }

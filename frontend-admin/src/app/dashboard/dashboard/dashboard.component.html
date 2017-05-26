@@ -16,9 +16,8 @@
   </div>
   <div class="row mb-3">
     <frontend-admin-pie-chart class="col-lg-6 col-12"
-                              *ngIf="reviewPercentsChartOptions"
-                              [title]="reviewPercentsChartOptions?.title"
-                              [dataTable]="reviewPercentsChartOptions.dataTable"></frontend-admin-pie-chart>
+                              [title]="'Review percents'"
+                              [dataTable]="reviewPercents | async"></frontend-admin-pie-chart>
 
     <frontend-admin-bar-chart class="col-lg-6 col-12"
                               *ngIf="recentUsersChartOptions"
