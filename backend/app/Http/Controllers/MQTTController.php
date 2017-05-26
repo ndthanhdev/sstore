@@ -6,6 +6,7 @@
 namespace app\Http\Controllers;
 
 
+use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
 class MQTTController extends Controller {
@@ -24,18 +25,30 @@ class MQTTController extends Controller {
     }
 
     public function testPublish() {
-        $this->mqtt->publish("s2a", '123', 0);
+        $this->mqtt->publish("s2d", '123', 0);
         $this->mqtt->close();
         return 'message sent';
     }
 
     public function testSubscribe() {
-        $this->mqtt->subscribe('a2s', 0, function (\Lightning\Response $response) {
+        $this->mqtt->subscribe('d2s', 0, function (\Lightning\Response $response) {
             echo $response->getMessage();
             exit(1);
         });
 
         $this->mqtt->listen();
     }
+
+    public function publishS2DThenSubscribeD2S(Request $request, $deviceId) {
+        $quantity = $request->only('quantity')['quantity'];
+
+        $this->mqtt->publish('s2d/' . $deviceId, $quantity, 0);
+        $this->mqtt->subscribe('d2s', 0, function (\Lightning\Response $response) {
+            echo $response->getMessage();
+            exit(1);
+        });
+        $this->mqtt->listen();
+    }
+
 
 }
