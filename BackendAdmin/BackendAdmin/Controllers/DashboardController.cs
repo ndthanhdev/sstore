@@ -48,10 +48,10 @@ namespace BackendAdmin.Controllers
             // this time yesterday
             var yesterday = DateTime.Today - TimeSpan.FromDays(1);
 
-            var todayInvoices = _context.Invoices
-                .Where(invoice => invoice.CreatedAt > yesterday)
-                .Include(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails.)
-                .Collection();
+            //var todayInvoices = _context.Invoices
+            //    .Where(invoice => invoice.CreatedAt > yesterday)
+            //    .Include(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails)
+            //    .Collection();
                 
             return null;
         }

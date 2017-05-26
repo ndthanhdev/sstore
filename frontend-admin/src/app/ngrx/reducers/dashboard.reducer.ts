@@ -7,9 +7,9 @@ export interface State {
 }
 
 export const initialState: State = {
-  noUsers: null,
-  noRemainingOrders: null,
-  noBadReviews: null,
+  noUsers: 0,
+  noRemainingOrders: 0,
+  noBadReviews: 0,
 };
 
 export function reducer(state: State = initialState, action): State {
