@@ -45,15 +45,32 @@ namespace BackendAdmin.Controllers
         [HttpGet("TodaySales")]
         public object GetTodaySales()
         {
-            // this time yesterday
+            // get this time yesterday
             var yesterday = DateTime.Today - TimeSpan.FromDays(1);
 
-            //var todayInvoices = _context.Invoices
-            //    .Where(invoice => invoice.CreatedAt > yesterday)
-            //    .Include(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails)
-            //    .Collection();
-                
+            // get previous hour
+            long span = TimeSpan.FromHours(1).Ticks;
+            long ticks = DateTime.Now.Ticks / span;
+            var currentHour = new DateTime(ticks * span);
+
+            var todayInvoices = _context.Invoices
+                .Where(invoice => invoice.CreatedAt > yesterday && invoice.CreatedAt <= currentHour)
+                .Include(invoice => invoice.Order.ShoppingCart.ShoppingCartDetails);
+
             return null;
+        }
+
+        // GET: api/Dashboard/ReviewPercents
+        [HttpGet("ReviewPercents")]
+        public IEnumerable<object> GetReviewPercents()
+        {
+            var reviews = _context.Reviews.GroupBy(review => review.Rating).Select(group => new[]
+            {
+                group.Key,
+                group.Count()
+            });
+
+            return reviews;
         }
     }
 }
