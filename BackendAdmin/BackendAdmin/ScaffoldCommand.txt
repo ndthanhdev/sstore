@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Server=localhost;Port=5432;Database=default;User Id=default;Password=secret;" "Npgsql.EntityFrameworkcore.PostgreSQL" -OutputDir "Models" -Context "SStoreContext" -Force
