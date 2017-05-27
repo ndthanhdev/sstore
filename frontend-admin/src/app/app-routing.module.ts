@@ -8,21 +8,21 @@ const routes: Routes = [
     pathMatch: 'full'
   }, {
     path: 'dashboard',
-    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule',
   }
   , {
     path: 'store',
-    loadChildren: 'app/store/store.module#StoreModule',
+    loadChildren: 'app/modules/store/store.module#StoreModule',
   }, {
     path: 'product',
-    loadChildren: 'app/product/product.module#ProductModule'
+    loadChildren: 'app/modules/product/product.module#ProductModule'
   }  , {
     path: 'user',
-    loadChildren: 'app/user/user.module#UserModule'
+    loadChildren: 'app/modules/user/user.module#UserModule'
   }
   , {
     path: 'user',
-    loadChildren: 'app/review/review.module#ReviewModule'
+    loadChildren: 'app/modules/review/review.module#ReviewModule'
   }
 ];
 

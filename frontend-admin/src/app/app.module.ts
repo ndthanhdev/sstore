@@ -5,10 +5,10 @@ import {HttpModule} from '@angular/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SharedModule} from "./shared/shared.module";
+import {SharedModule} from "./modules/shared/shared.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {DashboardModule} from "./dashboard/dashboard.module";
-import {CoreModule} from "./core/core.module";
+import {DashboardModule} from "./modules/dashboard/dashboard.module";
+import {CoreModule} from "./modules/core/core.module";
 import {AgmCoreModule} from "@agm/core";
 import {reducer} from "./ngrx/reducers/root";
 import {RouterStoreModule} from "@ngrx/router-store";

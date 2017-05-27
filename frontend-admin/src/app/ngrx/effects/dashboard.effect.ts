@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Actions, Effect} from "@ngrx/effects";
-import {DashboardService} from "../../dashboard/dashboard.service";
+import {DashboardService} from "../../modules/dashboard/dashboard.service";
 import {Observable} from "rxjs/Observable";
 import {Action} from "@ngrx/store";
 

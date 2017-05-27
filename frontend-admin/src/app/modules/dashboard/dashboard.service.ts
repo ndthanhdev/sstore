@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GenericService} from "../generic.service";
+import {GenericService} from "../../generic.service";
 import {Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 

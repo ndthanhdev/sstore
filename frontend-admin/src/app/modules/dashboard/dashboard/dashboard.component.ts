@@ -3,8 +3,8 @@ import {Constant} from "../constant";
 import {Observable} from "rxjs/Observable";
 import {Store} from "@ngrx/store";
 
-import * as rootReducer from "../../ngrx/reducers/root";
-import * as dashboardActions from "../../ngrx/actions/dashboard.action";
+import * as rootReducer from "../../../ngrx/reducers/root";
+import * as dashboardActions from "../../../ngrx/actions/dashboard.action";
 
 @Component({
   selector: 'frontend-admin-dashboard',
