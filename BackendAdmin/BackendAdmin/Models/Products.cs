@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace BackendAdmin.Models
@@ -27,7 +28,7 @@ namespace BackendAdmin.Models
         public virtual ICollection<ProductTypeAttributeValues> ProductTypeAttributeValues { get; set; }
         public virtual ICollection<Reviews> Reviews { get; set; }
         public virtual ICollection<StoreProductVariant> StoreProductVariant { get; set; }
-        public virtual Categories Category { get; set; }
+        public virtual Categories Category { get; set; }        
         public virtual ProductTypes ProductType { get; set; }
     }
 }

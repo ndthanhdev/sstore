@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using BackendAdmin.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace BackendAdmin
 {
@@ -41,6 +42,7 @@ namespace BackendAdmin
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.Formatting = Formatting.Indented;
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
         }
 

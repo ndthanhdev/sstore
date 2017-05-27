@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: 'app/modules/user/user.module#UserModule'
   }
   , {
-    path: 'user',
+    path: 'review',
     loadChildren: 'app/modules/review/review.module#ReviewModule'
   }
 ];

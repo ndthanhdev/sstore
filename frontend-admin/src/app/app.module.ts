@@ -10,12 +10,12 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DashboardModule} from "./modules/dashboard/dashboard.module";
 import {CoreModule} from "./modules/core/core.module";
 import {AgmCoreModule} from "@agm/core";
-import {reducer} from "./ngrx/reducers/root";
+import {reducer} from "./store/reducers/root";
 import {RouterStoreModule} from "@ngrx/router-store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
-import {DashboardEffect} from "./ngrx/effects/dashboard.effect";
+import {DashboardEffect} from "./store/effects/dashboard.effect";
 
 @NgModule({
   declarations: [
