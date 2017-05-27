@@ -8,13 +8,13 @@ namespace App\Repositories;
 
 use App\Entities\Order;
 use App\Entities\ShoppingCart;
+use Carbon\Carbon;
 use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
 
 class OrderRepository extends BaseRepository implements CacheableInterface {
     use CacheableRepository;
-
 
     /**
      * Specify Model class name
@@ -47,4 +47,11 @@ class OrderRepository extends BaseRepository implements CacheableInterface {
         ])->find($orderId);
     }
 
+    public function store($cartId) {
+        return $this->create([
+            'code' => 'SSORD' . Carbon::now()->timestamp,
+            'state' => 0,
+            'shopping_cart_id' => $cartId
+        ]);
+    }
 }

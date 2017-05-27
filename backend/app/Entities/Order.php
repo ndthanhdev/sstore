@@ -13,7 +13,12 @@ class Order extends Model {
         'code',
         'rating',
         'comment',
-        'state'
+        'state',
+        'shopping_cart_id',
+        'address',
+        'latitude',
+        'longitude',
+        'tel'
     ];
 
     public function shoppingCart() {

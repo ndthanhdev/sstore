@@ -21,13 +21,88 @@ class OrderController extends Controller {
 
 
     public function index() {
-        $loggedInUser = Auth::user();
+        $loggedInAccount = Auth::user();
 
-        return $this->orderRepository->index($loggedInUser->id);
+        return $this->orderRepository->index($loggedInAccount->user->id);
     }
 
     public function show(Request $request, $orderId) {
         return $this->orderRepository->show($orderId);
     }
 
+
+    public function store(Request $request) {
+        $data = $request->all();
+        $createdOrder = $this->orderRepository->store($data['cartId']);
+
+        $response = [
+            'msg' => config('msg.ORDER_CREATED'),
+            'link' => [
+                'name' => 'VIEW_ORDER',
+                'url' => route('orders/{id}.GET', [
+                    'id' => $createdOrder->id,
+                ]),
+                'method' => 'GET'
+            ]
+        ];
+
+        return $response;
+    }
+
+    public function deliveryOnStore(Request $request, $orderId) {
+        $this->orderRepository->update(['state' => 1], $orderId);
+
+        return [
+            'msg' => config('msg.ORDER_UPDATED'),
+            'link' => [
+                'name' => 'VIEW_ORDER',
+                'url' => route('orders/{id}.GET', [
+                    'id' => $orderId,
+                ]),
+                'method' => 'GET'
+            ]
+        ];
+    }
+
+
+    public function deliveryOnline(Request $request, $orderId) {
+        $data = $request->input();
+
+        $this->orderRepository->update([
+            'state' => 1,
+            'address' => $data['address'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude'],
+            'tel' => $data['tel']
+        ], $orderId);
+
+        return [
+            'msg' => config('msg.ORDER_UPDATED'),
+            'link' => [
+                'name' => 'VIEW_ORDER',
+                'url' => route('orders/{id}.GET', [
+                    'id' => $orderId,
+                ]),
+                'method' => 'GET'
+            ]
+        ];
+    }
+
+
+    public function done(Request $request, $orderId) {
+        $this->orderRepository->update(['state' => 2], $orderId);
+
+        return [
+            'msg' => config('msg.ORDER_UPDATED'),
+            'link' => [
+                'name' => 'VIEW_ORDER',
+                'url' => route('orders/{id}.GET', [
+                    'id' => $orderId,
+                ]),
+                'method' => 'GET'
+            ]
+        ];
+    }
+
 }
+

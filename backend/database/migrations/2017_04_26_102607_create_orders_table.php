@@ -16,6 +16,10 @@ class CreateOrdersTable extends Migration {
             $table->string('code')->unique();
             $table->integer('rating')->nullable();
             $table->string('comment')->nullable();
+            $table->string('address')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('tel')->nullable();
             $table->integer('state');
             $table->timestamps();
             $table->unsignedInteger('shopping_cart_id');
