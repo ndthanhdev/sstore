@@ -11,20 +11,7 @@ namespace BackendAdmin.Controllers.Helper
     {
         public int PageIndex { get; set; }
         public int TotalPages { get; set; }
-
-        private List<T> _data;
-        public List<T> Data
-        {
-            get { return _data ?? (_data = new List<T>()); }
-            set { _data = value; }
-        }
-
-        public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
-        {
-            PageIndex = pageIndex;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-            this.Data.AddRange(items);
-        }
+        public int Count { get; set; }
 
         public bool HasPreviousPage
         {
@@ -40,6 +27,21 @@ namespace BackendAdmin.Controllers.Helper
             {
                 return (PageIndex < TotalPages);
             }
+        }
+
+        private List<T> _data;
+        public List<T> Data
+        {
+            get { return _data ?? (_data = new List<T>()); }
+            set { _data = value; }
+        }
+
+        public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
+        {
+            PageIndex = pageIndex;
+            Count = count;
+            TotalPages = (int)Math.Ceiling(Count / (double)pageSize);
+            this.Data.AddRange(items);
         }
 
         public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
