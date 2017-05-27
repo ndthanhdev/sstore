@@ -15,4 +15,8 @@ class Order extends Model {
         'comment',
         'state'
     ];
+
+    public function shoppingCart() {
+        return $this->belongsTo('App\Entities\ShoppingCart');
+    }
 }

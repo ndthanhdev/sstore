@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\ProductRepository;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
 class ProductController extends Controller {
@@ -17,11 +18,12 @@ class ProductController extends Controller {
         $this->productRepo = $productRepository;
     }
 
-    public function index() {
-        return $this->productRepo->with(['variants', 'variants.variationValues'])->paginate(10); // 10 product per page
-    }
+//    public function index() {
+//        return $this->productRepo->with(['variants', 'variants.variationValues'])->paginate(10); // 10 product per page
+//    }
 
-    public function featuredProducts() {
-
+    public function show(Request $request, $productId) {
+        $storeId = $request->input('storeId');
+        return $this->productRepo->show($productId, $storeId);
     }
 }

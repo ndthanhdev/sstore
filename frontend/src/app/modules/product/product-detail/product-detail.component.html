@@ -1,0 +1,66 @@
+<div class="jumbotron bg-primary text-white">
+  <div class="container">
+    <h1 class="display-3">{{product?.name}}</h1>
+  </div>
+</div>
+<div class="container">
+
+  <ng-template #spinning>
+    <frontend-loading></frontend-loading>
+  </ng-template>
+
+  <!--START PRODUCT DETAIL INFORMATION-->
+  <span class="col-12 display-4">
+        Product Information:
+  </span>
+  <hr>
+
+  <frontend-product-information
+    *ngIf="!loading;else spinning"
+    class="row px-3 mb-3"
+    [product]="product"
+    (putToCartClicked)="onPutToCartButtonClick($event)">
+  </frontend-product-information>
+  <!--END PRODUCT DETAIL INFORMATION-->
+
+  <!--START PRODUCT DETAIL ATTRIBUTES-->
+  <span class="col-12 display-4">
+        Product Attributes:
+      </span>
+  <hr>
+
+  <frontend-product-attributes
+    *ngIf="!loading;else spinning"
+    class="row px-3 mb-3"
+    [product]="product">
+  </frontend-product-attributes>
+  <!--END PRODUCT DETAIL ATTRIBUTES-->
+
+
+  <!--START PRODUCT REVIEWS-->
+  <span class="col-12 display-4">
+        Product Reviews:
+    </span>
+  <hr>
+
+  <!--START REVIEW WRITER SECTION-->
+  <frontend-product-review-input
+    [product]="product">
+  </frontend-product-review-input>
+  <!--END REVIEW WRITER SECTION-->
+
+
+  <!--START REVIEW LIST SECTION-->
+  <div class="mb-5">
+    <frontend-product-review
+      *ngFor="let review of product?.reviews"
+      [review]="review">
+    </frontend-product-review>
+  </div>
+  <!--END REVIEW LIST SECTION-->
+
+
+  <!--END PRODUCT REVIEW-->
+
+
+</div>

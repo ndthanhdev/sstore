@@ -1,0 +1,57 @@
+<!--START NAV BAR-->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#app-navbar" aria-controls="app-navbar-control" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!--START NAVBAR BRAND-->
+  <div class="mr-2">
+    <a class="navbar-brand" routerLink="/">
+      <small class="text-xs text-bottom-half">
+        <span><i class="fa fa-star fa-fw" *ngIf="currentStore?.primary"></i></span>
+        <span><i class="fa fa-location-arrow fa-fw" *ngIf="!currentStore?.primary"></i></span>
+        <span>{{currentStore?.name}}</span>
+      </small>
+      SSTORE<i class="fa fa-shopping-cart"></i>
+    </a>
+  </div>
+  <!--END NAVBAR BRAND-->
+
+  <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-link" ngbDropdownToggle>Catalog</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+      <button class="dropdown-item"
+              *ngFor="let catalog of catalogs"
+              [routerLink]="['/catalogs', catalog.id]"
+              routerLinkActive="active">{{catalog.name}}
+      </button>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse d-flex justify-content-end" id="app-navbar">
+
+    <button class="btn btn-link mr-2" type="button" [routerLink]="['/carts', activeCart?.id || '']">
+      <i class="fa fa-shopping-cart mr-1"></i>Cart
+      <span class="badge badge-pill badge-primary"
+            *ngIf="!cartLoading">{{activeCart?.product_count}}</span>
+      <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="cartLoading"></i>
+    </button>
+
+    <frontend-navbar-utilities
+      *ngIf="user;else navbarLogin"
+      [user]="user"
+      (logoutButtonClicked)="onLogoutButtonClick()">
+    </frontend-navbar-utilities>
+
+    <ng-template #navbarLogin>
+      <frontend-navbar-login
+        [loading]="authLoading | async"
+        (loginButtonClicked)="onLoginButtonClick($event)">
+      </frontend-navbar-login>
+    </ng-template>
+
+  </div>
+</nav>
+<!--END NAV BAR-->

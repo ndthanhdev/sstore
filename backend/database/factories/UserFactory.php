@@ -19,7 +19,8 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'tel' => $faker->phoneNumber,
         'address' => $faker->address,
         'email' => $faker->email,
-        'gender' => $faker->numberBetween(0, 2),// 0 - Male, 1 - Female, 3 - Others
+        'gender' => $faker->numberBetween(0, 2),// 0 - Male, 1 - Female, 3 - Others,
+        'avatar' => $faker->imageUrl(500, 500),
         'created_at' => $dateTimeThisYear,
         'updated_at' => $dateTimeThisYear
     ];

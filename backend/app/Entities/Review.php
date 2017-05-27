@@ -16,4 +16,8 @@ class Review extends Model {
             ->belongsToMany('App\Entities\User', 'user_review')
             ->withPivot('liked');
     }
+
+    public function user() {
+        return $this->belongsTo('App\Entities\User');
+    }
 }

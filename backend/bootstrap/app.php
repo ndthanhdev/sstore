@@ -81,6 +81,7 @@ $app->middleware([
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Barryvdh\Cors\ServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
@@ -111,6 +112,7 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 
 $app->configure('factory');
 $app->configure('cors');
+$app->configure('msg');
 
 
 return $app;

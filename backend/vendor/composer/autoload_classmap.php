@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CatalogControllerTest' => $baseDir . '/tests/app/Http/Controllers/CatalogControllerTest.php',
     'CorsKernel' => $vendorDir . '/barryvdh/laravel-cors/tests/CorsKernel.php',
     'CorsServiceTest' => $vendorDir . '/barryvdh/laravel-cors/tests/CorsServiceTest.php',
     'CreateAccountsTable' => $baseDir . '/database/migrations/2017_04_25_170706_create_accounts_table.php',
@@ -30,7 +31,6 @@ return array(
     'CreateUserReviewTable' => $baseDir . '/database/migrations/2017_04_26_100212_create_user_review_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2017_04_25_165333_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
-    'ExampleTest' => $baseDir . '/tests/ExampleTest.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -577,7 +577,6 @@ return array(
     'database\\seeds\\ProductTypeAttributeValuesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributeValuesTableSeeder.php',
     'database\\seeds\\ProductTypeAttributesTableSeeder' => $baseDir . '/database/seeds/ProductTypeAttributesTableSeeder.php',
     'database\\seeds\\ProductTypesTableSeeder' => $baseDir . '/database/seeds/ProductTypesTableSeeder.php',
-    'database\\seeds\\ProductVariantsTableSeeder' => $baseDir . '/database/seeds/ProductVariantsTableSeeder.php',
     'database\\seeds\\ProductVariationValuesTableSeeder' => $baseDir . '/database/seeds/ProductVariationValuesTableSeeder.php',
     'database\\seeds\\ProductsTableSeeder' => $baseDir . '/database/seeds/ProductsTableSeeder.php',
     'database\\seeds\\ReviewsTableSeeder' => $baseDir . '/database/seeds/ReviewsTableSeeder.php',

@@ -18,6 +18,12 @@ class User extends Model {
         'gender'
     ];
 
+    public function activeCart() {
+        return $this->hasMany('App\Entities\ShoppingCart')
+            ->where('active', true)
+            ->withCount('details AS item');
+    }
+
     public function interactedReviews() {
         return $this
             ->belongsToMany('App\Entities\Review', 'user_review')

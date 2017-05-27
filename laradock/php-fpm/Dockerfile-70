@@ -38,6 +38,8 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 #   - INSTALL_ZIP_ARCHIVE=true
 #
 
+RUN pecl install Mosquitto-alpha
+
 #####################################
 # SOAP:
 #####################################

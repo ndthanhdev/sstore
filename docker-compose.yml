@@ -116,6 +116,18 @@ services:
         networks:
           - frontend
 
+### Hivemq Container ##################################
+    hivemq:
+        build: ./hivemq
+        ports:
+          - "11883:1883"
+          - "18000:8000"
+        volumes:
+          - ~/hivemq-data:/opt/hivemq/data
+        networks:
+          - backend
+
+
 ### Networks Setup ############################################
 
 networks:

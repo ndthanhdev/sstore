@@ -5,16 +5,17 @@
 | :------: | :----------: | :---------------------------------------------:|
 | 0.0.1  | 28/4/2017    | Add entities |
 | 0.0.2  | 1/5/2017    | Update entities to match with ERD v1.2.2 |
+| 0.0.3  | 24/5/2017    | Update entities to match with ERD v1.2.6 |
 
 ## II. ENTITIES
 
-![](ERD_v1.2.2.png?raw=true)
+![](ERD_v1.2.6.png?raw=true)
 
 ### Enums
 | Name |     Enum list     |                   Description                        |
 | :------------: | :---------- | :--------------------------------------------------- |
 |Gender| 0 - Male <br> 1 - Female <br> 2 - Others|[User](#user)'s gender|
-|Role| 0 - Guest (Anonymous User) <br> 1 - Member <br> 2 - Store Manager <br> 3 - Admin| [Account](#account)'s role|
+|Role| 0 - Member <br> 1 - Store Manager <br> 2 - Admin| [Account](#account)'s role|
 |State| 0 - Processing <br> 1 - Delivering <br> 2 - Done| [Order](Order)'s state|
 
 
@@ -69,6 +70,7 @@ __Entity References:__
 | gender | [Gender](#enums) | User's gender| @NotNull|
 | created_at | date | Time when user's created | @NotNull |
 | updated_at | date | Time when user's last updated| @NotNull |
+| avatar | string | Link to User's avatar | @NotNull |
 
 ### Store
 
@@ -77,9 +79,7 @@ __Relationships:__
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
 |[User](#user)| One To One | A Store is managed by _01_ Store Manager |
-|[Device](#device)| One To Many | A Store has _many_ Devices |
 |[Product](#product)| Many To Many | A Store has their own Products. Pivot: [Store Product Variant](#store-product-variant-pivot)|
-|[Product Variant](#product-variant)| Many To Many | A Store has their own Product Variant, each Product Variant has its own price and in_stock. Pivot: [Store Product Variant](#store-product-variant-pivot)|
 
 
 __Entity References:__
@@ -98,14 +98,13 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
-|[Store](#store)| Many To One | A Device belonged with _01_ Store |
+|[Store Product Variant](#store-product-variant-pivot)| One To One | A Device manage a product has specified variant in a store |
 
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
-| name | string | Device's name | @NotNull|
-| mac_address | string | Device's mac address |@NotNull, @Unique |
+| name | string | Device's name | @NotNull, @Unique|
 
 
 ### Store Product Variant (Pivot)
@@ -114,9 +113,11 @@ __Relationships:__
 
 | Entity |     Relationship     | Description |
 | :------------: | :----------: | :----------|
+|[Device](#device)| One To One | A Product with specified variant in a store is managed by a device |
 |[Product Variant](#product-variant)| Many To One | A Product in Store has *at lease 01* Product Variant |
 |[Store](#store)| Many To One | A Product can be belonged with _at lease 01_ Store  |
 |[Product](#product)| Many To One | A Store have _at lease 01_ Products |
+
 
 __Entity References:__
 
@@ -171,7 +172,7 @@ __Entity References:__
         },
         ...
     ]
-    ```\
+    ```
  
 ### Product
  
@@ -229,13 +230,14 @@ __Relationships:__
 |[Category](#category)| Many To One | A Category may belonged with a parent Category.|
 
 
-
 __Entity References:__
 
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | name | string | Category's name | @NotNull, @Unique|
 | description | string | Category's description |
+| icon | string | Category's fontawesome icon class |
+
 
 ### Custom Attribute
 
@@ -353,7 +355,7 @@ __Relationships:__
 | :------------: | :----------: | :----------|
 |[Oder](#order)| One To One | A Shopping Cart can become _01_ Order |
 |[User](#user)| Many To One | A Shopping Cart belonged with _01_ User |
-|[Product](#product)| Many To Many | A Shopping Cart has _at lease 01_ Products. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
+|[Product](#product)| Many To Many | A Shopping Cart can have many Products. Pivot: [Shopping Cart Detail](#shopping-cart-detail-pivot)|
 
 
 __Entity References:__
@@ -397,8 +399,8 @@ __Entity References:__
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | code | string | Order's code | @NotNull, @Unique|
-| rating | number | Order's rating by Owned User | @NotNull|
-| comment | string | Order's comment by Owned User | @NotNull|
+| rating | number | Order's rating by Owned User | |
+| comment | string | Order's comment by Owned User | |
 | state | [State](#enums) | Order's current state | @NotNull|
 | created_at | date | Order's creation time| @NotNull |
 | updated_at | date | Order's last updated time | @NotNull |
@@ -458,3 +460,211 @@ __Entity References:__
 | Attribute name |     Type     |                   Description                        |    Validation   |
 | :------------: | :----------: | :--------------------------------------------------- |:----------------|
 | liked | boolean | Upvoted - liked = true, Downvoteed - liked = false. Null - User don't not like the review.| @NotNull |
+
+
+## III. API REFERENCES
+
+### Catalog
+
+| Method |     URL     |                   HTTP verb                        |    Description   |        Response Code |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|:---- |
+| __index__ | /catalogs | GET | Get all catalog | 200 - OK |
+| __categories__ | /catalogs/{id:[0-9]+}/categories | GET | Get all Parent Category (parent_id = null) of specified Catalog | 200 - OK |
+| __products__ | /catalogs/{id:[0-9]+}/products | GET | Get all products of all category belonged to specified catalog | 200 - OK |
+
+
+### Category
+
+| Method |     URL     |                   HTTP verb                        |    Description   |        Response Code |
+| :------------: | :----------: | :--------------------------------------------------- |:----------------|:---- |
+| __childCategories__ | /categories/{id:[0-9]+}/categories | GET | Get all child categories of specified Category | 200 - OK |
+| __products__ | /categories/{id:[0-9]+}/products | GET | Get all product belonged to specified Category | 200 - OK |
+
+
+## III. API Examples
+
+### [Catalog](#catalog-1)
+
+- GET `/catalogs`:\
+    Sample URL: `/catalogs`
+      
+    Sample Response:    
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "West Virginia",
+        "description": "Harum aliquid nam quas qui animi ut molestiae."
+      },
+      {
+        "id": 2,
+        "name": "California",
+        "description": "Voluptate qui autem ut dignissimos ex ratione saepe."
+      }
+    ]
+    ```
+- GET `/catalogs/{id:[0-9]+}/categories`:\
+    Sample URL: `/catalogs/1/categories`
+      
+    Sample Response:    
+    ```json
+    [
+      {
+        "id": 6,
+        "name": "Dickensmouth",
+        "description": "Ut et dolores atque quo vero tempore.",
+        "icon": "fa-shopping-cart",
+        "parent_id": null,
+        "catalog_id": 1
+      },
+      {
+        "id": 10,
+        "name": "Lemkeport",
+        "description": "Non aut maxime quo in aut a quisquam aliquid.",
+        "icon": "fa-shopping-cart",
+        "parent_id": null,
+        "catalog_id": 1
+      }
+    ]
+    ```    
+
+- GET `/catalogs/{id:[0-9]+}/products`:\
+    Sample URL: `/catalogs/1/products`
+      
+    Sample Response:    
+    ```json
+   {
+     "total": 33,
+     "per_page": 6,
+     "current_page": 1,
+     "last_page": 6,
+     "next_page_url": "http://127.0.0.1/catalogs/1/products?page=2",
+     "prev_page_url": null,
+     "from": 1,
+     "to": 6,
+     "data": [
+            {
+             "id": 2,
+             "name": "Sporer Plains",
+             "barcode": "5343006366966408",
+             "description": "Odio in est dolor repellendus.",
+             "img_url": "http://lorempixel.com/1000/1300/cats/?35086",
+             "created_at": "2016-08-15 01:10:51",
+             "updated_at": "2016-08-15 01:10:51",
+             "category_id": 9,
+             "product_type_id": 8,
+             "reviews_1_rating_count": 1,
+             "reviews_2_rating_count": 1,
+             "reviews_3_rating_count": 0,
+             "reviews_4_rating_count": 0,
+             "reviews_5_rating_count": 0,
+             "default_variant": [
+               {
+                 "id": 3,
+                 "default": true,
+                 "pivot": {
+                   "product_id": 2,
+                   "product_variant_id": 3,
+                   "price": "308000.00",
+                   "in_stock": 19,
+                   "store_id": 1
+                 },
+                 "variation_values": [
+                   {
+                     "id": 9,
+                     "name": "#1c602e",
+                     "value": "doloremque",
+                     "product_variant_id": 3
+                   },
+                   {
+                     "id": 10,
+                     "name": "#ffb723",
+                     "value": "consequuntur",
+                     "product_variant_id": 3
+                   }]
+               }
+             ]
+            },
+        ...
+        ]
+    }
+  
+    ```    
+
+### [Category](#category-1)
+
+- GET `/categories/{id:[0-9]+}/categories`:\
+    Sample URL: `/categories/5/categories`
+      
+    Sample Response:    
+    ```json
+   [
+     {
+       "id": 1,
+       "name": "Skilesfurt",
+       "description": "Cupiditate id dolorem quaerat vitae nihil reiciendis id.",
+       "icon": "fa-shopping-cart",
+       "parent_id": 5,
+       "catalog_id": 1
+     },
+     {
+       "id": 3,
+       "name": "Meaganburgh",
+       "description": "Odio labore officiis modi quas illum.",
+       "icon": "fa-shopping-cart",
+       "parent_id": 5,
+       "catalog_id": 1
+     }
+   ]
+    ```
+- GET `/categories/{id:[0-9]+}/products`:\
+    Sample URL: `/categories/5/products`
+      
+    Sample Response:    
+    ```json
+    {
+       "id": 7,
+       "name": "Schimmel Extension",
+       "barcode": "5133718925232445",
+       "description": "Illum inventore et recusandae harum et ut.",
+       "img_url": "http://lorempixel.com/1000/1300/cats/?69767",
+       "created_at": "2017-01-04 17:51:52",
+       "updated_at": "2017-01-04 17:51:52",
+       "category_id": 5,
+       "product_type_id": 4,
+       "reviews_1_rating_count": 2,
+       "reviews_2_rating_count": 0,
+       "reviews_3_rating_count": 0,
+       "reviews_4_rating_count": 1,
+       "reviews_5_rating_count": 0,
+       "default_variant": [
+         {
+           "id": 22,
+           "default": true,
+           "pivot": {
+             "product_id": 7,
+             "product_variant_id": 22,
+             "price": "588000.00",
+             "in_stock": 57,
+             "store_id": 1
+           },
+           "variation_values": [
+             {
+               "id": 56,
+               "name": "#c79a0a",
+               "value": "distinctio",
+               "product_variant_id": 22
+             },
+             {
+               "id": 57,
+               "name": "#621417",
+               "value": "quibusdam",
+               "product_variant_id": 22
+             }
+           ]
+         }
+       ]
+     },
+   ...
+   ]
+    ```

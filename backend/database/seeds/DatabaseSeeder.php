@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder {
         $this->call(UsersTableSeeder::class);
         $this->call(AccountsTableSeeder::class);
         $this->call(StoresTableSeeder::class);
-        $this->call(DevicesTableSeeder::class);
         $this->call(ProductTypesTableSeeder::class);
         $this->call(ProductTypeAttributesTableSeeder::class);
         $this->call(CatalogsTableSeeder::class);
@@ -42,6 +41,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(ProductTypeAttributeValuesTableSeeder::class);
         $this->call(CustomAttributesTableSeeder::class);
         $this->call(StoreProductVariantTableSeeder::class);
+        $this->call(DevicesTableSeeder::class);
         $this->call(ProductVariationValuesTableSeeder::class);
         $this->call(ReviewsTableSeeder::class);
         $this->call(UserReviewTableSeeder::class);

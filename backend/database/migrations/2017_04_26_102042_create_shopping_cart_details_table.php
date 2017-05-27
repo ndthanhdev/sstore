@@ -15,11 +15,11 @@ class CreateShoppingCartDetailsTable extends Migration {
             $table->increments('id');
             $table->integer('quantity');
             $table->unsignedInteger('shopping_cart_id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('store_product_variant_id');
         });
         Schema::table('shopping_cart_details', function (Blueprint $table) {
             $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('store_product_variant_id')->references('id')->on('store_product_variant');
         });
     }
 
