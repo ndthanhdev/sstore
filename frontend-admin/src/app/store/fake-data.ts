@@ -1,5 +1,5 @@
-import {Marker} from "../map/marker.model";
-import {Store} from "../store.model";
+import {Marker} from "./map/marker.model";
+import {Store} from "./store.model";
 /**
  * Created by duyth on 5/9/2017.
  */
