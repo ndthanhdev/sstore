@@ -6,7 +6,8 @@ export interface State {
   noUsers: number;
   noRemainingOrders: number;
   noBadReviews: number;
-  reviewPercents: any[][]
+  reviewPercents: any[][];
+  recentUsers: any[][]
 }
 
 export const initialState: State = {
@@ -15,6 +16,9 @@ export const initialState: State = {
   noBadReviews: 0,
   reviewPercents: [
     ['Stars', 'Count'],
+  ],
+  recentUsers: [
+    ['User Count', 'Time']
   ]
 };
 
@@ -53,10 +57,22 @@ export function reducer(state: State = initialState, action: Action): State {
         ['Stars', 'Count']
       ];
       for (let i in action.payload.reviewPercents) {
-        reviewPercents.push([action.payload.reviewPercents[i][0] +' stars',action.payload.reviewPercents[i][1]]);
+        reviewPercents.push([action.payload.reviewPercents[i][0] + ' stars', action.payload.reviewPercents[i][1]]);
       }
       return Object.assign({}, state, {
         reviewPercents: reviewPercents
+      });
+
+    // recent users
+    case dashBoardAction.ActionTypes.START_RECENT_USERS_LOAD:
+      return Object.assign({}, state, {});
+    case dashBoardAction.ActionTypes.LOAD_RECENT_USERS:
+      let recentUsers: any[][] = [
+        ['User Count', 'Time']
+      ];
+      recentUsers = recentUsers.concat(action.payload.recentUsers);
+      return Object.assign({}, state, {
+        recentUsers: recentUsers
       });
 
     default:
@@ -68,4 +84,5 @@ export const getNoUsers = (state: State) => state.noUsers;
 export const getNoRemainingOrders = (state: State) => state.noRemainingOrders;
 export const getNoBadReviews = (state: State) => state.noBadReviews;
 export const getReviewPercents = (state: State) => state.reviewPercents;
+export const getRecentUsers = (state: State) => state.recentUsers;
 

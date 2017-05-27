@@ -62,6 +62,7 @@ export class LoadNoBadReviewsAction implements Action {
   }
 }
 
+
 export class StartReviewPercentsLoadAction implements Action {
   type = ActionTypes.START_REVIEW_PERCENTS_LOAD;
 }
@@ -71,3 +72,15 @@ export class LoadReviewPercentsAction implements Action {
   constructor(public payload: { reviewPercents: number[][] }) {
   }
 }
+
+
+export class StartRecentUsersLoadAction implements Action {
+  type = ActionTypes.START_RECENT_USERS_LOAD;
+}
+
+export class LoadRecentUsersAction implements Action {
+  type = ActionTypes.LOAD_RECENT_USERS;
+  constructor(public payload: { recentUsers: any[][] }) {
+  }
+}
+

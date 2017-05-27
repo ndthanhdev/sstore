@@ -72,5 +72,32 @@ namespace BackendAdmin.Controllers
 
             return reviews;
         }
+
+        // GET: api/Dashboard/RecentUsers
+        [HttpGet("RecentUsers")]
+        public IEnumerable<object> GetRecentUsers()
+        {
+            DateTime now = DateTime.Now;
+
+            // get this time floor hour
+            var present = new DateTime(now.Year, now.Month, 1);
+            var presentTicks = present.Ticks;
+
+            //get this time 6 month floor hour
+            var pastTicks = present.AddMonths(-6).Ticks;
+
+            var recentUsers = _context.Users
+                .Where(user => user.CreatedAt.Value.Ticks > pastTicks
+                    && user.CreatedAt.Value.Ticks <= presentTicks)
+                .OrderBy(user => user.CreatedAt.Value)
+                .GroupBy(user => user.CreatedAt.Value.ToString("MMM"))
+                .Select(group => new object[]
+                {
+                    group.Key,
+                    group.Count()
+                });
+
+            return recentUsers;
+        }
     }
 }

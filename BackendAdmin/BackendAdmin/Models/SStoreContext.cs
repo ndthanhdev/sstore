@@ -32,7 +32,7 @@ namespace BackendAdmin.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=default;User Id=default;Password=secret;");
+            optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=default;User Id=postgres;Password=secret;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   recentUsersChartOptions: any;
 
   reviewPercents: Observable<any[][]>;
+  recentUsers: Observable<any[][]>;
 
   constructor(private store: Store<rootReducer.State>) {
     this.totalSalesChartOptions = Constant.totalSalesChartOptions;
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit {
     this.noRemainingOrders = this.store.select(rootReducer.getDashboardNoRemainingOrders);
     this.noBadReviews = this.store.select(rootReducer.getDashboardNoBadReviews);
     this.reviewPercents = this.store.select(rootReducer.getDashboardReviewPercents);
+    this.recentUsers = this.store.select(rootReducer.getDashboardRecentUsers);
   }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(new dashboardActions.StartNoRemainingOrdersLoadAction());
     this.store.dispatch(new dashboardActions.StartNoBadReviewsLoadAction());
     this.store.dispatch(new dashboardActions.StartReviewPercentsLoadAction());
+    this.store.dispatch(new dashboardActions.StartRecentUsersLoadAction());
   }
 
 }

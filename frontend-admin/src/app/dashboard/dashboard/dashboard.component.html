@@ -20,10 +20,9 @@
                               [dataTable]="reviewPercents | async"></frontend-admin-pie-chart>
 
     <frontend-admin-bar-chart class="col-lg-6 col-12"
-                              *ngIf="recentUsersChartOptions"
-                              [title]="recentUsersChartOptions?.title"
-                              [vAxis]="recentUsersChartOptions?.vAxis"
-                              [hAxis]="recentUsersChartOptions?.hAxis"
-                              [dataTable]="recentUsersChartOptions?.dataTable"></frontend-admin-bar-chart>
+                              [title]="'Recent users'"
+                              [vAxis]="'User Count'"
+                              [hAxis]="'Month'"
+                              [dataTable]="recentUsers | async"></frontend-admin-bar-chart>
   </div>
 </div>

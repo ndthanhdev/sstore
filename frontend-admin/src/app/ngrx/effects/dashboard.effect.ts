@@ -42,4 +42,10 @@ export class DashboardEffect {
     .switchMap(action => this.dashboardService.loadReviewPercents()
       .concatMap(reviewPercents => of(new dashboardActions.LoadReviewPercentsAction({reviewPercents: reviewPercents}))));
 
+  @Effect()
+  noRecentUsersLoad$: Observable<Action> = this.actions$
+    .ofType(dashboardActions.ActionTypes.START_RECENT_USERS_LOAD)
+    .switchMap(action => this.dashboardService.loadRecentUsers()
+      .concatMap(recentUsers => of(new dashboardActions.LoadRecentUsersAction({recentUsers: recentUsers}))));
+
 }

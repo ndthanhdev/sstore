@@ -32,4 +32,4 @@ export const getDashboardNoUsers = Reselect.createSelector(getDashboardState, fr
 export const getDashboardNoRemainingOrders = Reselect.createSelector(getDashboardState, fromDashboard.getNoRemainingOrders);
 export const getDashboardNoBadReviews = Reselect.createSelector(getDashboardState, fromDashboard.getNoBadReviews);
 export const getDashboardReviewPercents = Reselect.createSelector(getDashboardState, fromDashboard.getReviewPercents);
-
+export const getDashboardRecentUsers = Reselect.createSelector(getDashboardState, fromDashboard.getRecentUsers);

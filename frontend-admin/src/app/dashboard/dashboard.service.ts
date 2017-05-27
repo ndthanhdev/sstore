@@ -36,4 +36,10 @@ export class DashboardService extends GenericService {
     }));
   }
 
+  public loadRecentUsers(): Observable<number[][]> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/RecentUsers`
+    }));
+  }
+
 }
