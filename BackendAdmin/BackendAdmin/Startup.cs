@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using BackendAdmin.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace BackendAdmin
 {
@@ -36,7 +37,7 @@ namespace BackendAdmin
 
             services.AddDbContext<SStoreContext>();
 
-            services.AddMvc();
+            //services.AddMvc();
 
             services.AddMvc()
                 .AddJsonOptions(options =>
@@ -44,6 +45,11 @@ namespace BackendAdmin
                     options.SerializerSettings.Formatting = Formatting.Indented;
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SStore Admin API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +76,13 @@ namespace BackendAdmin
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
             });
         }
     }

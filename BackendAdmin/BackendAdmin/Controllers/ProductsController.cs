@@ -32,8 +32,10 @@ namespace BackendAdmin.Controllers
         [HttpGet]
         public async Task<PaginatedList<Products>> GetProducts(int page = 1, int size = 10)
         {
-            var source = _context.Products;
-            return await PaginatedList<Products>.CreateAsync(source, page, 10); ;
+            var source = _context.Products
+                .Include(product => product.ProductType)
+                .Include(product => product.Category);
+            return await PaginatedList<Products>.CreateAsync(source, page, 10);
         }
 
         // GET: api/Products/5
@@ -124,7 +126,7 @@ namespace BackendAdmin.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(products);
-        }      
+        }
 
         private bool ProductsExists(int id)
         {
