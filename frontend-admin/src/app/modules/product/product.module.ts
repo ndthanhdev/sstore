@@ -9,13 +9,15 @@ import {SharedModule} from "../shared/shared.module";
 import {ProductItemComponent} from './product-item/product-item.component';
 import {ProductService} from "./product.service";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MomentModule} from "angular2-moment";
 
 @NgModule({
   imports: [
     CommonModule,
     ProductRoutingModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    MomentModule
   ],
   declarations: [DetailComponent, ProductComponent, CreateComponent, ProductItemComponent],
   providers: [ProductService]

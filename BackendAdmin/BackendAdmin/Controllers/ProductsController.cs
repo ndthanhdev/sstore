@@ -47,7 +47,13 @@ namespace BackendAdmin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var products = await _context.Products.SingleOrDefaultAsync(m => m.Id == id);
+            var products = await _context
+                .Products
+                .Include(product => product.Category)
+                .Include(product=>product.ProductType.ProductTypeAttributes)
+                .Include(product=>product.ProductTypeAttributeValues)
+                .Include(product=>product.CustomAttributes)
+                .SingleOrDefaultAsync(m => m.Id == id);
 
             if (products == null)
             {

@@ -6,14 +6,15 @@ import {Ng2GoogleChartsModule} from "ng2-google-charts";
 import {BarChartComponent} from './bar-chart/bar-chart.component';
 import {PieChartComponent} from './pie-chart/pie-chart.component';
 import {FileDropDirective} from "ng2-file-upload";
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 @NgModule({
   imports: [
     CommonModule,
     Ng2GoogleChartsModule
   ],
-  declarations: [JumbotronComponent, ChartComponent, BarChartComponent, PieChartComponent, FileDropDirective],
-  exports: [JumbotronComponent, ChartComponent, BarChartComponent, PieChartComponent, FileDropDirective]
+  declarations: [JumbotronComponent, ChartComponent, BarChartComponent, PieChartComponent, FileDropDirective, LoadingIndicatorComponent],
+  exports: [JumbotronComponent, ChartComponent, BarChartComponent, PieChartComponent, FileDropDirective,LoadingIndicatorComponent]
 })
 export class SharedModule {
 }

@@ -21,7 +21,7 @@ export class ProductEffect {
   @Effect()
   paginatedListOfProducts$: Observable<Action> = this.actions$
     .ofType(productdActions.ActionTypes.START_PRODUCTS_LOAD)
-    .switchMap(action => this.productService.loadPaginatedListOfProducts()
+    .switchMap(action => this.productService.loadPaginatedListOfProducts(action.payload.page)
       .concatMap(paginatedListOfProducts => of(new productdActions.LoadProductsAction({paginatedListOfProducts: paginatedListOfProducts}))));
 
 }
