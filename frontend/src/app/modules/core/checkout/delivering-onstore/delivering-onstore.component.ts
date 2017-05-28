@@ -8,9 +8,7 @@ import {Component, OnInit} from '@angular/core';
     </div>
     <div class="modal-body">
       <small class="text-muted">Product 1</small>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-      </div>
+      <ngb-progressbar showValue="true" type="primary" [value]="25"></ngb-progressbar>
     </div>
   `,
   styleUrls: ['./delivering-onstore.component.scss']
