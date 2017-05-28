@@ -31,24 +31,12 @@ class Product extends Model {
             ->belongsTo('App\Entities\ProductType');
     }
 
-    public function variants() {
-        return $this
-            ->belongsToMany('App\Entities\ProductVariant', 'store_product_variant')
-            ->withPivot(['id', 'price', 'in_stock', 'store_id']);
-    }
-
     public function defaultVariant() {
-        return $this
-            ->belongsToMany('App\Entities\ProductVariant', 'store_product_variant')
-            ->withPivot(['id', 'price', 'in_stock', 'store_id'])
-            ->where('default', true);
+        return $this->variants()->where('default', false);
     }
 
-
-    public function stores() {
-        return $this
-            ->belongsToMany('App\Entities\Store', 'store_product_variant')
-            ->withPivot(['price', 'in_stock', 'store_id']);
+    public function variants() {
+        return $this->hasMany('App\Entities\ProductVariant');
     }
 
     public function reviews() {

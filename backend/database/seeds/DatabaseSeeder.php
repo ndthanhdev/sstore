@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(ProductsTableSeeder::class);
         $this->call(ProductTypeAttributeValuesTableSeeder::class);
         $this->call(CustomAttributesTableSeeder::class);
+        $this->call(ProductVariantsTableSeeder::class);
         $this->call(StoreProductVariantTableSeeder::class);
         $this->call(DevicesTableSeeder::class);
         $this->call(ProductVariationValuesTableSeeder::class);

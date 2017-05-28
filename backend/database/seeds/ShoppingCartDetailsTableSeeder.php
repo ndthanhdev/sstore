@@ -21,7 +21,10 @@ class ShoppingCartDetailsTableSeeder extends Seeder {
             for ($i = 0; $i < $faker->numberBetween(1, 4); $i++)
                 $shoppingCart->storeProductVariant()->attach(
                     $faker->numberBetween(1, $storeProductVariantCount - 1),
-                    ['quantity' => $faker->numberBetween(1, 5)]);
+                    [
+                        'quantity' => $faker->numberBetween(1, 5),
+                        'price' => $faker->numberBetween(1, 900) * 1000,
+                    ]);
         }
     }
 }

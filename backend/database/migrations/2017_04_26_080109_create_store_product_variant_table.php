@@ -16,12 +16,10 @@ class CreateStoreProductVariantTable extends Migration {
             $table->string('price');
             $table->integer('in_stock');
             $table->unsignedInteger('store_id')->nullable();
-            $table->unsignedInteger('product_id');
             $table->unsignedInteger('product_variant_id')->nullable();
         });
         Schema::table('store_product_variant', function (Blueprint $table) {
             $table->foreign('store_id')->references('id')->on('stores');
-            $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('product_variant_id')->references('id')->on('product_variants');
         });
     }
