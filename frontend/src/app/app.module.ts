@@ -27,6 +27,8 @@ import {CartEffect} from './store/effects/cart.effect';
 import {CartModule} from './modules/cart/cart.module';
 import {OrderModule} from './modules/order/order.module';
 import {OrderEffect} from './store/effects/order.effect';
+import {AgmCoreModule} from '@agm/core';
+import {GOOGLE_MAPS} from 'app/util/app.constants';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -54,6 +56,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
     NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: GOOGLE_MAPS.API_KEY
+    }),
 
     AppRoutingModule,
     BrowserModule,

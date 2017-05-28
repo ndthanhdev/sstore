@@ -4,9 +4,9 @@
 
 
 export class Coordinates {
-  latitude: string;
-  longitude: string;
-  accuracy: number;
+  latitude: string | number;
+  longitude: string | number;
+  accuracy?: number;
 
   constructor(that?: Coordinates) {
     if (that) {

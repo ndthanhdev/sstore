@@ -11,6 +11,8 @@ import * as fromRoot from '../../../store/reducers';
 import * as cartActions from '../../../store/actions/cart.action';
 import {CartDetail} from '../../../models/cart-detail.model';
 import {back} from '@ngrx/router-store';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CheckoutComponent} from '../../core/checkout/checkout.component';
 
 @Component({
   selector: 'frontend-cart-detail',
@@ -50,7 +52,7 @@ import {back} from '@ngrx/router-store';
 
       <div class="row justify-content-end mr-4 mb-5">
         <button class="btn btn-link btn-lg" (click)="goBack()">Continue shopping</button>
-        <button class="btn btn-outline-primary btn-lg">Checkout</button>
+        <button class="btn btn-outline-primary btn-lg" (click)="onCheckoutClick()">Checkout</button>
       </div>
 
     </div>
@@ -65,7 +67,8 @@ export class CartDetailComponent implements OnInit {
   loading: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.State>,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private modalService: NgbModal) {
     this.cartSub = this.store.select(fromRoot.getCartCart).subscribe(cart => this.cart = cart);
     this.loading = this.store.select(fromRoot.getCartLoading);
   }
@@ -100,6 +103,13 @@ export class CartDetailComponent implements OnInit {
 
   goBack() {
     this.store.dispatch(back());
+  }
+
+  onCheckoutClick() {
+    const modalRef = this.modalService.open(CheckoutComponent, {
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.name = 'World';
   }
 
 

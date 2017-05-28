@@ -15,10 +15,22 @@ import {AuthService} from './auth.service';
 import {NavbarUtilitiesComponent} from './navbar-utilities/navbar-utilities.component';
 import {GeolocationService} from './geolocation.service';
 import {StoreService} from './store.service';
+import {CheckoutComponent} from './checkout/checkout.component';
+import {PaymentComponent} from './checkout/payment/payment.component';
+import {CloseCartComponent} from './checkout/close-cart/close-cart.component';
+import {NewOrderComponent} from './checkout/new-order/new-order.component';
+import {DeliveryMethodComponent} from './checkout/delivery-method/delivery-method.component';
+import {DeliveringOnstoreComponent} from './checkout/delivering-onstore/delivering-onstore.component';
+import {CreateCartComponent} from './checkout/create-cart/create-cart.component';
+import {DoneOnstoreComponent} from './checkout/done-onstore/done-onstore.component';
+import {DeliveryOnlineComponent} from './checkout/delivery-online/delivery-online.component';
+import {AgmCoreModule} from '@agm/core';
+import {DoneOnlineComponent} from './checkout/done-online/done-online.component';
 
 @NgModule({
   imports: [
     NgbModule,
+    AgmCoreModule,
     SharedModule,
 
     RouterModule,
@@ -33,7 +45,17 @@ import {StoreService} from './store.service';
     ProductSummaryComponent,
     ProductSummaryListComponent,
     ProductSummaryListHeaderComponent,
-    NavbarUtilitiesComponent
+    NavbarUtilitiesComponent,
+    CheckoutComponent,
+    PaymentComponent,
+    CloseCartComponent,
+    NewOrderComponent,
+    DeliveryMethodComponent,
+    DeliveringOnstoreComponent,
+    CreateCartComponent,
+    DoneOnstoreComponent,
+    DeliveryOnlineComponent,
+    DoneOnlineComponent
   ],
   exports: [
     NavbarComponent,

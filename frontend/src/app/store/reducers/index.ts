@@ -70,6 +70,7 @@ export const getAuthUser = Reselect.createSelector(getAuthState, fromAuth.getUse
 export const getAuthMessage = Reselect.createSelector(getAuthState, fromAuth.getMessage);
 
 export const getLayoutCoordinates = Reselect.createSelector(getLayoutState, fromLayout.getCoordinates);
+export const getLayoutDeliveryCoordinates = Reselect.createSelector(getLayoutState, fromLayout.getDeliveryCoordinates);
 
 export const getCatalogCatalogs = Reselect.createSelector(getCatalogState, fromCatalog.getCatalogs);
 

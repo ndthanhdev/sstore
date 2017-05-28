@@ -6,15 +6,20 @@ import {CartDetailComponent} from './cart-detail/cart-detail.component';
 import {CartProductComponent} from './cart-product/cart-product.component';
 import {CartService} from './cart.service';
 import {SharedModule} from '../shared/shared.module';
+import {CoreModule} from '../core/core.module';
+import {CheckoutComponent} from '../core/checkout/checkout.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CartRoutingModule,
-    SharedModule
+    SharedModule,
+
+    CoreModule
   ],
   declarations: [CartDetailComponent, CartProductComponent],
-  providers: [CartService]
+  providers: [CartService],
+  entryComponents: [CheckoutComponent]
 })
 export class CartModule {
 }
