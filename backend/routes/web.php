@@ -97,6 +97,19 @@ $app->group(['prefix' => 'users'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'carts'], function () use ($app) {
 
+    $app->patch('/inactive', [
+        'as' => 'carts/inactive.PATCH',
+        'uses' => 'CartController@setToInactive',
+        'middleware' => ['auth']
+    ]);
+
+    $app->post('/', [
+        'as' => 'carts.POST',
+        'uses' => 'CartController@store',
+        'middleware' => ['auth']
+    ]);
+
+
     $app->get('/', [
         'as' => 'carts.GET',
         'uses' => 'CartController@getActiveCart',
@@ -107,6 +120,7 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
         'as' => 'carts/{id}.GET',
         'uses' => 'CartController@show'
     ]);
+
 
     $app->group(['prefix' => '/{cartId:[0-9]+}/details'], function () use ($app) {
 
@@ -174,13 +188,59 @@ $app->group(['prefix' => 'orders'], function () use ($app) {
         'uses' => 'OrderController@show',
         'middleware' => ['auth']
     ]);
+
+    $app->patch('/{id:[0-9]+}/delivery/on-store', [
+        'as' => 'orders/{id}/delivery/on-store.PATCH',
+        'uses' => 'OrderController@deliveryOnStore',
+        'middleware' => ['auth']
+    ]);
+
+    $app->patch('/{id:[0-9]+}/delivery/online', [
+        'as' => 'orders/{id}/delivery/online.PATCH',
+        'uses' => 'OrderController@deliveryOnline',
+        'middleware' => ['auth']
+    ]);
+
+    $app->patch('/{id:[0-9]+}/done', [
+        'as' => 'orders/{id}/done.PATCH',
+        'uses' => 'OrderController@done',
+        'middleware' => ['auth']
+    ]);
+
+    $app->post('/', [
+        'as' => 'orders.POST',
+        'uses' => 'OrderController@store',
+        'middleware' => ['auth']
+    ]);
 });
+
+///////////
+// INVOICE API
+///////////
+$app->group(['prefix' => 'invoices'], function () use ($app) {
+
+    $app->post('', [
+        'as' => 'invoices.POST',
+        'uses' => 'InvoiceController@store'
+    ]);
+
+    $app->get('/{id:[0-9]+}', [
+        'as' => 'invoices/{id}.GET',
+        'uses' => 'InvoiceController@show'
+    ]);
+
+});
+
 
 ///////////
 // MQTT API
 ///////////
 $app->group(['prefix' => 'mqtt'], function () use ($app) {
 
+    $app->post('/s2d/{deviceId}', [
+        'as' => 'mqtt/s2d.POST',
+        'uses' => 'MQTTController@publishS2DThenSubscribeD2S'
+    ]);
 
     $app->group(['prefix' => 'tests'], function () use ($app) {
 

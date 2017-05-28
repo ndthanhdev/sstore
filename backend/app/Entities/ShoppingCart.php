@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShoppingCart extends Model {
 
-    protected $fillable = ['active'];
+    protected $fillable = ['active', 'user_id'];
 
     public function storeProductVariant() {
         return $this->belongsToMany('App\Entities\StoreProductVariant', 'shopping_cart_details')->withPivot('quantity');

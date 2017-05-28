@@ -6,7 +6,7 @@
 namespace App\Repositories;
 
 
-use Illuminate\Support\Facades\Auth;
+use App\Entities\ShoppingCart;
 use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
@@ -28,14 +28,19 @@ class CartRepository extends BaseRepository implements CacheableInterface {
         ])->find($cartId);
     }
 
-    public function getActiveCart() {
-        $account = Auth::user();
+    public function store($userId) {
+        $activeCart = $this->getActiveCart($userId);
+        $this->setToInactive($activeCart);
 
-        return $this->withCount('details AS product')->findWhere([
-            'user_id' => $account->user_id,
+        return ShoppingCart::create([
+            'user_id' => $userId,
             'active' => true
-        ])->first();
-
+        ]);
     }
 
+    public function getActiveCart($userId) {
+        return $this->withCount('details AS product')
+            ->findWhere(['user_id' => $userId, 'active' => true])
+            ->first();
+    }
 }

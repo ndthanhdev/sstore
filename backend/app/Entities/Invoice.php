@@ -9,5 +9,7 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model {
-
+    protected $fillable = [
+        'order_id'
+    ];
 }

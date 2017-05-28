@@ -21,5 +21,11 @@ return [
 
     'FILE_UPLOAD_SUCCESS' => 'File uploaded successfully!',
 
-    'SHOPPING_CART_UPDATED' => 'Shopping cart has been updated!'
+    'SHOPPING_CART_UPDATED' => 'Shopping cart has been updated!',
+    'SHOPPING_CART_CREATED' => 'Shopping cart has been created!',
+
+    'ORDER_CREATED' => 'Order has been created!',
+    'ORDER_UPDATED' => 'Order has been updated!',
+
+    'INVOICE_CREATED' => 'Invoice has been created!'
 ];
