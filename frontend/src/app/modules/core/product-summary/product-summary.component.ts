@@ -14,7 +14,7 @@ import {ProductSummary} from '../../../models/product.model';
           </frontend-product-variation-values>
         </div>
 
-        <div class="mb-2"><strong>Price: </strong> {{productSummary.default_variant[0].pivot.price | VND}}</div>
+        <div class="mb-2"><strong>Price: </strong> {{productSummary.default_variant[0].stores[0].pivot.price | VND}}</div>
 
         <div class="mb-2" *ngIf="totalReviews > 0">
           <strong>Rating:</strong>
@@ -69,7 +69,8 @@ export class ProductSummaryComponent implements OnInit, OnChanges {
   onPutToCartButtonClick() {
     this.putToCartButtonClicked.emit({
       quantity: 1,
-      store_product_variant_id: this.productSummary.default_variant[0].pivot.id
+      price: this.productSummary.default_variant[0].stores[0].pivot.price,
+      store_product_variant_id: this.productSummary.default_variant[0].stores[0].pivot.id
     });
   }
 }

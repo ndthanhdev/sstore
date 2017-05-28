@@ -18,9 +18,13 @@ class ProductVariant extends Model {
         return $this->hasMany('App\Entities\ProductVariationValue');
     }
 
+    public function product(){
+        return $this->belongsTo('App\Entities\Product');
+    }
+
     public function stores() {
         return $this
             ->belongsToMany('App\Entities\Store', 'store_product_variant')
-            ->withPivot(['price', 'in_stock', 'store_id']);
+            ->withPivot(['price', 'in_stock', 'id']);
     }
 }

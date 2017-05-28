@@ -1,5 +1,6 @@
 import {ProductVariationValue} from './product-variation-values.model';
-import {StoreProductVariant} from './store-product-variant';
+import {Store} from './store.model';
+import {Product} from './product.model';
 /**
  * Created by vunguyenhung on 5/11/17.
  */
@@ -7,6 +8,7 @@ import {StoreProductVariant} from './store-product-variant';
 export class ProductVariant {
   id: number;
   default: boolean;
-  pivot: StoreProductVariant;
+  stores: Store[];
   variation_values: ProductVariationValue[];
+  product: Product;
 }

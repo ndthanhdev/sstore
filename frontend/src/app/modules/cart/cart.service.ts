@@ -37,6 +37,7 @@ export class CartService extends GenericService {
   public addProduct(cartDetail: CartDetail): Observable<Response> {
     return this.post(new RequestOptions({url: `${this.BASE_URL}/${cartDetail.shopping_cart_id}/details`}), {
       quantity: cartDetail.quantity,
+      price: cartDetail.price,
       store_product_variant_id: cartDetail.store_product_variant_id
     });
   }

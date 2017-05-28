@@ -71,6 +71,7 @@ export const getAuthMessage = Reselect.createSelector(getAuthState, fromAuth.get
 
 export const getLayoutCoordinates = Reselect.createSelector(getLayoutState, fromLayout.getCoordinates);
 export const getLayoutDeliveryCoordinates = Reselect.createSelector(getLayoutState, fromLayout.getDeliveryCoordinates);
+export const getLayoutCheckoutProgess = Reselect.createSelector(getLayoutState, fromLayout.getCheckoutProgress);
 
 export const getCatalogCatalogs = Reselect.createSelector(getCatalogState, fromCatalog.getCatalogs);
 

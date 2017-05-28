@@ -10,14 +10,14 @@ import {CartDetail} from '../../../models/cart-detail.model';
         <div class="row">
           <!--START PRODUCT IMAGE-->
           <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
-            <img [src]="detail.store_product_variant.product.img_url" alt="cats" class="img-thumbnail">
+            <img [src]="detail.store_product_variant.product_variant.product.img_url" alt="cats" class="img-thumbnail">
           </div>
           <!--END PRODUCT IMAGE-->
 
           <!--START PRODUCT INFO-->
           <div class="col-lg-8 col-12">
             <div class="mb-1">
-              <h4 class="lead d-inline-block"><strong>Name: </strong>{{detail.store_product_variant.product.name}}</h4>
+              <h4 class="lead d-inline-block"><strong>Name: </strong>{{detail.store_product_variant.product_variant.product.name}}</h4>
               <button class="btn btn-outline-danger btn-sm float-right" (click)="onDeleteButtonClick()">Delete</button>
             </div>
 

@@ -49,6 +49,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.store.dispatch(new cartActions.StartProductAddAction({
       cartDetail: {
         shopping_cart_id: this.activeCart.id,
+        price: $event.price,
         quantity: $event.quantity,
         store_product_variant_id: $event.store_product_variant_id
       }

@@ -1,3 +1,4 @@
+import {StoreProductVariant} from './store-product-variant';
 /**
  * Created by vunguyenhung on 5/18/17.
  */
@@ -11,4 +12,5 @@ export class Store {
   latitude: string;
   primary: boolean;
   manager_id: number;
+  pivot: StoreProductVariant;
 }

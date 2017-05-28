@@ -22,7 +22,7 @@ import {Subscription} from 'rxjs/Subscription';
       <span class="display-4">Orders:</span>
       <hr>
 
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-start align-items-center">
         <ngb-pagination (pageChange)="onPageChange($event)"
                         [collectionSize]="orderPage?.total"
                         [maxSize]="5"
@@ -31,9 +31,11 @@ import {Subscription} from 'rxjs/Subscription';
                         [page]="currentPage">
         </ngb-pagination>
 
+        <i *ngIf="(loading | async)" class="fa fa-spinner fa-pulse fa-2x fa-fw ml-2 align-self-start"></i>
+
         <div [(ngModel)]="filterMode" ngbRadioGroup name="filter-groups"
              (ngModelChange)="onFilterModeChange()"
-             class="btn-group btn-group-sm align-self-start">
+             class="btn-group btn-group-sm align-self-start ml-auto">
           <label class="btn btn-sm btn-outline-primary">
             <input type="radio" [value]="1"> All
           </label>
@@ -49,34 +51,31 @@ import {Subscription} from 'rxjs/Subscription';
         </div>
       </div>
 
-      <frontend-loading *ngIf="(loading | async);else show"></frontend-loading>
-      <ng-template #show>
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th>#</th>
-            <th>Code</th>
-            <th>State</th>
-            <th>Created At</th>
-            <th>Last Updated</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let order of orderPage?.data; let i = index">
-            <th scope="row">{{i + 1}}</th>
-            <td><a [routerLink]="['/orders', order.id]">{{order.code}}</a></td>
-            <td>
-              <frontend-order-state-button
-                [state]="order.state">
-              </frontend-order-state-button>
-            </td>
-            <td>{{order.created_at | amTimeAgo}}</td>
-            <td>{{order.updated_at | amTimeAgo}}</td>
-          </tr>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Code</th>
+          <th>State</th>
+          <th>Created At</th>
+          <th>Last Updated</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orderPage?.data; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td><a [routerLink]="['/orders', order.id]">{{order.code}}</a></td>
+          <td>
+            <frontend-order-state-button
+              [state]="order.state">
+            </frontend-order-state-button>
+          </td>
+          <td>{{order.created_at | amTimeAgo}}</td>
+          <td>{{order.updated_at | amTimeAgo}}</td>
+        </tr>
 
-          </tbody>
-        </table>
-      </ng-template>
+        </tbody>
+      </table>
     </div>
   `,
   styleUrls: ['./order.component.scss']

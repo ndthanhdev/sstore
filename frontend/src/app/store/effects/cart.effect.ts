@@ -47,4 +47,11 @@ export class CartEffect {
     .switchMap(action => this.cartService.deleteProduct(action.payload.cartId, action.payload.cartDetailId)
       .concatMap(cart => of(new cartActions.DeleteProductAction({cartDetailId: action.payload.cartDetailId}))));
 
+  // @Effect()
+  // CartClose$: Observable<Action> = this.actions$
+  //   .ofType(layoutActions.ActionTypes.SET_CHECKOUT_PROGRESS)
+  //   .filter(action => action.payload.checkoutProgress === CheckoutProgress.CLOSE_CART)
+  //   .switchMap(action => this.cartService.deleteProduct(action.payload.cartId, action.payload.cartDetailId)
+  //     .concatMap(cart => of(new cartActions.DeleteProductAction({cartDetailId: action.payload.cartDetailId}))));
+
 }

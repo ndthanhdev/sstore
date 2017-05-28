@@ -1,6 +1,7 @@
 import {type} from '../../util/helper';
 import {Action} from '@ngrx/store';
 import {Coordinates} from '../../models/coordinates.model';
+import {CheckoutProgress} from '../../models/checkout-progress.model';
 /**
  * Created by vunguyenhung on 5/5/17.
  */
@@ -13,7 +14,9 @@ export const ActionTypes = {
   GET_COORDINATES: type('[Layout] Get Coordinates'),
   GET_COORDINATES_FAIL: type('[Layout] Get Coordinates Fail'),
 
-  SET_DELIVERY_COORDINATES: type('[Layout] Set Delivery Coordinates')
+  SET_DELIVERY_COORDINATES: type('[Layout] Set Delivery Coordinates'),
+
+  SET_CHECKOUT_PROGRESS: type('[Layout] Set Checkout Progress')
 };
 
 export class StartNotifyAction implements Action {
@@ -55,6 +58,12 @@ export class SetDeliveryCoordinatesAction implements Action {
   constructor(public payload: { deliveryCoordinates: any }) {
   }
 }
+export class SetCheckoutProgressAction implements Action {
+  type = ActionTypes.SET_CHECKOUT_PROGRESS;
+
+  constructor(public payload: { checkoutProgress: CheckoutProgress }) {
+  }
+}
 
 export type Actions
   = StartNotifyAction
@@ -62,4 +71,5 @@ export type Actions
   | StartCoordinatesGetAction
   | GetCoordinatesAction
   | GetCoordinatesFailAction
-  | SetDeliveryCoordinatesAction;
+  | SetDeliveryCoordinatesAction
+  | SetCheckoutProgressAction;

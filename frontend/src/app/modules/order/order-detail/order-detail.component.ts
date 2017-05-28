@@ -65,7 +65,7 @@ import {Observable} from 'rxjs/Observable';
         <tbody>
         <tr *ngFor="let detail of order?.shopping_cart.details">
           <th scope="row">1</th>
-          <td><a href="#">{{detail.store_product_variant.product.name}}</a></td>
+          <td><a href="#">{{detail.store_product_variant.product_variant.product.name}}</a></td>
           <td>
             <frontend-product-variation-values
               [variationValues]="detail.store_product_variant.product_variant.variation_values">

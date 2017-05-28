@@ -20,14 +20,10 @@ class StoreProductVariantTableSeeder extends Seeder {
 
         foreach ($productVariants as $productVariant) {
             foreach ($stores as $store) {
-
-                if ($faker->optional(0.8, false)->randomDigit) {
-                    $productVariant->stores()->attach($store->id, [
-                        'in_stock' => $faker->numberBetween(1, 60),
-                        'price' => $faker->numberBetween(1, 900) * 1000
-                    ]);
-                }
-
+                $productVariant->stores()->attach($store->id, [
+                    'in_stock' => $faker->numberBetween(1, 60),
+                    'price' => $faker->numberBetween(1, 900) * 1000
+                ]);
             }
         }
     }

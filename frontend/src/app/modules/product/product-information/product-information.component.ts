@@ -43,7 +43,7 @@ import {ProductVariant} from '../../../models/product-variant.model';
             </div>
           </div>
           <!--END SORT DROPDOWN-->
-          <div class="lead mb-2">Price: <strong>{{currentProductVariant.pivot.price | VND}}</strong></div>
+          <div class="lead mb-2">Price: <strong>{{currentProductVariant.stores[0].pivot.price | VND}}</strong></div>
 
           <div class="form-group mb-0 row">
             <span class="lead col-2">Quantity: </span>
@@ -99,7 +99,8 @@ export class ProductInformationComponent implements OnInit, OnChanges {
   onPutToCartButtonClick() {
     this.putToCartClicked.emit({
       quantity: this.quantity,
-      store_product_variant_id: this.currentProductVariant.pivot.id
+      price: this.currentProductVariant.stores[0].pivot.price,
+      store_product_variant_id: this.currentProductVariant.stores[0].pivot.id
     });
   }
 }

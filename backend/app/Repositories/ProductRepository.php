@@ -26,9 +26,9 @@ class ProductRepository extends BaseRepository implements CacheableInterface {
 
     public function show($productId, $storeId) {
         return Product::with([
-            'variants' => function ($query) use ($storeId) { $query->where('store_id', $storeId); },
+            'variants.stores' => function ($query) use ($storeId) { $query->where('store_id', $storeId); },
             'variants.variationValues',
-            'defaultVariant' => function ($query) use ($storeId) { $query->where('store_id', $storeId); },
+            'defaultVariant.stores' => function ($query) use ($storeId) { $query->where('store_id', $storeId); },
             'defaultVariant.variationValues',
             'reviews.user',
             'productType',
