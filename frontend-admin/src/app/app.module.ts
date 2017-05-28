@@ -16,6 +16,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {DashboardEffect} from "./store/effects/dashboard.effect";
+import {ProductEffect} from "./store/effects/product.effect";
+import {ProductModule} from "./modules/product/product.module";
 
 @NgModule({
   declarations: [
@@ -26,16 +28,18 @@ import {DashboardEffect} from "./store/effects/dashboard.effect";
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(DashboardEffect),
+    EffectsModule.run(ProductEffect),
 
     BrowserModule,
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    DashboardModule,
     SharedModule,
     CoreModule,
+    DashboardModule,
     StoreModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]
