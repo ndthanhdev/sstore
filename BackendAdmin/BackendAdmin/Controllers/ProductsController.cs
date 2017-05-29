@@ -134,11 +134,12 @@ namespace BackendAdmin.Controllers
             return Ok(products);
         }
 
-        // GET: api/Products/{id}/ProductVariants
+        // GET: api/Products/{id}/ProductVariants?page=1
         [HttpGet("{id}/ProductVariants")]
         public async Task<PaginatedList<ProductVariants>> GetProductVariants(int id, int page = 1, int size = 3)
         {
             var source = _context.ProductVariants
+                .Where(productVariants => productVariants.ProductId == id)
                 .Include(productVariants => productVariants.ProductVariationValues)
                 .Include(productVariants => productVariants.StoreProductVariant)
                 .ThenInclude(storeProductVariant => storeProductVariant.Store);

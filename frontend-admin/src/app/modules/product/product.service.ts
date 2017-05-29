@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {GenericService} from "../../generic.service";
 import {Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {PaginatedListOfProducts} from "../../models/models";
+import {PaginatedListOfProducts, PaginatedListOfProductVariants, Products} from "../../models/models";
 
 @Injectable()
 export class ProductService extends GenericService {
@@ -21,9 +21,18 @@ export class ProductService extends GenericService {
     }));
   }
 
-  public loadProductDetail(id: number): Observable<PaginatedListOfProducts> {
+  public loadProductDetail(id: number): Observable<Products> {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/${id}`
+    }));
+  }
+
+  public loadProductVariants(id: number, page: number): Observable<PaginatedListOfProductVariants> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/${id}/ProductVariants`,
+      params: {
+        'page': page
+      }
     }));
   }
 

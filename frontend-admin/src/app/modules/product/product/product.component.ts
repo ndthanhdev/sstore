@@ -16,10 +16,11 @@ import * as productAction from '../../../store/actions/product.action';
 export class ProductComponent implements OnInit {
 
   sub: Subscription;
-  page: number;
-  paginatedListOfProducts: Observable<PaginatedListOfProducts>;
   isBusy: Observable<boolean>;
-  now:Date;
+  now: Date;
+
+  paginatedListOfProductsSub: Subscription;
+  paginatedListOfProducts: PaginatedListOfProducts;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -29,24 +30,35 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
 
-    this.paginatedListOfProducts = this.store.select(rootReducer.getProductPaginatedListOfProducts);
     this.isBusy = this.store.select(rootReducer.getProductIsBusy);
+
+    this.paginatedListOfProductsSub = this.store.select(rootReducer.getProductPaginatedListOfProducts)
+      .subscribe(paginatedListOfProducts => {
+        this.paginatedListOfProducts = paginatedListOfProducts;
+      });
+
     this.sub = this.route
       .queryParams
-      .filter(params => +params['page'] !== this.page)
       .subscribe(params => {
-        // Defaults to 0 if no query param provided.
-        this.page = +params['page'] || 1;
-        this.store.dispatch(new productAction.StartProductsLoadAction({page: this.page}));
+        // if (!params['page'])
+        //   this.router.navigate(['/product'], {queryParams: {page: 1}});
+        // else
+        //   this.store.dispatch(new productAction.StartProductsLoadAction({page: +params['page']}));
+        this.store.dispatch(new productAction.StartProductsLoadAction({page: +params['page'] || 1}));
       });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.paginatedListOfProductsSub.unsubscribe();
   }
 
   pageChanged($event) {
-    this.router.navigate(['/product'], {queryParams: {page: $event}});
+    if (!isNaN($event)
+      && this.paginatedListOfProducts
+      && this.paginatedListOfProducts.pageIndex != $event) {
+      this.router.navigate(['/product'], {queryParams: {page: $event}});
+    }
   }
 
 

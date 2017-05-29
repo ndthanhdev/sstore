@@ -1,6 +1,6 @@
 import {type} from "../../util/helper";
 import {Action} from "@ngrx/store";
-import {PaginatedListOfProducts, Products} from "../../models/models";
+import {PaginatedListOfProducts, PaginatedListOfProductVariants, Products} from "../../models/models";
 
 export const ActionTypes = {
 
@@ -9,6 +9,9 @@ export const ActionTypes = {
 
   START_PRODUCT_DETAIL_LOAD: type('[Dashboard] Start Product Detail Load'),
   LOAD_PRODUCT_DETAIL: type('[Dashboard] Load Product Detail'),
+
+  START_PRODUCT_VARIANT_LOAD: type('[Dashboard] Start Product Variant Load'),
+  LOAD_PRODUCT_VARIANT: type('[Dashboard] Load Product Variant'),
 
 };
 
@@ -42,7 +45,24 @@ export class LoadProductDetailAction implements Action {
   }
 }
 
+
+export class StartProductVariantsLoadAction implements Action {
+  type = ActionTypes.START_PRODUCT_VARIANT_LOAD;
+
+  constructor(public payload: { id: number, page: number }) {
+  }
+}
+
+export class LoadProductVariantsAction implements Action {
+  type = ActionTypes.LOAD_PRODUCT_VARIANT;
+
+  constructor(public payload: { paginatedListOfProductVariants: PaginatedListOfProductVariants }) {
+  }
+}
+
 export type Actions = StartProductsLoadAction
   | LoadProductsAction
   | StartProductDetailLoadAction
-  | LoadProductDetailAction;
+  | LoadProductDetailAction
+  | StartProductVariantsLoadAction
+  | LoadProductVariantsAction;

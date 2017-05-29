@@ -230,3 +230,12 @@ export interface PaginatedListOfProducts {
   readonly hasNextPage?: boolean | null;
   data?: Products[] | null;
 }
+
+export interface PaginatedListOfProductVariants {
+  pageIndex?: number | null;
+  totalPages?: number | null;
+  count?: number | null;
+  readonly hasPreviousPage?: boolean | null;
+  readonly hasNextPage?: boolean | null;
+  data?: ProductVariants[] | null;
+}

@@ -11,9 +11,9 @@
   <!--START PAGINATION-->
   <div class="d-flex align-items-start">
     <ngb-pagination
-      [collectionSize]="(paginatedListOfProducts | async)?.count"
+      [collectionSize]="paginatedListOfProducts?.count"
       [pageSize]="10"
-      [page]="page"
+      [page]="paginatedListOfProducts?.pageIndex"
       (pageChange)="pageChanged($event)">
     </ngb-pagination>
     <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
@@ -24,20 +24,20 @@
 
   <!--START ITEM CARD-->
   <frontend-admin-product-item
-    *ngFor="let product of (paginatedListOfProducts | async)?.data" [product]="product"></frontend-admin-product-item>
+    *ngFor="let product of paginatedListOfProducts?.data" [product]="product"></frontend-admin-product-item>
   <!--END ITEM CARD-->
 
   <!--START PAGINATION-->
   <div class="d-flex align-items-start">
     <ngb-pagination
-      [collectionSize]="(paginatedListOfProducts | async)?.count"
+      [collectionSize]="paginatedListOfProducts?.count"
       [pageSize]="10"
       [page]="page"
       (pageChange)="pageChanged($event)">
     </ngb-pagination>
     <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
                                       class="align-self-center"></frontend-admin-loading-indicator>
-    <button class="btn btn-outline-primary ml-auto">Add Product</button>
+    <button class="btn btn-outline-primary ml-auto" routerLink="/product/create" routerLinkActive>Add Product</button>
   </div>
   <!--END PAGINATION-->
 </div>
