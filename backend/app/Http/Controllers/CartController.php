@@ -58,6 +58,7 @@ class CartController extends Controller {
         ]);
 
         $response = [
+            'id' => $createdCart->id,
             'msg' => config('msg.SHOPPING_CART_CREATED'),
             'link' => [
                 'name' => 'VIEW_SHOPPING_CART',
