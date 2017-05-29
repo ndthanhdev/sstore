@@ -53,7 +53,6 @@ import {CartDetail} from '../../../models/cart-detail.model';
         </div>
       </div>
     </div>
-
     <hr>
   `,
   styleUrls: ['./cart-product.component.scss']

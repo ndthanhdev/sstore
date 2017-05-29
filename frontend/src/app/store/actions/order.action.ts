@@ -12,6 +12,9 @@ export const ActionTypes = {
 
   START_ORDER_LOAD: type('[Order] Start Order Load'),
   LOAD_ORDER: type('[Order] Load Order'),
+
+  START_ORDER_CREATE: type('[Order] Start Order Create'),
+  CREATE_ORDER: type('[Order] Create Order'),
 };
 
 export class StartOrdersLoadAction implements Action {
@@ -42,7 +45,20 @@ export class LoadOrderAction implements Action {
   }
 }
 
+export class StartOrderCreateAction implements Action {
+  type = ActionTypes.START_ORDER_CREATE;
+
+  constructor(public payload: { cartId: number }) {
+  }
+}
+
+export class CreateOrderAction implements Action {
+  type = ActionTypes.CREATE_ORDER;
+}
+
 export type Actions = StartOrdersLoadAction
   | LoadOrdersAction
   | StartOrderLoadAction
-  | LoadOrderAction;
+  | LoadOrderAction
+  | StartOrderCreateAction
+  | CreateOrderAction;

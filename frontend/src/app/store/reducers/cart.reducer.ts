@@ -72,7 +72,6 @@ export function reducer(state: State = initialState, action): State {
         })
       });
 
-
     case authActions.ActionTypes.LOGOUT:
       return Object.assign({}, state, {
         activeCart: null

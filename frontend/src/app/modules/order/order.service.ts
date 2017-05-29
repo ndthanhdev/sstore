@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Order} from '../../models/order.model';
 import {Page} from '../../models/page.model';
 import {GenericService} from '../../generic.service';
-import {RequestOptions} from '@angular/http';
+import {RequestOptions, Response} from '@angular/http';
 
 @Injectable()
 export class OrderService extends GenericService {
@@ -12,7 +12,6 @@ export class OrderService extends GenericService {
     super(injector);
     this.BASE_URL += '/orders';
   }
-
 
   public loadOrders(page: number): Observable<Page<Order>> {
     return this.getWithAuth(new RequestOptions({
@@ -24,6 +23,10 @@ export class OrderService extends GenericService {
     return this.getWithAuth(new RequestOptions({
       url: `${this.BASE_URL}/${orderId}`
     }));
+  }
+
+  createOrder(cartId: number): Observable<Response> {
+    return this.postWithAuth(new RequestOptions({url: `${this.BASE_URL}`}), {cartId: cartId});
   }
 
 }

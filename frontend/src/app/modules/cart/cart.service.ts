@@ -29,6 +29,12 @@ export class CartService extends GenericService {
     }));
   }
 
+  public closeCart(): Observable<Response> {
+    return this.patchWithAuth(new RequestOptions({
+      url: `${this.BASE_URL}/inactive`
+    }));
+  }
+
   public loadActiveCart(): Observable<ActiveCart> {
     return this.getWithAuth();
   }

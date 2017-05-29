@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -15,18 +15,14 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-link" (click)="activeModal.close('Close click')">Cancel</button>
-      <button class="btn btn-outline-primary">Pay</button>
+      <button class="btn btn-outline-primary" (click)="payButtonClicked.emit()">Pay</button>
     </div>
   `,
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent {
+  @Output() payButtonClicked = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal) {
   }
-
-  ngOnInit() {
-    // console.log('on Init payment');
-  }
-
 }

@@ -17,7 +17,10 @@ export const ActionTypes = {
   ADD_PRODUCT: type('[Cart] Add Product'),
 
   START_PRODUCT_DELETE: type('[Cart] Start Product Delete'),
-  DELETE_PRODUCT: type('[Cart] Delete Product')
+  DELETE_PRODUCT: type('[Cart] Delete Product'),
+
+  START_CART_CLOSE: type('[Cart] Start Cart Close'),
+  CLOSE_CART: type('[Cart] Close Cart')
 };
 
 export class StartCartLoadAction implements Action {
@@ -76,6 +79,15 @@ export class DeleteProductAction implements Action {
   }
 }
 
+
+export class StartCartCloseAction implements Action {
+  type = ActionTypes.START_CART_CLOSE;
+}
+
+export class CloseCartAction implements Action {
+  type = ActionTypes.CLOSE_CART;
+}
+
 export type Actions =
   StartCartLoadAction
   | LoadCartAction
@@ -84,4 +96,6 @@ export type Actions =
   | StartProductAddAction
   | AddProductAction
   | StartProductDeleteAction
-  | DeleteProductAction;
+  | DeleteProductAction
+  | StartCartCloseAction
+  | CloseCartAction;

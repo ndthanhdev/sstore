@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+
+import * as fromRoot from '../../../../store/reducers';
+import * as cartActions from '../../../../store/actions/cart.action';
 
 @Component({
   selector: 'frontend-close-cart',
@@ -14,10 +18,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CloseCartComponent implements OnInit {
 
-  constructor() {
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new cartActions.StartCartCloseAction());
   }
 
 }

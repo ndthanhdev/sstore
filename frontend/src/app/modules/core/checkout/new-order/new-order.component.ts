@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
 
+import * as fromRoot from '../../../../store/reducers';
+import * as orderActions from '../../../../store/actions/order.action';
 @Component({
   selector: 'frontend-new-order',
   template: `
@@ -13,11 +16,13 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./new-order.component.scss']
 })
 export class NewOrderComponent implements OnInit {
+  @Input() cartId: number;
 
-  constructor() {
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new orderActions.StartOrderCreateAction({cartId: this.cartId}));
   }
 
 }

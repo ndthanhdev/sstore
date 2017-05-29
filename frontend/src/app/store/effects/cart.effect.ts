@@ -14,6 +14,8 @@ import {of} from 'rxjs/observable/of';
 import {CartService} from '../../modules/cart/cart.service';
 
 import * as cartActions from '../actions/cart.action';
+import * as layoutActions from '../actions/layout.action';
+import {CheckoutProgress} from '../../models/checkout-progress.model';
 
 @Injectable()
 export class CartEffect {
@@ -47,11 +49,13 @@ export class CartEffect {
     .switchMap(action => this.cartService.deleteProduct(action.payload.cartId, action.payload.cartDetailId)
       .concatMap(cart => of(new cartActions.DeleteProductAction({cartDetailId: action.payload.cartDetailId}))));
 
-  // @Effect()
-  // CartClose$: Observable<Action> = this.actions$
-  //   .ofType(layoutActions.ActionTypes.SET_CHECKOUT_PROGRESS)
-  //   .filter(action => action.payload.checkoutProgress === CheckoutProgress.CLOSE_CART)
-  //   .switchMap(action => this.cartService.deleteProduct(action.payload.cartId, action.payload.cartDetailId)
-  //     .concatMap(cart => of(new cartActions.DeleteProductAction({cartDetailId: action.payload.cartDetailId}))));
+  @Effect()
+  CartClose$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_CART_CLOSE)
+    .switchMap(action => this.cartService.closeCart()
+      .concatMap(cart => Observable.from([
+        new cartActions.CloseCartAction(),
+        new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.NEW_ORDER})
+      ])));
 
 }

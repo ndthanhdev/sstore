@@ -17,7 +17,7 @@ export const initialState: State = {
   coordinates: null,
   error: null,
   deliveryCoordinates: GOOGLE_MAPS.HCMC_LOCATION,
-  checkoutProgress: CheckoutProgress.NONE
+  checkoutProgress: CheckoutProgress.PAYMENT
 };
 
 
