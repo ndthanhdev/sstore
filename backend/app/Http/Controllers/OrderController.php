@@ -36,6 +36,7 @@ class OrderController extends Controller {
         $createdOrder = $this->orderRepository->store($data['cartId']);
 
         $response = [
+            'id' => $createdOrder->id,
             'msg' => config('msg.ORDER_CREATED'),
             'link' => [
                 'name' => 'VIEW_ORDER',
