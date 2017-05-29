@@ -71,7 +71,8 @@ export const getAuthMessage = Reselect.createSelector(getAuthState, fromAuth.get
 
 export const getLayoutCoordinates = Reselect.createSelector(getLayoutState, fromLayout.getCoordinates);
 export const getLayoutDeliveryCoordinates = Reselect.createSelector(getLayoutState, fromLayout.getDeliveryCoordinates);
-export const getLayoutCheckoutProgess = Reselect.createSelector(getLayoutState, fromLayout.getCheckoutProgress);
+export const getLayoutCheckoutProgress = Reselect.createSelector(getLayoutState, fromLayout.getCheckoutProgress);
+export const getLayoutDoneMsg = Reselect.createSelector(getLayoutState, fromLayout.getDoneMsg);
 
 export const getCatalogCatalogs = Reselect.createSelector(getCatalogState, fromCatalog.getCatalogs);
 
@@ -91,6 +92,7 @@ export const getCartLoading = Reselect.createSelector(getCartState, fromCart.get
 export const getOrderOrders = Reselect.createSelector(getOrderState, fromOrder.getOrders);
 export const getOrderOrder = Reselect.createSelector(getOrderState, fromOrder.getOrder);
 export const getOrderLoading = Reselect.createSelector(getOrderState, fromOrder.getLoading);
+export const getOrderCreatedOrderId = Reselect.createSelector(getOrderState, fromOrder.getCreatedOrderId);
 
 
 

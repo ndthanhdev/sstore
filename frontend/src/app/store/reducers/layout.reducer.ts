@@ -11,13 +11,15 @@ export interface State {
   error: any;
   deliveryCoordinates: Coordinates;
   checkoutProgress: CheckoutProgress;
+  doneMsg: string;
 }
 
 export const initialState: State = {
   coordinates: null,
   error: null,
   deliveryCoordinates: GOOGLE_MAPS.HCMC_LOCATION,
-  checkoutProgress: CheckoutProgress.PAYMENT
+  checkoutProgress: CheckoutProgress.PAYMENT,
+  doneMsg: null
 };
 
 
@@ -44,6 +46,11 @@ export function reducer(state: State = initialState, action: layoutActions.Actio
         checkoutProgress: action.payload.checkoutProgress
       });
 
+    case layoutActions.ActionTypes.SET_CHECKOUT_DONE_MSG:
+      return Object.assign({}, state, {
+        doneMsg: action.payload.doneMsg
+      });
+
     default:
       return state;
   }
@@ -52,3 +59,4 @@ export function reducer(state: State = initialState, action: layoutActions.Actio
 export const getCoordinates = (state: State) => state.coordinates;
 export const getDeliveryCoordinates = (state: State) => state.deliveryCoordinates;
 export const getCheckoutProgress = (state: State) => state.checkoutProgress;
+export const getDoneMsg = (state: State) => state.doneMsg;

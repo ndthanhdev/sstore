@@ -18,7 +18,6 @@ import {OrderStateButtonComponent} from './order-state-button/order-state-button
     FormsModule,
     SharedModule,
 
-
     MomentModule,
     NgbModule
   ],

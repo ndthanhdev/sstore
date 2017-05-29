@@ -28,28 +28,26 @@ import {Observable} from 'rxjs/Observable';
     </frontend-new-order>
 
     <frontend-delivery-method
+      (onStoreButtonClicked)="onOnStoreButtonClick()"
+      (onlineButtonClicked)="onOnlineButtonClick()"
       *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DELIVERY_METHOD)">
     </frontend-delivery-method>
 
     <frontend-delivering-onstore
-      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DONE_ONSTORE)">
+      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DELIVERING_ONSTORE)">
     </frontend-delivering-onstore>
+
+    <frontend-delivery-online
+      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DELIVERING_ONLINE)">
+    </frontend-delivery-online>
 
     <frontend-create-cart
       *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.CREATE_CART)">
     </frontend-create-cart>
 
-    <frontend-done-onstore
-      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DONE_ONSTORE)">
-    </frontend-done-onstore>
-
-    <frontend-delivery-online
-      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DONE_ONLINE)">
-    </frontend-delivery-online>
-
-    <frontend-done-online
-      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DONE_ONLINE)">
-    </frontend-done-online>
+    <frontend-done
+      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DONE)">
+    </frontend-done>
   `,
   styleUrls: ['./checkout.component.scss']
 })
@@ -64,15 +62,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     CLOSE_CART: CheckoutProgress.CLOSE_CART,
     NEW_ORDER: CheckoutProgress.NEW_ORDER,
     DELIVERY_METHOD: CheckoutProgress.DELIVERY_METHOD,
-    DELIVERY_ONSTORE: CheckoutProgress.DELIVERY_ONSTORE,
-    DELIVERY_ONLINE: CheckoutProgress.DONE_ONLINE,
+    DELIVERING_ONSTORE: CheckoutProgress.DELIVERING_ONSTORE,
+    DELIVERING_ONLINE: CheckoutProgress.DELIVERING_ONLINE,
     CREATE_CART: CheckoutProgress.CREATE_CART,
-    DONE_ONSTORE: CheckoutProgress.DONE_ONSTORE,
-    DONE_ONLINE: CheckoutProgress.DONE_ONLINE
+    DONE: CheckoutProgress.DONE,
   };
 
   constructor(private store: Store<fromRoot.State>) {
-    this.checkoutProgressSub = this.store.select(fromRoot.getLayoutCheckoutProgess).subscribe(progress => this.checkoutProgress = progress);
+    this.checkoutProgressSub = this.store.select(fromRoot.getLayoutCheckoutProgress).subscribe(progress => this.checkoutProgress = progress);
     this.activeCart = this.store.select(fromRoot.getCartActiveCart);
   }
 
@@ -90,5 +87,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   onPayButtonClick() {
     this.store.dispatch(new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.CLOSE_CART}));
+  }
+
+  onOnStoreButtonClick() {
+    this.store.dispatch(new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.DELIVERING_ONSTORE}));
+  }
+
+  onOnlineButtonClick() {
+    this.store.dispatch(new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.DELIVERING_ONLINE}));
   }
 }

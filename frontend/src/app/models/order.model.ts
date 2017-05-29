@@ -16,6 +16,10 @@ export class Order {
   rating: number;
   comment: string;
   state: OrderState;
+  address: string;
+  latitude: string;
+  longitude: string;
+  tel: string;
   created_at: Date;
   updated_at: Date;
   shopping_cart_id: number;

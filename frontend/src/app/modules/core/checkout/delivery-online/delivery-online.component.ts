@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 
 import * as fromRoot from '../../../../store/reducers';
 import * as layoutActions from '../../../../store/actions/layout.action';
+import * as orderActions from '../../../../store/actions/order.action';
 
 @Component({
   selector: 'frontend-delivery-online',
@@ -65,8 +66,8 @@ import * as layoutActions from '../../../../store/actions/layout.action';
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-link">Reset</button>
-      <button class="btn btn-outline-primary">Done</button>
+      <button type="button" class="btn btn-link" (click)="onResetButtonClick()">Reset</button>
+      <button class="btn btn-outline-primary" (click)="onDoneButtonClick()" [disabled]="deliveryLocationForm.invalid">Done</button>
     </div>
   `,
   styleUrls: ['./delivery-online.component.scss']
@@ -81,6 +82,9 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
   currentLocationSub: Subscription;
 
   zoom = GOOGLE_MAPS.DEFAULT_ZOOM_LEVEL;
+
+  createdOrderId: number;
+  createdOrderIdSub: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private store: Store<fromRoot.State>) {
@@ -99,6 +103,9 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
       });
     });
     this.currentLocationSub = this.store.select(fromRoot.getLayoutCoordinates).subscribe(coords => this.currentLocation = coords);
+
+    this.createdOrderIdSub = this.store.select(fromRoot.getOrderCreatedOrderId)
+      .subscribe(createdOrderId => this.createdOrderId = createdOrderId);
   }
 
   ngOnInit() {
@@ -116,9 +123,25 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
           longitude: +this.currentLocation.longitude
         }
       }));
+      this.store.dispatch(new layoutActions.SetCheckoutDoneMsgAction({doneMsg: 'Your order is being delivered!'}));
     } else {
       this.store.dispatch(new layoutActions.StartCoordinatesGetAction());
     }
+  }
+
+  onResetButtonClick() {
+    this.deliveryLocationForm.reset();
+  }
+
+
+  onDoneButtonClick() {
+    this.store.dispatch(new orderActions.StartOrderDeliveringOnlineAction({
+      orderId: this.createdOrderId,
+      address: this.deliveryLocationForm.get('address').value,
+      latitude: this.deliveryLocationForm.get('latitude').value,
+      longitude: this.deliveryLocationForm.get('longitude').value,
+      tel: this.deliveryLocationForm.get('tel').value
+    }));
   }
 
   onDragEnd($event) {
@@ -133,5 +156,6 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.currentLocationSub.unsubscribe();
     this.deliveryCoordinatesSub.unsubscribe();
+    this.createdOrderIdSub.unsubscribe();
   }
 }

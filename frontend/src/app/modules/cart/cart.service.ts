@@ -35,6 +35,10 @@ export class CartService extends GenericService {
     }));
   }
 
+  public createCart(): Observable<number> {
+    return this.postWithAuth().map(resp => resp.json().id);
+  }
+
   public loadActiveCart(): Observable<ActiveCart> {
     return this.getWithAuth();
   }

@@ -16,7 +16,8 @@ export const ActionTypes = {
 
   SET_DELIVERY_COORDINATES: type('[Layout] Set Delivery Coordinates'),
 
-  SET_CHECKOUT_PROGRESS: type('[Layout] Set Checkout Progress')
+  SET_CHECKOUT_PROGRESS: type('[Layout] Set Checkout Progress'),
+  SET_CHECKOUT_DONE_MSG: type('[Layout] Set Checkout Done Message'),
 };
 
 export class StartNotifyAction implements Action {
@@ -65,6 +66,13 @@ export class SetCheckoutProgressAction implements Action {
   }
 }
 
+export class SetCheckoutDoneMsgAction implements Action {
+  type = ActionTypes.SET_CHECKOUT_DONE_MSG;
+
+  constructor(public payload: { doneMsg: string }) {
+  }
+}
+
 export type Actions
   = StartNotifyAction
   | NotifySuccessAction
@@ -72,4 +80,5 @@ export type Actions
   | GetCoordinatesAction
   | GetCoordinatesFailAction
   | SetDeliveryCoordinatesAction
-  | SetCheckoutProgressAction;
+  | SetCheckoutProgressAction
+  | SetCheckoutDoneMsgAction;

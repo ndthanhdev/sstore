@@ -32,9 +32,9 @@ import {Observable} from 'rxjs/Observable';
         </div>
 
         <div>
-          <span>Created at: {{order?.created_at | amTimeAgo}}</span>
+          <span>Created at: {{order?.created_at | amUTCOffset:7 | amTimeAgo}}</span>
           <span class="mx-2">-</span>
-          <span>Last updated: {{order?.updated_at | amTimeAgo}}</span>
+          <span>Last updated: {{order?.updated_at | amUTCOffset:7 | amTimeAgo}}</span>
         </div>
 
       </div>

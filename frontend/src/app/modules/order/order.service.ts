@@ -25,8 +25,19 @@ export class OrderService extends GenericService {
     }));
   }
 
-  createOrder(cartId: number): Observable<Response> {
-    return this.postWithAuth(new RequestOptions({url: `${this.BASE_URL}`}), {cartId: cartId});
+  createOrder(cartId: number): Observable<number> {
+    return this.postWithAuth(new RequestOptions({url: `${this.BASE_URL}`}), {cartId: cartId}).map(response => response.json().id);
+  }
+
+  deliveringOnlineOrder(orderId: number, address: string, latitude: string, longitude: string, tel: string): Observable<Response> {
+    return this.patchWithAuth(
+      new RequestOptions({url: `${this.BASE_URL}/${orderId}/delivery/online`}),
+      {
+        address: address || '',
+        latitude: latitude || '',
+        longitude: longitude || '',
+        tel: tel
+      });
   }
 
 }

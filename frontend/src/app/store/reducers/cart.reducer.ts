@@ -14,6 +14,7 @@ export interface State {
   error: any;
   cart: Cart;
   activeCart: ActiveCart;
+  createdCartId: number;
 }
 
 
@@ -22,7 +23,8 @@ export const initialState: State = {
   loaded: false,
   error: null,
   cart: null,
-  activeCart: null
+  activeCart: null,
+  createdCartId: null
 };
 
 export function reducer(state: State = initialState, action): State {
@@ -72,10 +74,16 @@ export function reducer(state: State = initialState, action): State {
         })
       });
 
+    case cartActions.ActionTypes.CREATE_CART:
+      return Object.assign({}, state, {
+        createdCartId: action.payload.createdCartId
+      });
+
     case authActions.ActionTypes.LOGOUT:
       return Object.assign({}, state, {
         activeCart: null
       });
+
 
     default:
       return state;

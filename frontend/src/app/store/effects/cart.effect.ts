@@ -58,4 +58,14 @@ export class CartEffect {
         new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.NEW_ORDER})
       ])));
 
+  @Effect()
+  CartCreate$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_CART_CREATE)
+    .switchMap(action => this.cartService.createCart()
+      .concatMap(createdCartId => Observable.from([
+        new cartActions.CreateCartAction({createdCartId: createdCartId}),
+        new cartActions.StartActiveCartLoadAction(),
+        new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.DONE})
+      ])));
+
 }

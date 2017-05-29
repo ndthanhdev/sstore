@@ -15,6 +15,12 @@ export const ActionTypes = {
 
   START_ORDER_CREATE: type('[Order] Start Order Create'),
   CREATE_ORDER: type('[Order] Create Order'),
+
+  START_ORDER_DELIVERING_ONSTORE: type('[Order] Start Order Delivering On Store'),
+  DELIVERING_ONSTORE_ORDER: type('[Order] Delivering Onstore Order'),
+
+  START_ORDER_DELIVERING_ONLINE: type('[Order] Start Order Delivering Online'),
+  DELIVERING_ONLINE_ORDER: type('[Order] Delivering Online Order'),
 };
 
 export class StartOrdersLoadAction implements Action {
@@ -54,6 +60,28 @@ export class StartOrderCreateAction implements Action {
 
 export class CreateOrderAction implements Action {
   type = ActionTypes.CREATE_ORDER;
+
+  constructor(public payload: { createdOrderId: number }) {
+  }
+}
+
+export class StartOrderDeliveringOnlineAction implements Action {
+  type = ActionTypes.START_ORDER_DELIVERING_ONLINE;
+
+  constructor(public payload: { orderId: number, address: string, latitude: string, longitude: string, tel: string }) {
+  }
+}
+
+export class DeliveringOnlineOrderAction implements Action {
+  type = ActionTypes.DELIVERING_ONLINE_ORDER;
+}
+
+export class StartOrderDeliveringOnstoreAction implements Action {
+  type = ActionTypes.START_ORDER_DELIVERING_ONSTORE;
+}
+
+export class DeliveringOnstoreOrderAction implements Action {
+  type = ActionTypes.DELIVERING_ONSTORE_ORDER;
 }
 
 export type Actions = StartOrdersLoadAction
@@ -61,4 +89,8 @@ export type Actions = StartOrdersLoadAction
   | StartOrderLoadAction
   | LoadOrderAction
   | StartOrderCreateAction
-  | CreateOrderAction;
+  | CreateOrderAction
+  | StartOrderDeliveringOnlineAction
+  | DeliveringOnlineOrderAction
+  | StartOrderDeliveringOnstoreAction
+  | DeliveringOnstoreOrderAction;

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {Action} from '@ngrx/store';
 
 import {of} from 'rxjs/observable/of';
-import {CreateOrderAction} from '../actions/order.action';
+import {CreateOrderAction, DeliveringOnlineOrderAction} from '../actions/order.action';
 
 
 import * as orderActions from '../../store/actions/order.action';
@@ -40,9 +40,20 @@ export class OrderEffect {
   orderCreate$: Observable<Action> = this.actions$
     .ofType(orderActions.ActionTypes.START_ORDER_CREATE)
     .switchMap(action => this.orderService.createOrder(action.payload.cartId)
-      .concatMap(response => Observable.from([
-        new CreateOrderAction(),
+      .concatMap(createdOrderId => Observable.from([
+        new CreateOrderAction({createdOrderId: createdOrderId}),
         new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.DELIVERY_METHOD})
       ])));
+
+  @Effect()
+  deliveringOnlineOrder$: Observable<Action> = this.actions$
+    .ofType(orderActions.ActionTypes.START_ORDER_DELIVERING_ONLINE)
+    .map(action => action.payload)
+    .switchMap(payload =>
+      this.orderService.deliveringOnlineOrder(payload.orderId, payload.address, payload.latitude, payload.longitude, payload.tel)
+        .concatMap(response => Observable.from([
+          new DeliveringOnlineOrderAction(),
+          new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.CREATE_CART})
+        ])));
 
 }

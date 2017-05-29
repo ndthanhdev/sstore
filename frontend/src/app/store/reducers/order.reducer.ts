@@ -13,6 +13,7 @@ export interface State {
   error: any;
   orders: Page<Order>;
   order: Order;
+  createdOrderId: number;
 }
 
 
@@ -21,7 +22,8 @@ export const initialState: State = {
   loaded: false,
   error: null,
   orders: null,
-  order: null
+  order: null,
+  createdOrderId: null
 };
 
 export function reducer(state: State = initialState, action): State {
@@ -48,6 +50,11 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case orderAction.ActionTypes.CREATE_ORDER:
+      return Object.assign({}, state, {
+        createdOrderId: action.payload.createdOrderId
+      });
+
     default:
       return state;
   }
@@ -58,3 +65,5 @@ export const getOrders = (state: State) => state.orders;
 export const getOrder = (state: State) => state.order;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
+export const getCreatedOrderId = (state: State) => state.createdOrderId;
+

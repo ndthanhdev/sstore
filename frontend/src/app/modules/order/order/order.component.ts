@@ -70,8 +70,8 @@ import {Subscription} from 'rxjs/Subscription';
               [state]="order.state">
             </frontend-order-state-button>
           </td>
-          <td>{{order.created_at | amTimeAgo}}</td>
-          <td>{{order.updated_at | amTimeAgo}}</td>
+          <td>{{order.created_at | amUTCOffset:7 | amTimeAgo}}</td>
+          <td>{{order.updated_at | amUTCOffset:7 | amTimeAgo}}</td>
         </tr>
 
         </tbody>
