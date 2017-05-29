@@ -31,7 +31,7 @@ class CategoryRepository extends BaseRepository implements CacheableInterface {
 
     public function products($categoryId, $storeId) {
         return Product::with([
-            'defaultVariant' => function ($query) use ($storeId) { $query->where('store_id', $storeId); },
+            'defaultVariant.stores' => function ($query) use ($storeId) { $query->where('store_id', $storeId); },
             'defaultVariant.variationValues'])
             ->withCount([
                 'reviews_1_rating',

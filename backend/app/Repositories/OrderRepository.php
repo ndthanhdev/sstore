@@ -41,8 +41,7 @@ class OrderRepository extends BaseRepository implements CacheableInterface {
         return $this->with([
             'shoppingCart',
             'shoppingCart.user',
-            'shoppingCart.details.storeProductVariant.product',
-            'shoppingCart.details.storeProductVariant.productVariant',
+            'shoppingCart.details.storeProductVariant.productVariant.product',
             'shoppingCart.details.storeProductVariant.productVariant.variationValues'
         ])->find($orderId);
     }

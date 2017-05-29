@@ -13,6 +13,7 @@ class ShoppingCartDetail extends Model {
 
     protected $fillable = [
         'quantity',
+        'price',
         'shopping_cart_id',
         'store_product_variant_id'
     ];

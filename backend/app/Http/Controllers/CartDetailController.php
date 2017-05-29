@@ -47,6 +47,7 @@ class CartDetailController extends Controller {
 
         $createdShoppingCartDetail = ShoppingCartDetail::create([
             'quantity' => $data['quantity'],
+            'price' => $data['price'],
             'shopping_cart_id' => $cartID,
             'store_product_variant_id' => $data['store_product_variant_id']
         ]);

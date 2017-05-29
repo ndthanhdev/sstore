@@ -27,8 +27,7 @@ class Product extends Model {
     }
 
     public function productType() {
-        return $this
-            ->belongsTo('App\Entities\ProductType');
+        return $this->belongsTo('App\Entities\ProductType');
     }
 
     public function defaultVariant() {
