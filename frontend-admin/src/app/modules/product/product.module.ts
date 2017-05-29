@@ -10,6 +10,7 @@ import {ProductItemComponent} from './product-item/product-item.component';
 import {ProductService} from "./product.service";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MomentModule} from "angular2-moment";
+import { VariantItemComponent } from './variant-item/variant-item.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {MomentModule} from "angular2-moment";
     NgbModule,
     MomentModule
   ],
-  declarations: [DetailComponent, ProductComponent, CreateComponent, ProductItemComponent],
+  declarations: [DetailComponent, ProductComponent, CreateComponent, ProductItemComponent, VariantItemComponent],
   providers: [ProductService]
 })
 export class ProductModule {

@@ -22,7 +22,9 @@ export class DetailComponent implements OnInit {
 
   id: number;
 
-  private sub: Subscription;
+  private routeSub: Subscription;
+
+  isBusy: Observable<boolean>;
 
   productSub: Subscription;
   product: Products;
@@ -36,8 +38,9 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isBusy = this.store.select(rootReducer.getProductIsBusy);
 
-    this.sub = Observable.combineLatest(this.route.params, this.route.queryParams)
+    this.routeSub = Observable.combineLatest(this.route.params, this.route.queryParams)
       .filter(([route, query]) => route['id'])
       .subscribe(([route, query]) => {
         this.id = +route['id']; // (+) converts string 'id' to a number
@@ -58,7 +61,7 @@ export class DetailComponent implements OnInit {
   ngOnDestroy() {
     this.productSub.unsubscribe();
     this.paginatedListOfProductVariantsSub.unsubscribe();
-    this.sub.unsubscribe();
+    this.routeSub.unsubscribe();
   }
 
   pageChanged($event) {

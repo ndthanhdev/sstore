@@ -22,14 +22,6 @@
         <span class="lead">Categories:</span>
         <span class="badge badge-pill badge-primary">{{product?.category.name}}</span>
       </div>
-
-      <!--<div class="mb-2">-->
-      <!--<span class="lead">Default variants:</span>-->
-      <!--<span class="badge badge-pill badge-primary">color: red</span>-->
-      <!--<span class="badge badge-pill badge-primary">size: medium</span>-->
-      <!--</div>-->
-
-      <!--<span class="lead">Default price:</span> <strong>200.000 VND</strong>-->
     </div>
   </div>
   <!--END PRODUCT INFORMATION-->
@@ -102,132 +94,36 @@
   <hr>
 
   <!--START PAGINATION-->
-  <div class="d-flex align-items-start justify-content-between">
+  <div class="d-flex align-items-start">
     <ngb-pagination
       [collectionSize]="paginatedListOfProductVariants?.count"
       [pageSize]="3"
       [page]="paginatedListOfProductVariants?.pageIndex"
       (pageChange)="pageChanged($event)">
     </ngb-pagination>
-    <button class="btn btn-outline-primary">Add Variant</button>
+    <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
+                                      class="align-self-center"></frontend-admin-loading-indicator>
+    <button class="btn btn-outline-primary ml-auto">Add Variant</button>
   </div>
   <!--END PAGINATION-->
 
   <!--START VARIANT CARD-->
-  <div class="card mb-3" *ngFor="let productVariants of paginatedListOfProductVariants?.data">
-    <div class="card-header">
-      <span class="lead mr-2">#1</span>
-      <button class="btn btn-sm btn-primary">Default</button>
-    </div>
-
-    <div class="card-block">
-      <div class="row">
-        <div class="col-lg-6 col-12">
-          <p class="lead">Variation Values:</p>
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Value</th>
-              <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th scope="row">0</th>
-              <td>Color</td>
-              <td>Red</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Size</td>
-              <td>Medium</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Cover</td>
-              <td>Hardcover</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Cover</td>
-              <td>Hardcover</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="col-lg-6 col-12 mb-3">
-          <p class="lead">Availability:</p>
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Store name</th>
-              <th>Price</th>
-              <th>In stock</th>
-              <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th scope="row">0</th>
-              <td><a href="#">Store To Hien 1</a></td>
-              <td>200.000VND</td>
-              <td>2</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td><a href="#">Store Ta Quang Buu 1</a></td>
-              <td>201.000 VND</td>
-              <td>5</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td><a href="#">Store Ba Thang Hai 1</a></td>
-              <td>250.000 VND</td>
-              <td>10</td>
-              <td>
-                <button class="btn btn-sm btn-outline-primary">Edit</button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+  <frontend-admin-variant-item *ngFor="let productVariants of paginatedListOfProductVariants?.data"
+                               [productVariant]="productVariants"></frontend-admin-variant-item>
   <!--END VARIANT CARD-->
 
 
   <!--START PAGINATION-->
-  <div class="d-flex align-items-start justify-content-between mb-5">
+  <div class="d-flex align-items-start mb-5">
     <ngb-pagination
       [collectionSize]="paginatedListOfProductVariants?.count"
       [pageSize]="3"
       [page]="paginatedListOfProductVariants?.pageIndex"
       (pageChange)="pageChanged($event)">
     </ngb-pagination>
-    <button class="btn btn-outline-primary"><i class="fa fa-arrow-up"></i></button>
+    <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
+                                      class="align-self-center"></frontend-admin-loading-indicator>
+    <button class="btn btn-outline-primary ml-auto"><i class="fa fa-arrow-up"></i></button>
   </div>
   <!--END PAGINATION-->
 

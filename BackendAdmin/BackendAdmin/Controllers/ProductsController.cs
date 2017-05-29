@@ -34,7 +34,8 @@ namespace BackendAdmin.Controllers
         {
             var source = _context.Products
                 .Include(product => product.ProductType)
-                .Include(product => product.Category);
+                .Include(product => product.Category)
+                .OrderBy(product => product.Id);
             return await PaginatedList<Products>.CreateAsync(source, page, size);
         }
 
