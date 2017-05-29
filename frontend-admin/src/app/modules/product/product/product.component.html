@@ -32,7 +32,7 @@
     <ngb-pagination
       [collectionSize]="paginatedListOfProducts?.count"
       [pageSize]="10"
-      [page]="page"
+      [page]="paginatedListOfProducts?.pageIndex"
       (pageChange)="pageChanged($event)">
     </ngb-pagination>
     <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
