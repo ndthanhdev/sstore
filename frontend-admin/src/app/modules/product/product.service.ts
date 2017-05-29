@@ -21,4 +21,10 @@ export class ProductService extends GenericService {
     }));
   }
 
+  public loadProductDetail(id: number): Observable<PaginatedListOfProducts> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/${id}`
+    }));
+  }
+
 }

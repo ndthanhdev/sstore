@@ -13,8 +13,10 @@ namespace BackendAdmin.Models
 
         public int Id { get; set; }
         public bool Default { get; set; }
+        public int ProductId { get; set; }
 
         public virtual ICollection<ProductVariationValues> ProductVariationValues { get; set; }
         public virtual ICollection<StoreProductVariant> StoreProductVariant { get; set; }
+        public virtual Products Product { get; set; }
     }
 }

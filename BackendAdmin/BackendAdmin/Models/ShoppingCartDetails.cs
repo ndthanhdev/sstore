@@ -7,6 +7,7 @@ namespace BackendAdmin.Models
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
+        public string Price { get; set; }
         public int ShoppingCartId { get; set; }
         public int StoreProductVariantId { get; set; }
 

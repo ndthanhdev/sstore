@@ -32,7 +32,7 @@ namespace BackendAdmin.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=default;User Id=postgres;Password=secret;");
+            optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=default;User Id=default;Password=secret;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -257,6 +257,11 @@ namespace BackendAdmin.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Address)
+                    .HasColumnName("address")
+                    .HasColumnType("varchar")
+                    .HasMaxLength(255);
+
                 entity.Property(e => e.Code)
                     .IsRequired()
                     .HasColumnName("code")
@@ -270,11 +275,26 @@ namespace BackendAdmin.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnName("created_at");
 
+                entity.Property(e => e.Latitude)
+                    .HasColumnName("latitude")
+                    .HasColumnType("varchar")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Longitude)
+                    .HasColumnName("longitude")
+                    .HasColumnType("varchar")
+                    .HasMaxLength(255);
+
                 entity.Property(e => e.Rating).HasColumnName("rating");
 
                 entity.Property(e => e.ShoppingCartId).HasColumnName("shopping_cart_id");
 
                 entity.Property(e => e.State).HasColumnName("state");
+
+                entity.Property(e => e.Tel)
+                    .HasColumnName("tel")
+                    .HasColumnType("varchar")
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
 
@@ -365,6 +385,14 @@ namespace BackendAdmin.Models
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Default).HasColumnName("default");
+
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.ProductVariants)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("product_variants_product_id_foreign");
             });
 
             modelBuilder.Entity<ProductVariationValues>(entity =>
@@ -487,6 +515,12 @@ namespace BackendAdmin.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Price)
+                    .IsRequired()
+                    .HasColumnName("price")
+                    .HasColumnType("varchar")
+                    .HasMaxLength(255);
+
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.Property(e => e.ShoppingCartId).HasColumnName("shopping_cart_id");
@@ -543,17 +577,9 @@ namespace BackendAdmin.Models
                     .HasColumnType("varchar")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.ProductId).HasColumnName("product_id");
-
                 entity.Property(e => e.ProductVariantId).HasColumnName("product_variant_id");
 
                 entity.Property(e => e.StoreId).HasColumnName("store_id");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.StoreProductVariant)
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("store_product_variant_product_id_foreign");
 
                 entity.HasOne(d => d.ProductVariant)
                     .WithMany(p => p.StoreProductVariant)

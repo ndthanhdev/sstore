@@ -19,9 +19,15 @@ export class ProductEffect {
   }
 
   @Effect()
-  paginatedListOfProducts$: Observable<Action> = this.actions$
+  paginatedListOfProductsLoad$: Observable<Action> = this.actions$
     .ofType(productdActions.ActionTypes.START_PRODUCTS_LOAD)
     .switchMap(action => this.productService.loadPaginatedListOfProducts(action.payload.page)
       .concatMap(paginatedListOfProducts => of(new productdActions.LoadProductsAction({paginatedListOfProducts: paginatedListOfProducts}))));
+
+  @Effect()
+  productDetailActionLoad$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_PRODUCT_DETAIL_LOAD)
+    .switchMap(action => this.productService.loadProductDetail(action.payload.id)
+      .concatMap(product => of(new productdActions.LoadProductDetailAction({product: product}))));
 
 }

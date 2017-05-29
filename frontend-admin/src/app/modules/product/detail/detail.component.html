@@ -1,4 +1,4 @@
-<frontend-admin-jumbotron [Header]="'Product:'"></frontend-admin-jumbotron>
+<frontend-admin-jumbotron [Header]="'Product: '+(product | async)?.name"></frontend-admin-jumbotron>
 <div class="container">
 
   <!--START PRODUCT INFORMATION-->
@@ -8,35 +8,28 @@
   <hr>
   <div class="row px-3 mb-3">
     <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
-      <img src="http://lorempixel.com/350/350/cats/" alt="cats" class="img-thumbnail">
+      <img src="{{(product | async)?.imgUrl}}" alt="cats" class="img-thumbnail">
     </div>
     <div class="col-lg-8 col-12 p-5">
 
       <div class="mb-1">
-        <h4 class="lead d-inline-block">Kavan Cliffs</h4>
-        <span class="badge badge-pill badge-primary">Book</span>
+        <h4 class="lead d-inline-block">{{(product | async)?.name}}</h4>
+        <span class="badge badge-pill badge-primary">{{(product | async)?.productType.name}}</span>
       </div>
-      <p class="card-text">
-        Donec sed pellentesque purus. Mauris eu consequat sem. Ut malesuada nunc et leo hendrerit
-        ultricies. Donec placerat diam nec efficitur tincidunt. Ut consectetur nisl at libero facilisis,
-        eu auctor tellus bibendum. Integer quis lorem viverra, semper orci sit amet, iaculis dolor.
-        Fusce sodales magna ligula, ac suscipit purus convallis eget. Proin ac ipsum libero. Morbi
-      </p>
+      <p class="card-text">{{(product | async)?.description}}</p>
 
       <div class="mb-1">
         <span class="lead">Categories:</span>
-        <span class="badge badge-pill badge-primary">Household</span>
-        <span class="badge badge-pill badge-primary">Reading</span>
-        <span class="badge badge-pill badge-primary">Cheap</span>
+        <span class="badge badge-pill badge-primary">{{(product | async)?.category.name}}</span>
       </div>
 
-      <div class="mb-2">
-        <span class="lead">Default variants:</span>
-        <span class="badge badge-pill badge-primary">color: red</span>
-        <span class="badge badge-pill badge-primary">size: medium</span>
-      </div>
+      <!--<div class="mb-2">-->
+      <!--<span class="lead">Default variants:</span>-->
+      <!--<span class="badge badge-pill badge-primary">color: red</span>-->
+      <!--<span class="badge badge-pill badge-primary">size: medium</span>-->
+      <!--</div>-->
 
-      <span class="lead">Default price:</span> <strong>200.000 VND</strong>
+      <!--<span class="lead">Default price:</span> <strong>200.000 VND</strong>-->
     </div>
   </div>
   <!--END PRODUCT INFORMATION-->
@@ -48,7 +41,8 @@
   <hr>
   <div class="row px-3 mb-3">
     <div class="col-lg-6 col-12">
-      <p class="lead">Product Type Attributes: <span class="badge badge-pill badge-primary">Book</span></p>
+      <p class="lead"><span class="badge badge-pill badge-primary">{{(product | async)?.productType.name}}</span>&nbsp;Product
+        Type Attributes</p>
       <table class="table table-hover">
         <thead>
         <tr>
@@ -59,34 +53,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">0</th>
-          <td>Color</td>
-          <td>Red</td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary">Edit</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Size</td>
-          <td>Medium</td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary">Edit</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Cover</td>
-          <td>Hardcover</td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary">Edit</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Page</td>
-          <td>129</td>
+        <tr *ngFor="let ptav of (product | async)?.productTypeAttributeValues;let i = index">
+          <th scope="row">{{i}}</th>
+          <td>{{ptav.productTypeAttribute.name}}</td>
+          <td>{{ptav.value}}</td>
           <td>
             <button class="btn btn-sm btn-outline-primary">Edit</button>
           </td>
@@ -110,18 +80,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">0</th>
-          <td>Volume</td>
-          <td>350ML</td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary">Edit</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Size</td>
-          <td>Medium</td>
+        <tr *ngFor="let customAttribute of (product | async)?.customAttributes;let i = index">
+          <th scope="row">{{i}}</th>
+          <td>{{customAttribute.name}}</td>
+          <td>{{customAttribute.value}}</td>
           <td>
             <button class="btn btn-sm btn-outline-primary">Edit</button>
           </td>

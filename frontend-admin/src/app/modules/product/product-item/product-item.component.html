@@ -10,10 +10,8 @@
     <ng-template #longTime>
       <small class="text-muted ml-2">last updated&nbsp;{{product.updatedAt | amCalendar}}</small>
     </ng-template>
-    <button class="btn btn-sm btn-outline-primary float-right">
-      <a [routerLink]="['/product',product.id]" routerLinkActive>
-        Detail
-      </a>
+    <button class="btn btn-sm btn-outline-primary float-right" [routerLink]="['/product',product.id]" routerLinkActive>
+      Detail
     </button>
   </div>
 

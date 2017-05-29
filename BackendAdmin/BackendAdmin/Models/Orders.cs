@@ -14,6 +14,10 @@ namespace BackendAdmin.Models
         public string Code { get; set; }
         public int? Rating { get; set; }
         public string Comment { get; set; }
+        public string Address { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string Tel { get; set; }
         public int State { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

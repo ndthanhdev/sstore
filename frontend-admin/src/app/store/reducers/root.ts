@@ -40,5 +40,6 @@ export const getDashboardRecentUsers = Reselect.createSelector(getDashboardState
 // product
 export const getProductState = (state: State) => state.product;
 
-export const getProductPaginatedListOfProducts = Reselect.createSelector(getProductState, fromProduct.getPaginatedListOfProducts);
 export const getProductIsBusy = Reselect.createSelector(getProductState, fromProduct.getIsBusy);
+export const getProductPaginatedListOfProducts = Reselect.createSelector(getProductState, fromProduct.getPaginatedListOfProducts);
+export const getProductProduct = Reselect.createSelector(getProductState, fromProduct.getProduct);

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BackendAdmin.Models
@@ -10,8 +9,8 @@ namespace BackendAdmin.Models
         {
             CustomAttributes = new HashSet<CustomAttributes>();
             ProductTypeAttributeValues = new HashSet<ProductTypeAttributeValues>();
+            ProductVariants = new HashSet<ProductVariants>();
             Reviews = new HashSet<Reviews>();
-            StoreProductVariant = new HashSet<StoreProductVariant>();
         }
 
         public int Id { get; set; }
@@ -26,9 +25,9 @@ namespace BackendAdmin.Models
 
         public virtual ICollection<CustomAttributes> CustomAttributes { get; set; }
         public virtual ICollection<ProductTypeAttributeValues> ProductTypeAttributeValues { get; set; }
+        public virtual ICollection<ProductVariants> ProductVariants { get; set; }
         public virtual ICollection<Reviews> Reviews { get; set; }
-        public virtual ICollection<StoreProductVariant> StoreProductVariant { get; set; }
-        public virtual Categories Category { get; set; }        
+        public virtual Categories Category { get; set; }
         public virtual ProductTypes ProductType { get; set; }
     }
 }

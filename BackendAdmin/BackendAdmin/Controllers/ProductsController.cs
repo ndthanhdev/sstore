@@ -35,7 +35,7 @@ namespace BackendAdmin.Controllers
             var source = _context.Products
                 .Include(product => product.ProductType)
                 .Include(product => product.Category);
-            return await PaginatedList<Products>.CreateAsync(source, page, 10);
+            return await PaginatedList<Products>.CreateAsync(source, page, size);
         }
 
         // GET: api/Products/5
@@ -50,9 +50,9 @@ namespace BackendAdmin.Controllers
             var products = await _context
                 .Products
                 .Include(product => product.Category)
-                .Include(product=>product.ProductType.ProductTypeAttributes)
-                .Include(product=>product.ProductTypeAttributeValues)
-                .Include(product=>product.CustomAttributes)
+                .Include(product => product.ProductType.ProductTypeAttributes)
+                .Include(product => product.ProductTypeAttributeValues)
+                .Include(product => product.CustomAttributes)
                 .SingleOrDefaultAsync(m => m.Id == id);
 
             if (products == null)
@@ -132,6 +132,18 @@ namespace BackendAdmin.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(products);
+        }
+
+        // GET: api/Products/{id}/ProductVariants
+        [HttpGet("{id}/ProductVariants")]
+        public async Task<PaginatedList<ProductVariants>> GetProductVariants(int id, int page = 1, int size = 3)
+        {
+            var source = _context.ProductVariants
+                .Include(productVariants => productVariants.ProductVariationValues)
+                .Include(productVariants => productVariants.StoreProductVariant)
+                .ThenInclude(storeProductVariant => storeProductVariant.Store);
+
+            return await PaginatedList<ProductVariants>.CreateAsync(source, page, size);
         }
 
         private bool ProductsExists(int id)
