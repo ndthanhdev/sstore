@@ -41,9 +41,14 @@ import {Observable} from 'rxjs/Observable';
       *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DELIVERING_ONLINE)">
     </frontend-delivery-online>
 
+    <frontend-close-order
+      *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.CLOSE_ORDER)">
+    </frontend-close-order>
+
     <frontend-create-cart
       *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.CREATE_CART)">
     </frontend-create-cart>
+
 
     <frontend-done
       *ngIf="currentCheckoutProgressEqual(checkoutProgressVals.DONE)">
@@ -65,11 +70,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     DELIVERING_ONSTORE: CheckoutProgress.DELIVERING_ONSTORE,
     DELIVERING_ONLINE: CheckoutProgress.DELIVERING_ONLINE,
     CREATE_CART: CheckoutProgress.CREATE_CART,
+    CLOSE_ORDER: CheckoutProgress.CLOSE_ORDER,
     DONE: CheckoutProgress.DONE,
   };
 
   constructor(private store: Store<fromRoot.State>) {
-    this.checkoutProgressSub = this.store.select(fromRoot.getLayoutCheckoutProgress).subscribe(progress => this.checkoutProgress = progress);
+    this.checkoutProgressSub = this.store.select(fromRoot.getLayoutCheckoutProgress)
+      .subscribe(progress => this.checkoutProgress = progress);
     this.activeCart = this.store.select(fromRoot.getCartActiveCart);
   }
 

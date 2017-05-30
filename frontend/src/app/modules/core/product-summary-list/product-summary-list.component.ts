@@ -10,9 +10,10 @@ import {Page} from '../../../models/page.model';
       [pageSize]="6"
       [page]="page"
       [collectionSize]="productPage?.total"
+      [loading]="productLoading"
       (pageChange)="onPageChange($event)">
     </frontend-product-summary-list-header>
-    <div class="row px-3" *ngIf="!productLoading;else spinning">
+    <div class="row px-3">
       <frontend-product-summary
         class="col-lg-4 col-md-6 col-12 mb-3"
         *ngFor="let product of productPage?.data"
@@ -20,9 +21,6 @@ import {Page} from '../../../models/page.model';
         (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary>
     </div>
-    <ng-template #spinning>
-      <frontend-loading></frontend-loading>
-    </ng-template>
   `,
   styleUrls: ['./product-summary-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

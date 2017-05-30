@@ -27,5 +27,7 @@ return [
     'ORDER_CREATED' => 'Order has been created!',
     'ORDER_UPDATED' => 'Order has been updated!',
 
-    'INVOICE_CREATED' => 'Invoice has been created!'
+    'INVOICE_CREATED' => 'Invoice has been created!',
+
+    'PUBLISH_SUCCESS' => 'Published to IoT Devices'
 ];

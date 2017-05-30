@@ -21,6 +21,9 @@ export const ActionTypes = {
 
   START_ORDER_DELIVERING_ONLINE: type('[Order] Start Order Delivering Online'),
   DELIVERING_ONLINE_ORDER: type('[Order] Delivering Online Order'),
+
+  START_ORDER_CLOSE: type('[Order] Start Order Close'),
+  CLOSE_ORDER: type('[Order] Close Order'),
 };
 
 export class StartOrdersLoadAction implements Action {
@@ -84,6 +87,18 @@ export class DeliveringOnstoreOrderAction implements Action {
   type = ActionTypes.DELIVERING_ONSTORE_ORDER;
 }
 
+
+export class StartOrderCloseAction implements Action {
+  type = ActionTypes.START_ORDER_CLOSE;
+
+  constructor(public payload: { orderId: number }) {
+  }
+}
+
+export class CloseOrderAction implements Action {
+  type = ActionTypes.CLOSE_ORDER;
+}
+
 export type Actions = StartOrdersLoadAction
   | LoadOrdersAction
   | StartOrderLoadAction
@@ -93,4 +108,6 @@ export type Actions = StartOrdersLoadAction
   | StartOrderDeliveringOnlineAction
   | DeliveringOnlineOrderAction
   | StartOrderDeliveringOnstoreAction
-  | DeliveringOnstoreOrderAction;
+  | DeliveringOnstoreOrderAction
+  | StartOrderCloseAction
+  | CloseOrderAction;

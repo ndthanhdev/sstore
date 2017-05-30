@@ -25,6 +25,8 @@ import {CreateCartComponent} from './checkout/create-cart/create-cart.component'
 import {DeliveryOnlineComponent} from './checkout/delivery-online/delivery-online.component';
 import {AgmCoreModule} from '@agm/core';
 import {DoneComponent} from './checkout/done/done.component';
+import {MqttService} from './mqtt.service';
+import {CloseOrderComponent} from './checkout/close-order/close-order.component';
 
 @NgModule({
   imports: [
@@ -53,7 +55,8 @@ import {DoneComponent} from './checkout/done/done.component';
     DeliveringOnstoreComponent,
     CreateCartComponent,
     DeliveryOnlineComponent,
-    DoneComponent
+    DoneComponent,
+    CloseOrderComponent
   ],
   exports: [
     NavbarComponent,
@@ -63,7 +66,8 @@ import {DoneComponent} from './checkout/done/done.component';
   providers: [
     AuthService,
     GeolocationService,
-    StoreService
+    StoreService,
+    MqttService
   ],
 })
 export class CoreModule {

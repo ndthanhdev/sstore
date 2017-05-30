@@ -29,6 +29,7 @@ import {OrderModule} from './modules/order/order.module';
 import {OrderEffect} from './store/effects/order.effect';
 import {AgmCoreModule} from '@agm/core';
 import {GOOGLE_MAPS} from 'app/util/app.constants';
+import {MqttEffect} from './store/effects/mqtt.effect';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -52,6 +53,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     EffectsModule.run(StoreEffect),
     EffectsModule.run(CartEffect),
     EffectsModule.run(OrderEffect),
+    EffectsModule.run(MqttEffect),
 
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),

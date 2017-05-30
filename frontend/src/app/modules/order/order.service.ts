@@ -25,6 +25,12 @@ export class OrderService extends GenericService {
     }));
   }
 
+  closeOrder(orderId: number): Observable<Order> {
+    return this.patchWithAuth(new RequestOptions({
+      url: `${this.BASE_URL}/${orderId}/done`
+    }));
+  }
+
   createOrder(cartId: number): Observable<number> {
     return this.postWithAuth(new RequestOptions({url: `${this.BASE_URL}`}), {cartId: cartId}).map(response => response.json().id);
   }

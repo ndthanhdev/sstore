@@ -123,7 +123,6 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
           longitude: +this.currentLocation.longitude
         }
       }));
-      this.store.dispatch(new layoutActions.SetCheckoutDoneMsgAction({doneMsg: 'Your order is being delivered!'}));
     } else {
       this.store.dispatch(new layoutActions.StartCoordinatesGetAction());
     }
@@ -142,6 +141,7 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
       longitude: this.deliveryLocationForm.get('longitude').value,
       tel: this.deliveryLocationForm.get('tel').value
     }));
+    this.store.dispatch(new layoutActions.SetCheckoutDoneMsgAction({doneMsg: 'Your order is being delivered!'}));
   }
 
   onDragEnd($event) {

@@ -56,4 +56,13 @@ export class OrderEffect {
           new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.CREATE_CART})
         ])));
 
+  @Effect()
+  orderClose$: Observable<Action> = this.actions$
+    .ofType(orderActions.ActionTypes.START_ORDER_CLOSE)
+    .switchMap(action => this.orderService.closeOrder(action.payload.orderId)
+      .concatMap(order => Observable.from([
+        new orderActions.CloseOrderAction(),
+        new layoutActions.SetCheckoutProgressAction({checkoutProgress: CheckoutProgress.CREATE_CART})
+      ])));
+
 }

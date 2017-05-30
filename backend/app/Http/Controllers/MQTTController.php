@@ -15,9 +15,9 @@ class MQTTController extends Controller {
     public function __construct() {
         $host = "hivemq";
         $port = 1883;
-        $clientID = md5(uniqid()); // use a unique client id for each connection
-        $username = ''; // username is optional
-        $password = ''; // password is optional
+        $clientID = md5(uniqid());
+        $username = '';
+        $password = '';
         $this->mqtt = new \Lightning\App($host, $port, $clientID, $username, $password);
         if (!$this->mqtt->connect()) {
             echo "Failed to connect.\n";
@@ -27,28 +27,35 @@ class MQTTController extends Controller {
     public function testPublish() {
         $this->mqtt->publish("s2d", '123', 0);
         $this->mqtt->close();
-        return 'message sent';
+        return [
+            'ok' => 'OK'
+        ];
     }
 
     public function testSubscribe() {
         $this->mqtt->subscribe('d2s', 0, function (\Lightning\Response $response) {
-            echo $response->getMessage();
-            exit(1);
+            return ['ok' => 'OK'];
         });
 
         $this->mqtt->listen();
     }
 
-    public function publishS2DThenSubscribeD2S(Request $request, $deviceId) {
-        $quantity = $request->only('quantity')['quantity'];
+    public function publishS2D(Request $request) {
+        $data = $request->all();
+//        print_r($data);
+//        return $data;
 
-        $this->mqtt->publish('s2d/' . $deviceId, $quantity, 0);
-        $this->mqtt->subscribe('d2s', 0, function (\Lightning\Response $response) {
-            echo $response->getMessage();
-            exit(1);
-        });
-        $this->mqtt->listen();
+        foreach ($data as $product){
+            $this->mqtt->publish('s2d/' . $product['deviceId'], $product['quantity'], 0);
+        }
+
+        return ['msg' => config('msg.PUBLISH_SUCCESS')];
     }
 
 
+    public function testCORS() {
+        return [
+            'ok' => 'OK'
+        ];
+    }
 }

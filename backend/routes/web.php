@@ -237,12 +237,17 @@ $app->group(['prefix' => 'invoices'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'mqtt'], function () use ($app) {
 
-    $app->post('/s2d/{deviceId}', [
+    $app->post('/s2d', [
         'as' => 'mqtt/s2d.POST',
-        'uses' => 'MQTTController@publishS2DThenSubscribeD2S'
+        'uses' => 'MQTTController@publishS2D'
     ]);
 
     $app->group(['prefix' => 'tests'], function () use ($app) {
+
+        $app->get('/cors', [
+            'as' => 'mqtt/tests/cors',
+            'uses' => 'MQTTController@testCORS'
+        ]);
 
         $app->get('/publish', [
             'as' => 'mqtt/tests/publish',

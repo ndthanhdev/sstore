@@ -11,5 +11,6 @@ export enum CheckoutProgress {
   DELIVERING_ONSTORE,
   DELIVERING_ONLINE,
   CREATE_CART,
+  CLOSE_ORDER,
   DONE
 }
