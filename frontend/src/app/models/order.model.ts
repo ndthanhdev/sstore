@@ -17,8 +17,8 @@ export class Order {
   comment: string;
   state: OrderState;
   address: string;
-  latitude: string;
-  longitude: string;
+  latitude: string | number;
+  longitude: string | number;
   tel: string;
   created_at: Date;
   updated_at: Date;

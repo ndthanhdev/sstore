@@ -10,6 +10,7 @@ import {OrderService} from './order.service';
 import {SharedModule} from '../shared/shared.module';
 import {MomentModule} from 'angular2-moment';
 import {OrderStateButtonComponent} from './order-state-button/order-state-button.component';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {OrderStateButtonComponent} from './order-state-button/order-state-button
     FormsModule,
     SharedModule,
 
+    AgmCoreModule,
     MomentModule,
     NgbModule
   ],

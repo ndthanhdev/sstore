@@ -8,6 +8,7 @@ import * as fromRoot from '../../../store/reducers';
 import * as orderActions from '../../../store/actions/order.action';
 import {CartDetail} from '../../../models/cart-detail.model';
 import {Observable} from 'rxjs/Observable';
+import {GOOGLE_MAPS} from '../../../util/app.constants';
 
 @Component({
   selector: 'frontend-order-detail',
@@ -46,10 +47,53 @@ import {Observable} from 'rxjs/Observable';
     </ng-template>
 
     <div class="container mb-5" *ngIf="!(loading | async);else spinning">
+
+      <!--START DELIVERY INFORMATION -->
+      <span class="display-4">
+        <span>Delivery Information:</span>
+        <span *ngIf="!isOnStore()">Online</span>
+        <span *ngIf="isOnStore()">Onstore</span>
+      </span>
+      <hr>
+      <div class="row mx-3 mb-3" *ngIf="!isOnStore()">
+        <div class="col-6">
+          <agm-map
+            [latitude]="deliveredLocation.lat"
+            [longitude]="deliveredLocation.lng"
+            [zoom]="13">
+            <agm-marker
+              [latitude]="deliveredLocation.lat"
+              [longitude]="deliveredLocation.lng">
+            </agm-marker>
+          </agm-map>
+        </div>
+        <form class="col-6">
+          <div class="form-group">
+            <label for="address-input">Address:</label>
+            <input readonly type="text" class="form-control" id="address-input" [value]="order.address">
+          </div>
+          <div class="form-group">
+            <label for="latitude-input">Latitude:</label>
+            <input readonly type="number" class="form-control" id="latitude-input" [value]="order.latitude">
+          </div>
+          <div class="form-group">
+            <label for="longitude-input">Longitude:</label>
+            <input readonly type="number" class="form-control" id="longitude-input" [value]="order.longitude">
+          </div>
+          <div class="form-group">
+            <label for="tel-input">Tel:</label>
+            <input readonly type="tel" class="form-control" id="tel-input" [value]="order.tel">
+          </div>
+        </form>
+      </div>
+      <!--START DELIVERY INFORMATION -->
+
+      <br>
+
       <!--START ITEM LIST-->
-      <span class="col-12 display-4">
+      <span class="display-4">
         Items:
-    </span>
+      </span>
       <hr>
       <table class="table table-hover">
         <thead>
@@ -88,15 +132,27 @@ import {Observable} from 'rxjs/Observable';
 export class OrderDetailComponent implements OnInit, OnDestroy {
   routeId: number;
 
-
   order: Order;
   orderSub: Subscription;
 
   loading: Observable<boolean>;
 
+  deliveredLocation = {
+    lat: GOOGLE_MAPS.HCMC_LOCATION.latitude,
+    lng: GOOGLE_MAPS.HCMC_LOCATION.longitude
+  };
+
   constructor(private store: Store<fromRoot.State>,
               private route: ActivatedRoute) {
-    this.orderSub = this.store.select(fromRoot.getOrderOrder).subscribe(order => this.order = order);
+    this.orderSub = this.store.select(fromRoot.getOrderOrder)
+      .filter(order => !!order)
+      .subscribe(order => {
+        this.order = order;
+        this.deliveredLocation = {
+          lat: +this.order.latitude,
+          lng: +this.order.longitude
+        };
+      });
     this.loading = this.store.select(fromRoot.getOrderLoading);
   }
 
@@ -117,5 +173,9 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
         .reduce((pre, curr: CartDetail) => pre + (curr.quantity * +curr.store_product_variant.price), 0)
         .toString();
     }
+  }
+
+  isOnStore() {
+    return this.order.latitude == null && this.order.longitude == null;
   }
 }
