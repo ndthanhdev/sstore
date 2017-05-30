@@ -1,4 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Store} from '@ngrx/store';
+
+import * as fromRoot from '../../../../store/reducers';
+import {Observable} from 'rxjs/Observable';
+import {User} from '../../../../models/user.model';
 
 @Component({
   selector: 'frontend-delivery-method',
@@ -7,7 +12,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       <h4 class="modal-title">Choose your delivery method</h4>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-primary" (click)="onStoreButtonClicked.emit()">
+      <button type="button" class="btn btn-outline-primary" (click)="onStoreButtonClicked.emit()" [disabled]="(user | async).role < 1">
         <i class="fa fa-home"></i> On Store
       </button>
       <button class="btn btn-outline-primary" (click)="onlineButtonClicked.emit()">
@@ -21,7 +26,10 @@ export class DeliveryMethodComponent implements OnInit {
   @Output() onStoreButtonClicked = new EventEmitter();
   @Output() onlineButtonClicked = new EventEmitter();
 
-  constructor() {
+  user: Observable<User>;
+
+  constructor(private store: Store<fromRoot.State>) {
+    this.user = this.store.select(fromRoot.getAuthUser);
   }
 
   ngOnInit() {
