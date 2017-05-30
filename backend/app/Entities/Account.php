@@ -49,6 +49,7 @@ class Account extends Model implements AuthenticatableContract, AuthorizableCont
 
         return [
             'id' => $this->id,
+            'role' => $this->role,
             'username' => $this->username,
             'avatar' => $user->avatar
         ];

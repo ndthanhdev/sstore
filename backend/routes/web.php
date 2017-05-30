@@ -139,6 +139,11 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
             'uses' => 'CartDetailController@delete'
         ]);
 
+        $app->patch('/{detailId:[0-9]+}', [
+            'as' => 'carts/{cartId}/details/{detailId}.PATCH',
+            'uses' => 'CartDetailController@update'
+        ]);
+
     });
 
 });
