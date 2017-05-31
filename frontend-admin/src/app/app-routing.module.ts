@@ -11,17 +11,17 @@ const routes: Routes = [
     loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule',
   }
   , {
-    path: 'store',
+    path: 'stores',
     loadChildren: 'app/modules/store/store.module#StoreModule',
   }, {
-    path: 'product',
+    path: 'products',
     loadChildren: 'app/modules/product/product.module#ProductModule'
   }  , {
-    path: 'user',
+    path: 'users',
     loadChildren: 'app/modules/user/user.module#UserModule'
   }
   , {
-    path: 'review',
+    path: 'reviews',
     loadChildren: 'app/modules/review/review.module#ReviewModule'
   }
 ];

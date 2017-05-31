@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ProductService} from "../product.service";
 import * as rootReducer from "../../../store/reducers/root";
-import {PaginatedListOfProductVariants, Products} from "../../../models/models";
+import {PaginatedListOfProductVariants, Products, StoreProductVariant} from "../../../models/models";
 import {Store} from "@ngrx/store";
 import {
   StartProductDetailLoadAction, StartProductsLoadAction,
@@ -18,7 +18,7 @@ import 'rxjs/add/observable/combineLatest';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
   id: number;
 
@@ -68,7 +68,13 @@ export class DetailComponent implements OnInit {
     if (!isNaN($event)
       && this.paginatedListOfProductVariants
       && this.paginatedListOfProductVariants.pageIndex != $event) {
-      this.router.navigate(['/product', this.product.id], {queryParams: {page: $event}});
+      this.router.navigate(['/products', this.product.id], {queryParams: {page: $event}});
     }
   }
+
+  onStoreProductVariantSave($event: StoreProductVariant) {
+    console.log($event);
+  }
+
+
 }

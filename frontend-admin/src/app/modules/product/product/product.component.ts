@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import 'rxjs/add/operator/filter';
@@ -13,7 +13,7 @@ import * as productAction from '../../../store/actions/product.action';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
 
   sub: Subscription;
   isBusy: Observable<boolean>;
@@ -40,10 +40,6 @@ export class ProductComponent implements OnInit {
     this.sub = this.route
       .queryParams
       .subscribe(params => {
-        // if (!params['page'])
-        //   this.router.navigate(['/product'], {queryParams: {page: 1}});
-        // else
-        //   this.store.dispatch(new productAction.StartProductsLoadAction({page: +params['page']}));
         this.store.dispatch(new productAction.StartProductsLoadAction({page: +params['page'] || 1}));
       });
   }
@@ -57,7 +53,7 @@ export class ProductComponent implements OnInit {
     if (!isNaN($event)
       && this.paginatedListOfProducts
       && this.paginatedListOfProducts.pageIndex != $event) {
-      this.router.navigate(['/product'], {queryParams: {page: $event}});
+      this.router.navigate(['/products'], {queryParams: {page: $event}});
     }
   }
 

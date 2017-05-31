@@ -30,6 +30,12 @@ export class DashboardService extends GenericService {
     }));
   }
 
+  public loadMonthSales(): Observable<any[][]> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/MonthSales`
+    }));
+  }
+
   public loadReviewPercents(): Observable<number[][]> {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/ReviewPercents`

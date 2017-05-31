@@ -41,23 +41,27 @@ namespace BackendAdmin.Controllers
             return _context.Reviews.Where(review => review.Rating < 3).Count();
         }
 
-        // GET: api/Dashboard/TodaySales
-        [HttpGet("TodaySales")]
-        public object GetTodaySales()
+        // GET: api/Dashboard/MonthSales
+        [HttpGet("MonthSales")]
+        public object GetMonthSales()
         {
-            // get this time yesterday
-            var yesterday = DateTime.Today - TimeSpan.FromDays(1);
+            DateTime present = DateTime.Today;
 
-            // get previous hour
-            long span = TimeSpan.FromHours(1).Ticks;
-            long ticks = DateTime.Now.Ticks / span;
-            var currentHour = new DateTime(ticks * span);
+            //1 month ago
+            var pastTicks = present.AddMonths(-1);
 
-            var todayInvoices = _context.Invoices
-                .Where(invoice => invoice.CreatedAt > yesterday && invoice.CreatedAt <= currentHour)
-                .Include(invoice => invoice.Order.ShoppingCart.ShoppingCartDetails);
+            var monthSales = _context.Invoices
+                .Where(invoice => invoice.CreatedAt > pastTicks && invoice.CreatedAt <= present)
+                .Include(invoice => invoice.Order.ShoppingCart.ShoppingCartDetails)
+                .OrderBy(invoice=>invoice.CreatedAt)
+                .GroupBy(invoice => invoice.CreatedAt.Value.ToString("d"))
+                .Select(group => new object[]
+                {
+                    group.Key,
+                    group.Sum(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails.Sum(scd=>scd.Quantity))
+                });
 
-            return null;
+            return monthSales;
         }
 
         // GET: api/Dashboard/ReviewPercents

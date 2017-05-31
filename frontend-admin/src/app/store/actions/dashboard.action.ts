@@ -18,6 +18,9 @@ export const ActionTypes = {
   START_TODAY_SALES_LOAD: type('[Dashboard] Start Today Sales Load'),
   LOAD_TODAY_SALES: type('[Dashboard] Load Today Sales Reviews'),
 
+  START_MONTH_SALES_LOAD: type('[Dashboard] Start Month Sales Load'),
+  LOAD_MONTH_SALES: type('[Dashboard] Load Month Sales'),
+
   START_REVIEW_PERCENTS_LOAD: type('[Dashboard] Start Review Percents Load'),
   LOAD_REVIEW_PERCENTS: type('[Dashboard] Load Review Percents'),
 
@@ -59,6 +62,17 @@ export class LoadNoBadReviewsAction implements Action {
   type = ActionTypes.LOAD_NO_BAD_REVIEWS;
 
   constructor(public payload: { noBadReviews: number }) {
+  }
+}
+
+
+export class StartMonthSalesLoadAction implements Action {
+  type = ActionTypes.START_MONTH_SALES_LOAD;
+}
+
+export class LoadMonthSalesAction implements Action {
+  type = ActionTypes.LOAD_MONTH_SALES;
+  constructor(public payload: { monthSales: any[][] }) {
   }
 }
 

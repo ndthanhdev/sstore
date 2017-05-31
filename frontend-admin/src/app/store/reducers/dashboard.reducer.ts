@@ -6,14 +6,18 @@ export interface State {
   noUsers: number;
   noRemainingOrders: number;
   noBadReviews: number;
+  monthSales: any[][];
   reviewPercents: any[][];
-  recentUsers: any[][]
+  recentUsers: any[][];
 }
 
 export const initialState: State = {
   noUsers: 0,
   noRemainingOrders: 0,
   noBadReviews: 0,
+  monthSales: [
+    ['Day', 'Revenue']
+  ],
   reviewPercents: [
     ['Stars', 'Count'],
   ],
@@ -47,6 +51,18 @@ export function reducer(state: State = initialState, action: Action): State {
     case dashBoardAction.ActionTypes.LOAD_NO_BAD_REVIEWS:
       return Object.assign({}, state, {
         noBadReviews: action.payload.noBadReviews
+      });
+
+    // month sales
+    case dashBoardAction.ActionTypes.START_MONTH_SALES_LOAD:
+      return Object.assign({}, state, {});
+    case dashBoardAction.ActionTypes.LOAD_MONTH_SALES:
+      let monthSales: any[][] = [
+        ['Day', 'Revenue']
+      ];
+      monthSales = monthSales.concat(action.payload.monthSales);
+      return Object.assign({}, state, {
+        monthSales: monthSales
       });
 
     // review percents
@@ -83,6 +99,6 @@ export function reducer(state: State = initialState, action: Action): State {
 export const getNoUsers = (state: State) => state.noUsers;
 export const getNoRemainingOrders = (state: State) => state.noRemainingOrders;
 export const getNoBadReviews = (state: State) => state.noBadReviews;
+export const getMonthSales = (state: State) => state.monthSales;
 export const getReviewPercents = (state: State) => state.reviewPercents;
 export const getRecentUsers = (state: State) => state.recentUsers;
-

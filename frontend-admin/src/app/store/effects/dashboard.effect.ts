@@ -37,6 +37,12 @@ export class DashboardEffect {
       .concatMap(noBadReviews => of(new dashboardActions.LoadNoBadReviewsAction({noBadReviews: noBadReviews}))));
 
   @Effect()
+  monthSalesLoad$: Observable<Action> = this.actions$
+    .ofType(dashboardActions.ActionTypes.START_MONTH_SALES_LOAD)
+    .switchMap(action => this.dashboardService.loadMonthSales()
+      .concatMap(monthSales => of(new dashboardActions.LoadMonthSalesAction({monthSales: monthSales}))));
+
+  @Effect()
   noReviewPercentsLoad$: Observable<Action> = this.actions$
     .ofType(dashboardActions.ActionTypes.START_REVIEW_PERCENTS_LOAD)
     .switchMap(action => this.dashboardService.loadReviewPercents()

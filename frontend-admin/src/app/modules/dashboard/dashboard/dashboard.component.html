@@ -8,11 +8,10 @@
   </frontend-admin-overview-cards>
   <div class="row mb-3">
     <frontend-admin-bar-chart class="col-12"
-                              *ngIf="totalSalesChartOptions"
-                              [title]="'Today sales'"
+                              [title]="'This month sales'"
                               [vAxis]="'VND'"
                               [hAxis]="'Time'"
-                              [dataTable]="totalSalesChartOptions?.dataTable"></frontend-admin-bar-chart>
+                              [dataTable]="monthSales | async"></frontend-admin-bar-chart>
   </div>
   <div class="row mb-3">
     <frontend-admin-pie-chart class="col-lg-6 col-12"

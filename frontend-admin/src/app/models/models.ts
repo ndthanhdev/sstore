@@ -239,3 +239,12 @@ export interface PaginatedListOfProductVariants {
   readonly hasNextPage?: boolean | null;
   data?: ProductVariants[] | null;
 }
+
+export interface PaginatedListOfReviews {
+  pageIndex?: number | null;
+  totalPages?: number | null;
+  count?: number | null;
+  readonly hasPreviousPage?: boolean | null;
+  readonly hasNextPage?: boolean | null;
+  data?: Reviews[] | null;
+}

@@ -19,7 +19,8 @@
               #pagination
               [collectionSize]="stores.length"
               [pageSize]="2"
-              [(page)]="page">
+              [page]="page"
+              (pageChange)="onPageChanged($event)">
 
             </ngb-pagination>
             <button class="btn btn-outline-primary"><a routerLink="/store/create">Add Store</a></button>

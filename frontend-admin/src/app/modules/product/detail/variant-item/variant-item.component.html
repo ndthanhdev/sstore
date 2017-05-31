@@ -43,14 +43,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let storeProductVariant of productVariant.storeProductVariant">
-            <th scope="row">{{storeProductVariant.storeId}}</th>
-            <td><a href="#">{{storeProductVariant.store.address}}</a></td>
-            <td>{{storeProductVariant.price}}</td>
-            <td>{{storeProductVariant.inStock}}</td>
-            <td>
-              <button class="btn btn-sm btn-outline-primary">Edit</button>
-            </td>
+          <tr *ngFor="let storeProductVariant of productVariant.storeProductVariant"
+              frontend-admin-store-product-variant-item
+              [storeProductVariant]="storeProductVariant"
+              (storeProductVariantSaved)="onStoreProductVariantSave($event)">
           </tr>
           </tbody>
         </table>

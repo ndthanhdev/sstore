@@ -4,8 +4,7 @@ import {UserComponent} from "./user/user.component";
 import {DetailComponent} from "./detail/detail.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'user'},
-  {path: 'user', component: UserComponent},
+  {path: '', component: UserComponent},
   {path: 'user/:id', component: DetailComponent}
 ];
 

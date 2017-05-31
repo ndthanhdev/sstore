@@ -109,7 +109,8 @@
 
   <!--START VARIANT CARD-->
   <frontend-admin-variant-item *ngFor="let productVariants of paginatedListOfProductVariants?.data"
-                               [productVariant]="productVariants"></frontend-admin-variant-item>
+                               [productVariant]="productVariants"
+                               (storeProductVariantSaved)="onStoreProductVariantSave($event)"></frontend-admin-variant-item>
   <!--END VARIANT CARD-->
 
 

@@ -21,8 +21,10 @@ export class DashboardComponent implements OnInit {
 
   recentUsersChartOptions: any;
 
+  monthSales: Observable<any[][]>;
   reviewPercents: Observable<any[][]>;
   recentUsers: Observable<any[][]>;
+
 
   constructor(private store: Store<rootReducer.State>) {
     this.totalSalesChartOptions = Constant.totalSalesChartOptions;
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit {
     this.noUsers = this.store.select(rootReducer.getDashboardNoUsers);
     this.noRemainingOrders = this.store.select(rootReducer.getDashboardNoRemainingOrders);
     this.noBadReviews = this.store.select(rootReducer.getDashboardNoBadReviews);
+    this.monthSales = this.store.select(rootReducer.getDashboardMonthSales);
     this.reviewPercents = this.store.select(rootReducer.getDashboardReviewPercents);
     this.recentUsers = this.store.select(rootReducer.getDashboardRecentUsers);
   }
@@ -39,6 +42,7 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(new dashboardActions.StartNoUsersLoadAction());
     this.store.dispatch(new dashboardActions.StartNoRemainingOrdersLoadAction());
     this.store.dispatch(new dashboardActions.StartNoBadReviewsLoadAction());
+    this.store.dispatch(new dashboardActions.StartMonthSalesLoadAction());
     this.store.dispatch(new dashboardActions.StartReviewPercentsLoadAction());
     this.store.dispatch(new dashboardActions.StartRecentUsersLoadAction());
   }

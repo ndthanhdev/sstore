@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BackendAdmin.Models;
+using BackendAdmin.Controllers.Helper;
 
 namespace BackendAdmin.Controllers
 {
@@ -20,11 +21,22 @@ namespace BackendAdmin.Controllers
             _context = context;
         }       
 
-        // GET: api/Reviews
-        [HttpGet]
+        // GET: api/Reviews/All
+        [HttpGet("All")]
         public IEnumerable<Reviews> GetReviews()
         {
             return _context.Reviews;
+        }
+
+        // GET: api/Reviews?page=1
+        [HttpGet]
+        public async Task<PaginatedList<Reviews>> GetReviews(int page = 1, int size = 5)
+        {
+            var source = _context.Reviews
+                .OrderByDescending(review => review.UpdatedAt)
+                .Include(review => review.Product)
+                .Include(review => review.User);
+            return await PaginatedList<Reviews>.CreateAsync(source, page, size);
         }
 
         // GET: api/Reviews/5

@@ -7,14 +7,29 @@ import {BarChartComponent} from './bar-chart/bar-chart.component';
 import {PieChartComponent} from './pie-chart/pie-chart.component';
 import {FileDropDirective} from "ng2-file-upload";
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+import { RattingStarsComponent } from './ratting-stars/ratting-stars.component';
 
 @NgModule({
   imports: [
     CommonModule,
     Ng2GoogleChartsModule
   ],
-  declarations: [JumbotronComponent, ChartComponent, BarChartComponent, PieChartComponent, FileDropDirective, LoadingIndicatorComponent],
-  exports: [JumbotronComponent, ChartComponent, BarChartComponent, PieChartComponent, FileDropDirective,LoadingIndicatorComponent]
+  declarations: [
+    JumbotronComponent,
+    ChartComponent,
+    BarChartComponent,
+    PieChartComponent,
+    FileDropDirective,
+    LoadingIndicatorComponent,
+    RattingStarsComponent],
+  exports: [
+    JumbotronComponent,
+    ChartComponent,
+    BarChartComponent,
+    PieChartComponent,
+    FileDropDirective,
+    LoadingIndicatorComponent,
+    RattingStarsComponent]
 })
 export class SharedModule {
 }

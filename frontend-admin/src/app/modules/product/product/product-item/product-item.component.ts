@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Products} from "../../../models/models";
+import {Products} from "../../../../models/models";
 
 @Component({
   selector: 'frontend-admin-product-item',

@@ -18,6 +18,9 @@ import {EffectsModule} from "@ngrx/effects";
 import {DashboardEffect} from "./store/effects/dashboard.effect";
 import {ProductEffect} from "./store/effects/product.effect";
 import {ProductModule} from "./modules/product/product.module";
+import {ReviewEffect} from "./store/effects/review.effect";
+import {ReviewModule} from "./modules/review/review.module";
+import {UserModule} from "./modules/user/user.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import {ProductModule} from "./modules/product/product.module";
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(DashboardEffect),
     EffectsModule.run(ProductEffect),
+    EffectsModule.run(ReviewEffect),
 
     BrowserModule,
     FormsModule,
@@ -39,7 +43,9 @@ import {ProductModule} from "./modules/product/product.module";
     CoreModule,
     DashboardModule,
     StoreModule,
-    ProductModule
+    ProductModule,
+    ReviewModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
