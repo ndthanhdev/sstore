@@ -11,7 +11,7 @@ import {Category} from '../../../models/category.model';
 
     <ng-template ngFor let-tile [ngForOf]="tiles" let-i="index" [ngForTrackBy]="trackByFn">
       <frontend-category-tile
-        class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-2"
+        class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 mb-2 cursor-pointer"
         *ngIf="isInCurrentSlide(i)"
         [tile]="tile">
       </frontend-category-tile>
