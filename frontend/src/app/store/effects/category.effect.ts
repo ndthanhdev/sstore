@@ -26,5 +26,12 @@ export class CategoryEffect {
       .concatMap(catalogParentCategories =>
         of(new categoryActions.LoadCatalogParentCategoriesAction({catalogParentCategories: catalogParentCategories}))));
 
+  @Effect()
+  categoryLoad$: Observable<Action> = this.actions$
+    .ofType(categoryActions.ActionTypes.START_CATEGORY_LOAD)
+    .switchMap(action => this.categoryService.loadCategory(action.payload.categoryId)
+      .concatMap(category =>
+        of(new categoryActions.LoadCategoryAction({category: category}))));
+
 
 }

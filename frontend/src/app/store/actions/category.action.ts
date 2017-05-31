@@ -7,6 +7,9 @@ import {Category} from '../../models/category.model';
 
 
 export const ActionTypes = {
+  START_CATEGORY_LOAD: type('[Category] Start Category Load'),
+  LOAD_CATEGORY: type('[Category] Load Category'),
+
   START_CATALOG_PARENT_CATEGORIES_LOAD: type('[Category] Start Catalog Parent Category Load'),
   LOAD_CATALOG_PARENT_CATEGORIES: type('[Category] Load Catalog Parent Categories')
 };
@@ -27,4 +30,22 @@ export class LoadCatalogParentCategoriesAction implements Action {
   }
 }
 
-export type Actions = StartCatalogParentCategoriesLoadAction | LoadCatalogParentCategoriesAction;
+export class StartCategoryLoadAction implements Action {
+  type = ActionTypes.START_CATEGORY_LOAD;
+
+  constructor(public payload: { categoryId: number }) {
+  }
+}
+
+export class LoadCategoryAction implements Action {
+  type = ActionTypes.LOAD_CATEGORY;
+
+  constructor(public payload: { category: Category }) {
+
+  }
+}
+
+export type Actions = StartCatalogParentCategoriesLoadAction
+  | LoadCatalogParentCategoriesAction
+  | StartCategoryLoadAction
+  | LoadCategoryAction;

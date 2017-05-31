@@ -22,4 +22,10 @@ export class CategoryService extends GenericService {
     }));
   }
 
+  public loadCategory(categoryId: number): Observable<Category> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/${categoryId}`
+    }));
+  }
+
 }

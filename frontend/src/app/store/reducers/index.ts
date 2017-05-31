@@ -81,6 +81,8 @@ export const getLayoutDoneMsg = Reselect.createSelector(getLayoutState, fromLayo
 export const getCatalogCatalogs = Reselect.createSelector(getCatalogState, fromCatalog.getCatalogs);
 
 export const getCategoryCatalogParentCategories = Reselect.createSelector(getCategoryState, fromCategory.getCatalogParentCategories);
+export const getCategoryCategory = Reselect.createSelector(getCategoryState, fromCategory.getCategory);
+export const getCategoryLoading = Reselect.createSelector(getCategoryState, fromCategory.getLoading);
 
 export const getProductCatalogProducts = Reselect.createSelector(getProductState, fromProduct.getCatalogProducts);
 export const getProductProduct = Reselect.createSelector(getProductState, fromProduct.getProduct);
