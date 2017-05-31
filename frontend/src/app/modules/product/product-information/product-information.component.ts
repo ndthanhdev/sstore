@@ -28,7 +28,7 @@ import {ProductVariant} from '../../../models/product-variant.model';
           <div ngbDropdown class="d-inline-block btn-group mb-2">
             <button class="btn btn-secondary" ngbDropdownToggle>
               <frontend-product-variation-values
-                [variationValues]="currentProductVariant.variation_values">
+                [variationValues]="currentProductVariant?.variation_values">
               </frontend-product-variation-values>
             </button>
             <div class="dropdown-menu">

@@ -74,11 +74,11 @@ import {GOOGLE_MAPS} from '../../../util/app.constants';
           </div>
           <div class="form-group">
             <label for="latitude-input">Latitude:</label>
-            <input readonly type="number" class="form-control" id="latitude-input" [value]="order.latitude">
+            <input readonly type="text" class="form-control" id="latitude-input" [value]="order.latitude">
           </div>
           <div class="form-group">
             <label for="longitude-input">Longitude:</label>
-            <input readonly type="number" class="form-control" id="longitude-input" [value]="order.longitude">
+            <input readonly type="text" class="form-control" id="longitude-input" [value]="order.longitude">
           </div>
           <div class="form-group">
             <label for="tel-input">Tel:</label>
@@ -109,7 +109,10 @@ import {GOOGLE_MAPS} from '../../../util/app.constants';
         <tbody>
         <tr *ngFor="let detail of order?.shopping_cart.details">
           <th scope="row">1</th>
-          <td><a href="#">{{detail.store_product_variant.product_variant.product.name}}</a></td>
+          <td><a [routerLink]="['/products', detail.store_product_variant.product_variant.product.id]">
+            {{detail.store_product_variant.product_variant.product.name}}
+          </a>
+          </td>
           <td>
             <frontend-product-variation-values
               [variationValues]="detail.store_product_variant.product_variant.variation_values">

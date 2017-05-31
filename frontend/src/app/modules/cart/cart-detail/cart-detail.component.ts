@@ -52,7 +52,7 @@ import {CheckoutComponent} from '../../core/checkout/checkout.component';
 
       <div class="row justify-content-end mr-4 mb-5">
         <button class="btn btn-link btn-lg" (click)="goBack()">Continue shopping</button>
-        <button class="btn btn-outline-primary btn-lg" (click)="onCheckoutClick()">Checkout</button>
+        <button class="btn btn-outline-primary btn-lg" (click)="onCheckoutClick()" [disabled]="cart?.details?.length <= 0">Checkout</button>
       </div>
 
     </div>
