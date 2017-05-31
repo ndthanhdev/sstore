@@ -68,7 +68,7 @@ class CategoryRepository extends BaseRepository implements CacheableInterface {
                 'reviews_5_rating',
             ])
             ->where('category_id', $categoryId)
-            ->get();
+            ->paginate(6);
     }
 
 }
