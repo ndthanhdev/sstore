@@ -19,7 +19,11 @@ class Category extends Model {
         return $this->belongsTo('App\Entities\Category');
     }
 
-    public function childs() {
-        return $this->hasMany('App\Entities\Category');
+    public function child() {
+        return $this->hasMany('App\Entities\Category','parent_id');
+    }
+
+    public function catalog() {
+        return $this->belongsTo('App\Entities\Catalog');
     }
 }

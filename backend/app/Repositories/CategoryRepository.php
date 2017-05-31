@@ -25,6 +25,33 @@ class CategoryRepository extends BaseRepository implements CacheableInterface {
         return 'App\\Entities\\Category';
     }
 
+    public function show($categoryId) {
+        //find current category
+        $foundCategory = Category::with(['catalog', 'parent', 'child'])->findOrFail($categoryId);
+
+
+        //initialize parent array
+        $parentCategories = [];
+
+        // get its first parent
+        $currentParentCategory = $foundCategory->parent;
+
+        while ($currentParentCategory != null) {
+            array_push($parentCategories, $currentParentCategory);
+            $currentParentCategory = Category::with(['parent'])->find($currentParentCategory->id)->parent;
+        }
+
+        return [
+            'id' => $foundCategory->id,
+            'name' => $foundCategory->name,
+            'description' => $foundCategory->description,
+            'icon' => $foundCategory->icon,
+            'catalog' => $foundCategory->catalog,
+            'child' => $foundCategory->child,
+            'parents' => $parentCategories
+        ];
+    }
+
     public function childCategories($parentCategoryId) {
         return Category::where('parent_id', $parentCategoryId)->get();
     }

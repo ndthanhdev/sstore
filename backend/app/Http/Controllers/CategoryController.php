@@ -27,4 +27,8 @@ class CategoryController extends Controller {
         return $this->categoryRepository->products($categoryId, $storeId);
     }
 
+    public function show(Request $request, $categoryId){
+        return $this->categoryRepository->show($categoryId);
+    }
+
 }

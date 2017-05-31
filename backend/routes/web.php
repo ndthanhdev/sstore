@@ -54,15 +54,26 @@ $app->group(['prefix' => 'catalogs'], function () use ($app) {
 ///////////
 $app->group(['prefix' => 'categories'], function () use ($app) {
 
-    $app->get('/{id}/categories', [
-        'as' => 'categories/{id}/categories.GET',
-        'uses' => 'CategoryController@childCategories'
-    ]);
 
-    $app->get('/{id}/products', [
-        'as' => 'categories/{id}/products.GET',
-        'uses' => 'CategoryController@products'
-    ]);
+    $app->group(['prefix' => '/{id:[0-9]+}'], function () use ($app) {
+
+        $app->get('', [
+            'as' => 'categories/{id}.GET',
+            'uses' => 'CategoryController@show'
+        ]);
+
+        $app->get('/categories', [
+            'as' => 'categories/{id}/categories.GET',
+            'uses' => 'CategoryController@childCategories'
+        ]);
+
+
+        $app->get('/products', [
+            'as' => 'categories/{id}/products.GET',
+            'uses' => 'CategoryController@products'
+        ]);
+    });
+
 
 });
 
