@@ -48,7 +48,7 @@ class CategoryRepository extends BaseRepository implements CacheableInterface {
             'icon' => $foundCategory->icon,
             'catalog' => $foundCategory->catalog,
             'child' => $foundCategory->child,
-            'parents' => $parentCategories
+            'parents' => array_reverse($parentCategories)
         ];
     }
 
