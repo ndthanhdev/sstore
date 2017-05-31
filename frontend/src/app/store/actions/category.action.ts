@@ -1,6 +1,8 @@
 import {type} from '../../util/helper';
 import {Action} from '@ngrx/store';
 import {Category} from '../../models/category.model';
+import {ProductSummary} from '../../models/product.model';
+import {Page} from '../../models/page.model';
 /**
  * Created by vunguyenhung on 5/13/17.
  */
@@ -11,7 +13,10 @@ export const ActionTypes = {
   LOAD_CATEGORY: type('[Category] Load Category'),
 
   START_CATALOG_PARENT_CATEGORIES_LOAD: type('[Category] Start Catalog Parent Category Load'),
-  LOAD_CATALOG_PARENT_CATEGORIES: type('[Category] Load Catalog Parent Categories')
+  LOAD_CATALOG_PARENT_CATEGORIES: type('[Category] Load Catalog Parent Categories'),
+
+  START_CATEGORY_PRODUCTS_LOAD: type('[Category] Start Category Products Load'),
+  LOAD_CATEGORY_PRODUCTS: type('[Category] Load Category Products'),
 };
 
 
@@ -45,7 +50,23 @@ export class LoadCategoryAction implements Action {
   }
 }
 
+export class StartCategoryProductsLoadAction implements Action {
+  type = ActionTypes.START_CATEGORY_PRODUCTS_LOAD;
+
+  constructor(public payload: { categoryId: number, page: number }) {
+  }
+}
+
+export class LoadCategoryProductsAction implements Action {
+  type = ActionTypes.LOAD_CATEGORY_PRODUCTS;
+
+  constructor(public payload: { products: Page<ProductSummary> }) {
+  }
+}
+
 export type Actions = StartCatalogParentCategoriesLoadAction
   | LoadCatalogParentCategoriesAction
   | StartCategoryLoadAction
-  | LoadCategoryAction;
+  | LoadCategoryAction
+  | StartCategoryProductsLoadAction
+  | LoadCategoryProductsAction;

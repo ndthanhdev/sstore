@@ -23,7 +23,6 @@ export class ProductService extends GenericService {
     }));
   }
 
-
   public loadProduct(productId: number, storeId: number): Observable<Product> {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/${productId}?storeId=${storeId}`,

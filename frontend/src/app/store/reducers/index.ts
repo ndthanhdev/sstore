@@ -82,7 +82,9 @@ export const getCatalogCatalogs = Reselect.createSelector(getCatalogState, fromC
 
 export const getCategoryCatalogParentCategories = Reselect.createSelector(getCategoryState, fromCategory.getCatalogParentCategories);
 export const getCategoryCategory = Reselect.createSelector(getCategoryState, fromCategory.getCategory);
+export const getCategoryProducts = Reselect.createSelector(getCategoryState, fromCategory.getProducts);
 export const getCategoryLoading = Reselect.createSelector(getCategoryState, fromCategory.getLoading);
+export const getCategoryProductsLoading = Reselect.createSelector(getCategoryState, fromCategory.getProductsLoading);
 
 export const getProductCatalogProducts = Reselect.createSelector(getProductState, fromProduct.getCatalogProducts);
 export const getProductProduct = Reselect.createSelector(getProductState, fromProduct.getProduct);

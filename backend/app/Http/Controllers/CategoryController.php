@@ -23,8 +23,8 @@ class CategoryController extends Controller {
     }
 
     public function products(Request $request, $categoryId) {
-        $storeId = $request->input('storeId');
-        return $this->categoryRepository->products($categoryId, $storeId);
+        $data = $request->all();
+        return $this->categoryRepository->products($categoryId, $data['storeId']);
     }
 
     public function show(Request $request, $categoryId){

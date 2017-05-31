@@ -55,7 +55,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
   catalogs: Observable<Catalog[]>;
 
   productPage: Observable<Page<ProductSummary>>;
-  productLoading: Observable<boolean>;
+  productsLoading: Observable<boolean>;
 
   selectedCatalog: Catalog;
   selectedCatalogSub: Subscription;
@@ -71,7 +71,7 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
 
     this.productPage = this.store.select(fromRoot.getProductCatalogProducts).filter(productPage => !!productPage);
-    this.productLoading = this.store.select(fromRoot.getProductLoading);
+    this.productsLoading = this.store.select(fromRoot.getProductLoading);
 
     this.activeCartSub = this.store.select(fromRoot.getCartActiveCart).subscribe(activeCart => this.activeCart = activeCart);
   }
