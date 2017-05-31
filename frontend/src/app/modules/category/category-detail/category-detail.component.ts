@@ -15,10 +15,10 @@ import {Subscription} from 'rxjs/Subscription';
         <frontend-category-breadcrumb
           [breadcrumbs]="generateBreadcrumbs()">
         </frontend-category-breadcrumb>
-        <!--<frontend-category-tiles-->
-        <!--class="row justify-content-md-between align-items-center my-3"-->
-        <!--[tiles]="tiles">-->
-        <!--</frontend-category-tiles>-->
+        <frontend-category-tiles
+          class="row justify-content-md-between align-items-center my-3"
+          [tiles]="category?.child">
+        </frontend-category-tiles>
       </div>
     </div>
 
@@ -87,5 +87,4 @@ export class CategoryDetailComponent implements OnInit {
       return [];
     }
   }
-
 }

@@ -12,6 +12,7 @@ export class Category {
   parent_id: number;
   catalog_id: number;
   parents: Category[];
+  child: Category[];
   catalog: Catalog;
 }
 
