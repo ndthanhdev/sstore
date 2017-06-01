@@ -9,6 +9,7 @@ import {of} from "rxjs/observable/of";
 import "rxjs/add/operator/concatMap";
 import {ProductService} from "../../modules/product/product.service";
 import "rxjs/add/observable/from";
+import {StoreProductVariant} from "../../models/models";
 
 
 @Injectable()
@@ -35,6 +36,18 @@ export class ProductEffect {
   productVariantActionLoad$: Observable<Action> = this.actions$
     .ofType(productdActions.ActionTypes.START_PRODUCT_VARIANT_LOAD)
     .switchMap(action => this.productService.loadProductVariants(action.payload.id, action.payload.page)
-      .concatMap(paginatedListOfProductVariants => of(new productdActions.LoadProductVariantsAction({paginatedListOfProductVariants: paginatedListOfProductVariants}))));
+      .concatMap(paginatedListOfProductVariants =>
+        of(new productdActions.LoadProductVariantsAction(
+          {paginatedListOfProductVariants: paginatedListOfProductVariants}))));
 
+  @Effect()
+  storeProductVariantActionEdit$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_STORE_PRODUCT_VARIANT_UPDATE)
+    .switchMap(action => this.productService.updateProductVariants(action.payload.storeProductVariant)
+      .concatMap(response =>
+        of(new productdActions.UpdateStoreProductVariantsAction(
+          {
+            response: response,
+            storeProductVariant: action.payload.storeProductVariant
+          }))));
 }

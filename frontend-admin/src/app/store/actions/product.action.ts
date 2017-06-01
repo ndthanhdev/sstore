@@ -1,6 +1,10 @@
 import {type} from "../../util/helper";
 import {Action} from "@ngrx/store";
-import {PaginatedListOfProducts, PaginatedListOfProductVariants, Products} from "../../models/models";
+import {
+  PaginatedListOfProducts, PaginatedListOfProductVariants, Products,
+  StoreProductVariant
+} from "../../models/models";
+import {Response} from "@angular/http";
 
 export const ActionTypes = {
 
@@ -12,6 +16,9 @@ export const ActionTypes = {
 
   START_PRODUCT_VARIANT_LOAD: type('[Dashboard] Start Product Variant Load'),
   LOAD_PRODUCT_VARIANT: type('[Dashboard] Load Product Variant'),
+
+  START_STORE_PRODUCT_VARIANT_UPDATE: type('[Dashboard] Start Store Product Variant Update'),
+  UPDATE_STORE_PRODUCT_VARIANT: type('[Dashboard] Update Store Product Variant'),
 
 };
 
@@ -60,9 +67,26 @@ export class LoadProductVariantsAction implements Action {
   }
 }
 
+
+export class StartStoreProductVariantsUpdateAction implements Action {
+  type = ActionTypes.START_STORE_PRODUCT_VARIANT_UPDATE;
+
+  constructor(public payload: { storeProductVariant: StoreProductVariant }) {
+  }
+}
+
+export class UpdateStoreProductVariantsAction implements Action {
+  type = ActionTypes.UPDATE_STORE_PRODUCT_VARIANT;
+
+  constructor(public payload: { response: Response, storeProductVariant: StoreProductVariant }) {
+  }
+}
+
 export type Actions = StartProductsLoadAction
   | LoadProductsAction
   | StartProductDetailLoadAction
   | LoadProductDetailAction
   | StartProductVariantsLoadAction
-  | LoadProductVariantsAction;
+  | LoadProductVariantsAction
+  | StartStoreProductVariantsUpdateAction
+  | UpdateStoreProductVariantsAction;

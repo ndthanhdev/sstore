@@ -1,14 +1,20 @@
 import {Injectable} from '@angular/core';
 import {GenericService} from "../../generic.service";
-import {Http, RequestOptions} from "@angular/http";
+import {Http, RequestOptions, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {PaginatedListOfProducts, PaginatedListOfProductVariants, Products} from "../../models/models";
+import {
+  PaginatedListOfProducts, PaginatedListOfProductVariants, Products,
+  StoreProductVariant
+} from "../../models/models";
 
 @Injectable()
 export class ProductService extends GenericService {
 
+  readonly ORIGINAL_BASE_URL: string;
+
   constructor(http: Http) {
     super(http);
+    this.ORIGINAL_BASE_URL = this.BASE_URL;
     this.BASE_URL += '/Products'
   }
 
@@ -34,6 +40,12 @@ export class ProductService extends GenericService {
         'page': page
       }
     }));
+  }
+
+  public updateProductVariants(storeProductVariant: StoreProductVariant): Observable<Response> {
+    return this.put(new RequestOptions({
+      url: `${this.ORIGINAL_BASE_URL}/StoreProductVariants/${storeProductVariant.id}`
+    }), storeProductVariant);
   }
 
 }

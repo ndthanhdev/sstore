@@ -8,7 +8,12 @@ export class GenericService {
 
   protected BASE_URL = 'http://localhost:60510/api';
 
-  constructor(private http:Http) { }
+  constructor(private http: Http) {
+  }
+
+  protected put(options?: RequestOptions, data?: any): Observable<any> {
+    return this.http.put(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
 
   protected post(options?: RequestOptions, data?: Object | string): Observable<any> {
     return this.http.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options));

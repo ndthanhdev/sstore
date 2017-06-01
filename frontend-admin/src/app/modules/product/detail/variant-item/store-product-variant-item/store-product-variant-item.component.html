@@ -2,7 +2,7 @@
   <th scope="row">{{storeProductVariant?.storeId}}</th>
   <td><a href="#">{{storeProductVariant?.store.address}}</a></td>
   <td>{{storeProductVariant?.price}}</td>
-  <td>{{storeProductVariant.inStock}}</td>
+  <td>{{storeProductVariant?.inStock}}</td>
   <td class="d-flex">
     <button class="btn btn-sm btn-outline-primary" (click)="isEditing=true">Edit</button>
   </td>
@@ -11,8 +11,14 @@
 <ng-template [ngIf]="isEditing">
   <th scope="row">{{_storeProductVariant?.storeId}}</th>
   <td><a href="#">{{_storeProductVariant?.store.address}}</a></td>
-  <td><input type="number" class="form-control" #price="ngModel" [(ngModel)]="_storeProductVariant.price"></td>
-  <td><input type="number" class="form-control" #price="ngModel" [(ngModel)]="_storeProductVariant.inStock"></td>
+  <td><input type="number"
+             class="form-control"
+             #price="ngModel"
+             [(ngModel)]="_storeProductVariant.price"></td>
+  <td><input type="number"
+             class="form-control"
+             #inStock="ngModel"
+             [(ngModel)]="_storeProductVariant.inStock"></td>
   <td class="d-flex">
     <button class="btn btn-sm btn-outline-success" (click)="onSave()">Save</button>
   </td>

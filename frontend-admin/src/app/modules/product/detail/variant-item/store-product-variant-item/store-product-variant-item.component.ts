@@ -20,9 +20,8 @@ export class StoreProductVariantItemComponent implements OnInit, OnChanges {
   storeProductVariantSaved = new EventEmitter<StoreProductVariant>();
 
   isEditing: boolean;
-  private _storeProductVariant: StoreProductVariant;
 
-  t:any;
+  private _storeProductVariant: StoreProductVariant;
 
   constructor() {
     this.isEditing = false;

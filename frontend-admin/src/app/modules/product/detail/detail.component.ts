@@ -7,7 +7,7 @@ import {PaginatedListOfProductVariants, Products, StoreProductVariant} from "../
 import {Store} from "@ngrx/store";
 import {
   StartProductDetailLoadAction, StartProductsLoadAction,
-  StartProductVariantsLoadAction
+  StartProductVariantsLoadAction, StartStoreProductVariantsUpdateAction
 } from "../../../store/actions/product.action";
 
 import {Observable} from "rxjs/Observable";
@@ -73,7 +73,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   onStoreProductVariantSave($event: StoreProductVariant) {
-    console.log($event);
+    this.store.dispatch(new StartStoreProductVariantsUpdateAction({storeProductVariant: $event}));
   }
 
 

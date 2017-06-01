@@ -1,6 +1,6 @@
 import * as productAction from "../actions/product.action";
-import {Action} from "@ngrx/store";
 import {PaginatedListOfProducts, PaginatedListOfProductVariants, Products} from "../../models/models";
+import {Action} from "@ngrx/store";
 
 export interface State {
   isBusy: boolean;
@@ -51,6 +51,19 @@ export function reducer(state: State = initialState, action: Action): State {
         isBusy: false,
         paginatedListOfProductVariants: action.payload.paginatedListOfProductVariants
       });
+
+    // update store product variant
+    case productAction.ActionTypes.START_STORE_PRODUCT_VARIANT_UPDATE:
+      return Object.assign({}, state, {
+        isBusy: true
+      });
+    case productAction.ActionTypes.UPDATE_STORE_PRODUCT_VARIANT:
+      if (!action.payload.response.ok) {
+        return Object.assign({}, state, {isBusy: false});
+      }
+      let newSate: State = Object.assign({}, state, {isBusy: false});
+      // update changed StoreProductVariantItem here
+      return newSate;
 
     default:
       return state;

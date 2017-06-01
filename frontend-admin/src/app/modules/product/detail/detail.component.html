@@ -45,13 +45,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let ptav of product?.productTypeAttributeValues;let i = index">
-          <th scope="row">{{i}}</th>
-          <td>{{ptav.productTypeAttribute.name}}</td>
-          <td>{{ptav.value}}</td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary">Edit</button>
-          </td>
+        <tr frontend-admin-product-type-attribute-value-item
+            *ngFor="let ptav of product?.productTypeAttributeValues"
+            [productTypeAttributeValue]="ptav">
+
         </tr>
         </tbody>
       </table>
@@ -72,13 +69,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let customAttribute of product?.customAttributes;let i = index">
-          <th scope="row">{{i}}</th>
-          <td>{{customAttribute.name}}</td>
-          <td>{{customAttribute.value}}</td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary">Edit</button>
-          </td>
+        <tr *ngFor="let ca of product?.customAttributes"
+            frontend-admin-custom-attribute-item
+            [customAttribute]="ca">
         </tr>
         </tbody>
       </table>

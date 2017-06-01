@@ -13,6 +13,9 @@ import {MomentModule} from "angular2-moment";
 import { VariantItemComponent } from './detail/variant-item/variant-item.component';
 import { StoreProductVariantItemComponent } from './detail/variant-item/store-product-variant-item/store-product-variant-item.component';
 import {FormsModule} from "@angular/forms";
+import { ProductTypeAttributeValueItemComponent } from './detail/product-type-attribute-value-item/product-type-attribute-value-item.component';
+import {CustomAttributeItemComponent} from "./detail/custom-attribute-item/custom-attribute-item.component";
+import { ProductVariantValueItemComponent } from './detail/variant-item/product-variant-value-item/product-variant-value-item.component';
 
 @NgModule({
   imports: [
@@ -30,6 +33,9 @@ import {FormsModule} from "@angular/forms";
     ProductItemComponent,
     VariantItemComponent,
     StoreProductVariantItemComponent,
+    ProductTypeAttributeValueItemComponent,
+    CustomAttributeItemComponent,
+    ProductVariantValueItemComponent
   ],
   providers: [
     ProductService
