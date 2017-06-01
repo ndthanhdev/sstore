@@ -47,7 +47,8 @@
         <tbody>
         <tr frontend-admin-product-type-attribute-value-item
             *ngFor="let ptav of product?.productTypeAttributeValues"
-            [productTypeAttributeValue]="ptav">
+            [productTypeAttributeValue]="ptav"
+            (productTypeAttributeValueChange)="onProductTypeAttributeValueChange($event)">
 
         </tr>
         </tbody>
@@ -71,7 +72,8 @@
         <tbody>
         <tr *ngFor="let ca of product?.customAttributes"
             frontend-admin-custom-attribute-item
-            [customAttribute]="ca">
+            [customAttribute]="ca"
+            (customAttributeChange)="onCustomAttributeChange($event)">
         </tr>
         </tbody>
       </table>
@@ -103,7 +105,8 @@
   <!--START VARIANT CARD-->
   <frontend-admin-variant-item *ngFor="let productVariants of paginatedListOfProductVariants?.data"
                                [productVariant]="productVariants"
-                               (storeProductVariantSaved)="onStoreProductVariantSave($event)"></frontend-admin-variant-item>
+                               (storeProductVariantChange)="onStoreProductVariantChange($event)"
+                               (productVariationValueChange)="onProductVariationValueChange($event)"></frontend-admin-variant-item>
   <!--END VARIANT CARD-->
 
 

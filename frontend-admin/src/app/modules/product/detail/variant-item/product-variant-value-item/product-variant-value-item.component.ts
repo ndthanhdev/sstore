@@ -20,7 +20,7 @@ import {ProductVariationValues} from "../../../../../models/models";
                  #value="ngModel"
                  [(ngModel)]="_productVariationValue.value"></td>
       <td>
-        <button class="btn btn-sm btn-outline-success" (click)="onSave()">Save</button>
+        <button class="btn btn-sm btn-outline-success" (click)="onChange()">Save</button>
       </td>
     </ng-template>
   `,
@@ -33,7 +33,7 @@ export class ProductVariantValueItemComponent implements OnInit, OnChanges {
   productVariationValue: ProductVariationValues;
 
   @Output()
-  productVariationValueSaved = new EventEmitter<ProductVariationValues>();
+  productVariationValueChange = new EventEmitter<ProductVariationValues>();
 
   isEditing: boolean;
 
@@ -50,9 +50,9 @@ export class ProductVariantValueItemComponent implements OnInit, OnChanges {
     this._productVariationValue = Object.assign({}, this.productVariationValue);
   }
 
-  private onSave() {
+  private onChange() {
     this.isEditing = false;
-    this.productVariationValueSaved.emit(this._productVariationValue);
+    this.productVariationValueChange.emit(this._productVariationValue);
   }
 
 }

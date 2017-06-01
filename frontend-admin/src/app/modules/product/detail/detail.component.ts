@@ -3,11 +3,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ProductService} from "../product.service";
 import * as rootReducer from "../../../store/reducers/root";
-import {PaginatedListOfProductVariants, Products, StoreProductVariant} from "../../../models/models";
+import {
+  CustomAttributes,
+  PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
+  StoreProductVariant
+} from "../../../models/models";
 import {Store} from "@ngrx/store";
 import {
-  StartProductDetailLoadAction, StartProductsLoadAction,
-  StartProductVariantsLoadAction, StartStoreProductVariantsUpdateAction
+  StartCustomAttributeUpdateAction,
+  StartProductDetailLoadAction, StartProductsLoadAction, StartProductTypeAttributeValueUpdateAction,
+  StartProductVariantsLoadAction, StartProductVariationValueUpdateAction, StartStoreProductVariantsUpdateAction
 } from "../../../store/actions/product.action";
 
 import {Observable} from "rxjs/Observable";
@@ -72,9 +77,19 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  onStoreProductVariantSave($event: StoreProductVariant) {
-    this.store.dispatch(new StartStoreProductVariantsUpdateAction({storeProductVariant: $event}));
+  onProductTypeAttributeValueChange($event: ProductTypeAttributeValues) {
+    this.store.dispatch(new StartProductTypeAttributeValueUpdateAction({productTypeAttributeValue: $event}));
   }
 
+  onCustomAttributeChange($event: CustomAttributes) {
+    this.store.dispatch(new StartCustomAttributeUpdateAction({customAttribute: $event}));
+  }
 
+  onProductVariationValueChange($event: ProductVariationValues) {
+    this.store.dispatch(new StartProductVariationValueUpdateAction({productVariationValue: $event}));
+  }
+
+  onStoreProductVariantChange($event: StoreProductVariant) {
+    this.store.dispatch(new StartStoreProductVariantsUpdateAction({storeProductVariant: $event}));
+  }
 }

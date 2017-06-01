@@ -6,7 +6,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class GenericService {
 
-  protected BASE_URL = 'http://localhost:60510/api';
+  protected readonly ORIGINAL_BASE_URL = 'http://localhost:60510/api';
+
+  protected BASE_URL = this.ORIGINAL_BASE_URL;
 
   constructor(private http: Http) {
   }

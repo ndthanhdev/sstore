@@ -41,9 +41,42 @@ export class ProductEffect {
           {paginatedListOfProductVariants: paginatedListOfProductVariants}))));
 
   @Effect()
-  storeProductVariantActionEdit$: Observable<Action> = this.actions$
+  productTypeAttributeValueUpdate$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_PRODUCT_TYPE_ATTRIBUTE_VALUE_UPDATE)
+    .switchMap(action => this.productService.updateProductTypeAttributeValue(action.payload.productTypeAttributeValue)
+      .concatMap(response =>
+        of(new productdActions.UpdateProductTypeAttributeValueAction(
+          {
+            response: response,
+            productTypeAttributeValue: action.payload.productTypeAttributeValue
+          }))));
+
+  @Effect()
+  customAttributeUpdate$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_CUSTOM_ATTRIBUTE_UPDATE)
+    .switchMap(action => this.productService.updateCustomAttribute(action.payload.customAttribute)
+      .concatMap(response =>
+        of(new productdActions.UpdateCustomAttributeAction(
+          {
+            response: response,
+            customAttribute: action.payload.customAttribute
+          }))));
+
+  @Effect()
+  updateProductVariationValueUpdate$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_PRODUCT_VARIANT_VALUE_UPDATE)
+    .switchMap(action => this.productService.updateProductVariationValue(action.payload.productVariationValue)
+      .concatMap(response =>
+        of(new productdActions.UpdateProductVariationValueAction(
+          {
+            response: response,
+            productVariationValue: action.payload.productVariationValue
+          }))));
+
+  @Effect()
+  storeProductVariantActionUpdate$: Observable<Action> = this.actions$
     .ofType(productdActions.ActionTypes.START_STORE_PRODUCT_VARIANT_UPDATE)
-    .switchMap(action => this.productService.updateProductVariants(action.payload.storeProductVariant)
+    .switchMap(action => this.productService.updateStoreProductVariants(action.payload.storeProductVariant)
       .concatMap(response =>
         of(new productdActions.UpdateStoreProductVariantsAction(
           {

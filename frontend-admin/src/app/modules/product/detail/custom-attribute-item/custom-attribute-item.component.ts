@@ -8,25 +8,22 @@ import {CustomAttributes} from "../../../../models/models";
   selector: '[frontend-admin-custom-attribute-item]',
   template: `
     <ng-template [ngIf]="!isEditing">
-      <th scope="row">{{customAttribute?.id}}</th>
-      <td>{{customAttribute?.name}}</td>
-      <td>{{customAttribute?.value}}</td>
+      <th scope="row">{{customAttribute.id}}</th>
+      <td>{{customAttribute.name}}</td>
+      <td>{{customAttribute.value}}</td>
       <td>
         <button class="btn btn-sm btn-outline-primary" (click)="isEditing=true">Edit</button>
       </td>
     </ng-template>
     <ng-template [ngIf]="isEditing">
       <th scope="row">{{_customAttribute?.id}}</th>
-      <td><input type="text"
-                 class="form-control"
-                 #name="ngModel"
-                 [(ngModel)]="_customAttribute.name"></td>
+      <td>{{_customAttribute?.name}}</td>
       <td><input type="text"
                  class="form-control"
                  #value="ngModel"
                  [(ngModel)]="_customAttribute.value"></td>
       <td>
-        <button class="btn btn-sm btn-outline-success" (click)="onSave()">Save</button>
+        <button class="btn btn-sm btn-outline-success" (click)="onChange()">Save</button>
       </td>
     </ng-template>
   `,
@@ -42,7 +39,7 @@ export class CustomAttributeItemComponent implements OnInit, OnChanges {
   private _customAttribute: CustomAttributes;
 
   @Output()
-  customAttributeSaved = new EventEmitter<CustomAttributes>();
+  customAttributeChange = new EventEmitter<CustomAttributes>();
 
   isEditing: boolean;
 
@@ -58,9 +55,9 @@ export class CustomAttributeItemComponent implements OnInit, OnChanges {
     this._customAttribute = Object.assign({}, this.customAttribute);
   }
 
-  private onSave() {
+  private onChange() {
     this.isEditing = false;
-    this.customAttributeSaved.emit(this._customAttribute);
+    this.customAttributeChange.emit(this._customAttribute);
 
   }
 

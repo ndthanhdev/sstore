@@ -52,6 +52,42 @@ export function reducer(state: State = initialState, action: Action): State {
         paginatedListOfProductVariants: action.payload.paginatedListOfProductVariants
       });
 
+    // update product type attribute value
+    case productAction.ActionTypes.START_PRODUCT_TYPE_ATTRIBUTE_VALUE_UPDATE:
+      return Object.assign({}, state, {
+        isBusy: true
+      });
+    case productAction.ActionTypes.UPDATE_PRODUCT_TYPE_ATTRIBUTE_VALUE:
+      if (!action.payload.response.ok) {
+        return Object.assign({}, state, {isBusy: false});
+      }
+      // update changed product type attribute value here
+      return Object.assign({}, state, {isBusy: false});
+
+    // update custom attribute
+    case productAction.ActionTypes.START_CUSTOM_ATTRIBUTE_UPDATE:
+      return Object.assign({}, state, {
+        isBusy: true
+      });
+    case productAction.ActionTypes.UPDATE_CUSTOM_ATTRIBUTE_VALUE:
+      if (!action.payload.response.ok) {
+        return Object.assign({}, state, {isBusy: false});
+      }
+      // update changed product type attribute value here
+      return Object.assign({}, state, {isBusy: false});
+
+    // update custom attribute
+    case productAction.ActionTypes.START_PRODUCT_VARIANT_VALUE_UPDATE:
+      return Object.assign({}, state, {
+        isBusy: true
+      });
+    case productAction.ActionTypes.UPDATE_PRODUCT_VARIANT_VALUE:
+      if (!action.payload.response.ok) {
+        return Object.assign({}, state, {isBusy: false});
+      }
+      // update changed product type attribute value here
+      return Object.assign({}, state, {isBusy: false});
+
     // update store product variant
     case productAction.ActionTypes.START_STORE_PRODUCT_VARIANT_UPDATE:
       return Object.assign({}, state, {
@@ -61,9 +97,8 @@ export function reducer(state: State = initialState, action: Action): State {
       if (!action.payload.response.ok) {
         return Object.assign({}, state, {isBusy: false});
       }
-      let newSate: State = Object.assign({}, state, {isBusy: false});
-      // update changed StoreProductVariantItem here
-      return newSate;
+      // update changed store product variant here
+      return Object.assign({}, state, {isBusy: false});
 
     default:
       return state;

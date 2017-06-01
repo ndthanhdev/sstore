@@ -8,9 +8,9 @@ import {ProductTypeAttributeValues} from "../../../../models/models";
   selector: '[frontend-admin-product-type-attribute-value-item]',
   template: `
     <ng-template [ngIf]="!isEditing">
-      <th scope="row">{{_productTypeAttributeValue?.id}}</th>
-      <td>{{_productTypeAttributeValue?.productTypeAttribute.name}}</td>
-      <td>{{_productTypeAttributeValue?.value}}</td>
+      <th scope="row">{{productTypeAttributeValue.id}}</th>
+      <td>{{productTypeAttributeValue.productTypeAttribute.name}}</td>
+      <td>{{productTypeAttributeValue.value}}</td>
       <td>
         <button class="btn btn-sm btn-outline-primary"
                 (click)="isEditing=true">Edit
@@ -19,17 +19,14 @@ import {ProductTypeAttributeValues} from "../../../../models/models";
     </ng-template>
     <ng-template [ngIf]="isEditing">
       <th scope="row">{{_productTypeAttributeValue?.id}}</th>
-      <td><input type="text"
-                 class="form-control"
-                 #name="ngModel"
-                 [(ngModel)]="_productTypeAttributeValue.productTypeAttribute.name"></td>
+      <td>{{_productTypeAttributeValue?.productTypeAttribute.name}}</td>
       <td><input type="text"
                  class="form-control"
                  #value="ngModel"
                  [(ngModel)]="_productTypeAttributeValue.value"></td>
       <td>
         <button class="btn btn-sm btn-outline-success"
-                (click)="onSave()">Save
+                (click)="onChange()">Save
         </button>
       </td>
     </ng-template>
@@ -45,7 +42,7 @@ export class ProductTypeAttributeValueItemComponent implements OnInit, OnChanges
   private _productTypeAttributeValue: ProductTypeAttributeValues;
 
   @Output()
-  productTypeAttributeValueSaved = new EventEmitter<ProductTypeAttributeValues>();
+  productTypeAttributeValueChange = new EventEmitter<ProductTypeAttributeValues>();
 
   isEditing: boolean;
 
@@ -60,9 +57,9 @@ export class ProductTypeAttributeValueItemComponent implements OnInit, OnChanges
     this._productTypeAttributeValue = Object.assign({}, this.productTypeAttributeValue);
   }
 
-  private onSave() {
+  private onChange() {
     this.isEditing = false;
-    this.productTypeAttributeValueSaved.emit(this._productTypeAttributeValue);
+    this.productTypeAttributeValueChange.emit(this._productTypeAttributeValue);
 
   }
 }

@@ -17,7 +17,7 @@ export class StoreProductVariantItemComponent implements OnInit, OnChanges {
   storeProductVariant: StoreProductVariant;
 
   @Output()
-  storeProductVariantSaved = new EventEmitter<StoreProductVariant>();
+  storeProductVariantChange = new EventEmitter<StoreProductVariant>();
 
   isEditing: boolean;
 
@@ -30,9 +30,9 @@ export class StoreProductVariantItemComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  private onSave() {
+  private onChange() {
     this.isEditing = false;
-    this.storeProductVariantSaved.emit(this._storeProductVariant);
+    this.storeProductVariantChange.emit(this._storeProductVariant);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

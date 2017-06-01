@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ProductVariants, StoreProductVariant} from "../../../../models/models";
+import {ProductVariants, ProductVariationValues, StoreProductVariant} from "../../../../models/models";
 
 @Component({
   selector: 'frontend-admin-variant-item',
@@ -13,7 +13,10 @@ export class VariantItemComponent implements OnInit {
   productVariant: ProductVariants;
 
   @Output()
-  storeProductVariantSaved = new EventEmitter<StoreProductVariant>();
+  storeProductVariantChange = new EventEmitter<StoreProductVariant>();
+
+  @Output()
+  productVariationValueChange = new EventEmitter<ProductVariationValues>();
 
   constructor() {
   }
@@ -21,8 +24,11 @@ export class VariantItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  onStoreProductVariantSave($event:StoreProductVariant){
-    this.storeProductVariantSaved.emit($event);
+  onStoreProductVariantChange($event: StoreProductVariant) {
+    this.storeProductVariantChange.emit($event);
   }
 
+  onProductVariationValueChange($event: ProductVariationValues) {
+    this.productVariationValueChange.emit($event);
+  }
 }

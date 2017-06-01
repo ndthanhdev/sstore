@@ -3,18 +3,15 @@ import {GenericService} from "../../generic.service";
 import {Http, RequestOptions, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {
-  PaginatedListOfProducts, PaginatedListOfProductVariants, Products,
+  CustomAttributes,
+  PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
   StoreProductVariant
 } from "../../models/models";
 
 @Injectable()
 export class ProductService extends GenericService {
-
-  readonly ORIGINAL_BASE_URL: string;
-
   constructor(http: Http) {
     super(http);
-    this.ORIGINAL_BASE_URL = this.BASE_URL;
     this.BASE_URL += '/Products'
   }
 
@@ -42,7 +39,25 @@ export class ProductService extends GenericService {
     }));
   }
 
-  public updateProductVariants(storeProductVariant: StoreProductVariant): Observable<Response> {
+  public updateProductTypeAttributeValue(productTypeAttributeValue: ProductTypeAttributeValues): Observable<Response> {
+    return this.put(new RequestOptions({
+      url: `${this.ORIGINAL_BASE_URL}/ProductTypeAttributeValues/${productTypeAttributeValue.id}`
+    }), productTypeAttributeValue);
+  }
+
+  public updateCustomAttribute(customAttributes: CustomAttributes): Observable<Response> {
+    return this.put(new RequestOptions({
+      url: `${this.ORIGINAL_BASE_URL}/CustomAttributes/${customAttributes.id}`
+    }), customAttributes);
+  }
+
+  public updateProductVariationValue(productVariationValue: ProductVariationValues): Observable<Response> {
+    return this.put(new RequestOptions({
+      url: `${this.ORIGINAL_BASE_URL}/ProductVariationValues/${productVariationValue.id}`
+    }), productVariationValue);
+  }
+
+  public updateStoreProductVariants(storeProductVariant: StoreProductVariant): Observable<Response> {
     return this.put(new RequestOptions({
       url: `${this.ORIGINAL_BASE_URL}/StoreProductVariants/${storeProductVariant.id}`
     }), storeProductVariant);

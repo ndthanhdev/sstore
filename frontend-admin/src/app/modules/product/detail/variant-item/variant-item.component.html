@@ -20,7 +20,8 @@
           <tbody>
           <tr *ngFor="let value of productVariant.productVariationValues;let i = index"
               frontend-admin-product-variant-value-item
-              [productVariationValue]="value">
+              [productVariationValue]="value"
+              (productVariationValueChange)="onProductVariationValueChange($event)">
           </tr>
           </tbody>
         </table>
@@ -42,7 +43,7 @@
           <tr *ngFor="let storeProductVariant of productVariant.storeProductVariant"
               frontend-admin-store-product-variant-item
               [storeProductVariant]="storeProductVariant"
-              (storeProductVariantSaved)="onStoreProductVariantSave($event)">
+              (storeProductVariantChange)="onStoreProductVariantChange($event)">
           </tr>
           </tbody>
         </table>
