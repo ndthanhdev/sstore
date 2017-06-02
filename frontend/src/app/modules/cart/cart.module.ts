@@ -8,6 +8,7 @@ import {CartService} from './cart.service';
 import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
 import {CheckoutComponent} from '../core/checkout/checkout.component';
+import {CartDetailGuestComponent} from './cart-detail-guest/cart-detail-guest.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import {CheckoutComponent} from '../core/checkout/checkout.component';
 
     CoreModule
   ],
-  declarations: [CartDetailComponent, CartProductComponent],
+  declarations: [CartDetailComponent, CartProductComponent, CartDetailGuestComponent],
   providers: [CartService],
   entryComponents: [CheckoutComponent]
 })
