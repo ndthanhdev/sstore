@@ -82,11 +82,6 @@ class CartDetailController extends Controller {
             }
         }
 
-        // loop cart Details as detail
-        // if data['store_product_variant_id'] == detail->store_product_variant_id
-        // combine their quality
-        // return
-
         if (!$response) {
             ShoppingCartDetail::create([
                 'quantity' => $data['quantity'],
