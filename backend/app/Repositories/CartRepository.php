@@ -39,8 +39,9 @@ class CartRepository extends BaseRepository implements CacheableInterface {
     }
 
     public function getActiveCart($userId) {
-        return ShoppingCart::where(['user_id' => $userId, 'active' => true])
-            ->join('shopping_cart_details', 'shopping_carts.id', '=', 'shopping_cart_details.shopping_cart_id')
+        return ShoppingCart::where('user_id', $userId)
+            ->where('active', true)
+            ->leftJoin('shopping_cart_details', 'shopping_carts.id', '=', 'shopping_cart_details.shopping_cart_id')
             ->select('shopping_carts.id', DB::raw('SUM(shopping_cart_details.quantity) as item_count'))
             ->groupBy('shopping_carts.id')
             ->first();
