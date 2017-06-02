@@ -38,9 +38,11 @@ import {CheckoutComponent} from '../../core/checkout/checkout.component';
 
       <ng-template [ngIf]="!(loading | async)">
         <frontend-cart-product
-          *ngFor="let detail of cart?.details"
+          *ngFor="let detail of cart?.details;trackBy: trackByFn"
           [detail]="detail"
-          (deleteButtonClicked)="onDeleteButtonClick($event)">
+          [modifying]="modifying | async"
+          (deleteButtonClicked)="onDeleteButtonClick($event)"
+          (cartDetailQuantityEdited)="onCartDetailQuantityEdit($event)">
         </frontend-cart-product>
       </ng-template>
 
@@ -65,12 +67,14 @@ export class CartDetailComponent implements OnInit {
   cartId: number;
 
   loading: Observable<boolean>;
+  modifying: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.State>,
               private route: ActivatedRoute,
               private modalService: NgbModal) {
     this.cartSub = this.store.select(fromRoot.getCartCart).subscribe(cart => this.cart = cart);
     this.loading = this.store.select(fromRoot.getCartLoading);
+    this.modifying = this.store.select(fromRoot.getCartModifying);
   }
 
   ngOnInit() {
@@ -102,6 +106,15 @@ export class CartDetailComponent implements OnInit {
     }));
   }
 
+  onCartDetailQuantityEdit($event) {
+    this.store.dispatch(new cartActions.StartCartDetailQuantityEditAction({
+      cartId: $event.cartId,
+      cartDetailId: $event.cartDetailId,
+      quantity: $event.quantity,
+      quantityOffset: $event.quantityOffset
+    }));
+  }
+
   goBack() {
     this.store.dispatch(back());
   }
@@ -110,8 +123,10 @@ export class CartDetailComponent implements OnInit {
     const modalRef = this.modalService.open(CheckoutComponent, {
       backdrop: 'static'
     });
-    modalRef.componentInstance.name = 'World';
   }
 
+  trackByFn(index, item) {
+    return item.id;
+  }
 
 }

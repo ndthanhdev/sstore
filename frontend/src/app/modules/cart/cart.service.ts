@@ -51,5 +51,11 @@ export class CartService extends GenericService {
       store_product_variant_id: cartDetail.store_product_variant_id
     });
   }
+
+  public editCartDetailQuantity(cartId: number, cartDetailId: number, quantity: number): Observable<Response> {
+    return this.patchWithAuth(new RequestOptions({url: `${this.BASE_URL}/${cartId}/details/${cartDetailId}`}), {
+      quantity: quantity,
+    });
+  }
 }
 

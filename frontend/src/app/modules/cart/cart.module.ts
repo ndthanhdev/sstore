@@ -9,12 +9,14 @@ import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
 import {CheckoutComponent} from '../core/checkout/checkout.component';
 import {CartDetailGuestComponent} from './cart-detail-guest/cart-detail-guest.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     CartRoutingModule,
     SharedModule,
+    FormsModule,
 
     CoreModule
   ],

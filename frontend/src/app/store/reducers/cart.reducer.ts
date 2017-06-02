@@ -11,6 +11,7 @@ import * as authActions from '../actions/auth.action';
 export interface State {
   loading: boolean;
   loaded: boolean;
+  modifying: boolean;
   error: any;
   cart: Cart;
   activeCart: ActiveCart;
@@ -21,6 +22,7 @@ export interface State {
 export const initialState: State = {
   loading: false,
   loaded: false,
+  modifying: false,
   error: null,
   cart: null,
   activeCart: null,
@@ -35,6 +37,28 @@ export function reducer(state: State = initialState, action): State {
       return Object.assign({}, state, {
         loading: true,
         loaded: false
+      });
+
+    case cartActions.ActionTypes.START_CART_DETAIL_QUANTITY_EDIT:
+      return Object.assign({}, state, {
+        modifying: true
+      });
+
+    case cartActions.ActionTypes.EDIT_CART_DETAIL_QUANTITY:
+      return Object.assign({}, state, {
+        cart: Object.assign({}, state.cart, {
+          details: state.cart.details.map(detail => {
+            if (detail.id === action.payload.cartDetailId) {
+              return Object.assign({}, detail, {quantity: action.payload.quantity});
+            } else {
+              return detail;
+            }
+          })
+        }),
+        activeCart: Object.assign({}, state.activeCart, {
+          item_count: state.activeCart.item_count + action.payload.quantityOffset
+        }),
+        modifying: false
       });
 
     case cartActions.ActionTypes.LOAD_CART:
@@ -95,3 +119,4 @@ export const getCart = (state: State) => state.cart;
 export const getActiveCart = (state: State) => state.activeCart;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
+export const getModifying = (state: State) => state.modifying;
