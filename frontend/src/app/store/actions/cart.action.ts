@@ -68,14 +68,14 @@ export class AddProductAction implements Action {
 export class StartProductDeleteAction implements Action {
   type = ActionTypes.START_PRODUCT_DELETE;
 
-  constructor(public payload: { cartId: number, cartDetailId: number }) {
+  constructor(public payload: { cartId: number, cartDetailId: number, quantity: number }) {
   }
 }
 
 export class DeleteProductAction implements Action {
   type = ActionTypes.DELETE_PRODUCT;
 
-  constructor(public payload: { cartDetailId: number }) {
+  constructor(public payload: { cartDetailId: number, quantity: number }) {
   }
 }
 

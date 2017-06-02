@@ -44,13 +44,16 @@ export class CartEffect {
       .concatMap(cart => of(new cartActions.AddProductAction({cartDetail: action.payload.cartDetail}))));
 
   @Effect()
-  CartProductDelete$: Observable<Action> = this.actions$
+  cartProductDelete$: Observable<Action> = this.actions$
     .ofType(cartActions.ActionTypes.START_PRODUCT_DELETE)
     .switchMap(action => this.cartService.deleteProduct(action.payload.cartId, action.payload.cartDetailId)
-      .concatMap(cart => of(new cartActions.DeleteProductAction({cartDetailId: action.payload.cartDetailId}))));
+      .concatMap(cart => of(new cartActions.DeleteProductAction({
+        cartDetailId: action.payload.cartDetailId,
+        quantity: action.payload.quantity
+      }))));
 
   @Effect()
-  CartClose$: Observable<Action> = this.actions$
+  cartClose$: Observable<Action> = this.actions$
     .ofType(cartActions.ActionTypes.START_CART_CLOSE)
     .switchMap(action => this.cartService.closeCart()
       .concatMap(cart => Observable.from([
@@ -59,7 +62,7 @@ export class CartEffect {
       ])));
 
   @Effect()
-  CartCreate$: Observable<Action> = this.actions$
+  cartCreate$: Observable<Action> = this.actions$
     .ofType(cartActions.ActionTypes.START_CART_CREATE)
     .switchMap(action => this.cartService.createCart()
       .concatMap(createdCartId => Observable.from([

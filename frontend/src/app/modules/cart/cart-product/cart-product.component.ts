@@ -68,7 +68,7 @@ export class CartProductComponent implements OnInit {
   }
 
   onDeleteButtonClick() {
-    this.deleteButtonClicked.emit({cartDetailId: this.detail.id});
+    this.deleteButtonClicked.emit({cartDetailId: this.detail.id, quantity: this.detail.quantity});
   }
 
 }

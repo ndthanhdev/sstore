@@ -97,7 +97,8 @@ export class CartDetailComponent implements OnInit {
   onDeleteButtonClick($event) {
     this.store.dispatch(new cartActions.StartProductDeleteAction({
       cartId: this.cartId,
-      cartDetailId: $event.cartDetailId
+      cartDetailId: $event.cartDetailId,
+      quantity: $event.quantity
     }));
   }
 

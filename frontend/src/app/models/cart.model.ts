@@ -12,15 +12,10 @@ export class Cart {
   updated_at: Date;
   user_id: number;
   details?: CartDetail[];
-  product_count?: number;
   user: User;
 }
 
 export class ActiveCart {
   id: number;
-  active: boolean;
-  created_at: Date;
-  updated_at: Date;
-  user_id: number;
-  product_count: number;
+  item_count: number;
 }
