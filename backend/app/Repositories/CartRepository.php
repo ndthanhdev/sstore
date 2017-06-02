@@ -43,6 +43,6 @@ class CartRepository extends BaseRepository implements CacheableInterface {
             ->join('shopping_cart_details', 'shopping_carts.id', '=', 'shopping_cart_details.shopping_cart_id')
             ->select('shopping_carts.id', DB::raw('SUM(shopping_cart_details.quantity) as item_count'))
             ->groupBy('shopping_carts.id')
-            ->get();
+            ->first();
     }
 }
