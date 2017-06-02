@@ -83,7 +83,7 @@ export function reducer(state: State = initialState, action): State {
     case cartActions.ActionTypes.ADD_PRODUCT:
       return Object.assign({}, state, {
         activeCart: Object.assign({}, state.activeCart, {
-          item_count: state.activeCart.item_count + 1
+          item_count: state.activeCart.item_count + action.payload.cartDetail.quantity
         }),
         loading: false
       });
