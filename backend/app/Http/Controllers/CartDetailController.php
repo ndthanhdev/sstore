@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\ShoppingCartDetail;
 use App\Repositories\CartDetailRepository;
+use App\Repositories\CartRepository;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
@@ -15,8 +16,12 @@ class CartDetailController extends Controller {
 
     private $cartDetailRepository;
 
-    public function __construct(CartDetailRepository $cartRepository) {
-        $this->cartDetailRepository = $cartRepository;
+    private $cartRepository;
+
+    public function __construct(CartDetailRepository $cartDetailRepository,
+                                CartRepository $cartRepository) {
+        $this->cartDetailRepository = $cartDetailRepository;
+        $this->cartRepository = $cartRepository;
     }
 
 
@@ -59,26 +64,48 @@ class CartDetailController extends Controller {
     public function store(Request $request, $cartID) {
         $data = $request->all();
 
-        $createdShoppingCartDetail = ShoppingCartDetail::create([
-            'quantity' => $data['quantity'],
-            'price' => $data['price'],
-            'shopping_cart_id' => $cartID,
-            'store_product_variant_id' => $data['store_product_variant_id']
-        ]);
+        $response = null;
 
-        $response = [
-            'msg' => config('msg.SHOPPING_CART_UPDATED'),
-            'link' => [
-                'name' => 'VIEW_SHOPPING_CART_DETAIL',
-                'url' => route('carts/{cartId}/details/{detailId}.GET', [
-                    'cartId' => $cartID,
-                    'detailId' => $createdShoppingCartDetail->id
-                ]),
-                'method' => 'GET'
-            ]
-        ];
+        $details = $this->cartRepository->find($cartID)->details;
+
+        foreach ($details as $detail) {
+            if ($detail->store_product_variant_id === $data['store_product_variant_id']) {
+                $this->cartDetailRepository->update(['quantity' => $detail->quantity + $data['quantity']], $detail->id);
+                $response = [
+                    'msg' => config('msg.SHOPPING_CART_UPDATED'),
+                    'link' => [
+                        'name' => 'VIEW_SHOPPING_CART',
+                        'url' => route('carts/{id}.GET', ['id' => $cartID]),
+                        'method' => 'GET'
+                    ]
+                ];
+            }
+        }
+
+        // loop cart Details as detail
+        // if data['store_product_variant_id'] == detail->store_product_variant_id
+        // combine their quality
+        // return
+
+        if (!$response) {
+            ShoppingCartDetail::create([
+                'quantity' => $data['quantity'],
+                'price' => $data['price'],
+                'shopping_cart_id' => $cartID,
+                'store_product_variant_id' => $data['store_product_variant_id']
+            ]);
+            $response = [
+                'msg' => config('msg.SHOPPING_CART_UPDATED'),
+                'link' => [
+                    'name' => 'VIEW_SHOPPING_CART',
+                    'url' => route('carts/{id}.GET', ['id' => $cartID]),
+                    'method' => 'GET'
+                ]
+            ];
+        }
 
         return response()->json($response, 201);
+
     }
 
 }

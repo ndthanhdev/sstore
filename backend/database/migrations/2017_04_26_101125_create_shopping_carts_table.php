@@ -15,7 +15,7 @@ class CreateShoppingCartsTable extends Migration {
             $table->increments('id');
             $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
         });
         Schema::table('shopping_carts', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
