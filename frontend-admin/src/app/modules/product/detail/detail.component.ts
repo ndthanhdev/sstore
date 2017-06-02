@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
-import {ProductService} from "../product.service";
 import * as rootReducer from "../../../store/reducers/root";
 import {
   CustomAttributes,

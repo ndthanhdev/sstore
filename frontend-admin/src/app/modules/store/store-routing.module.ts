@@ -5,8 +5,7 @@ import {CreateComponent} from "./create/create.component";
 import {DetailComponent} from "./detail/detail.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '1', pathMatch: 'full'},
-  {path: ':page', component: StoreComponent,},
+  {path: '', component: StoreComponent,},
   {path: 'create', component: CreateComponent},
   {path: 'detail/:id', component: DetailComponent},
 ];

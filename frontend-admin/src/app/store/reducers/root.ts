@@ -3,6 +3,7 @@ import * as Reselect from 'reselect';
 import * as fromDashboard from "../reducers/dashboard.reducer";
 import * as fromProduct from "../reducers/product.reducer";
 import * as fromReview from "../reducers/review.reducer";
+import * as fromStore from "../reducers/store.reducer";
 import {ActionReducer, combineReducers} from "@ngrx/store";
 import {compose} from "@ngrx/core";
 import {storeFreeze} from "ngrx-store-freeze";
@@ -12,12 +13,14 @@ export interface State {
   dashboard: fromDashboard.State;
   product: fromProduct.State;
   review: fromReview.State;
+  store: fromStore.State
 }
 
 export const reducers = {
   dashboard: fromDashboard.reducer,
   product: fromProduct.reducer,
   review: fromReview.reducer,
+  store: fromStore.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -54,3 +57,9 @@ export const getReviewState = (state: State) => state.review;
 
 export const getReviewIsBusy = Reselect.createSelector(getReviewState, fromReview.getIsBusy);
 export const getReviewReviews = Reselect.createSelector(getReviewState, fromReview.getPaginatedListOfReviews);
+
+// store
+export const getStoreState = (state: State) => state.store;
+
+export const getStoreIsBusy = Reselect.createSelector(getStoreState, fromStore.getIsBusy);
+export const getStorePaginatedListOfStores = Reselect.createSelector(getStoreState, fromStore.getPaginatedListOfStores);

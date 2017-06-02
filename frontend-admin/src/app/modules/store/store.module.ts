@@ -9,6 +9,7 @@ import {CreateComponent} from './create/create.component';
 import {DetailComponent} from './detail/detail.component';
 import {StoreComponent} from './store/store.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {StoreService} from "./store.service";
 
 @NgModule({
   imports: [
@@ -24,7 +25,10 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MapComponent,
     CreateComponent,
     DetailComponent,
-    StoreComponent]
+    StoreComponent],
+  providers: [
+    StoreService
+  ]
 })
 export class StoreModule {
 }

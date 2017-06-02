@@ -14,16 +14,15 @@
         <h3 class="card-header">Store list</h3>
 
         <div class="card-block">
-          <div class="d-flex align-items-start justify-content-between">
+          <div class="d-flex align-items-start">
             <ngb-pagination
-              #pagination
-              [collectionSize]="stores.length"
-              [pageSize]="2"
-              [page]="page"
-              (pageChange)="onPageChanged($event)">
-
+              [collectionSize]="paginatedListOfStores?.count"
+              [pageSize]="3"
+              [page]="paginatedListOfStores?.pageIndex"
+              (pageChange)="pageChanged($event)">
             </ngb-pagination>
-            <button class="btn btn-outline-primary"><a routerLink="/store/create">Add Store</a></button>
+            <frontend-admin-loading-indicator [size]="2" *ngIf="isBusy | async"></frontend-admin-loading-indicator>
+            <button class="btn btn-outline-primary ml-auto" routerLink="/stores/create">Add Store</button>
           </div>
 
           <table class="table table-hover">
@@ -37,18 +36,16 @@
             </tr>
             </thead>
             <tbody>
-            <ng-template ngFor let-store [ngForOf]="stores" let-i="index">
-              <tr *ngIf="i < (this.page * pagination.pageSize) && i >= ((this.page - 1) * pagination.pageSize)">
-                <th scope="row">{{store.id}}</th>
-                <td>{{store.name}}</td>
-                <td>{{store.phone}}</td>
-                <td>{{store.address}}</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-primary"><a [routerLink]="['/store/detail',store.id]">Detail</a>
-                  </button>
-                </td>
-              </tr>
-            </ng-template>
+            <tr *ngFor="let store of paginatedListOfStores?.data">
+              <th scope="row">{{store.id}}</th>
+              <td>{{store.name}}</td>
+              <td>{{store.manager.tel}}</td>
+              <td>{{store.address}}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary" [routerLink]="['/stores/detail',store.id]">Detail
+                </button>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>
