@@ -140,6 +140,11 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
             'uses' => 'CartDetailController@store'
         ]);
 
+        $app->post('/sync', [
+            'as' => 'carts/{cartId}/details/sync.POST',
+            'uses' => 'CartDetailController@storeMany'
+        ]);
+
         $app->get('/{detailId:[0-9]+}', [
             'as' => 'carts/{cartId}/details/{detailId}.GET',
             'uses' => 'CartDetailController@show'

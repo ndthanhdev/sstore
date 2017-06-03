@@ -61,6 +61,43 @@ class CartDetailController extends Controller {
     }
 
 
+    public function storeMany(Request $request, $cartId) {
+        $cartDetails = $request->all();
+
+        $details = $this->cartRepository->find($cartId)->details;
+
+        foreach ($cartDetails as $cartDetail) {
+            $merged = false;
+
+            foreach ($details as $detail) {
+                if ($detail->store_product_variant_id === $cartDetail['store_product_variant_id']) {
+                    $this->cartDetailRepository->update(['quantity' => $detail->quantity + $cartDetail['quantity']], $detail->id);
+                    $merged = true;
+                }
+            }
+
+            if (!$merged) {
+                ShoppingCartDetail::create([
+                    'quantity' => $cartDetail['quantity'],
+                    'price' => $cartDetail['price'],
+                    'shopping_cart_id' => $cartId,
+                    'store_product_variant_id' => $cartDetail['store_product_variant_id']
+                ]);
+            }
+        }
+
+        return [
+            'msg' => config('msg.SHOPPING_CART_UPDATED'),
+            'link' => [
+                'name' => 'VIEW_SHOPPING_CART',
+                'url' => route('carts/{id}.GET', ['id' => $cartId]),
+                'method' => 'GET'
+            ]
+        ];
+
+    }
+
+
     public function store(Request $request, $cartID) {
         $data = $request->all();
 
@@ -98,9 +135,7 @@ class CartDetailController extends Controller {
                 ]
             ];
         }
-
         return response()->json($response, 201);
-
     }
 
 }
