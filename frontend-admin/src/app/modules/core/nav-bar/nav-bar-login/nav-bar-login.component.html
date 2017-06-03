@@ -1,0 +1,33 @@
+<div ngbDropdown [autoClose]="false">
+  <button class="btn btn-link" ngbDropdownToggle>Login</button>
+  <div class="dropdown-menu dropdown-menu-right p-3 w250" aria-labelledby="navbarDropdownMenuLink">
+    <form [formGroup]="loginForm" (keyup.enter)="onLoginButtonClick();">
+
+      <div class="form-group"
+           [ngClass]="{'has-danger': !(loginForm.get('username').valid || loginForm.get('username').untouched)}">
+        <div class="input-group mb-2">
+          <div class="input-group-addon"><i class="fa fa-user"></i></div>
+          <input type="text" class="form-control" placeholder="Username" formControlName="username">
+        </div>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-danger': !(loginForm.get('password').valid || loginForm.get('password').untouched)}">
+        <div class="input-group mb-2">
+          <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        </div>
+      </div>
+
+      <div class="float-right">
+        <button type="button" class="btn btn-outline-primary"
+                [disabled]="!loginForm.valid || loading"
+                (click)="onLoginButtonClick($event)">
+          <span *ngIf="!loading">Login</span>
+          <i class="fa fa-cog fa-spin fa-fw" *ngIf="loading"></i>
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

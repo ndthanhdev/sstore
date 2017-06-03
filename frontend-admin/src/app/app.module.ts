@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {Http, HttpModule, RequestOptions} from '@angular/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -23,7 +23,14 @@ import {ReviewModule} from "./modules/review/review.module";
 import {UserModule} from "./modules/user/user.module";
 import {StoreEffect} from "./store/effects/store.effect";
 import {StoreModule} from "./modules/store/store.module";
+import {AuthModule} from "./modules/auth/auth.module";
+import {AuthConfig, AuthHttp, JwtHelper} from "angular2-jwt";
+import {AuthGuard} from "./util/auth.guard";
+import {AuthEffect} from "./store/effects/auth.effect";
 
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig(), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +40,7 @@ import {StoreModule} from "./modules/store/store.module";
     ngrx.StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(AuthEffect),
     EffectsModule.run(DashboardEffect),
     EffectsModule.run(ProductEffect),
     EffectsModule.run(StoreEffect),
@@ -42,6 +50,7 @@ import {StoreModule} from "./modules/store/store.module";
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
+
     AppRoutingModule,
     SharedModule,
     CoreModule,
@@ -49,9 +58,17 @@ import {StoreModule} from "./modules/store/store.module";
     StoreModule,
     ProductModule,
     ReviewModule,
-    UserModule
+    UserModule,
+    AuthModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
+    JwtHelper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -11,15 +11,20 @@
 <ng-template [ngIf]="isEditing">
   <th scope="row">{{_storeProductVariant?.storeId}}</th>
   <td><a href="#">{{_storeProductVariant?.store.address}}</a></td>
-  <td><input type="number"
+  <td><input type="text"
+             pattern="[1-9]\d*$"
              class="form-control"
              #price="ngModel"
-             [(ngModel)]="_storeProductVariant.price"></td>
-  <td><input type="number"
+             [(ngModel)]="_storeProductVariant.price"
+             required></td>
+  <td><input type="text"
+             pattern="[1-9]\d*$"
              class="form-control"
              #inStock="ngModel"
-             [(ngModel)]="_storeProductVariant.inStock"></td>
+             [(ngModel)]="_storeProductVariant.inStock"
+             required></td>
   <td class="d-flex">
-    <button class="btn btn-sm btn-outline-success" (click)="onChange()">Save</button>
+    <button class="btn btn-sm btn-outline-success" [disabled]="!inStock.valid||!price.valid" (click)="onChange()">Save
+    </button>
   </td>
 </ng-template>

@@ -2,6 +2,7 @@ import {Injector, Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class GenericService {
@@ -10,7 +11,28 @@ export class GenericService {
 
   protected BASE_URL = this.ORIGINAL_BASE_URL;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private authHttp: AuthHttp) {
+  }
+
+
+  protected patchWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
+    return this.authHttp.patch(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
+
+  protected postWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
+    return this.authHttp.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
+
+  protected putWithAuth(options?: RequestOptions, data?: Object | string): Observable<any> {
+    return this.authHttp.put(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+  }
+
+  protected deleteWithAuth(options?: RequestOptions): Observable<any> {
+    return this.authHttp.delete(this.BASE_URL, this.defaultRequestOptions().merge(options));
+  }
+
+  protected getWithAuth(options?: RequestOptions): Observable<any> {
+    return this.authHttp.get(this.BASE_URL, this.defaultRequestOptions().merge(options)).map(this.extractData);
   }
 
   protected put(options?: RequestOptions, data?: any): Observable<any> {

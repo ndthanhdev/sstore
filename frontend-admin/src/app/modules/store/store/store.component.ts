@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Marker} from "../map/marker.model";
-import {FakeData} from "../fake-data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import * as rootReducer from "../../../store/reducers/root";

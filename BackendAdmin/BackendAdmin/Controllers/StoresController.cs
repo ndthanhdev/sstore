@@ -46,7 +46,9 @@ namespace BackendAdmin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var stores = await _context.Stores.SingleOrDefaultAsync(m => m.Id == id);
+            var stores = await _context.Stores
+                .Include(store => store.Manager)
+                .SingleOrDefaultAsync(m => m.Id == id);
 
             if (stores == null)
             {
