@@ -60,7 +60,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         cartDetail: {
           price: $event.price,
           quantity: $event.quantity,
-          store_product_variant_id: $event.store_product_variant_id
+          store_product_variant_id: $event.store_product_variant_id,
+          store_product_variant: $event.store_product_variant
         }
       }));
     }

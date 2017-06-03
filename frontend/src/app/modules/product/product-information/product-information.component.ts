@@ -107,7 +107,17 @@ export class ProductInformationComponent implements OnInit, OnChanges {
     this.putToCartClicked.emit({
       quantity: this.quantity,
       price: this.currentProductVariant.stores[0].pivot.price,
-      store_product_variant_id: this.currentProductVariant.stores[0].pivot.id
+      store_product_variant_id: this.currentProductVariant.stores[0].pivot.id,
+      store_product_variant: {
+        price: this.currentProductVariant.stores[0].pivot.price,
+        in_stock: this.currentProductVariant.stores[0].pivot.in_stock,
+        product_variant: Object.assign({}, this.currentProductVariant, {
+          product: {
+            name: this.product.name,
+            img_url: this.product.img_url
+          }
+        })
+      }
     });
   }
 }
