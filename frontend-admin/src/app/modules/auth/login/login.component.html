@@ -35,7 +35,7 @@
     </div>
     <div class="card-footer">
       <div class="d-flex flex-row justify-content-end">
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!loginForm.form.valid || (loggingIn | async)"><span *ngIf="!(loggingIn | async)">Login</span> <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="loggingIn | async"></i></button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!loginForm.form.valid || (isBusy | async)"><span *ngIf="!(isBusy | async)">Login</span> <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="isBusy | async"></i></button>
       </div>
     </div>
   </div>

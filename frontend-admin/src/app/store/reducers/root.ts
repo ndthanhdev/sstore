@@ -76,3 +76,4 @@ export const getStorePaginatedListOfStores = Reselect.createSelector(getStoreSta
 export const getAuthState = (state: State) => state.auth;
 
 export const getAuthAccount = Reselect.createSelector(getAuthState, fromAuth.getAccount);
+export const getAuthIsBusy = Reselect.createSelector(getAuthState, fromAuth.getIsBusy);

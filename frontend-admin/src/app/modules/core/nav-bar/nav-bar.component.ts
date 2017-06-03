@@ -12,7 +12,6 @@ import * as authAction from '../../../store/actions/auth.action';
 })
 export class NavBarComponent implements OnInit, OnDestroy {
 
-  authLoading: Observable<boolean>;
 
   account: Accounts;
   accountSub: Subscription;

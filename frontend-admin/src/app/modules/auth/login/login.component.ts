@@ -13,13 +13,14 @@ export class LoginComponent implements OnInit {
   private username_input: string;
   private password_input: string;
 
-  private loggingIn: Observable<boolean>;
+  isBusy: Observable<boolean>;
 
   constructor(private store: Store<rootReducer.State>) {
   }
 
   ngOnInit() {
     localStorage.clear();
+    this.isBusy = this.store.select(rootReducer.getAuthIsBusy);
   }
 
   private onSubmit() {
