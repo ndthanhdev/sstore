@@ -19,10 +19,16 @@ export class StoreEffect {
   }
 
   @Effect()
- storeLoad$: Observable<Action> = this.actions$
+  storeLoad$: Observable<Action> = this.actions$
     .ofType(storeActions.ActionTypes.START_STORE_LOAD)
     .switchMap(action => this.storeService.loadPaginatedListOfStores(action.payload.page)
       .concatMap(paginatedListOfStores => of(new storeActions.LoadStoreAction({paginatedListOfStores: paginatedListOfStores}))));
 
+
+  @Effect()
+  allStoreLoad$: Observable<Action> = this.actions$
+    .ofType(storeActions.ActionTypes.START_ALL_STORE_LOAD)
+    .switchMap(action => this.storeService.loadAllStores()
+      .concatMap(stores => of(new storeActions.LoadAllStoreAction({stores: stores}))));
 
 }

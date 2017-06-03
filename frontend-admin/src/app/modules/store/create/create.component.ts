@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FileUploader} from "ng2-file-upload";
-import {Store} from "../store.model";
+// import {Store} from "../store.model";
 
 @Component({
   selector: 'frontend-admin-create',
@@ -12,7 +12,7 @@ export class CreateComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({url: ''});
   public hasBaseDropZoneOver = false;
 
-  model: Store;
+  // model: Store;
 
   constructor() {
   }

@@ -1,12 +1,12 @@
-<agm-map [latitude]="10.762622" [longitude]="106.660172">
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="10">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"
-              [label]="marker.label"
+              [label]="marker.id+''"
               [draggable]="marker.isDraggable"
               [iconUrl]="marker.icon">
     <agm-info-window [disableAutoPan]="true">
       <div class="lead">{{marker.name}}</div>
       <div>{{marker.address}}</div>
-      <a class="btn btn-link btn-sm pl-0"  [routerLink]="['/store/detail',marker.id]" routerLinkActive="active">Detail</a>
+      <button type="button" class="btn btn-link btn-sm pl-0" [routerLink]="['/stores/detail',marker.id]">Detail</button>
     </agm-info-window>
   </agm-marker>
 </agm-map>

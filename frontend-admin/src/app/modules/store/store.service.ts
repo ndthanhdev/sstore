@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {GenericService} from "../../generic.service";
 import {Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {PaginatedListOfStores} from "../../models/models";
+import {PaginatedListOfStores, Stores} from "../../models/models";
 
 @Injectable()
-export class StoreService extends GenericService{
+export class StoreService extends GenericService {
 
   constructor(http: Http) {
     super(http);
@@ -18,6 +18,12 @@ export class StoreService extends GenericService{
       params: {
         'page': page
       }
+    }));
+  }
+
+  public loadAllStores(): Observable<Stores[]> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/All`
     }));
   }
 

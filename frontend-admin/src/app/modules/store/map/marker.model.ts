@@ -1,10 +1,9 @@
 export interface Marker {
-  id: string;
-  label: string;
+  id: number;
   longitude: number;
   latitude: number;
   name: string;
   address: string;
   isDraggable: boolean;
-  icon:string;
+  icon: string;
 }

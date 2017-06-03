@@ -2,13 +2,13 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Marker} from "../map/marker.model";
 import {FakeData} from "../fake-data";
 import {ActivatedRoute, Router} from "@angular/router";
-import * as fromModels from "../store.model";
 import {Subscription} from "rxjs/Subscription";
 import * as rootReducer from "../../../store/reducers/root";
 import {Store} from "@ngrx/store";
 import * as storeAction from '../../../store/actions/store.action';
 import {Observable} from "rxjs/Observable";
-import {PaginatedListOfStores} from "../../../models/models";
+import {PaginatedListOfStores, Stores} from "../../../models/models";
+import {StartAllStoreLoadAction} from "../../../store/actions/store.action";
 
 @Component({
   selector: 'frontend-admin-dashboard',
@@ -22,10 +22,10 @@ export class StoreComponent implements OnInit, OnDestroy {
 
   routeSub: Subscription;
 
-  stores: fromModels.Store[];
-
   paginatedListOfStoresSub: Subscription;
   paginatedListOfStores: PaginatedListOfStores;
+
+  storesSub: Subscription;
 
   isBusy: Observable<boolean>;
 
@@ -35,9 +35,6 @@ export class StoreComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.markers = FakeData.Markers;
-    this.stores = FakeData.Stores;
-
     this.isBusy = this.store.select(rootReducer.getStoreIsBusy);
 
     this.paginatedListOfStoresSub = this.store.select(rootReducer.getStorePaginatedListOfStores)
@@ -49,6 +46,12 @@ export class StoreComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         this.store.dispatch(new storeAction.StartStoreLoadAction({page: +params['page'] || 1}));
       });
+
+    this.storesSub = this.store.select(rootReducer.getStoreStores).subscribe(
+      stores => {
+        this.markers = stores.map(this.storesToMarker);
+      });
+    this.store.dispatch(new StartAllStoreLoadAction({}));
   }
 
   pageChanged($event) {
@@ -62,6 +65,19 @@ export class StoreComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();
     this.paginatedListOfStoresSub.unsubscribe();
+    this.storesSub.unsubscribe();
+  }
+
+  storesToMarker(store: Stores): Marker {
+    return {
+      id: store.id,
+      latitude: +store.latitude,
+      longitude: +store.longitude,
+      address: store.address,
+      icon: store.primary ? 'http://maps.google.com/mapfiles/kml/pal4/icon47.png' : '',
+      isDraggable: false,
+      name: store.name,
+    };
   }
 
 }
