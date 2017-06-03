@@ -140,7 +140,7 @@ $app->group(['prefix' => 'carts'], function () use ($app) {
             'uses' => 'CartDetailController@store'
         ]);
 
-        $app->post('/sync', [
+        $app->post('/merge', [
             'as' => 'carts/{cartId}/details/sync.POST',
             'uses' => 'CartDetailController@storeMany'
         ]);
