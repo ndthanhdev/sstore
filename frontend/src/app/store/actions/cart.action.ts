@@ -13,6 +13,9 @@ export const ActionTypes = {
   START_LOCAL_CART_LOAD: type('[Cart] Start Local Cart Load'),
   LOAD_LOCAL_CART: type('[Cart] Load Local Cart'),
 
+  START_CART_MERGE: type('[Cart] Start Cart Merge'),
+  MERGE_CART: type('[Cart] Merge Cart'),
+
   START_ACTIVE_CART_LOAD: type('[Cart] Start Active Cart Load'),
   LOAD_ACTIVE_CART: type('[Cart] Load Active Cart'),
 
@@ -99,6 +102,20 @@ export class AddProductAction implements Action {
   }
 }
 
+export class StartCartMergeAction implements Action {
+  type = ActionTypes.START_CART_MERGE;
+
+  constructor(public payload: { cartDetails: CartDetail[] }) {
+  }
+}
+
+export class MergeCartAction implements Action {
+  type = ActionTypes.MERGE_CART;
+
+  constructor(public payload: { cartDetails: CartDetail[] }) {
+  }
+}
+
 export class StartLocalProductAddAction implements Action {
   type = ActionTypes.START_LOCAL_PRODUCT_ADD;
 
@@ -180,4 +197,6 @@ export type Actions =
   | StartLocalActiveCartLoadAction
   | LoadLocalActiveCartAction
   | StartLocalCartLoadAction
-  | LoadLocalCartAction;
+  | LoadLocalCartAction
+  | StartCartMergeAction
+  | MergeCartAction;

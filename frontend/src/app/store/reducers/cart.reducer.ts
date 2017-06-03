@@ -34,6 +34,7 @@ export const initialState: State = {
 export function reducer(state: State = initialState, action): State {
   switch (action.type) {
 
+    case cartActions.ActionTypes.START_CART_MERGE:
     case cartActions.ActionTypes.START_LOCAL_CART_LOAD:
     case cartActions.ActionTypes.START_LOCAL_ACTIVE_CART_LOAD:
     case cartActions.ActionTypes.START_ACTIVE_CART_LOAD:
@@ -104,6 +105,18 @@ export function reducer(state: State = initialState, action): State {
           item_count: item_count + action.payload.cartDetail.quantity
         }),
         loading: false
+      });
+
+    case cartActions.ActionTypes.MERGE_CART:
+      let item_count2 = 0;
+      if (state.activeCart) {
+        item_count2 = state.activeCart.item_count;
+      }
+      const local_item_count = action.payload.cartDetails.reduce((pre, curr) => pre + curr.quantity, 0);
+      return Object.assign({}, state, {
+        activeCart: Object.assign({}, state.activeCart, {
+          item_count: local_item_count + item_count2
+        })
       });
 
     case cartActions.ActionTypes.DELETE_PRODUCT:

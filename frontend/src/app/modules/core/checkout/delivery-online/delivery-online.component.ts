@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GOOGLE_MAPS} from 'app/util/app.constants';
 import {Coordinates} from '../../../../models/coordinates.model';
@@ -29,7 +29,7 @@ import * as orderActions from '../../../../store/actions/order.action';
           </ngb-panel>
           <ngb-panel id="location-by-coordinates" title="Location by GPS Coordinates">
             <ng-template ngbPanelContent>
-              <small class="text-muted">Drag the marker to specify your location</small>
+              <small class="text-muted">Drag the <i class="fa fa-map-marker text-danger"></i> to specify your location</small>
               <agm-map [latitude]="deliveryCoordinates.latitude" [longitude]="deliveryCoordinates.longitude" [zoom]="zoom">
                 <agm-marker
                   [latitude]="deliveryCoordinates.latitude"
@@ -57,10 +57,10 @@ import * as orderActions from '../../../../store/actions/order.action';
           </ngb-panel>
         </ngb-accordion>
 
-        <div class="form-group"
+        <div class="form-group row px-3 mt-2 align-items-center"
              [ngClass]="{'has-danger': formGroupHasDanger('tel')}">
-          <label for="tel-input">Tel:</label>
-          <input type="text" class="form-control" id="tel-input" formControlName="tel">
+          <label for="tel-input" class="col-4 pl-0">Phone Number:</label>
+          <input type="text" class="form-control col-8" id="tel-input" formControlName="tel">
         </div>
 
       </form>
@@ -72,7 +72,7 @@ import * as orderActions from '../../../../store/actions/order.action';
   `,
   styleUrls: ['./delivery-online.component.scss']
 })
-export class DeliveryOnlineComponent implements OnInit, OnDestroy {
+export class DeliveryOnlineComponent implements OnDestroy {
   deliveryLocationForm: FormGroup;
 
   deliveryCoordinates: Coordinates;
@@ -106,9 +106,6 @@ export class DeliveryOnlineComponent implements OnInit, OnDestroy {
 
     this.createdOrderIdSub = this.store.select(fromRoot.getOrderCreatedOrderId)
       .subscribe(createdOrderId => this.createdOrderId = createdOrderId);
-  }
-
-  ngOnInit() {
   }
 
   private formGroupHasDanger(groupName: string): boolean {

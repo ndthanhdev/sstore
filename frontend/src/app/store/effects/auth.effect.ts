@@ -30,12 +30,18 @@ export class AuthEffects {
     .switchMap(payload =>
       this.authService.login(payload.username, payload.password)
         .concatMap(user => {
-          localStorage.removeItem(LOCAL_STORAGE_CART);
+          let cartDetails = [];
+          const cartString = localStorage.getItem(LOCAL_STORAGE_CART);
+          if (cartString) {
+            cartDetails = JSON.parse(cartString).details;
+          }
           return Observable.from([
             new authActions.LoginAction({user: user}),
             new cartActions.StartActiveCartLoadAction(),
+            new cartActions.StartCartMergeAction({cartDetails: cartDetails}),
             new authActions.LoginSuccessAction({message: 'Login Success!!'}),
             new layoutActions.StartNotifyAction({type: 'SUCCESS', message: 'Login Success!!'}),
+            go(['/'])
           ]);
         })
         .catch((error: Response) => {
@@ -72,10 +78,11 @@ export class AuthEffects {
   logout$: Observable<Action> = this.actions$
     .ofType(authActions.ActionTypes.START_LOGOUT)
     .switchMap(payload => {
-      localStorage.removeItem('id_token');
+      localStorage.clear();
       return Observable.from([
         new authActions.LogoutAction(),
-        new cartActions.StartLocalActiveCartLoadAction()
+        new cartActions.StartLocalActiveCartLoadAction(),
+        go(['/'])
       ]);
     });
 

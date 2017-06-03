@@ -4,25 +4,29 @@
 
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-import {Action} from '@ngrx/store';
+import {Action, Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 
 
 import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/take';
 import {of} from 'rxjs/observable/of';
 import {CartService} from '../../modules/cart/cart.service';
 
+import {CheckoutProgress} from '../../models/checkout-progress.model';
+
 import * as cartActions from '../actions/cart.action';
 import * as layoutActions from '../actions/layout.action';
-import {CheckoutProgress} from '../../models/checkout-progress.model';
+import * as fromRoot from '../reducers';
 
 @Injectable()
 export class CartEffect {
 
 
   constructor(private actions$: Actions,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private store: Store<fromRoot.State>) {
   }
 
   @Effect()
@@ -54,6 +58,16 @@ export class CartEffect {
     .ofType(cartActions.ActionTypes.START_PRODUCT_ADD)
     .switchMap(action => this.cartService.addProduct(action.payload.cartDetail)
       .concatMap(cart => of(new cartActions.AddProductAction({cartDetail: action.payload.cartDetail}))));
+
+  @Effect()
+  cartMerge$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_CART_MERGE)
+    .map(action => action.payload)
+    .combineLatest(this.store.select(fromRoot.getCartActiveCart))
+    .take(2)
+    .filter(([payload, activeCart]) => !!activeCart.id)
+    .switchMap(([payload, activeCart]) => this.cartService.mergeCart(payload.cartDetails, activeCart.id)
+      .concatMap(cart => of(new cartActions.MergeCartAction({cartDetails: payload.cartDetails}))));
 
   @Effect()
   cartLocalProductAdd$: Observable<Action> = this.actions$
