@@ -37,8 +37,6 @@ namespace BackendAdmin
 
             services.AddDbContext<SStoreContext>();
 
-            //services.AddMvc();
-
             services.AddMvc()
                 .AddJsonOptions(options =>
                 {
