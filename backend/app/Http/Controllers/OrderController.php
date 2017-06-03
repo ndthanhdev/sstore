@@ -6,6 +6,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Entities\ShoppingCartDetail;
+use App\Entities\StoreProductVariant;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,6 +93,16 @@ class OrderController extends Controller {
 
 
     public function done(Request $request, $orderId) {
+        $shoppingCartId = $this->orderRepository->find($orderId, ['shopping_cart_id'])->shopping_cart_id;
+
+
+        ShoppingCartDetail::where('shopping_cart_id', $shoppingCartId)->get()
+            ->each(function ($cartDetail) {
+                $storeProductVariant = StoreProductVariant::where('id', $cartDetail->store_product_variant_id)->first();
+                StoreProductVariant::where('id', $storeProductVariant->id)
+                    ->update(['in_stock' => $storeProductVariant->in_stock - $cartDetail->quantity]);
+            });
+
         $this->orderRepository->update(['state' => 2], $orderId);
 
         return [
