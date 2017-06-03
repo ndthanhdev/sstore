@@ -6,7 +6,6 @@ import {Page} from '../../../models/page.model';
   selector: 'frontend-product-summary-list',
   template: `
     <frontend-product-summary-list-header
-      class="row px-3 d-flex align-items-start"
       [pageSize]="6"
       [page]="page"
       [collectionSize]="productPage?.total"

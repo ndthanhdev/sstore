@@ -3,29 +3,33 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
 @Component({
   selector: 'frontend-product-summary-list-header',
   template: `
-    <ngb-pagination class="col-lg-5 col-5"
-                    (pageChange)="onPageChange($event)"
-                    [collectionSize]="collectionSize"
-                    [maxSize]="5"
-                    [pageSize]="pageSize"
-                    [boundaryLinks]="true"
-                    [page]="page"></ngb-pagination>
+    <div class="row px-4 align-items-start d-flex justify-content-end">
+      <ngb-pagination
+        class="mr-auto"
+        (pageChange)="onPageChange($event)"
+        [collectionSize]="collectionSize"
+        [maxSize]="5"
+        [pageSize]="pageSize"
+        [boundaryLinks]="true"
+        [page]="page">
+      </ngb-pagination>
 
-    <i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="loading"></i>
+      <i class="fa fa-spinner fa-pulse fa-2x fa-fw mr-auto" *ngIf="loading"></i>
 
-    <!--START NAME FILTER-->
-    <div class="input-group mr-2 col-4">
-      <span class="input-group-addon"><i class="fa fa-filter"></i></span>
-      <input type="text" class="form-control" placeholder="Name filter">
-    </div>
-    <!--END NAME FILTER-->
+      <!--START NAME FILTER-->
+      <div class="input-group col-4">
+        <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+        <input type="text" class="form-control" placeholder="Name filter">
+      </div>
+      <!--END NAME FILTER-->
 
-    <div ngbDropdown class="col-2">
-      <button class="btn btn-secondary" ngbDropdownToggle>Rating: Highest first</button>
-      <div class="dropdown-menu">
-        <button class="dropdown-item active">Rating: Highest first</button>
-        <button class="dropdown-item">Price: Highest first</button>
-        <button class="dropdown-item">Price: lowest first</button>
+      <div ngbDropdown class="col-2 mr-4">
+        <button class="btn btn-secondary" ngbDropdownToggle>Rating: Highest first</button>
+        <div class="dropdown-menu">
+          <button class="dropdown-item active">Rating: Highest first</button>
+          <button class="dropdown-item">Price: Highest first</button>
+          <button class="dropdown-item">Price: lowest first</button>
+        </div>
       </div>
     </div>
   `,
