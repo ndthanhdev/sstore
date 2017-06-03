@@ -1,0 +1,27 @@
+<frontend-admin-jumbotron [Header]="'Dashboard'"></frontend-admin-jumbotron>
+<div class="container">
+  <frontend-admin-overview-cards
+    class="row justify-content-md-between pl-3"
+    [totalUser]="noUsers | async"
+    [newOrders]="noRemainingOrders | async"
+    [badReviews]="noBadReviews | async">
+  </frontend-admin-overview-cards>
+  <div class="row mb-3">
+    <frontend-admin-bar-chart class="col-12"
+                              [title]="'This month sales'"
+                              [vAxis]="'VND'"
+                              [hAxis]="'Time'"
+                              [dataTable]="monthSales | async"></frontend-admin-bar-chart>
+  </div>
+  <div class="row mb-3">
+    <frontend-admin-pie-chart class="col-lg-6 col-12"
+                              [title]="'Review percents'"
+                              [dataTable]="reviewPercents | async"></frontend-admin-pie-chart>
+
+    <frontend-admin-bar-chart class="col-lg-6 col-12"
+                              [title]="'Recent users'"
+                              [vAxis]="'User Count'"
+                              [hAxis]="'Month'"
+                              [dataTable]="recentUsers | async"></frontend-admin-bar-chart>
+  </div>
+</div>

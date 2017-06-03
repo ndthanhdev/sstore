@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+.nv-file-over {
+  border: 1px solid #428bca;
+}
+
+.input-invalid {
+  border-color: red;
+  outline-color: red;
+}

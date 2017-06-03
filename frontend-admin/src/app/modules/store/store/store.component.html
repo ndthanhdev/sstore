@@ -1,0 +1,56 @@
+<frontend-admin-jumbotron [Header]="'Store'"></frontend-admin-jumbotron>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Store map</h3>
+        <frontend-admin-map class="col-12 p-0" [markers]="markers"></frontend-admin-map>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Store list</h3>
+
+        <div class="card-block">
+          <div class="d-flex align-items-start">
+            <ngb-pagination
+              [collectionSize]="paginatedListOfStores?.count"
+              [pageSize]="3"
+              [page]="paginatedListOfStores?.pageIndex"
+              (pageChange)="pageChanged($event)">
+            </ngb-pagination>
+            <frontend-admin-loading-indicator [size]="2" *ngIf="isBusy | async"></frontend-admin-loading-indicator>
+            <button class="btn btn-outline-primary ml-auto" routerLink="/stores/create">Add Store</button>
+          </div>
+
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Store name</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let store of paginatedListOfStores?.data">
+              <th scope="row">{{store.id}}</th>
+              <td>{{store.name}}</td>
+              <td>{{store.manager.tel}}</td>
+              <td>{{store.address}}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary" [routerLink]="['/stores/detail',store.id]">Detail
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

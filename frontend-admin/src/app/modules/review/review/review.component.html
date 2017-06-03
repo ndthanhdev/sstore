@@ -1,0 +1,57 @@
+<frontend-admin-jumbotron [Header]="'Review'"></frontend-admin-jumbotron>
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Recent Reviews:</h3>
+
+        <div class="card-block">
+          <div class="d-flex align-items-start">
+            <ngb-pagination
+              [collectionSize]="paginatedListOfReviews?.count"
+              [pageSize]="5"
+              [page]="paginatedListOfReviews?.pageIndex"
+              (pageChange)="pageChanged($event)"
+              [maxSize]="5">
+            </ngb-pagination>
+            <frontend-admin-loading-indicator [size]="2" *ngIf="isBusy | async"></frontend-admin-loading-indicator>
+          </div>
+
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Product name</th>
+              <th>Content</th>
+              <th>Rating</th>
+              <th>By</th>
+              <th>At</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let review of paginatedListOfReviews?.data">
+              <th scope="row">{{review.id}}</th>
+              <td><a [routerLink]="['/products',review.productId]" routerLinkActive>{{review.product.name}}</a></td>
+              <td>{{review.content}}</td>
+              <td width="12%">
+                <frontend-admin-ratting-stars [rating]="review.rating"></frontend-admin-ratting-stars>
+              </td>
+              <td><a href="#">{{review.user.fullName}}</a></td>
+              <td *ngIf="(now | amDifference :review.updatedAt:'days':true) <= 7"><a href="#">{{review.updatedAt |
+                amTimeAgo}}</a></td>
+              <td *ngIf="(now | amDifference :review.updatedAt:'days':true) > 7"><a href="#">{{review.updatedAt |
+                amCalendar}}</a></td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary" [routerLink]="['/products',review.product.id]">Detail
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

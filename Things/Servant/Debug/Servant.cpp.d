@@ -1,0 +1,21 @@
+C:\Users\duyth\AppData\Local\Temp\VMBuilds\Servant\nano_atmega328\Debug\Servant.cpp.o: \
+ C:\Users\duyth\AppData\Local\Temp\VMBuilds\Servant\nano_atmega328\Debug\Servant.cpp \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/WCharacter.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/WString.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/HardwareSerial.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Printable.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/USBAPI.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\variants\eightanaloginputs/pins_arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\variants\eightanaloginputs/../standard/pins_arduino.h \
+ C:\Users\duyth\Documents\Arduino\libraries\PubSubClient\src/PubSubClient.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/IPAddress.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Client.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/IPAddress.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h \
+ C:\Users\duyth\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.18\libraries\SoftwareSerial\src/SoftwareSerial.h

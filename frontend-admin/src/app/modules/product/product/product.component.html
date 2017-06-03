@@ -1,0 +1,43 @@
+<frontend-admin-jumbotron [Header]="'Product'"></frontend-admin-jumbotron>
+<div class="container">
+
+  <!--START SEARCH INPUT-->
+  <div class="input-group input-group-lg mb-3">
+    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search"></i></span>
+    <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
+  </div>
+  <!--END SEARCH INPUT-->
+
+  <!--START PAGINATION-->
+  <div class="d-flex align-items-start">
+    <ngb-pagination
+      [collectionSize]="paginatedListOfProducts?.count"
+      [pageSize]="10"
+      [page]="paginatedListOfProducts?.pageIndex"
+      (pageChange)="pageChanged($event)">
+    </ngb-pagination>
+    <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
+                                      class="align-self-center"></frontend-admin-loading-indicator>
+    <button class="btn btn-outline-primary ml-auto" routerLink="/product/create" routerLinkActive>Add Product</button>
+  </div>
+  <!--END PAGINATION-->
+
+  <!--START ITEM CARD-->
+  <frontend-admin-product-item
+    *ngFor="let product of paginatedListOfProducts?.data" [product]="product"></frontend-admin-product-item>
+  <!--END ITEM CARD-->
+
+  <!--START PAGINATION-->
+  <div class="d-flex align-items-start mb-5">
+    <ngb-pagination
+      [collectionSize]="paginatedListOfProducts?.count"
+      [pageSize]="10"
+      [page]="paginatedListOfProducts?.pageIndex"
+      (pageChange)="pageChanged($event)">
+    </ngb-pagination>
+    <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
+                                      class="align-self-center"></frontend-admin-loading-indicator>
+    <button class="btn btn-outline-primary ml-auto" routerLink="/product/create" routerLinkActive>Add Product</button>
+  </div>
+  <!--END PAGINATION-->
+</div>

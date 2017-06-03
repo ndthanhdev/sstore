@@ -1,0 +1,49 @@
+<!--START ITEM CARD-->
+<div class="card mb-3">
+
+  <div class="card-header ">
+    <span class="lead">#{{product.id}}&nbsp;{{product.name}}</span>
+    <small *ngIf="(now | amDifference :product.updatedAt:'days':true) <= 3;else longTime"
+           class="text-muted ml-2">
+      last updated&nbsp;{{product.updatedAt | amTimeAgo}}
+    </small>
+    <ng-template #longTime>
+      <small class="text-muted ml-2">last updated&nbsp;{{product.updatedAt | amCalendar}}</small>
+    </ng-template>
+    <button class="btn btn-sm btn-outline-primary float-right" [routerLink]="['/products',product.id]" routerLinkActive>
+      Detail
+    </button>
+  </div>
+
+  <div class="card-block">
+    <div class="row px-3">
+      <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
+        <img src="{{product.imgUrl}}" alt="cats" class="img-thumbnail">
+      </div>
+      <div class="col-lg-8 col-12 p-5">
+
+        <div class="mb-1">
+          <h4 class="lead d-inline-block">{{product.name}}</h4>
+          <span class="badge badge-pill badge-primary">{{product.productType.name}}</span>
+        </div>
+
+        <p class="card-text">{{product.description}}</p>
+
+        <div class="mb-1">
+          <span class="lead">Categories:</span>
+          <span class="badge badge-pill badge-primary">{{product.category.name}}</span>
+        </div>
+
+        <!--<div class="mb-2">-->
+        <!--<span class="lead">Default variants:</span>-->
+        <!--<span class="badge badge-pill badge-primary">color: red</span>-->
+        <!--<span class="badge badge-pill badge-primary">size: medium</span>-->
+        <!--</div>-->
+
+        <!--<span class="lead">Default price:</span> <strong>200.000 VND</strong>-->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--END ITEM CARD-->
