@@ -51,10 +51,11 @@ import {CartDetail} from '../../../models/cart-detail.model';
 
       <div class="col-2">
         <div class="form-group mb-0 row"
-             [ngClass]="{'has-danger': quantityInput.value < 1}">
+             [ngClass]="{'has-danger': quantityInput.value < 1 || quantityInput.value > detail.store_product_variant.in_stock}">
           <input type="number"
                  class="form-control col-8"
                  min="1"
+                 [max]="detail.store_product_variant.in_stock"
                  #quantityInput="ngModel"
                  [(ngModel)]="quantity"
                  [disabled]="modifying"
@@ -91,7 +92,7 @@ export class CartProductComponent implements OnInit {
   }
 
   onCartDetailEdit() {
-    if (this.quantity >= 1) {
+    if (this.quantity >= 1 && this.quantity <= this.detail.store_product_variant.in_stock) {
       if (this.quantity !== this.backupQuantity) {
         this.cartDetailQuantityEdited.emit({
           cartId: this.detail.shopping_cart_id,
@@ -101,7 +102,7 @@ export class CartProductComponent implements OnInit {
         });
       }
     } else {
-      this.quantity = 1;
+      this.quantity = this.backupQuantity;
     }
   }
 
