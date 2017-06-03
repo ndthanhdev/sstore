@@ -10,6 +10,9 @@ export const ActionTypes = {
   START_CART_LOAD: type('[Cart] Start Cart Load'),
   LOAD_CART: type('[Cart] Load Cart'),
 
+  START_LOCAL_CART_LOAD: type('[Cart] Start Local Cart Load'),
+  LOAD_LOCAL_CART: type('[Cart] Load Local Cart'),
+
   START_ACTIVE_CART_LOAD: type('[Cart] Start Active Cart Load'),
   LOAD_ACTIVE_CART: type('[Cart] Load Active Cart'),
 
@@ -44,6 +47,17 @@ export class StartCartLoadAction implements Action {
 
 export class LoadCartAction implements Action {
   type = ActionTypes.LOAD_CART;
+
+  constructor(public payload: { cart: Cart }) {
+  }
+}
+
+export class StartLocalCartLoadAction implements Action {
+  type = ActionTypes.START_LOCAL_CART_LOAD;
+}
+
+export class LoadLocalCartAction implements Action {
+  type = ActionTypes.LOAD_LOCAL_CART;
 
   constructor(public payload: { cart: Cart }) {
   }
@@ -164,4 +178,6 @@ export type Actions =
   | StartLocalProductAddAction
   | AddLocalProductAction
   | StartLocalActiveCartLoadAction
-  | LoadLocalActiveCartAction;
+  | LoadLocalActiveCartAction
+  | StartLocalCartLoadAction
+  | LoadLocalCartAction;

@@ -70,7 +70,16 @@ export class ProductSummaryComponent implements OnInit, OnChanges {
     this.putToCartButtonClicked.emit({
       quantity: 1,
       price: this.productSummary.default_variant[0].stores[0].pivot.price,
-      store_product_variant_id: this.productSummary.default_variant[0].stores[0].pivot.id
+      store_product_variant_id: this.productSummary.default_variant[0].stores[0].pivot.id,
+      store_product_variant: {
+        price: this.productSummary.default_variant[0].stores[0].pivot.price,
+        product_variant: Object.assign({}, this.productSummary.default_variant[0], {
+          product: {
+            name: this.productSummary.name,
+            img_url: this.productSummary.img_url
+          }
+        })
+      }
     });
   }
 }

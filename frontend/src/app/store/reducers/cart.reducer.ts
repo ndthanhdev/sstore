@@ -14,6 +14,7 @@ export interface State {
   modifying: boolean;
   error: any;
   cart: Cart;
+  localCart: Cart;
   activeCart: ActiveCart;
   createdCartId: number;
 }
@@ -25,6 +26,7 @@ export const initialState: State = {
   modifying: false,
   error: null,
   cart: null,
+  localCart: null,
   activeCart: null,
   createdCartId: null
 };
@@ -32,6 +34,7 @@ export const initialState: State = {
 export function reducer(state: State = initialState, action): State {
   switch (action.type) {
 
+    case cartActions.ActionTypes.START_LOCAL_CART_LOAD:
     case cartActions.ActionTypes.START_LOCAL_ACTIVE_CART_LOAD:
     case cartActions.ActionTypes.START_ACTIVE_CART_LOAD:
     case cartActions.ActionTypes.START_CART_LOAD:
@@ -60,6 +63,13 @@ export function reducer(state: State = initialState, action): State {
           item_count: state.activeCart.item_count + action.payload.quantityOffset
         }),
         modifying: false
+      });
+
+    case cartActions.ActionTypes.LOAD_LOCAL_CART:
+      return Object.assign({}, state, {
+        localCart: action.payload.cart,
+        loaded: true,
+        loading: false
       });
 
     case cartActions.ActionTypes.LOAD_CART:
@@ -124,6 +134,7 @@ export function reducer(state: State = initialState, action): State {
 }
 
 export const getCart = (state: State) => state.cart;
+export const getLocalCart = (state: State) => state.localCart;
 export const getActiveCart = (state: State) => state.activeCart;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;

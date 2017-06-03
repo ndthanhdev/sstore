@@ -24,6 +24,15 @@ export class CartService extends GenericService {
     }));
   }
 
+  public loadLocalCart(): Observable<Cart> {
+    const cartString = localStorage.getItem(LOCAL_STORAGE_CART);
+    if (cartString != null) {
+      return Observable.of(JSON.parse(cartString));
+    } else {
+      return Observable.of(new Cart());
+    }
+  }
+
   public deleteProduct(cartId: number, cartDetailId: number): Observable<Response> {
     return this.deleteWithAuth(new RequestOptions({
       url: `${this.BASE_URL}/${cartId}/details/${cartDetailId}`

@@ -18,6 +18,7 @@ import {go} from '@ngrx/router-store';
 import * as authActions from '../actions/auth.action';
 import * as layoutActions from '../actions/layout.action';
 import * as cartActions from '../actions/cart.action';
+import {LOCAL_STORAGE_CART} from '../../util/app.constants';
 
 @Injectable()
 export class AuthEffects {
@@ -29,6 +30,7 @@ export class AuthEffects {
     .switchMap(payload =>
       this.authService.login(payload.username, payload.password)
         .concatMap(user => {
+          localStorage.removeItem(LOCAL_STORAGE_CART);
           return Observable.from([
             new authActions.LoginAction({user: user}),
             new cartActions.StartActiveCartLoadAction(),
@@ -70,8 +72,11 @@ export class AuthEffects {
   logout$: Observable<Action> = this.actions$
     .ofType(authActions.ActionTypes.START_LOGOUT)
     .switchMap(payload => {
-      localStorage.clear();
-      return Observable.of(new authActions.LogoutAction());
+      localStorage.removeItem('id_token');
+      return Observable.from([
+        new authActions.LogoutAction(),
+        new cartActions.StartLocalActiveCartLoadAction()
+      ]);
     });
 
   constructor(private actions$: Actions, private authService: AuthService) {
