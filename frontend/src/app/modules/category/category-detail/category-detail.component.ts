@@ -120,7 +120,7 @@ export class CategoryDetailComponent implements OnInit {
   }
 
   onPutToCartButtonClick($event) {
-    if (this.activeCart) {
+    if (this.activeCart && this.activeCart.id) {
       this.store.dispatch(new cartActions.StartProductAddAction({
         cartDetail: {
           shopping_cart_id: this.activeCart.id,
@@ -130,7 +130,14 @@ export class CategoryDetailComponent implements OnInit {
         }
       }));
     } else {
-      console.log('nope!');
+      this.store.dispatch(new cartActions.StartLocalProductAddAction({
+        cartDetail: {
+          price: $event.price,
+          quantity: $event.quantity,
+          store_product_variant_id: $event.store_product_variant_id,
+          store_product_variant: $event.store_product_variant
+        }
+      }));
     }
   }
 }
