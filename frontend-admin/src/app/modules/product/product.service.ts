@@ -7,11 +7,12 @@ import {
   PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
   StoreProductVariant
 } from "../../models/models";
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class ProductService extends GenericService {
-  constructor(http: Http) {
-    super(http);
+  constructor(http: Http, authHttp: AuthHttp) {
+    super(http,authHttp);
     this.BASE_URL += '/Products'
   }
 

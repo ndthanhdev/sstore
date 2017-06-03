@@ -4,23 +4,29 @@ import * as fromDashboard from "../reducers/dashboard.reducer";
 import * as fromProduct from "../reducers/product.reducer";
 import * as fromReview from "../reducers/review.reducer";
 import * as fromStore from "../reducers/store.reducer";
+import * as fromAuth from "../reducers/auth.reducer";
 import {ActionReducer, combineReducers} from "@ngrx/store";
 import {compose} from "@ngrx/core";
 import {storeFreeze} from "ngrx-store-freeze";
 import {environment} from "environments/environment";
+import {routerReducer, RouterState} from "@ngrx/router-store";
 
 export interface State {
+  router: RouterState;
   dashboard: fromDashboard.State;
   product: fromProduct.State;
   review: fromReview.State;
-  store: fromStore.State
+  store: fromStore.State;
+  auth: fromAuth.State;
 }
 
 export const reducers = {
+  router: routerReducer,
   dashboard: fromDashboard.reducer,
   product: fromProduct.reducer,
   review: fromReview.reducer,
-  store: fromStore.reducer
+  store: fromStore.reducer,
+  auth: fromAuth.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -64,3 +70,9 @@ export const getStoreState = (state: State) => state.store;
 export const getStoreIsBusy = Reselect.createSelector(getStoreState, fromStore.getIsBusy);
 export const getStoreStores = Reselect.createSelector(getStoreState, fromStore.getStores);
 export const getStorePaginatedListOfStores = Reselect.createSelector(getStoreState, fromStore.getPaginatedListOfStores);
+
+
+// store
+export const getAuthState = (state: State) => state.auth;
+
+export const getAuthAccount = Reselect.createSelector(getAuthState, fromAuth.getAccount);

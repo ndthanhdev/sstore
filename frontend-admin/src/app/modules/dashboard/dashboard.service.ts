@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {GenericService} from "../../generic.service";
 import {Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class DashboardService extends GenericService {
 
 
-  constructor(http: Http) {
-    super(http);
+  constructor(http: Http, authHttp: AuthHttp) {
+    super(http,authHttp);
     this.BASE_URL+='/Dashboard'
   }
 

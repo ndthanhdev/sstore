@@ -41,13 +41,17 @@ namespace BackendAdmin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var innerAccount = await _context.Accounts.Include(m=>m.User)
+            var innerAccount = await _context.Accounts.Include(m => m.User)
                 .SingleOrDefaultAsync(m => m.Username == account.Username);
             if (innerAccount == null)
             {
                 return NotFound();
             }
-
+            // role < manager
+            if (!BCrypt.Net.BCrypt.Verify(account.Password, innerAccount.Password) || innerAccount.Role < 1) 
+            {
+                return Unauthorized();
+            }
             return Content(GenerateJwt(innerAccount));
         }
 
@@ -71,8 +75,7 @@ namespace BackendAdmin.Controllers
         private List<Claim> GetClaims(Accounts account)
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, account.Username));
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, account.User.Id.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, account.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Role, account.Role.ToString()));
             return claims;
         }
