@@ -34,7 +34,7 @@ namespace BackendAdmin.Controllers
 
         // POST: api/Auth/Login
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] Accounts account)
+        public async Task<object> Login([FromBody] Accounts account)
         {
             if (!ModelState.IsValid)
             {
@@ -48,11 +48,13 @@ namespace BackendAdmin.Controllers
                 return NotFound();
             }
             // role < manager
-            if (!BCrypt.Net.BCrypt.Verify(account.Password, innerAccount.Password) || innerAccount.Role < 1) 
+            if (!BCrypt.Net.BCrypt.Verify(account.Password, innerAccount.Password) || innerAccount.Role < 1)
             {
                 return Unauthorized();
             }
-            return Content(GenerateJwt(innerAccount));
+            return new{
+                data = GenerateJwt(innerAccount)
+            };
         }
 
         private string GenerateJwt(Accounts account)

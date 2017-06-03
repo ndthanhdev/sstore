@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs/Observable";
+import {Store} from "@ngrx/store";
+import * as rootReducer from "../../../store/reducers/root";
+import * as authActions from "../../../store/actions/auth.action";
 
 @Component({
   selector: 'frontend-admin-login',
@@ -7,17 +10,24 @@ import {Observable} from "rxjs/Observable";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private school_id_input: string;
+  private username_input: string;
   private password_input: string;
+
   private loggingIn: Observable<boolean>;
 
-  constructor() { }
+  constructor(private store: Store<rootReducer.State>) {
+  }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   private onSubmit() {
-    // this.store.dispatch(this.uiAction.startLogin(this.school_id_input, this.password_input));
+    this.store.dispatch(new authActions.StartLoginAction(
+      {
+        username: this.username_input,
+        password: this.password_input
+      }));
   }
 
 }

@@ -40,7 +40,7 @@ export class GenericService {
   }
 
   protected post(options?: RequestOptions, data?: Object | string): Observable<any> {
-    return this.http.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
+    return this.http.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options)).map(this.extractData);
   }
 
   protected get(options?: RequestOptions): Observable<any> {

@@ -11,7 +11,8 @@ import "rxjs/add/operator/concatMap";
 import 'rxjs/add/operator/catch';
 import {AuthService} from "../../modules/auth/auth.service";
 import {JwtHelper} from "angular2-jwt";
-import {JwtPayLoadKeys} from "../../util/constant";
+import {AppConstants, JwtPayLoadKeys} from "../../util/constant";
+import {Router} from "@angular/router";
 
 
 @Injectable()
@@ -19,16 +20,20 @@ export class AuthEffect {
 
   constructor(private actions$: Actions,
               private authService: AuthService,
-              private  jwtHelper: JwtHelper) {
+              private  jwtHelper: JwtHelper,
+              private route: Router) {
   }
 
   @Effect()
   login$: Observable<Action> = this.actions$
     .ofType(authActions.ActionTypes.START_LOGIN)
     .switchMap(action => this.authService.login(action.payload.username, action.payload.password)
-      .concatMap(jwt => {
-        localStorage.setItem('id_token', jwt);
-        let accountId: number = this.jwtHelper.decodeToken(jwt)[JwtPayLoadKeys.AccountId];
+      .concatMap(payload => {
+        let token = payload.data;
+        localStorage.setItem(AppConstants.TokenName, token);
+        this.route.navigate(['/']);
+        let jwt = this.jwtHelper.decodeToken(token);
+        let accountId: number = jwt[JwtPayLoadKeys.AccountId];
         return of(new authActions.StartLoggedAccountLoadAction({id: accountId}));
       }).catch((error: Response) => of(new authActions.LoadLoggedAccountAction(null))));
 

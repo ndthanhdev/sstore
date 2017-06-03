@@ -13,7 +13,7 @@ export class AuthService extends GenericService {
     this.BASE_URL += '/Auth'
   }
 
-  public login(username: string, password: string): Observable<string> {
+  public login(username: string, password: string): Observable<{ data: string }> {
     return this.post(new RequestOptions({
       url: `${this.BASE_URL}/Login`
     }), {
