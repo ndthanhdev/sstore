@@ -77,7 +77,6 @@ export class CartDetailGuestComponent implements OnInit {
   }
 
   onDeleteButtonClick($event) {
-    console.log($event);
     this.store.dispatch(new cartActions.StartLocalProductDeleteAction({
       cartDetailId: $event.cartDetailId,
       quantity: $event.quantity
