@@ -13,6 +13,8 @@ import {LOCAL_STORAGE_CART} from '../../util/app.constants';
 
 @Injectable()
 export class CartService extends GenericService {
+  private localCartDetailId = 1;
+
   constructor(injector: Injector) {
     super(injector);
     this.BASE_URL += '/carts';
@@ -37,6 +39,16 @@ export class CartService extends GenericService {
     return this.deleteWithAuth(new RequestOptions({
       url: `${this.BASE_URL}/${cartId}/details/${cartDetailId}`
     }));
+  }
+
+  public deleteLocalProduct(cartDetailId: number): Observable<any> {
+    const cartString = localStorage.getItem(LOCAL_STORAGE_CART);
+    const cart: Cart = JSON.parse(cartString);
+    const updatedCart = Object.assign({}, cart, {
+      details: cart.details.filter(cartDetail => cartDetail.id !== cartDetailId)
+    });
+    localStorage.setItem(LOCAL_STORAGE_CART, JSON.stringify(updatedCart));
+    return Observable.of('deleted successfully!');
   }
 
   public closeCart(): Observable<Response> {
@@ -107,9 +119,10 @@ export class CartService extends GenericService {
           }
         });
       } else {
+        const cartDetailAfterAddingId = Object.assign({}, cartDetail, {id: this.localCartDetailId++});
         cartDetailAfterUpdate = [
           ...cart.details,
-          cartDetail
+          cartDetailAfterAddingId
         ];
       }
 

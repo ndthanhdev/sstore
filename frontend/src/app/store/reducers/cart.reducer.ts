@@ -129,6 +129,16 @@ export function reducer(state: State = initialState, action): State {
         })
       });
 
+    case cartActions.ActionTypes.DELETE_LOCAL_PRODUCT:
+      return Object.assign({}, state, {
+        localCart: Object.assign({}, state.localCart, {
+          details: state.localCart.details.filter(detail => detail.id !== action.payload.cartDetailId)
+        }),
+        activeCart: Object.assign({}, state.activeCart, {
+          item_count: state.activeCart.item_count - action.payload.quantity
+        })
+      });
+
     case cartActions.ActionTypes.CREATE_CART:
       return Object.assign({}, state, {
         createdCartId: action.payload.createdCartId

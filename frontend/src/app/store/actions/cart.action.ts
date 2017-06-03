@@ -31,6 +31,9 @@ export const ActionTypes = {
   START_PRODUCT_DELETE: type('[Cart] Start Product Delete'),
   DELETE_PRODUCT: type('[Cart] Delete Product'),
 
+  START_LOCAL_PRODUCT_DELETE: type('[Cart] Start Local Product Delete'),
+  DELETE_LOCAL_PRODUCT: type('[Cart] Delete Local Product'),
+
   START_CART_CLOSE: type('[Cart] Start Cart Close'),
   CLOSE_CART: type('[Cart] Close Cart'),
 
@@ -144,6 +147,20 @@ export class DeleteProductAction implements Action {
   }
 }
 
+export class StartLocalProductDeleteAction implements Action {
+  type = ActionTypes.START_LOCAL_PRODUCT_DELETE;
+
+  constructor(public payload: { cartDetailId: number, quantity: number }) {
+  }
+}
+
+export class DeleteLocalProductAction implements Action {
+  type = ActionTypes.DELETE_LOCAL_PRODUCT;
+
+  constructor(public payload: { cartDetailId: number, quantity: number }) {
+  }
+}
+
 export class StartCartCloseAction implements Action {
   type = ActionTypes.START_CART_CLOSE;
 }
@@ -199,4 +216,6 @@ export type Actions =
   | StartLocalCartLoadAction
   | LoadLocalCartAction
   | StartCartMergeAction
-  | MergeCartAction;
+  | MergeCartAction
+  | StartLocalProductDeleteAction
+  | DeleteLocalProductAction;

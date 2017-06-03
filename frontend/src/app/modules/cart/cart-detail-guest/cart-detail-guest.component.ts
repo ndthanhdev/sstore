@@ -9,6 +9,7 @@ import * as fromRoot from '../../../store/reducers';
 import * as cartActions from '../../../store/actions/cart.action';
 import {back} from '@ngrx/router-store';
 import {CartDetail} from '../../../models/cart-detail.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'frontend-cart-detail-guest',
@@ -50,9 +51,7 @@ import {CartDetail} from '../../../models/cart-detail.model';
 
       <div class="row justify-content-end mr-4 mb-5">
         <button class="btn btn-link btn-lg" (click)="goBack()">Continue shopping</button>
-        <button class="btn btn-outline-primary btn-lg"
-                [disabled]="localCart?.details?.length <= 0"
-                (click)="onCheckoutClick()">Checkout
+        <button class="btn btn-outline-primary btn-lg" disabled>Please login to check out
         </button>
       </div>
 
@@ -67,7 +66,8 @@ export class CartDetailGuestComponent implements OnInit {
   loading: Observable<boolean>;
   modifying: Observable<boolean>;
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromRoot.State>,
+              private modalService: NgbModal) {
     this.localCartSub = this.store.select(fromRoot.getCartLocalCart).subscribe(localCart => this.localCart = localCart);
     this.loading = this.store.select(fromRoot.getCartLoading);
   }
@@ -77,11 +77,11 @@ export class CartDetailGuestComponent implements OnInit {
   }
 
   onDeleteButtonClick($event) {
-    // this.store.dispatch(new cartActions.StartProductDeleteAction({
-    //   cartId: this.cartId,
-    //   cartDetailId: $event.cartDetailId,
-    //   quantity: $event.quantity
-    // }));
+    console.log($event);
+    this.store.dispatch(new cartActions.StartLocalProductDeleteAction({
+      cartDetailId: $event.cartDetailId,
+      quantity: $event.quantity
+    }));
   }
 
   onCartDetailQuantityEdit($event) {
@@ -113,9 +113,5 @@ export class CartDetailGuestComponent implements OnInit {
     } else {
       return '0';
     }
-  }
-
-  onCheckoutClick() {
-
   }
 }
