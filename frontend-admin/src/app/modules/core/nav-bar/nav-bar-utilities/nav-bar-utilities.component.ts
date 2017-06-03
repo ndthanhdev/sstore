@@ -7,7 +7,7 @@ import {Users} from "../../../../models/models";
     <div ngbDropdown>
       <button class="btn btn-link" ngbDropdownToggle>
         <img [src]="user.avatar" alt="avatar" class="rounded" width="20px" height="20px">
-        {{user.username}}
+        {{user.fullName}}
       </button>
       <div class="dropdown-menu dropdown-menu-right">
         <button class="dropdown-item">

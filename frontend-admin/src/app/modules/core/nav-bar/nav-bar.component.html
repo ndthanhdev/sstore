@@ -9,10 +9,10 @@
   <div class="collapse navbar-collapse" id="app-navbar">
     <div class="navbar-nav mr-auto mt-2 mt-md-0">
       <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">
-        <small>Hello,&nbsp;{{fullName}}</small>
+        <small>Hello,&nbsp;{{account?.user.fullName}}</small>
         <small class="text-primary">
           <i class="fa fa-circle" aria-hidden="true"></i>
-          <span>{{username}}</span>
+          <span>{{account?.username}}</span>
         </small>
       </a>
       <ul class="navbar-nav mr-auto">
@@ -31,8 +31,8 @@
       </ul>
     </div>
     <frontend-admin-nav-bar-utilities
-      *ngIf="user"
-      [user]="user"
+      *ngIf="account"
+      [user]="account?.user"
       (logoutButtonClicked)="onLogoutButtonClick()">
     </frontend-admin-nav-bar-utilities>
   </div>

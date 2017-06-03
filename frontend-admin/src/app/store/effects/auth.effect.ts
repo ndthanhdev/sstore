@@ -13,6 +13,7 @@ import {AuthService} from "../../modules/auth/auth.service";
 import {JwtHelper} from "angular2-jwt";
 import {AppConstants, JwtPayLoadKeys} from "../../util/constant";
 import {Router} from "@angular/router";
+import {go} from "@ngrx/router-store";
 
 
 @Injectable()
@@ -31,10 +32,14 @@ export class AuthEffect {
       .concatMap(payload => {
         let token = payload.data;
         localStorage.setItem(AppConstants.TokenName, token);
-        this.route.navigate(['/']);
+
         let jwt = this.jwtHelper.decodeToken(token);
         let accountId: number = jwt[JwtPayLoadKeys.AccountId];
-        return of(new authActions.StartLoggedAccountLoadAction({id: accountId}));
+        return Observable.from(
+          [
+            new authActions.StartLoggedAccountLoadAction({id: accountId}),
+            go(['/dashboard'])
+          ]);
       }).catch((error: Response) => of(new authActions.LoadLoggedAccountAction(null))));
 
   @Effect()
@@ -42,4 +47,16 @@ export class AuthEffect {
     .ofType(authActions.ActionTypes.START_LOGGED_ACCOUNT_LOAD)
     .switchMap(action => this.authService.getAccount(action.payload.id)
       .concatMap(account => of(new authActions.LoadLoggedAccountAction({account: account}))));
+
+  @Effect()
+  logout$: Observable<Action> = this.actions$
+    .ofType(authActions.ActionTypes.START_LOGOUT)
+    .switchMap(action => {
+      localStorage.clear();
+      return Observable.from(
+        [
+          go(['/auth/login']),
+          new authActions.LogoutAction(),
+        ]);
+    });
 }

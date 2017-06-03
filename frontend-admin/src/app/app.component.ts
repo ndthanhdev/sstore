@@ -9,8 +9,7 @@ import {StartLoggedAccountLoadAction} from "./store/actions/auth.action";
 @Component({
   selector: 'frontend-admin-root',
   template: `
-    <frontend-admin-nav-bar *ngIf="isOnLoginPage()" [username]="'Admin'"
-                            [fullName]="'Vũ Nguyên Hưng'"></frontend-admin-nav-bar>
+    <frontend-admin-nav-bar *ngIf="isOnLoginPage()"></frontend-admin-nav-bar>
     <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.scss']
