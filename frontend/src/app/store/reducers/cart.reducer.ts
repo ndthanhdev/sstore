@@ -44,6 +44,7 @@ export function reducer(state: State = initialState, action): State {
         loaded: false
       });
 
+    case cartActions.ActionTypes.START_LOCAL_CART_DETAIL_QUANTITY_EDIT:
     case cartActions.ActionTypes.START_CART_DETAIL_QUANTITY_EDIT:
       return Object.assign({}, state, {
         modifying: true
@@ -53,6 +54,23 @@ export function reducer(state: State = initialState, action): State {
       return Object.assign({}, state, {
         cart: Object.assign({}, state.cart, {
           details: state.cart.details.map(detail => {
+            if (detail.id === action.payload.cartDetailId) {
+              return Object.assign({}, detail, {quantity: action.payload.quantity});
+            } else {
+              return detail;
+            }
+          })
+        }),
+        activeCart: Object.assign({}, state.activeCart, {
+          item_count: state.activeCart.item_count + action.payload.quantityOffset
+        }),
+        modifying: false
+      });
+
+    case cartActions.ActionTypes.EDIT_LOCAL_CART_DETAIL_QUANTITY:
+      return Object.assign({}, state, {
+        localCart: Object.assign({}, state.localCart, {
+          details: state.localCart.details.map(detail => {
             if (detail.id === action.payload.cartDetailId) {
               return Object.assign({}, detail, {quantity: action.payload.quantity});
             } else {

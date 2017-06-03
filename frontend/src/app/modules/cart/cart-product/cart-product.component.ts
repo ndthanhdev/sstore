@@ -59,7 +59,6 @@ import {CartDetail} from '../../../models/cart-detail.model';
                  #quantityInput="ngModel"
                  [(ngModel)]="quantity"
                  [disabled]="modifying"
-                 (keydown.enter)="onCartDetailEdit()"
                  (focus)="onCartDetailFocus()"
                  (focusout)="onCartDetailEdit()"
                  (keydown.esc)="onCartDetailExit()">

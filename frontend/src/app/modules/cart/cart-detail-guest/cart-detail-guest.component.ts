@@ -9,7 +9,6 @@ import * as fromRoot from '../../../store/reducers';
 import * as cartActions from '../../../store/actions/cart.action';
 import {back} from '@ngrx/router-store';
 import {CartDetail} from '../../../models/cart-detail.model';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'frontend-cart-detail-guest',
@@ -66,8 +65,7 @@ export class CartDetailGuestComponent implements OnInit {
   loading: Observable<boolean>;
   modifying: Observable<boolean>;
 
-  constructor(private store: Store<fromRoot.State>,
-              private modalService: NgbModal) {
+  constructor(private store: Store<fromRoot.State>) {
     this.localCartSub = this.store.select(fromRoot.getCartLocalCart).subscribe(localCart => this.localCart = localCart);
     this.loading = this.store.select(fromRoot.getCartLoading);
   }
@@ -84,12 +82,11 @@ export class CartDetailGuestComponent implements OnInit {
   }
 
   onCartDetailQuantityEdit($event) {
-    // this.store.dispatch(new cartActions.StartCartDetailQuantityEditAction({
-    //   cartId: $event.cartId,
-    //   cartDetailId: $event.cartDetailId,
-    //   quantity: $event.quantity,
-    //   quantityOffset: $event.quantityOffset
-    // }));
+    this.store.dispatch(new cartActions.StartLocalCartDetailQuantityEditAction({
+      cartDetailId: $event.cartDetailId,
+      quantity: $event.quantity,
+      quantityOffset: $event.quantityOffset
+    }));
   }
 
   goBack() {
@@ -112,5 +109,9 @@ export class CartDetailGuestComponent implements OnInit {
     } else {
       return '0';
     }
+  }
+
+  trackByFn(index, item) {
+    return item.id;
   }
 }

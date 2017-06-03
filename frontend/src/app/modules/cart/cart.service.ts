@@ -77,13 +77,6 @@ export class CartService extends GenericService {
     }
   }
 
-  public addProduct(cartDetail: CartDetail): Observable<Response> {
-    return this.post(new RequestOptions({url: `${this.BASE_URL}/${cartDetail.shopping_cart_id}/details`}), {
-      quantity: cartDetail.quantity,
-      price: cartDetail.price,
-      store_product_variant_id: cartDetail.store_product_variant_id
-    });
-  }
 
   public mergeCart(cartDetails: CartDetail[], cartId: number): Observable<Response> {
     const data = cartDetails.map(cartDetail => {
@@ -94,6 +87,14 @@ export class CartService extends GenericService {
       };
     });
     return this.post(new RequestOptions({url: `${this.BASE_URL}/${cartId}/details/merge`}), data);
+  }
+
+  public addProduct(cartDetail: CartDetail): Observable<Response> {
+    return this.post(new RequestOptions({url: `${this.BASE_URL}/${cartDetail.shopping_cart_id}/details`}), {
+      quantity: cartDetail.quantity,
+      price: cartDetail.price,
+      store_product_variant_id: cartDetail.store_product_variant_id
+    });
   }
 
   public addLocalProduct(cartDetail: CartDetail): Observable<any> {
@@ -145,6 +146,23 @@ export class CartService extends GenericService {
     return this.patchWithAuth(new RequestOptions({url: `${this.BASE_URL}/${cartId}/details/${cartDetailId}`}), {
       quantity: quantity,
     });
+  }
+
+  public editLocalCartDetailQuantity(cartDetailId: number, quantity: number): Observable<any> {
+    const cartString = localStorage.getItem(LOCAL_STORAGE_CART);
+    const cart: Cart = JSON.parse(cartString);
+    const updatedCart = Object.assign({}, cart, {
+      details: cart.details.map(cartDetail => {
+        if (cartDetail.id === cartDetailId) {
+          return Object.assign({}, cartDetail, {
+            quantity: quantity
+          });
+        }
+        return cartDetail;
+      })
+    });
+    localStorage.setItem(LOCAL_STORAGE_CART, JSON.stringify(updatedCart));
+    return Observable.of('edited successfully!');
   }
 }
 

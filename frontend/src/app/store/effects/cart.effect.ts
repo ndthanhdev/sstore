@@ -105,6 +105,17 @@ export class CartEffect {
       }))));
 
   @Effect()
+  localCartDetailQuantityEdit$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_LOCAL_CART_DETAIL_QUANTITY_EDIT)
+    .map(action => action.payload)
+    .switchMap(payload => this.cartService.editLocalCartDetailQuantity(payload.cartDetailId, payload.quantity)
+      .concatMap(cart => of(new cartActions.EditLocalCartDetailQuantityAction({
+        cartDetailId: payload.cartDetailId,
+        quantity: payload.quantity,
+        quantityOffset: payload.quantityOffset
+      }))));
+
+  @Effect()
   cartClose$: Observable<Action> = this.actions$
     .ofType(cartActions.ActionTypes.START_CART_CLOSE)
     .switchMap(action => this.cartService.closeCart()

@@ -41,7 +41,10 @@ export const ActionTypes = {
   CREATE_CART: type('[Cart] Create Cart'),
 
   START_CART_DETAIL_QUANTITY_EDIT: type('[Cart] Start Cart Detail Quantity Edit'),
-  EDIT_CART_DETAIL_QUANTITY: type('[Cart] Edit Cart Detail Entity')
+  EDIT_CART_DETAIL_QUANTITY: type('[Cart] Edit Cart Detail Entity'),
+
+  START_LOCAL_CART_DETAIL_QUANTITY_EDIT: type('[Cart] Start Local Cart Detail Quantity Edit'),
+  EDIT_LOCAL_CART_DETAIL_QUANTITY: type('[Cart] Edit Local Cart Detail Entity')
 };
 
 export class StartCartLoadAction implements Action {
@@ -194,6 +197,20 @@ export class EditCartDetailQuantityAction implements Action {
   }
 }
 
+export class StartLocalCartDetailQuantityEditAction implements Action {
+  type = ActionTypes.START_LOCAL_CART_DETAIL_QUANTITY_EDIT;
+
+  constructor(public payload: { cartDetailId: number, quantity: number, quantityOffset: number }) {
+  }
+}
+
+export class EditLocalCartDetailQuantityAction implements Action {
+  type = ActionTypes.EDIT_LOCAL_CART_DETAIL_QUANTITY;
+
+  constructor(public payload: { cartDetailId: number, quantity: number, quantityOffset: number }) {
+  }
+}
+
 export type Actions =
   StartCartLoadAction
   | LoadCartAction
@@ -218,4 +235,6 @@ export type Actions =
   | StartCartMergeAction
   | MergeCartAction
   | StartLocalProductDeleteAction
-  | DeleteLocalProductAction;
+  | DeleteLocalProductAction
+  | StartLocalCartDetailQuantityEditAction
+  | EditLocalCartDetailQuantityAction;

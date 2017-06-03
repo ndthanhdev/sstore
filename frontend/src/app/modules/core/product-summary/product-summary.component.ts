@@ -73,6 +73,7 @@ export class ProductSummaryComponent implements OnInit, OnChanges {
       store_product_variant_id: this.productSummary.default_variant[0].stores[0].pivot.id,
       store_product_variant: {
         price: this.productSummary.default_variant[0].stores[0].pivot.price,
+        in_stock: this.productSummary.default_variant[0].stores[0].pivot.in_stock,
         product_variant: Object.assign({}, this.productSummary.default_variant[0], {
           product: {
             name: this.productSummary.name,
