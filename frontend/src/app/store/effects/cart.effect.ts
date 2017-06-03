@@ -38,10 +38,22 @@ export class CartEffect {
       .concatMap(activeCart => of(new cartActions.LoadActiveCartAction({activeCart: activeCart}))));
 
   @Effect()
+  localActiveCartLoad$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_LOCAL_ACTIVE_CART_LOAD)
+    .switchMap(action => this.cartService.loadLocalActiveCart()
+      .concatMap(activeCart => of(new cartActions.LoadLocalActiveCartAction({activeCart: activeCart}))));
+
+  @Effect()
   cartProductAdd$: Observable<Action> = this.actions$
     .ofType(cartActions.ActionTypes.START_PRODUCT_ADD)
     .switchMap(action => this.cartService.addProduct(action.payload.cartDetail)
       .concatMap(cart => of(new cartActions.AddProductAction({cartDetail: action.payload.cartDetail}))));
+
+  @Effect()
+  cartLocalProductAdd$: Observable<Action> = this.actions$
+    .ofType(cartActions.ActionTypes.START_LOCAL_PRODUCT_ADD)
+    .switchMap(action => this.cartService.addLocalProduct(action.payload.cartDetail)
+      .concatMap(cart => of(new cartActions.AddLocalProductAction({cartDetail: action.payload.cartDetail}))));
 
   @Effect()
   cartProductDelete$: Observable<Action> = this.actions$

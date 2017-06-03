@@ -10,3 +10,5 @@ export const GOOGLE_MAPS = {
   },
   DEFAULT_ZOOM_LEVEL: 13,
 };
+
+export const LOCAL_STORAGE_CART = 'localStorageCart';

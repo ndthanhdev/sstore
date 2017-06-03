@@ -13,8 +13,14 @@ export const ActionTypes = {
   START_ACTIVE_CART_LOAD: type('[Cart] Start Active Cart Load'),
   LOAD_ACTIVE_CART: type('[Cart] Load Active Cart'),
 
+  START_LOCAL_ACTIVE_CART_LOAD: type('[Cart] Start Local Active Cart Load'),
+  LOAD_LOCAL_ACTIVE_CART: type('[Cart] Load Local Active Cart'),
+
   START_PRODUCT_ADD: type('[Cart] Start Product Add'),
   ADD_PRODUCT: type('[Cart] Add Product'),
+
+  START_LOCAL_PRODUCT_ADD: type('[Cart] Start Local Product Add'),
+  ADD_LOCAL_PRODUCT: type('[Cart] Add Local Product'),
 
   START_PRODUCT_DELETE: type('[Cart] Start Product Delete'),
   DELETE_PRODUCT: type('[Cart] Delete Product'),
@@ -54,6 +60,17 @@ export class LoadActiveCartAction implements Action {
   }
 }
 
+export class StartLocalActiveCartLoadAction implements Action {
+  type = ActionTypes.START_LOCAL_ACTIVE_CART_LOAD;
+}
+
+export class LoadLocalActiveCartAction implements Action {
+  type = ActionTypes.LOAD_LOCAL_ACTIVE_CART;
+
+  constructor(public payload: { activeCart: ActiveCart }) {
+  }
+}
+
 export class StartProductAddAction implements Action {
   type = ActionTypes.START_PRODUCT_ADD;
 
@@ -63,6 +80,20 @@ export class StartProductAddAction implements Action {
 
 export class AddProductAction implements Action {
   type = ActionTypes.ADD_PRODUCT;
+
+  constructor(public payload: { cartDetail: CartDetail }) {
+  }
+}
+
+export class StartLocalProductAddAction implements Action {
+  type = ActionTypes.START_LOCAL_PRODUCT_ADD;
+
+  constructor(public payload: { cartDetail: CartDetail }) {
+  }
+}
+
+export class AddLocalProductAction implements Action {
+  type = ActionTypes.ADD_LOCAL_PRODUCT;
 
   constructor(public payload: { cartDetail: CartDetail }) {
   }
@@ -129,4 +160,8 @@ export type Actions =
   | StartCartCreateAction
   | CreateCartAction
   | StartCartDetailQuantityEditAction
-  | EditCartDetailQuantityAction;
+  | EditCartDetailQuantityAction
+  | StartLocalProductAddAction
+  | AddLocalProductAction
+  | StartLocalActiveCartLoadAction
+  | LoadLocalActiveCartAction;

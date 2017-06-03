@@ -15,7 +15,7 @@ import {Page} from '../../../models/page.model';
     <div class="row px-3">
       <frontend-product-summary
         class="col-lg-4 col-md-6 col-12 mb-3"
-        *ngFor="let product of productPage?.data"
+        *ngFor="let product of productPage?.data;trackBy: trackByFn()"
         [productSummary]="product"
         (putToCartButtonClicked)="onPutToCartButtonClick($event)">
       </frontend-product-summary>
@@ -44,6 +44,12 @@ export class ProductSummaryListComponent implements OnInit {
 
   onPutToCartButtonClick($event) {
     this.putToCartButtonClicked.emit($event);
+  }
+
+  trackByFn(index, item) {
+    if (item) {
+      return item.id;
+    }
   }
 
 }

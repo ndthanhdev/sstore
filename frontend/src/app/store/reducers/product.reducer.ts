@@ -1,6 +1,9 @@
 import {Product, ProductSummary} from '../../models/product.model';
 import {Page} from '../../models/page.model';
+
+
 import * as productActions from '../actions/product.action';
+
 /**
  * Created by vunguyenhung on 5/13/17.
  */
@@ -54,5 +57,4 @@ export function reducer(state: State = initialState, action): State {
 export const getCatalogProducts = (state: State) => state.catalogProducts;
 export const getProduct = (state: State) => state.product;
 export const getLoading = (state: State) => state.loading;
-export const getLoaded = (state: State) => state.loaded;
 

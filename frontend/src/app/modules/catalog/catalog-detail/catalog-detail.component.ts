@@ -99,13 +99,23 @@ export class CatalogDetailComponent implements OnInit, OnDestroy {
   }
 
   onPutToCartButtonClick($event) {
-    this.store.dispatch(new cartActions.StartProductAddAction({
-      cartDetail: {
-        shopping_cart_id: this.activeCart.id,
-        price: $event.price,
-        quantity: $event.quantity,
-        store_product_variant_id: $event.store_product_variant_id
-      }
-    }));
+    if (this.activeCart && this.activeCart.id) {
+      this.store.dispatch(new cartActions.StartProductAddAction({
+        cartDetail: {
+          shopping_cart_id: this.activeCart.id,
+          price: $event.price,
+          quantity: $event.quantity,
+          store_product_variant_id: $event.store_product_variant_id
+        }
+      }));
+    } else {
+      this.store.dispatch(new cartActions.StartLocalProductAddAction({
+        cartDetail: {
+          price: $event.price,
+          quantity: $event.quantity,
+          store_product_variant_id: $event.store_product_variant_id
+        }
+      }));
+    }
   }
 }

@@ -32,6 +32,7 @@ export const initialState: State = {
 export function reducer(state: State = initialState, action): State {
   switch (action.type) {
 
+    case cartActions.ActionTypes.START_LOCAL_ACTIVE_CART_LOAD:
     case cartActions.ActionTypes.START_ACTIVE_CART_LOAD:
     case cartActions.ActionTypes.START_CART_LOAD:
       return Object.assign({}, state, {
@@ -68,6 +69,7 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case cartActions.ActionTypes.LOAD_LOCAL_ACTIVE_CART:
     case cartActions.ActionTypes.LOAD_ACTIVE_CART:
       return Object.assign({}, state, {
         activeCart: action.payload.activeCart,
@@ -75,15 +77,21 @@ export function reducer(state: State = initialState, action): State {
         loading: false
       });
 
+    case cartActions.ActionTypes.START_LOCAL_PRODUCT_ADD:
     case cartActions.ActionTypes.START_PRODUCT_ADD:
       return Object.assign({}, state, {
         loading: true
       });
 
+    case cartActions.ActionTypes.ADD_LOCAL_PRODUCT:
     case cartActions.ActionTypes.ADD_PRODUCT:
+      let item_count = 0;
+      if (state.activeCart) {
+        item_count = state.activeCart.item_count;
+      }
       return Object.assign({}, state, {
         activeCart: Object.assign({}, state.activeCart, {
-          item_count: state.activeCart.item_count + action.payload.cartDetail.quantity
+          item_count: item_count + action.payload.cartDetail.quantity
         }),
         loading: false
       });

@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
         user: new User(jwtHelper.decodeToken(jwtToken))
       }));
       this.store.dispatch(new cartActions.StartActiveCartLoadAction());
+    } else {
+      this.store.dispatch(new cartActions.StartLocalActiveCartLoadAction());
     }
   }
 

@@ -43,14 +43,20 @@ import {ProductVariant} from '../../../models/product-variant.model';
             </div>
           </div>
           <!--END SORT DROPDOWN-->
-          <div class="lead mb-2">Price: <strong>{{currentProductVariant.stores[0].pivot.price | VND}}</strong></div>
+          <div class="lead mb-2">
+            <span>Price: <strong>{{currentProductVariant.stores[0].pivot.price | VND}}</strong></span>
+            <span class="mx-2">-</span>
+            <span>In Stock: <strong>{{currentProductVariant.stores[0].pivot.in_stock}}</strong></span>
+          </div>
 
-          <div class="form-group mb-0 row">
+          <div class="form-group mb-0 row"
+               [ngClass]="{'has-danger': quantityInput.value < 1 || quantityInput.value > currentProductVariant.stores[0].pivot.in_stock}">
             <span class="lead col-2">Quantity: </span>
-            <input type="number"
-                   class="form-control col-3"
-                   name="amount-input"
-                   [(ngModel)]="quantity">
+            <input type="number" class="form-control col-3"
+                   min="1"
+                   [max]="currentProductVariant.stores[0].pivot.in_stock"
+                   [(ngModel)]="quantity"
+                   #quantityInput>
             <span class="lead ml-2">{{product.product_type.default_unit}}</span>
           </div>
 
@@ -58,6 +64,7 @@ import {ProductVariant} from '../../../models/product-variant.model';
         <div class="card-footer d-flex justify-content-end">
           <button class="btn btn-link" (click)="onResetButtonClick()">Reset</button>
           <button class="btn btn-outline-primary"
+                  [disabled]="quantityInput.value < 1 || quantityInput.value > currentProductVariant.stores[0].pivot.in_stock"
                   (click)="onPutToCartButtonClick()">
             <span class="mr-1">Put to Card</span><i class="fa fa-shopping-cart"></i>
           </button>

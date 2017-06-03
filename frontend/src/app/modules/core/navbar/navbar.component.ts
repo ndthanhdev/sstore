@@ -22,6 +22,7 @@ export class NavbarComponent implements OnDestroy {
 
   activeCart: ActiveCart;
   activeCartSub: Subscription;
+
   cartLoading: boolean;
   cartLoadingSub: Subscription;
 

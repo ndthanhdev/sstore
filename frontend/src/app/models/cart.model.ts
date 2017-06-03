@@ -6,16 +6,16 @@ import {User} from './user.model';
 
 
 export class Cart {
-  id: number;
-  active: boolean;
-  created_at: Date;
-  updated_at: Date;
-  user_id: number;
+  id?: number;
+  active?: boolean;
+  created_at?: Date;
+  updated_at?: Date;
+  user_id?: number;
   details?: CartDetail[];
-  user: User;
+  user?: User;
 }
 
 export class ActiveCart {
-  id: number;
+  id?: number;
   item_count: number;
 }
