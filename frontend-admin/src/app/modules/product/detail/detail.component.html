@@ -1,0 +1,129 @@
+<frontend-admin-jumbotron [Header]="'Product: '+product?.name"></frontend-admin-jumbotron>
+<div class="container">
+
+  <!--START PRODUCT INFORMATION-->
+  <span class="col-12 display-4">
+        Product Information:
+    </span>
+  <hr>
+  <div class="row px-3 mb-3">
+    <div class="col-lg-4 col-12 text-white d-flex align-items-center justify-content-center">
+      <img src="{{product?.imgUrl}}" alt="cats" class="img-thumbnail">
+    </div>
+    <div class="col-lg-8 col-12 p-5">
+
+      <div class="mb-1">
+        <h4 class="lead d-inline-block">{{product?.name}}</h4>
+        <span class="badge badge-pill badge-primary">{{product?.productType.name}}</span>
+      </div>
+      <p class="card-text">{{product?.description}}</p>
+
+      <div class="mb-1">
+        <span class="lead">Categories:</span>
+        <span class="badge badge-pill badge-primary">{{product?.category.name}}</span>
+      </div>
+    </div>
+  </div>
+  <!--END PRODUCT INFORMATION-->
+
+  <!--START PRODUCT ATTRIBUTES-->
+  <span class="col-12 display-4">
+        Product Attributes:
+    </span>
+  <hr>
+  <div class="row px-3 mb-3">
+    <div class="col-lg-6 col-12">
+      <p class="lead"><span class="badge badge-pill badge-primary">{{product?.productType.name}}</span>&nbsp;Product
+        Type Attributes</p>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Value</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr frontend-admin-product-type-attribute-value-item
+            *ngFor="let ptav of product?.productTypeAttributeValues"
+            [productTypeAttributeValue]="ptav"
+            (productTypeAttributeValueChange)="onProductTypeAttributeValueChange($event)">
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-6 col-12 mb-3">
+      <div class="d-flex justify-content-between align-items-start">
+        <p class="lead">Custom Attributes:</p>
+        <button class="btn btn-outline-primary">+</button>
+      </div>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Value</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ca of product?.customAttributes"
+            frontend-admin-custom-attribute-item
+            [customAttribute]="ca"
+            (customAttributeChange)="onCustomAttributeChange($event)">
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--END PRODUCT ATTRIBUTES-->
+
+
+  <!--START PRODUCT VARIANT-->
+  <span class="col-12 display-4">
+        Product Variants:
+    </span>
+  <hr>
+
+  <!--START PAGINATION-->
+  <div class="d-flex align-items-start">
+    <ngb-pagination
+      [collectionSize]="paginatedListOfProductVariants?.count"
+      [pageSize]="3"
+      [page]="paginatedListOfProductVariants?.pageIndex"
+      (pageChange)="pageChanged($event)">
+    </ngb-pagination>
+    <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
+                                      class="align-self-center"></frontend-admin-loading-indicator>
+    <button class="btn btn-outline-primary ml-auto">Add Variant</button>
+  </div>
+  <!--END PAGINATION-->
+
+  <!--START VARIANT CARD-->
+  <frontend-admin-variant-item *ngFor="let productVariants of paginatedListOfProductVariants?.data"
+                               [productVariant]="productVariants"
+                               (storeProductVariantChange)="onStoreProductVariantChange($event)"
+                               (productVariationValueChange)="onProductVariationValueChange($event)"></frontend-admin-variant-item>
+  <!--END VARIANT CARD-->
+
+
+  <!--START PAGINATION-->
+  <div class="d-flex align-items-start mb-5">
+    <ngb-pagination
+      [collectionSize]="paginatedListOfProductVariants?.count"
+      [pageSize]="3"
+      [page]="paginatedListOfProductVariants?.pageIndex"
+      (pageChange)="pageChanged($event)">
+    </ngb-pagination>
+    <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
+                                      class="align-self-center"></frontend-admin-loading-indicator>
+    <button class="btn btn-outline-primary ml-auto"><i class="fa fa-arrow-up"></i></button>
+  </div>
+  <!--END PAGINATION-->
+
+  <!--END PRODUCT VARIANT-->
+
+</div>

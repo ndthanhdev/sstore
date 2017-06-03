@@ -4,7 +4,25 @@ import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    children: []
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  }, {
+    path: 'dashboard',
+    loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule',
+  }
+  , {
+    path: 'stores',
+    loadChildren: 'app/modules/store/store.module#StoreModule',
+  }, {
+    path: 'products',
+    loadChildren: 'app/modules/product/product.module#ProductModule'
+  }  , {
+    path: 'users',
+    loadChildren: 'app/modules/user/user.module#UserModule'
+  }
+  , {
+    path: 'reviews',
+    loadChildren: 'app/modules/review/review.module#ReviewModule'
   }
 ];
 
@@ -13,4 +31,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
+
 }

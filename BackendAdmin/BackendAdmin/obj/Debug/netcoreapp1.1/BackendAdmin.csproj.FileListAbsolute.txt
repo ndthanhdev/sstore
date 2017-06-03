@@ -1,0 +1,9 @@
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\bin\Debug\netcoreapp1.1\BackendAdmin.deps.json
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\bin\Debug\netcoreapp1.1\BackendAdmin.runtimeconfig.json
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\bin\Debug\netcoreapp1.1\BackendAdmin.runtimeconfig.dev.json
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\bin\Debug\netcoreapp1.1\BackendAdmin.dll
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\obj\Debug\netcoreapp1.1\BackendAdmin.csprojResolveAssemblyReference.cache
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\obj\Debug\netcoreapp1.1\BackendAdmin.AssemblyInfo.cs
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\bin\Debug\netcoreapp1.1\BackendAdmin.pdb
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\obj\Debug\netcoreapp1.1\BackendAdmin.dll
+C:\Users\duyth\Documents\GitHub\sstore\BackendAdmin\BackendAdmin\obj\Debug\netcoreapp1.1\BackendAdmin.pdb

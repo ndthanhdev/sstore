@@ -3,13 +3,11 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'frontend-admin-root',
   template: `
-    <h1>
-      {{title}}
-    </h1>
-    <router-outlet></router-outlet>
+    <frontend-admin-nav-bar [username]="'Admin'" [fullName]="'Vũ Nguyên Hưng'"></frontend-admin-nav-bar>
+    <router-outlet ></router-outlet>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend-admin works!';
+
 }
