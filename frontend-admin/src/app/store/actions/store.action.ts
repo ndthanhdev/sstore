@@ -13,6 +13,8 @@ export const ActionTypes = {
   START_STORE_LOAD: type('[Store] Start Store Load'),
   LOAD_STORE: type('[Store] Load Store'),
 
+  START_STORE_MONTH_SALES_LOAD: type('[Store] Start Store Month Sales Load'),
+  LOAD_STORE_MONTH_SALES: type('[Store] Load Store Month Sales'),
 };
 
 
@@ -57,6 +59,21 @@ export class LoadStoreAction implements Action {
   type = ActionTypes.LOAD_STORE;
 
   constructor(public payload: { store: Stores }) {
+  }
+}
+
+
+export class StartStoreMonthSalesLoadAction implements Action {
+  type = ActionTypes.START_STORE_MONTH_SALES_LOAD;
+
+  constructor(public payload: { id: number }) {
+  }
+}
+
+export class LoadStoreMonthSalesAction implements Action {
+  type = ActionTypes.LOAD_STORE_MONTH_SALES;
+
+  constructor(public payload: { monthSales: any[][] }) {
   }
 }
 

@@ -58,7 +58,7 @@ namespace BackendAdmin.Controllers
                 .Select(group => new object[]
                 {
                     group.Key,
-                    group.Sum(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails.Sum(scd=>scd.Quantity))
+                    group.Sum(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails.Sum(scd=>scd.Quantity*float.Parse(scd.Price)))
                 });
 
             return monthSales;

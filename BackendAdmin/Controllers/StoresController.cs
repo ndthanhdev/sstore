@@ -129,6 +129,32 @@ namespace BackendAdmin.Controllers
             return Ok(stores);
         }
 
+        // GET: api/Stores/1/MonthSales
+        [HttpGet("{id}/MonthSales")]
+        public object GetMonthSales([FromRoute] int id)
+        {
+            DateTime present = DateTime.Today;
+
+            //1 month ago
+            var pastTicks = present.AddMonths(-1);
+
+            var monthSales = _context.Invoices
+                .Where(invoice => invoice.Order.ShoppingCart.ShoppingCartDetails
+                .Any(shoppingCartDetail => shoppingCartDetail.StoreProductVariant.Store.Id == id)
+                && invoice.CreatedAt > pastTicks
+                && invoice.CreatedAt <= present)
+                .Include(invoice => invoice.Order.ShoppingCart.ShoppingCartDetails)
+                .OrderBy(invoice => invoice.CreatedAt)
+                .GroupBy(invoice => invoice.CreatedAt.Value.ToString("d"))
+                .Select(group => new object[]
+                {
+                    group.Key,
+                    group.Sum(invoice=>invoice.Order.ShoppingCart.ShoppingCartDetails.Sum(scd=>scd.Quantity*float.Parse(scd.Price)))
+                });
+
+            return monthSales;
+        }
+
         private bool StoresExists(int id)
         {
             return _context.Stores.Any(e => e.Id == id);

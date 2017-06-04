@@ -34,4 +34,10 @@ export class StoreService extends GenericService {
     }));
   }
 
+  public getStoreMonthSales(id: number): Observable<any[][]> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/${id}/MonthSales`
+    }));
+  }
+
 }

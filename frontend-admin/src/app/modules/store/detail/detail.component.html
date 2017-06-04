@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-
+<!--LOCATION-->
   <div class="row mb-3">
     <div class="col-12">
       <div class="card">
@@ -50,6 +50,7 @@
         <agm-map [zoom]="10" [latitude]="storeLocation.lat" [longitude]="storeLocation.lng">
           <agm-marker *ngFor="let store of stores" [latitude]="toNumber(store.latitude)"
                       [longitude]="toNumber(store.longitude)"
+                      [label]="store.id===id?'':store.id.toString()"
                       [draggable]="false"
                       [iconUrl]="store.id===id?
                       'http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png':
@@ -64,5 +65,13 @@
         </agm-map>
       </div>
     </div>
+  </div>
+  <!--MONTH SALES-->
+  <div class="row mb-3">
+    <frontend-admin-bar-chart class="col-12"
+                              [title]="'This month sales'"
+                              [vAxis]="'VND'"
+                              [hAxis]="'Time'"
+                              [dataTable]="monthSales | async"></frontend-admin-bar-chart>
   </div>
 </div>

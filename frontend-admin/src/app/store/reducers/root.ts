@@ -75,9 +75,10 @@ export const getStoreIsBusy = Reselect.createSelector(getStoreState, fromStore.g
 export const getStoreStores = Reselect.createSelector(getStoreState, fromStore.getStores);
 export const getStorePaginatedListOfStores = Reselect.createSelector(getStoreState, fromStore.getPaginatedListOfStores);
 export const getStoreStore = Reselect.createSelector(getStoreState, fromStore.getStore);
+export const getStoreMonthSales = Reselect.createSelector(getStoreState, fromStore.getStoreMonthSales);
 
 
-// store
+// auth
 export const getAuthState = (state: State) => state.auth;
 
 export const getAuthIsBusy = Reselect.createSelector(getAuthState, fromAuth.getIsBusy);

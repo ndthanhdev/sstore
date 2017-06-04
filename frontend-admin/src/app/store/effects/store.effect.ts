@@ -37,5 +37,11 @@ export class StoreEffect {
     .switchMap(action => this.storeService.loadStore(action.payload.id)
       .concatMap(store => of(new storeActions.LoadStoreAction({store: store}))));
 
+  @Effect()
+  storeMonthSaleLoad$: Observable<Action> = this.actions$
+    .ofType(storeActions.ActionTypes.START_STORE_MONTH_SALES_LOAD)
+    .switchMap(action => this.storeService.getStoreMonthSales(action.payload.id)
+      .concatMap(monthSales => of(new storeActions.LoadStoreMonthSalesAction({monthSales: monthSales}))));
+
 
 }

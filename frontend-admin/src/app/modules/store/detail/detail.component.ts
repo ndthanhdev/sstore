@@ -24,8 +24,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   storeSub: Subscription;
 
   storesSub: Subscription;
-  markers: Marker[];
   stores: Stores[];
+
+  monthSales: Observable<any[][]>;
 
   storeLocation = {
     lat: AppConstants.HCMC_LOCATION.latitude,
@@ -44,8 +45,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.storeSub = this.store.select(rootReducer.getStoreStore).subscribe(store => {
       this.storeModel = store;
       this.storeLocation = {
-         lat: store ? +store.latitude : this.storeLocation.lat,
-         lng: store ? +store.longitude : this.storeLocation.lng
+        lat: store ? +store.latitude : this.storeLocation.lat,
+        lng: store ? +store.longitude : this.storeLocation.lng
       };
     });
     this.storesSub = this.store.select(rootReducer.getStoreStores).subscribe(
@@ -53,10 +54,12 @@ export class DetailComponent implements OnInit, OnDestroy {
         // this.markers = stores.map(s => this.storesToMarker(s, this.id));
         this.stores = stores;
       });
+    this.monthSales = this.store.select(rootReducer.getStoreMonthSales);
     this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.store.dispatch(new storeActions.StartStoreLoadAction({id: this.id}));
       this.store.dispatch(new storeActions.StartAllStoreLoadAction({}));
+      this.store.dispatch(new storeActions.StartStoreMonthSalesLoadAction({id: this.id}));
     });
   }
 
@@ -64,31 +67,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.storeSub.unsubscribe();
   }
 
-  toNumber(s:string):number{
+  toNumber(s: string): number {
     return +s;
   }
-
-  // storesToMarker(store: Stores, id: number): Marker {
-  //   if(store.id===id)
-  //   {
-  //     return {
-  //       id: '',
-  //       latitude: +store.latitude,
-  //       longitude: +store.longitude,
-  //       address: store.address,
-  //       icon: 'http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png',
-  //       isDraggable: false,
-  //       name: store.name,
-  //     };
-  //   }
-  //   return {
-  //     id: store.id,
-  //     latitude: +store.latitude,
-  //     longitude: +store.longitude,
-  //     address: store.address,
-  //     icon: store.primary ? 'http://maps.google.com/mapfiles/kml/pal4/icon47.png' : '',
-  //     isDraggable: false,
-  //     name: store.name,
-  //   };
-  // }
 }
