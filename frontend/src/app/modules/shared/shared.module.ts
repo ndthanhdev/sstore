@@ -5,6 +5,7 @@ import {ProductReviewRatingComponent} from './product-review-rating/product-revi
 import {LoadingComponent} from './loading/loading.component';
 import {VNDPipe} from './vnd.pipe';
 import {AmUTCOffsetPipe} from './am-utcoffset.pipe';
+import {FileDropDirective} from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -15,12 +16,14 @@ import {AmUTCOffsetPipe} from './am-utcoffset.pipe';
     ProductReviewRatingComponent,
     LoadingComponent,
     VNDPipe,
-    AmUTCOffsetPipe
+    AmUTCOffsetPipe,
+    FileDropDirective
   ],
   exports: [
     ProductVariationValuesComponent,
     ProductReviewRatingComponent,
     LoadingComponent,
+    FileDropDirective,
 
     VNDPipe,
     AmUTCOffsetPipe

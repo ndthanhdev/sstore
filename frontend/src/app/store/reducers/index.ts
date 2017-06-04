@@ -18,6 +18,7 @@ import * as fromStore from './store.reducer';
 import * as fromCart from './cart.reducer';
 import * as fromOrder from './order.reducer';
 import * as fromMQTT from './mqtt.reducer';
+import * as fromImage from './image.reducer';
 import * as fromRouter from '@ngrx/router-store';
 
 export interface State {
@@ -30,6 +31,7 @@ export interface State {
   cart: fromCart.State;
   order: fromOrder.State;
   mqtt: fromMQTT.State;
+  image: fromImage.State;
   router: fromRouter.RouterState;
 }
 
@@ -43,6 +45,7 @@ export const reducers = {
   cart: fromCart.reducer,
   order: fromOrder.reducer,
   mqtt: fromMQTT.reducer,
+  image: fromImage.reducer,
   router: fromRouter.routerReducer,
 };
 
@@ -66,6 +69,7 @@ export const getProductState = (state: State) => state.product;
 export const getStoreState = (state: State) => state.store;
 export const getCartState = (state: State) => state.cart;
 export const getOrderState = (state: State) => state.order;
+export const getImageState = (state: State) => state.image;
 export const getMQTTState = (state: State) => state.mqtt;
 
 
@@ -104,4 +108,5 @@ export const getOrderOrder = Reselect.createSelector(getOrderState, fromOrder.ge
 export const getOrderLoading = Reselect.createSelector(getOrderState, fromOrder.getLoading);
 export const getOrderCreatedOrderId = Reselect.createSelector(getOrderState, fromOrder.getCreatedOrderId);
 
-
+export const getImageUrl = Reselect.createSelector(getImageState, fromImage.getUrl);
+export const getImageLoading = Reselect.createSelector(getImageState, fromImage.getLoading);

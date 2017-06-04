@@ -1,19 +1,52 @@
-<div class="aligner">
-  <div class="card w-25">
-    <div class="card-header text-center">
-      <h2>Register</h2>
+<div class="jumbotron bg-primary text-white">
+  <div class="container">
+    <h1 class="display-3">Register</h1>
+  </div>
+</div>
+<div class="container">
+
+  <!--START USER INFORMATION-->
+  <span class="col-12 display-4">
+      User Information:
+    </span>
+  <hr>
+  <div class="row mb-3">
+    <div class="col-6 offset-3 d-flex">
+      <div class="card image-placeholder bg-faded d-flex align-items-center justify-content-center mx-auto d-block"
+           ng2FileDrop
+           [uploader]="uploader"
+           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}">
+
+        <ng-template [ngIf]="!url">
+          <i class="fa fa-picture-o fa-5x text-muted mb-2 cursor-pointer"></i>
+          <span class="lead text-muted" *ngIf="!uploader.queue[0]">Drag avatar here</span>
+          <span class="lead text-muted" *ngIf="uploader.queue[0]">{{uploader.queue[0]?.file?.name}}</span>
+          <div class="lead text-muted" *ngIf="uploader.queue[0]">Ready for upload</div>
+        </ng-template>
+
+        <img *ngIf="url" [src]="url" alt="avatar" class="rounded img-thumbnail">
+      </div>
     </div>
-    <div class="card-block">
+  </div>
 
+  <div class="row mb-3" *ngIf="uploader.queue[0]">
+    <div class="col-6 offset-3 text-center">
+      <button class="btn btn-outline-primary"
+              (click)="uploadItem(uploader.queue[0])"
+              [disabled]="loading">
+        <span *ngIf="!loading">Upload</span>
+        <i class="fa fa-cog fa-spin fa-fw" *ngIf="loading"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-6 offset-3">
       <form [formGroup]="registerForm">
-        <!--START USER INFORMATION-->
-        <h3 class="mb-1">User Information</h3>
-        <hr class="mt-0">
-
         <div class="form-group"
              [ngClass]="{'has-danger': formGroupHasDanger('fullName')}">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
             <input type="text"
                    class="form-control"
                    placeholder="Full Name*"
@@ -30,7 +63,7 @@
         <div class="form-group"
              [ngClass]="{'has-danger': formGroupHasDanger('email')}">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
             <input type="email"
                    class="form-control"
                    placeholder="Email*"
@@ -46,53 +79,51 @@
 
         <div class="form-group">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-address-book" aria-hidden="true"></i></span>
+            <span class="input-group-addon"><i class="fa fa-address-book fa-fw" aria-hidden="true"></i></span>
             <input type="text" class="form-control" placeholder="Address" formControlName="address">
           </div>
         </div>
 
         <div class="form-group">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-            <input type="date" class="form-control" placeholder="Birthday* (yyyy-mm-dd)" formControlName="dob">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-mobile-phone" aria-hidden="true"></i></span>
+            <span class="input-group-addon"><i class="fa fa-mobile-phone fa-fw" aria-hidden="true"></i></span>
             <input type="tel" class="form-control" placeholder="Phone Number" formControlName="tel">
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-genderless" aria-hidden="true"></i></span>
-            <input type="tel" class="form-control" placeholder="Phone Number" formControlName="tel">
-          </div>
+        <div class="form-group d-flex align-items-center">
+          <label for="dateInput" class="mb-0 mr-2">Birthday: </label>
+          <input type="date" class="form-control" formControlName="dob" id="dateInput">
         </div>
 
-        <div class="form-group">
-          <label class="center-block">Gender:
-            <select class="form-control" formControlName="gender">
-              <option *ngFor="let gender of genders" [value]="gender.value">{{gender.name}}</option>
-            </select>
-          </label>
+        <div class="form-group d-flex align-items-center">
+          <label for="genderSelect" class="mb-0 mr-2">Gender: </label>
+          <select class="form-control" formControlName="gender" id="genderSelect">
+            <option *ngFor="let gender of genders" [value]="gender.value">{{gender.name}}</option>
+          </select>
         </div>
 
         <!--END USER INFORMATION-->
+      </form>
+    </div>
+  </div>
 
-        <!--START ACCOUNT INFORMATION-->
-        <h3 class="mb-1">Account Information</h3>
-        <hr class="mt-0">
-
+  <!--START ACCOUNT INFORMATION-->
+  <span class="col-12 display-4">
+        User Information:
+    </span>
+  <hr>
+  <div class="row mb-3">
+    <div class="col-6 offset-3">
+      <form [formGroup]="registerForm">
         <div class="form-group"
              [ngClass]="{'has-danger': formGroupHasDanger('username')}">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-id-badge" aria-hidden="true"></i></span>
+            <span class="input-group-addon"><i class="fa fa-id-badge fa-fw" aria-hidden="true"></i></span>
             <input type="text"
                    class="form-control"
                    placeholder="Username*"
+                   formControlName="username"
                    [ngClass]="{'form-control-danger': formGroupHasDanger('username')}">
           </div>
           <small class="form-text text-danger"
@@ -103,34 +134,29 @@
         <div class="form-group"
              [ngClass]="{'has-danger': formGroupHasDanger('password')}">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+            <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
             <input type="password" class="form-control" placeholder="Password*"
-                   [ngClass]="{'form-control-danger': formGroupHasDanger('password')}">>
+                   formControlName="password"
+                   [ngClass]="{'form-control-danger': formGroupHasDanger('password')}">
           </div>
           <small class="form-text text-danger"
                  [hidden]="!formGroupHasDanger('password')">Password is required
           </small>
         </div>
         <!--END ACCOUNT INFORMATION-->
-
-        <!--START ROLE INFORMATION-->
-        <h3 class="mb-1">Role Information</h3>
-        <hr class="mt-0">
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-            <input readonly type="text" class="form-control" value="User">
-          </div>
-        </div>
-        <!--END ROLE INFORMATION-->
-
       </form>
     </div>
-    <div class="card-footer d-flex justify-content-end">
-      <button type="button" class="btn btn-link">Clear</button>
-      <button type="button" class="btn btn-primary" (click)="onSubmit()">Register
-        <!--<i class="fa fa-spinner fa-pulse fa-fw" *ngIf="registering | async"></i>-->
-      </button>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-6 offset-3">
+      <div class="d-flex justify-content-end mb-5">
+        <button type="button" class="btn btn-link" (click)="resetButtonClicked()">Clear</button>
+        <button type="button" class="btn btn-outline-primary" (click)="onSubmit()" [disabled]="!registerForm.valid">
+          Register
+          <!--<i class="fa fa-spinner fa-pulse fa-fw" *ngIf="registering | async"></i>-->
+        </button>
+      </div>
     </div>
   </div>
 </div>
