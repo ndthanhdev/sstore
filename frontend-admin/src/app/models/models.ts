@@ -6,12 +6,78 @@
 //----------------------
 
 
-export interface CustomAttributes {
+export interface Accounts {
+  id?: number | null;
+  username?: string | null;
+  password?: string | null;
+  ip?: string | null;
+  role?: number | null;
+  userId?: number | null;
+  lastLogin?: Date | null;
+  user?: Users | null;
+}
+
+export interface Users {
+  id?: number | null;
+  fullName?: string | null;
+  dob?: Date | null;
+  tel?: string | null;
+  address?: string | null;
+  email?: string | null;
+  gender?: number | null;
+  avatar?: string | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
+  accounts?: Accounts[] | null;
+  reviews?: Reviews[] | null;
+  shoppingCarts?: ShoppingCarts[] | null;
+  stores?: Stores[] | null;
+  userReview?: UserReview[] | null;
+}
+
+export interface Reviews {
+  id?: number | null;
+  content?: string | null;
+  rating?: number | null;
+  userId?: number | null;
+  productId?: number | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
+  userReview?: UserReview[] | null;
+  product?: Products | null;
+  user?: Users | null;
+}
+
+export interface ShoppingCarts {
+  id?: number | null;
+  active?: boolean | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
+  userId?: number | null;
+  orders?: Orders[] | null;
+  shoppingCartDetails?: ShoppingCartDetails[] | null;
+  user?: Users | null;
+}
+
+export interface Stores {
   id?: number | null;
   name?: string | null;
-  value?: string | null;
-  productId?: number | null;
-  product?: Products | null;
+  address?: string | null;
+  longitude?: string | null;
+  latitude?: string | null;
+  primary?: boolean | null;
+  managerId?: number | null;
+  storeProductVariant?: StoreProductVariant[] | null;
+  manager?: Users | null;
+}
+
+export interface UserReview {
+  id?: number | null;
+  liked?: boolean | null;
+  userId?: number | null;
+  reviewId?: number | null;
+  review?: Reviews | null;
+  user?: Users | null;
 }
 
 export interface Products {
@@ -32,6 +98,53 @@ export interface Products {
   productType?: ProductTypes | null;
 }
 
+export interface Orders {
+  id?: number | null;
+  code?: string | null;
+  rating?: number | null;
+  comment?: string | null;
+  address?: string | null;
+  latitude?: string | null;
+  longitude?: string | null;
+  tel?: string | null;
+  state?: number | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
+  shoppingCartId?: number | null;
+  invoices?: Invoices[] | null;
+  shoppingCart?: ShoppingCarts | null;
+}
+
+export interface ShoppingCartDetails {
+  id?: number | null;
+  quantity?: number | null;
+  price?: string | null;
+  shoppingCartId?: number | null;
+  storeProductVariantId?: number | null;
+  shoppingCart?: ShoppingCarts | null;
+  storeProductVariant?: StoreProductVariant | null;
+}
+
+export interface StoreProductVariant {
+  id?: number | null;
+  price?: string | null;
+  inStock?: number | null;
+  storeId?: number | null;
+  productVariantId?: number | null;
+  devices?: Devices[] | null;
+  shoppingCartDetails?: ShoppingCartDetails[] | null;
+  productVariant?: ProductVariants | null;
+  store?: Stores | null;
+}
+
+export interface CustomAttributes {
+  id?: number | null;
+  name?: string | null;
+  value?: string | null;
+  productId?: number | null;
+  product?: Products | null;
+}
+
 export interface ProductTypeAttributeValues {
   id?: number | null;
   value?: string | null;
@@ -48,19 +161,6 @@ export interface ProductVariants {
   productVariationValues?: ProductVariationValues[] | null;
   storeProductVariant?: StoreProductVariant[] | null;
   product?: Products | null;
-}
-
-export interface Reviews {
-  id?: number | null;
-  content?: string | null;
-  rating?: number | null;
-  userId?: number | null;
-  productId?: number | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-  userReview?: UserReview[] | null;
-  product?: Products | null;
-  user?: Users | null;
 }
 
 export interface Categories {
@@ -84,6 +184,21 @@ export interface ProductTypes {
   productTypeAttributes?: ProductTypeAttributes[] | null;
 }
 
+export interface Invoices {
+  id?: number | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
+  orderId?: number | null;
+  order?: Orders | null;
+}
+
+export interface Devices {
+  id?: number | null;
+  name?: string | null;
+  storeProductVariantId?: number | null;
+  storeProductVariant?: StoreProductVariant | null;
+}
+
 export interface ProductTypeAttributes {
   id?: number | null;
   name?: string | null;
@@ -100,45 +215,6 @@ export interface ProductVariationValues {
   productVariant?: ProductVariants | null;
 }
 
-export interface StoreProductVariant {
-  id?: number | null;
-  price?: string | null;
-  inStock?: number | null;
-  storeId?: number | null;
-  productVariantId?: number | null;
-  devices?: Devices[] | null;
-  shoppingCartDetails?: ShoppingCartDetails[] | null;
-  productVariant?: ProductVariants | null;
-  store?: Stores | null;
-}
-
-export interface UserReview {
-  id?: number | null;
-  liked?: boolean | null;
-  userId?: number | null;
-  reviewId?: number | null;
-  review?: Reviews | null;
-  user?: Users | null;
-}
-
-export interface Users {
-  id?: number | null;
-  fullName?: string | null;
-  dob?: Date | null;
-  tel?: string | null;
-  address?: string | null;
-  email?: string | null;
-  gender?: number | null;
-  avatar?: string | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-  accounts?: Accounts[] | null;
-  reviews?: Reviews[] | null;
-  shoppingCarts?: ShoppingCarts[] | null;
-  stores?: Stores[] | null;
-  userReview?: UserReview[] | null;
-}
-
 export interface Catalogs {
   id?: number | null;
   name?: string | null;
@@ -146,80 +222,13 @@ export interface Catalogs {
   categories?: Categories[] | null;
 }
 
-export interface Devices {
-  id?: number | null;
-  name?: string | null;
-  storeProductVariantId?: number | null;
-  storeProductVariant?: StoreProductVariant | null;
-}
-
-export interface ShoppingCartDetails {
-  id?: number | null;
-  quantity?: number | null;
-  price?: string | null;
-  shoppingCartId?: number | null;
-  storeProductVariantId?: number | null;
-  shoppingCart?: ShoppingCarts | null;
-  storeProductVariant?: StoreProductVariant | null;
-}
-
-export interface Stores {
-  id?: number | null;
-  name?: string | null;
-  address?: string | null;
-  longitude?: string | null;
-  latitude?: string | null;
-  primary?: boolean | null;
-  managerId?: number | null;
-  storeProductVariant?: StoreProductVariant[] | null;
-  manager?: Users | null;
-}
-
-export interface Accounts {
-  id?: number | null;
-  username?: string | null;
-  password?: string | null;
-  ip?: string | null;
-  role?: number | null;
-  userId?: number | null;
-  lastLogin?: Date | null;
-  user?: Users | null;
-}
-
-export interface ShoppingCarts {
-  id?: number | null;
-  active?: boolean | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-  userId?: number | null;
-  orders?: Orders[] | null;
-  shoppingCartDetails?: ShoppingCartDetails[] | null;
-  user?: Users | null;
-}
-
-export interface Orders {
-  id?: number | null;
-  code?: string | null;
-  rating?: number | null;
-  comment?: string | null;
-  address?: string | null;
-  latitude?: string | null;
-  longitude?: string | null;
-  tel?: string | null;
-  state?: number | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-  shoppingCartId?: number | null;
-  invoices?: Invoices[] | null;
-  shoppingCart?: ShoppingCarts | null;
-}
-
-export interface Invoices {
-  id?: number | null;
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-  orderId?: number | null;
-  order?: Orders | null;
+export interface PaginatedListOfOrders {
+  pageIndex?: number | null;
+  totalPages?: number | null;
+  count?: number | null;
+  readonly hasPreviousPage?: boolean | null;
+  readonly hasNextPage?: boolean | null;
+  data?: Orders[] | null;
 }
 
 export interface PaginatedListOfProducts {
