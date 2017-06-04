@@ -40,7 +40,7 @@ export class AuthEffect {
             new authActions.StartLoggedAccountLoadAction({id: accountId}),
             go(['/dashboard'])
           ]);
-      }).catch((error: Response) => of(new authActions.LoadLoggedAccountAction({account: null}))));
+      }).catch((error: Response) => of(new authActions.StartLogoutAction())));
 
   @Effect()
   loggedAccountLoad$: Observable<Action> = this.actions$

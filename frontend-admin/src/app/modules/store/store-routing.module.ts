@@ -7,7 +7,7 @@ import {DetailComponent} from "./detail/detail.component";
 const routes: Routes = [
   {path: '', component: StoreComponent,},
   {path: 'create', component: CreateComponent},
-  {path: 'detail/:id', component: DetailComponent},
+  {path: ':id', component: DetailComponent},
 ];
 
 @NgModule({

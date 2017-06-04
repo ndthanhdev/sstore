@@ -4,7 +4,7 @@ import {Store} from "@ngrx/store";
 import * as rootReducer from "./store/reducers/root";
 import {JwtHelper} from "angular2-jwt";
 import {AppConstants, JwtPayLoadKeys} from "./util/constant";
-import {StartLoggedAccountLoadAction} from "./store/actions/auth.action";
+import * as authAction from "./store/actions/auth.action";
 
 @Component({
   selector: 'frontend-admin-root',
@@ -26,9 +26,10 @@ export class AppComponent implements OnInit {
     let token = localStorage.getItem(AppConstants.TokenName);
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       let id = this.jwtHelper.decodeToken(token)[JwtPayLoadKeys.AccountId];
-      this.store.dispatch(new StartLoggedAccountLoadAction({id: id}));
+      this.store.dispatch(new authAction.StartLoggedAccountLoadAction({id: id}));
     }
     else {
+      this.store.dispatch(new authAction.StartLogoutAction());
     }
   }
 
