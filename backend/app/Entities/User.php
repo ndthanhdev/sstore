@@ -15,7 +15,8 @@ class User extends Model {
         'tel',
         'address',
         'email',
-        'gender'
+        'gender',
+        'avatar'
     ];
 
     public function activeCart() {

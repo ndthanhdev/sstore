@@ -6,8 +6,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Entities\Account;
+use App\Entities\ShoppingCart;
+use App\Entities\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Routing\Controller;
 use Tymon\JWTAuth\JWTAuth;
 
@@ -43,4 +49,51 @@ class AuthController extends Controller {
         ];
         return response()->json($response, 200);
     }
+
+
+    public function register(Request $request) {
+
+        $userInfo = $request->all();
+
+
+        DB::transaction(function () use ($userInfo, $request) {
+            $createdUser = User::create([
+                'full_name' => $userInfo['full_name'],
+                'dob' => $userInfo['dob'],
+                'tel' => $userInfo['tel'],
+                'address' => $userInfo['address'],
+                'email' => $userInfo['email'],
+                'avatar' => $userInfo['avatar'],
+                'gender' => $userInfo['gender']
+            ]);
+
+
+            Account::create([
+                'username' => $userInfo['username'],
+                'password' => Hash::make($userInfo['password']),
+                'role' => 0,
+                'IP' => $request->ip(),
+                'user_id' => $createdUser->id,
+                'last_login' => Carbon::now()
+            ]);
+
+            ShoppingCart::create([
+                'active' => true,
+                'user_id' => $createdUser->id
+            ]);
+        });
+
+        $response = [
+            'msg' => config('msg.REGISTER_SUCCESS'),
+            'link' => [
+                'name' => 'LOGIN',
+                'url' => route('auth.LOGIN'),
+                'method' => 'POST',
+                'params' => ['username', 'password'],
+            ]
+        ];
+
+        return response()->json($response, 201);
+    }
+
 }

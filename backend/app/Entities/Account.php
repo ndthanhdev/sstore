@@ -22,7 +22,8 @@ class Account extends Model implements AuthenticatableContract, AuthorizableCont
         'password',
         'IP',
         'last_login',
-        'role'
+        'role',
+        'user_id'
     ];
 
     public function user() {

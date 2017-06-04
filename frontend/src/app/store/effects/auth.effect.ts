@@ -62,6 +62,7 @@ export class AuthEffects {
           return Observable.from([
             new authActions.RegisterAction({message: message}),
             new authActions.RegisterSuccessAction({message: message}),
+            new authActions.LoginSuccessAction({message: 'Register Successfully!'}),
             new authActions.StartLoginAction({username: payload.user.username, password: payload.user.password}),
             go(['/'])
           ]);

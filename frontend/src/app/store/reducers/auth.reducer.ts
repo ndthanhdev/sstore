@@ -47,6 +47,11 @@ export function reducer(state: State = initialState, action): State {
         message: action.payload.message
       });
 
+    case ActionTypes.REGISTER_FAIL:
+      return Object.assign({}, state, {
+        loading: false,
+      });
+
     case ActionTypes.REGISTER:
       return Object.assign({}, state, {
         message: action.payload.message
