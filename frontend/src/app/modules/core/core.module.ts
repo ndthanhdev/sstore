@@ -27,6 +27,7 @@ import {AgmCoreModule} from '@agm/core';
 import {DoneComponent} from './checkout/done/done.component';
 import {MqttService} from './mqtt.service';
 import {CloseOrderComponent} from './checkout/close-order/close-order.component';
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import {CloseOrderComponent} from './checkout/close-order/close-order.component'
     CreateCartComponent,
     DeliveryOnlineComponent,
     DoneComponent,
-    CloseOrderComponent
+    CloseOrderComponent,
+    RegisterComponent
   ],
   exports: [
     NavbarComponent,

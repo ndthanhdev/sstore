@@ -31,6 +31,9 @@ export const ActionTypes = {
   START_PRODUCT_DELETE: type('[Cart] Start Product Delete'),
   DELETE_PRODUCT: type('[Cart] Delete Product'),
 
+  START_LOCAL_PRODUCT_DELETE: type('[Cart] Start Local Product Delete'),
+  DELETE_LOCAL_PRODUCT: type('[Cart] Delete Local Product'),
+
   START_CART_CLOSE: type('[Cart] Start Cart Close'),
   CLOSE_CART: type('[Cart] Close Cart'),
 
@@ -38,7 +41,10 @@ export const ActionTypes = {
   CREATE_CART: type('[Cart] Create Cart'),
 
   START_CART_DETAIL_QUANTITY_EDIT: type('[Cart] Start Cart Detail Quantity Edit'),
-  EDIT_CART_DETAIL_QUANTITY: type('[Cart] Edit Cart Detail Entity')
+  EDIT_CART_DETAIL_QUANTITY: type('[Cart] Edit Cart Detail Entity'),
+
+  START_LOCAL_CART_DETAIL_QUANTITY_EDIT: type('[Cart] Start Local Cart Detail Quantity Edit'),
+  EDIT_LOCAL_CART_DETAIL_QUANTITY: type('[Cart] Edit Local Cart Detail Entity')
 };
 
 export class StartCartLoadAction implements Action {
@@ -144,6 +150,20 @@ export class DeleteProductAction implements Action {
   }
 }
 
+export class StartLocalProductDeleteAction implements Action {
+  type = ActionTypes.START_LOCAL_PRODUCT_DELETE;
+
+  constructor(public payload: { cartDetailId: number, quantity: number }) {
+  }
+}
+
+export class DeleteLocalProductAction implements Action {
+  type = ActionTypes.DELETE_LOCAL_PRODUCT;
+
+  constructor(public payload: { cartDetailId: number, quantity: number }) {
+  }
+}
+
 export class StartCartCloseAction implements Action {
   type = ActionTypes.START_CART_CLOSE;
 }
@@ -177,6 +197,20 @@ export class EditCartDetailQuantityAction implements Action {
   }
 }
 
+export class StartLocalCartDetailQuantityEditAction implements Action {
+  type = ActionTypes.START_LOCAL_CART_DETAIL_QUANTITY_EDIT;
+
+  constructor(public payload: { cartDetailId: number, quantity: number, quantityOffset: number }) {
+  }
+}
+
+export class EditLocalCartDetailQuantityAction implements Action {
+  type = ActionTypes.EDIT_LOCAL_CART_DETAIL_QUANTITY;
+
+  constructor(public payload: { cartDetailId: number, quantity: number, quantityOffset: number }) {
+  }
+}
+
 export type Actions =
   StartCartLoadAction
   | LoadCartAction
@@ -199,4 +233,8 @@ export type Actions =
   | StartLocalCartLoadAction
   | LoadLocalCartAction
   | StartCartMergeAction
-  | MergeCartAction;
+  | MergeCartAction
+  | StartLocalProductDeleteAction
+  | DeleteLocalProductAction
+  | StartLocalCartDetailQuantityEditAction
+  | EditLocalCartDetailQuantityAction;

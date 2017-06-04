@@ -7,7 +7,13 @@ export class User {
   full_name: string;
   role: Role;
   username: string;
+  password: string;
   avatar: string;
+  email: string;
+  dob: string;
+  address: string;
+  tel: string;
+
 
   constructor(that?: User) {
     if (that) {

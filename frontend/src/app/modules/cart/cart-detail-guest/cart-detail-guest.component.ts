@@ -50,9 +50,7 @@ import {CartDetail} from '../../../models/cart-detail.model';
 
       <div class="row justify-content-end mr-4 mb-5">
         <button class="btn btn-link btn-lg" (click)="goBack()">Continue shopping</button>
-        <button class="btn btn-outline-primary btn-lg"
-                [disabled]="localCart?.details?.length <= 0"
-                (click)="onCheckoutClick()">Checkout
+        <button class="btn btn-outline-primary btn-lg" disabled>Please login to check out
         </button>
       </div>
 
@@ -77,20 +75,18 @@ export class CartDetailGuestComponent implements OnInit {
   }
 
   onDeleteButtonClick($event) {
-    // this.store.dispatch(new cartActions.StartProductDeleteAction({
-    //   cartId: this.cartId,
-    //   cartDetailId: $event.cartDetailId,
-    //   quantity: $event.quantity
-    // }));
+    this.store.dispatch(new cartActions.StartLocalProductDeleteAction({
+      cartDetailId: $event.cartDetailId,
+      quantity: $event.quantity
+    }));
   }
 
   onCartDetailQuantityEdit($event) {
-    // this.store.dispatch(new cartActions.StartCartDetailQuantityEditAction({
-    //   cartId: $event.cartId,
-    //   cartDetailId: $event.cartDetailId,
-    //   quantity: $event.quantity,
-    //   quantityOffset: $event.quantityOffset
-    // }));
+    this.store.dispatch(new cartActions.StartLocalCartDetailQuantityEditAction({
+      cartDetailId: $event.cartDetailId,
+      quantity: $event.quantity,
+      quantityOffset: $event.quantityOffset
+    }));
   }
 
   goBack() {
@@ -115,7 +111,7 @@ export class CartDetailGuestComponent implements OnInit {
     }
   }
 
-  onCheckoutClick() {
-
+  trackByFn(index, item) {
+    return item.id;
   }
 }

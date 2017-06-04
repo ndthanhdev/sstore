@@ -5,6 +5,7 @@
 
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {RegisterComponent} from './modules/core/register/register.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'orders',
     loadChildren: 'app/modules/order/order.module#OrderModule'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 

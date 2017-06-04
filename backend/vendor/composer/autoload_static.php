@@ -61,6 +61,7 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'L' => 
         array (
             'Lightning\\' => 10,
+            'League\\Flysystem\\' => 17,
             'Laravel\\Lumen\\' => 14,
         ),
         'I' => 
@@ -200,6 +201,10 @@ class ComposerStaticInit96b87435e206d34f3ea4c33da6d4a7e2
         'Lightning\\' => 
         array (
             0 => __DIR__ . '/..' . '/brandonhudson/lightning/Lightning',
+        ),
+        'League\\Flysystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
         'Laravel\\Lumen\\' => 
         array (
