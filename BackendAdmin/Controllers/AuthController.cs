@@ -48,7 +48,7 @@ namespace BackendAdmin.Controllers
                 return NotFound();
             }
             // role < manager
-            if (!BCrypt.Net.BCrypt.Verify(account.Password, innerAccount.Password) || innerAccount.Role < 1)
+            if (!BCrypt.Net.BCrypt.Verify(account.Password, innerAccount.Password) || innerAccount.Role < 2)
             {
                 return Unauthorized();
             }

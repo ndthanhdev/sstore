@@ -1,6 +1,6 @@
 <ng-template [ngIf]="!isEditing">
   <th scope="row">{{storeProductVariant?.storeId}}</th>
-  <td><a href="#">{{storeProductVariant?.store.address}}</a></td>
+  <td [routerLink]="['/store',_storeProductVariant?.store.id]">{{_storeProductVariant?.store.name}}</td>
   <td>{{storeProductVariant?.price}}</td>
   <td>{{storeProductVariant?.inStock}}</td>
   <td class="d-flex">
@@ -10,7 +10,7 @@
 
 <ng-template [ngIf]="isEditing">
   <th scope="row">{{_storeProductVariant?.storeId}}</th>
-  <td><a href="#">{{_storeProductVariant?.store.address}}</a></td>
+  <td [routerLink]="['/store',_storeProductVariant?.store.id]">{{_storeProductVariant?.store.name}}</td>
   <td><input type="text"
              pattern="[1-9]\d*$"
              class="form-control"

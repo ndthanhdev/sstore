@@ -134,9 +134,9 @@ export function reducer(state: State = initialState, action: Action): State {
                 return spv;
               })
             })
-          }),
-          isBusy: false
-        })
+          })
+        }),
+        isBusy: false
       });
 
     default:
