@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import { ProductTypeAttributeValueItemComponent } from './detail/product-type-attribute-value-item/product-type-attribute-value-item.component';
 import {CustomAttributeItemComponent} from "./detail/custom-attribute-item/custom-attribute-item.component";
 import { ProductVariantValueItemComponent } from './detail/variant-item/product-variant-value-item/product-variant-value-item.component';
+import { AddCustomAttributeComponent } from './detail/add-custom-attribute/add-custom-attribute.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { ProductVariantValueItemComponent } from './detail/variant-item/product-
     StoreProductVariantItemComponent,
     ProductTypeAttributeValueItemComponent,
     CustomAttributeItemComponent,
-    ProductVariantValueItemComponent
+    ProductVariantValueItemComponent,
+    AddCustomAttributeComponent
   ],
   providers: [
     ProductService

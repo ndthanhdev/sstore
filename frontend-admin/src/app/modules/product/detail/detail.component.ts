@@ -9,6 +9,7 @@ import {
 } from "../../../models/models";
 import {Store} from "@ngrx/store";
 import {
+  StartCustomAttributeAddAction, StartCustomAttributeDeleteAction,
   StartCustomAttributeUpdateAction,
   StartProductDetailLoadAction, StartProductsLoadAction, StartProductTypeAttributeValueUpdateAction,
   StartProductVariantsLoadAction, StartProductVariationValueUpdateAction, StartStoreProductVariantsUpdateAction
@@ -35,6 +36,8 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   paginatedListOfProductVariantsSub: Subscription;
   paginatedListOfProductVariants: PaginatedListOfProductVariants;
+
+  isAddingCustomAttribute: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -91,4 +94,14 @@ export class DetailComponent implements OnInit, OnDestroy {
   onStoreProductVariantChange($event: StoreProductVariant) {
     this.store.dispatch(new StartStoreProductVariantsUpdateAction({storeProductVariant: $event}));
   }
+
+  onAddCustomAttribute($event: CustomAttributes) {
+    $event.productId=this.product.id;
+    this.store.dispatch(new StartCustomAttributeAddAction({customAttribute: $event}));
+  }
+
+  onDeleteCustomAttribute($event: CustomAttributes) {
+    this.store.dispatch(new StartCustomAttributeDeleteAction({customAttribute: $event}));
+  }
+
 }

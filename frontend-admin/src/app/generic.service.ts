@@ -39,12 +39,16 @@ export class GenericService {
     return this.http.put(this.BASE_URL, data, this.defaultRequestOptions().merge(options));
   }
 
+  protected get(options?: RequestOptions): Observable<any> {
+    return this.request(options).map(this.extractData);
+  }
+
   protected post(options?: RequestOptions, data?: Object | string): Observable<any> {
     return this.http.post(this.BASE_URL, data, this.defaultRequestOptions().merge(options)).map(this.extractData);
   }
 
-  protected get(options?: RequestOptions): Observable<any> {
-    return this.request(options).map(this.extractData);
+  protected delete(options?: RequestOptions): Observable<any> {
+    return this.http.delete(this.BASE_URL,options).map(this.extractData);
   }
 
   /**

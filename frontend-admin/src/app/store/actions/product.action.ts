@@ -29,6 +29,13 @@ export const ActionTypes = {
 
   START_STORE_PRODUCT_VARIANT_UPDATE: type('[Product] Start Store Product Variant Update'),
   UPDATE_STORE_PRODUCT_VARIANT: type('[Product] Update Store Product Variant'),
+
+  START_CUSTOM_ATTRIBUTE_ADD: type('[Product] Start Custom Attribute Add'),
+  ADD_CUSTOM_ATTRIBUTE: type('[Product] Add Custom Attribute'),
+
+  START_CUSTOM_ATTRIBUTE_DELETE: type('[Product] Start Custom Attribute Delete'),
+  DELETE_CUSTOM_ATTRIBUTE: type('[Product] Delete Custom Attribute'),
+
 };
 
 
@@ -134,6 +141,31 @@ export class UpdateStoreProductVariantsAction implements Action {
 
   constructor(public payload: { response: Response, storeProductVariant: StoreProductVariant }) {
   }
+}
+
+export class StartCustomAttributeAddAction implements Action {
+  type = ActionTypes.START_CUSTOM_ATTRIBUTE_ADD;
+
+  constructor(public payload: { customAttribute: CustomAttributes }) {
+  }
+}
+
+export class AddCustomAttributeAction implements Action {
+  type = ActionTypes.ADD_CUSTOM_ATTRIBUTE;
+
+  constructor(public payload: { customAttribute: CustomAttributes }) {
+  }
+}
+
+export class StartCustomAttributeDeleteAction implements Action {
+  type = ActionTypes.START_CUSTOM_ATTRIBUTE_DELETE;
+
+  constructor(public payload: { customAttribute: CustomAttributes }) {
+  }
+}
+
+export class DeleteCustomAttributeAction implements Action {
+  type = ActionTypes.DELETE_CUSTOM_ATTRIBUTE;
 }
 
 export type Actions = StartProductsLoadAction

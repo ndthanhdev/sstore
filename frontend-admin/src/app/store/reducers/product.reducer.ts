@@ -112,9 +112,9 @@ export function reducer(state: State = initialState, action: Action): State {
                 return pvv;
               })
             })
-          }),
-          isBusy: false
-        })
+          })
+        }),
+        isBusy: false
       });
 
     // update store product variant
@@ -136,6 +136,36 @@ export function reducer(state: State = initialState, action: Action): State {
             })
           })
         }),
+        isBusy: false
+      });
+
+    // add custom attribute
+    case productAction.ActionTypes.START_CUSTOM_ATTRIBUTE_ADD:
+      return Object.assign({}, state, {
+        isBusy: true
+      });
+
+
+    case productAction.ActionTypes.ADD_CUSTOM_ATTRIBUTE:
+      return Object.assign({}, state, {
+        product: Object.assign({}, state.product, {
+          customAttributes: [...state.product.customAttributes, action.payload.customAttribute]
+        }),
+        isBusy: false
+      });
+
+    // delete custom attribute
+    case productAction.ActionTypes.START_CUSTOM_ATTRIBUTE_DELETE:
+      return Object.assign({}, state, {
+        isBusy: true,
+        product: Object.assign({}, state.product, {
+          customAttributes: state.product.customAttributes.filter(
+            customAttribute=>customAttribute.id!==action.payload.customAttribute.id)
+        })
+      });
+
+    case productAction.ActionTypes.DELETE_CUSTOM_ATTRIBUTE:
+      return Object.assign({}, state, {
         isBusy: false
       });
 

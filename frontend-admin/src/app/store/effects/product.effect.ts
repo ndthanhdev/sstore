@@ -83,4 +83,21 @@ export class ProductEffect {
             response: response,
             storeProductVariant: action.payload.storeProductVariant
           }))));
+
+  @Effect()
+  customAttributeAdd$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_CUSTOM_ATTRIBUTE_ADD)
+    .switchMap(action => this.productService.addCustomAttribute(action.payload.customAttribute)
+      .concatMap(customAttribute =>
+        of(new productdActions.AddCustomAttributeAction(
+          {
+            customAttribute: customAttribute
+          }))));
+
+  @Effect()
+  customAttributeDelete$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_CUSTOM_ATTRIBUTE_DELETE)
+    .switchMap(action => this.productService.deleteCustomAttribute(action.payload.customAttribute.id)
+      .concatMap(response =>
+        of(new productdActions.DeleteCustomAttributeAction())));
 }

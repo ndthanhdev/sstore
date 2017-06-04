@@ -23,8 +23,12 @@ import {CustomAttributes} from "../../../../models/models";
                  #value="ngModel"
                  [(ngModel)]="_customAttribute.value"></td>
       <td>
-        <button class="btn btn-sm btn-outline-success" (click)="onChange()">Save</button>
+        <button class="btn btn-sm btn-outline-success" (click)="onChange()"><i class="fa fa-check" aria-hidden="true"></i></button>
       </td>
+      <td>
+        <button class="btn btn-sm btn-outline-danger" (click)="onDelete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      </td>
+      
     </ng-template>
   `,
   styleUrls: ['./custom-attribute-item.component.scss'],
@@ -40,6 +44,10 @@ export class CustomAttributeItemComponent implements OnInit, OnChanges {
 
   @Output()
   customAttributeChange = new EventEmitter<CustomAttributes>();
+
+  @Output()
+  customAttributeDelete = new EventEmitter<CustomAttributes>();
+
 
   isEditing: boolean;
 
@@ -61,4 +69,9 @@ export class CustomAttributeItemComponent implements OnInit, OnChanges {
 
   }
 
+  private onDelete() {
+    this.isEditing = false;
+    this.customAttributeDelete.emit(this.customAttribute);
+
+  }
 }

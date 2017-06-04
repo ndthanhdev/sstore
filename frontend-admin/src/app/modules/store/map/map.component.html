@@ -6,7 +6,7 @@
     <agm-info-window [disableAutoPan]="true">
       <div class="lead">{{marker.name}}</div>
       <div>{{marker.address}}</div>
-      <button type="button" class="btn btn-link btn-sm pl-0" [routerLink]="['/stores/detail',marker.id]">Detail</button>
+      <button type="button" class="btn btn-link btn-sm pl-0" [routerLink]="['/stores',marker.id]">Detail</button>
     </agm-info-window>
   </agm-marker>
 </agm-map>

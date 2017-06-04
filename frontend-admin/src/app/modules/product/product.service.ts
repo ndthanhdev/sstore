@@ -12,7 +12,7 @@ import {AuthHttp} from "angular2-jwt";
 @Injectable()
 export class ProductService extends GenericService {
   constructor(http: Http, authHttp: AuthHttp) {
-    super(http,authHttp);
+    super(http, authHttp);
     this.BASE_URL += '/Products'
   }
 
@@ -64,4 +64,15 @@ export class ProductService extends GenericService {
     }), storeProductVariant);
   }
 
+  public addCustomAttribute(customAttribute: CustomAttributes): Observable<Response> {
+    return this.post(new RequestOptions({
+      url: `${this.ORIGINAL_BASE_URL}/CustomAttributes`
+    }), customAttribute);
+  }
+
+  public deleteCustomAttribute(id: number): Observable<Response> {
+    return this.delete(new RequestOptions({
+      url: `${this.ORIGINAL_BASE_URL}/CustomAttributes/${id}`
+    }));
+  }
 }
