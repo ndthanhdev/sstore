@@ -1,19 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FileItem, FileUploader} from 'ng2-file-upload';
 
 @Component({
   selector: 'frontend-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   registerForm: FormGroup;
 
+  public uploader: FileUploader = new FileUploader({url: 'http://127.0.0.1/files/upload'});
+  public hasBaseDropZoneOver = false;
+
   genders = [
     {value: 0, name: 'Male'},
-    {value: 0, name: 'Female'},
-    {value: 0, name: 'Others'}
+    {value: 1, name: 'Female'},
+    {value: 2, name: 'Others'},
   ];
 
   constructor(private formBuilder: FormBuilder) {
@@ -29,7 +33,27 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  dropImage($event) {
+    if (this.uploader.queue.length > 1) {
+      this.uploader.queue = this.uploader.queue.slice(1);
+    }
+  }
+
+  public uploadItem(item: FileItem) {
+    item.onBeforeUpload = () => {
+      // this.store.dispatch(new imageAction.StartImageUploadAction());
+    };
+
+    item.onSuccess = (response, status, headers) => {
+      // this.store.dispatch(new imageAction.UploadImageAction({url: this.extractURLFromResponseString(response)}));
+      // this.store.dispatch(new imageAction.UploadImageSuccessAction());
+    };
+
+    item.upload();
   }
 
   private formGroupHasDanger(groupName: string): boolean {
