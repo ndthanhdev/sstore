@@ -31,14 +31,15 @@ export class AuthService extends GenericService {
 
   public register(user: User): Observable<string> {
     return this.post(new RequestOptions({url: this.BASE_URL + '/register'}), {
-      username: user.username,
-      password: user.password,
-      email: user.email,
-      dob: user.dob,
       full_name: user.full_name,
+      dob: user.dob,
+      tel: user.tel,
       address: user.address,
+      email: user.email,
       avatar: user.avatar,
-      tel: user.tel
+      gender: user.gender,
+      username: user.username,
+      password: user.password
     }).map(resp => resp.json().msg || 'Register Successfully!');
   }
 

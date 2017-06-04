@@ -55,7 +55,7 @@ import {GOOGLE_MAPS} from '../../../util/app.constants';
         <span *ngIf="isOnStore()">Onstore</span>
       </span>
       <hr>
-      <div class="row mx-3 mb-3" *ngIf="!isOnStore()">
+      <div class="row mb-3" *ngIf="!isOnStore()">
         <div class="col-6">
           <agm-map
             [latitude]="deliveredLocation.lat"

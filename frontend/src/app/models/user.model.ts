@@ -3,25 +3,32 @@
  */
 
 export class User {
-  id: number;
+  id?: number;
   full_name: string;
-  role: Role;
+  role?: Role;
   username: string;
   password: string;
   avatar: string;
   email: string;
-  dob: string;
-  address: string;
-  tel: string;
+  dob?: string;
+  address?: string;
+  tel?: string;
+  gender: number;
 
 
   constructor(that?: User) {
     if (that) {
       this.id = that.id;
-      this.avatar = that.avatar;
+      this.full_name = that.full_name;
       this.role = that.role;
       this.username = that.username;
-      this.full_name = that.full_name;
+      this.password = that.password;
+      this.avatar = that.avatar;
+      this.email = that.email;
+      this.gender = that.gender;
+      this.dob = that.dob;
+      this.address = that.address;
+      this.tel = that.tel;
     }
   }
 }

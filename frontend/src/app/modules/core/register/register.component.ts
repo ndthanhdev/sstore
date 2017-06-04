@@ -6,6 +6,9 @@ import {Store} from '@ngrx/store';
 
 import * as fromRoot from '../../../store/reducers';
 import * as imageActions from '../../../store/actions/image.action';
+import * as authActions from '../../../store/actions/auth.action';
+import {User} from 'app/models/user.model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'frontend-register',
@@ -22,8 +25,10 @@ export class RegisterComponent implements OnDestroy {
   public url: string = null;
   public urlSub: Subscription;
 
-  public loading = false;
-  public loadingSub: Subscription;
+  public imageLoading = false;
+  public imageLoadingSub: Subscription;
+
+  public authLoading: Observable<boolean>;
 
   genders = [
     {value: 0, name: 'Male'},
@@ -33,15 +38,20 @@ export class RegisterComponent implements OnDestroy {
 
   constructor(private store: Store<fromRoot.State>,
               private formBuilder: FormBuilder) {
-    this.loadingSub = this.store.select(fromRoot.getImageLoading).subscribe(loading => this.loading = loading);
+
+    this.imageLoadingSub = this.store.select(fromRoot.getImageLoading).subscribe(loading => this.imageLoading = loading);
+
     this.urlSub = this.store.select(fromRoot.getImageUrl).subscribe(url => this.url = url);
+
+    this.authLoading = this.store.select(fromRoot.getAuthLoading);
+
     this.registerForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       email: ['', Validators.required],
       address: '',
-      dob: '',
+      dob: ['', Validators.required],
       tel: '',
-      gender: '',
+      gender: 0,
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -78,9 +88,24 @@ export class RegisterComponent implements OnDestroy {
     this.registerForm.reset();
   }
 
+  onSaveButtonClicked() {
+    const user = new User({
+      full_name: this.registerForm.get('fullName').value,
+      dob: this.registerForm.get('dob').value,
+      tel: this.registerForm.get('tel').value,
+      address: this.registerForm.get('address').value,
+      email: this.registerForm.get('email').value,
+      avatar: this.url,
+      gender: this.registerForm.get('gender').value,
+      username: this.registerForm.get('username').value,
+      password: this.registerForm.get('password').value
+    });
+    this.store.dispatch(new authActions.StartRegisterAction({user: user}));
+  }
+
   ngOnDestroy(): void {
     this.urlSub.unsubscribe();
-    this.loadingSub.unsubscribe();
+    this.imageLoadingSub.unsubscribe();
   }
 
 }
