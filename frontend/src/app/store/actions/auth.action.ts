@@ -12,6 +12,7 @@ export const ActionTypes = {
 
   START_REGISTER: type('[Auth] Start Register'),
   REGISTER_SUCCESS: type('[Auth] Register Success'),
+
   REGISTER_FAIL: type('[Auth] Register Fail'),
   REGISTER: type('[Auth] Register'),
 

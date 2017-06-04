@@ -11,6 +11,7 @@ import * as authActions from './store/actions/auth.action';
 import * as storeActions from './store/actions/store.action';
 import * as cartActions from './store/actions/cart.action';
 import * as layoutActions from './store/actions/layout.action';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'frontend-root',
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
     preventDuplicates: true
   };
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromRoot.State>, private router: Router) {
     this.catalogs = this.store.select(fromRoot.getCatalogCatalogs);
     this.selectedStore = this.store.select(fromRoot.getStoreStore);
 

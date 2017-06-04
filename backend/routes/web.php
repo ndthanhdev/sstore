@@ -284,3 +284,30 @@ $app->group(['prefix' => 'mqtt'], function () use ($app) {
 
 });
 
+
+///////////
+// FILE API
+///////////
+$app->group(['prefix' => 'files'], function () use ($app) {
+
+    $app->post('/upload', [
+        'as' => 'files.POST',
+        'uses' => 'FileController@saveFile'
+    ]);
+
+    $app->get('/view', [
+        'as' => 'files.GET',
+        'uses' => 'FileController@getFileList'
+    ]);
+
+    $app->get('/{name}', [
+        'as' => 'files/{name}.GET',
+        'uses' => 'FileController@viewFile'
+    ]);
+
+    $app->delete('/{name}', [
+        'as' => 'files/{name}.DELETE',
+        'uses' => 'FileController@deleteFile'
+    ]);
+
+});

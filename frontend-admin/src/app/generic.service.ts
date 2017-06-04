@@ -1,13 +1,13 @@
-import {Injector, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {AuthHttp} from "angular2-jwt";
+import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class GenericService {
 
-  protected readonly ORIGINAL_BASE_URL = 'http://localhost:60510/api';
+  protected readonly ORIGINAL_BASE_URL = 'http://localhost:5000/api';
 
   protected BASE_URL = this.ORIGINAL_BASE_URL;
 
