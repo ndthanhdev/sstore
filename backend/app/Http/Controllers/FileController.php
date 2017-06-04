@@ -16,14 +16,7 @@ class FileController extends Controller {
         $file = Request::file('file');
         Storage::disk('local')->put($file->getClientOriginalName(), File::get($file));
 
-        return response()->json([
-            'msg' => config('msg.FILE_UPLOAD_SUCCESS'),
-            'link' => [
-                'name' => 'VIEW_FILE',
-                'url' => route('files/{name}.GET', ['name' => $file->getClientOriginalName()]),
-                'method' => 'GET'
-            ]
-        ]);
+        return route('files/{name}.GET', ['name' => $file->getClientOriginalName()]);
     }
 
     public function deleteFile($name) {
