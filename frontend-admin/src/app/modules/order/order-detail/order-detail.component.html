@@ -28,19 +28,19 @@
     <form class="col-6">
       <div class="form-group">
         <label for="address-input">Address:</label>
-        <input readonly type="text" class="form-control" id="address-input" [value]="order.address">
+        <input readonly type="text" class="form-control" id="address-input" [value]="order?.address">
       </div>
       <div class="form-group">
         <label for="latitude-input">Latitude:</label>
-        <input readonly type="text" class="form-control" id="latitude-input" [value]="order.latitude">
+        <input readonly type="text" class="form-control" id="latitude-input" [value]="order?.latitude">
       </div>
       <div class="form-group">
         <label for="longitude-input">Longitude:</label>
-        <input readonly type="text" class="form-control" id="longitude-input" [value]="order.longitude">
+        <input readonly type="text" class="form-control" id="longitude-input" [value]="order?.longitude">
       </div>
       <div class="form-group">
         <label for="tel-input">Tel:</label>
-        <input readonly type="tel" class="form-control" id="tel-input" [value]="order.tel">
+        <input readonly type="tel" class="form-control" id="tel-input" [value]="order?.tel">
       </div>
     </form>
   </div>
@@ -65,8 +65,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let detail of order?.shoppingCart.shoppingCartDetails">
-      <th scope="row">1</th>
+    <tr *ngFor="let detail of order?.shoppingCart.shoppingCartDetails;let i = index">
+      <th scope="row">{{i+1}}</th>
       <td><a [routerLink]="['/products', detail.storeProductVariant.productVariant.productId]">
         {{detail.storeProductVariant.productVariant.product.name}}
       </a>

@@ -4,24 +4,27 @@ import {PaginatedListOfStores, Stores} from "../../models/models";
 
 export const ActionTypes = {
 
-  START_STORE_LOAD: type('[Store] Start Store Load'),
-  LOAD_STORE: type('[Store] Load Store'),
+  START_STORES_LOAD: type('[Store] Start Stores Load'),
+  LOAD_STORES: type('[Store] Load Stores'),
 
   START_ALL_STORE_LOAD: type('[Store] Start All Store Load'),
   LOAD_ALL_STORE: type('[Store] Load All Store'),
 
+  START_STORE_LOAD: type('[Store] Start Store Load'),
+  LOAD_STORE: type('[Store] Load Store'),
+
 };
 
 
-export class StartStoreLoadAction implements Action {
-  type = ActionTypes.START_STORE_LOAD;
+export class StartStoresLoadAction implements Action {
+  type = ActionTypes.START_STORES_LOAD;
 
   constructor(public payload: { page: number }) {
   }
 }
 
-export class LoadStoreAction implements Action {
-  type = ActionTypes.LOAD_STORE;
+export class LoadStoresAction implements Action {
+  type = ActionTypes.LOAD_STORES;
 
   constructor(public payload: { paginatedListOfStores: PaginatedListOfStores }) {
   }
@@ -42,9 +45,26 @@ export class LoadAllStoreAction implements Action {
   }
 }
 
-export type Actions = StartStoreLoadAction
-  | LoadStoreAction
+
+export class StartStoreLoadAction implements Action {
+  type = ActionTypes.START_STORE_LOAD;
+
+  constructor(public payload: { id: number }) {
+  }
+}
+
+export class LoadStoreAction implements Action {
+  type = ActionTypes.LOAD_STORE;
+
+  constructor(public payload: { store: Stores }) {
+  }
+}
+
+export type Actions = StartStoresLoadAction
+  | LoadStoresAction
   | StartAllStoreLoadAction
-  | LoadAllStoreAction;
+  | LoadAllStoreAction
+  | StartStoreLoadAction
+  | LoadStoreAction;
 
 

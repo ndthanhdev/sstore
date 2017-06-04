@@ -1,3 +1,68 @@
-<p>
-  detail works!
-</p>
+<frontend-admin-jumbotron [Header]="'Store ' + storeModel?.name"></frontend-admin-jumbotron>
+<div class="container">
+  <!--START STORE FORM-->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Store Information</h3>
+        <div class="card-block row">
+
+          <div class="col-12 col-lg-6 text-center mb-2">
+            <img src="http://lorempixel.com/500/500/city" alt="city" class="img-thumbnail">
+          </div>
+
+          <form class="col-12 col-lg-6">
+            <div class="form-group">
+              <label for="store-name-input">Name:</label>
+              <input disabled="" type="text" class="form-control" id="store-name-input" value="{{storeModel?.name}}">
+            </div>
+            <div class="form-group">
+              <label for="store-address-input">Address:</label>
+              <input disabled="" type="text" class="form-control" id="store-address-input"
+                     value="{{storeModel?.address}}">
+            </div>
+            <div class="form-group">
+              <label for="store-latitude-input">Latitude:</label>
+              <input disabled="" type="text" class="form-control" id="store-latitude-input"
+                     value="{{storeModel?.latitude}}">
+            </div>
+            <div class="form-group">
+              <label for="store-longitude-input">Longitude:</label>
+              <input disabled="" type="text" class="form-control" id="store-longitude-input"
+                     value="{{storeModel?.longitude}}">
+            </div>
+            <div class="form-group">
+              <label for="store-manager-input">Manager:</label>
+              <input disabled="" type="text" class="form-control" id="store-manager-input"
+                     value="{{storeModel?.manager.fullName}}">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Store Location</h3>
+        <agm-map [zoom]="10" [latitude]="storeLocation.lat" [longitude]="storeLocation.lng">
+          <agm-marker *ngFor="let store of stores" [latitude]="toNumber(store.latitude)"
+                      [longitude]="toNumber(store.longitude)"
+                      [draggable]="false"
+                      [iconUrl]="store.id===id?
+                      'http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png':
+(store.primary?'http://maps.google.com/mapfiles/kml/pal4/icon47.png':'')">
+            <agm-info-window [disableAutoPan]="true">
+              <div class="lead">{{store.name}}</div>
+              <div>{{store.address}}</div>
+              <button type="button" class="btn btn-link btn-sm pl-0" [routerLink]="['/stores',store.id]">Detail
+              </button>
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>

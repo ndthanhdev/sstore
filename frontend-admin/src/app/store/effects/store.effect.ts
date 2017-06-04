@@ -19,10 +19,10 @@ export class StoreEffect {
   }
 
   @Effect()
-  storeLoad$: Observable<Action> = this.actions$
-    .ofType(storeActions.ActionTypes.START_STORE_LOAD)
+  storesLoad$: Observable<Action> = this.actions$
+    .ofType(storeActions.ActionTypes.START_STORES_LOAD)
     .switchMap(action => this.storeService.loadPaginatedListOfStores(action.payload.page)
-      .concatMap(paginatedListOfStores => of(new storeActions.LoadStoreAction({paginatedListOfStores: paginatedListOfStores}))));
+      .concatMap(paginatedListOfStores => of(new storeActions.LoadStoresAction({paginatedListOfStores: paginatedListOfStores}))));
 
 
   @Effect()
@@ -30,5 +30,12 @@ export class StoreEffect {
     .ofType(storeActions.ActionTypes.START_ALL_STORE_LOAD)
     .switchMap(action => this.storeService.loadAllStores()
       .concatMap(stores => of(new storeActions.LoadAllStoreAction({stores: stores}))));
+
+  @Effect()
+  storeLoad$: Observable<Action> = this.actions$
+    .ofType(storeActions.ActionTypes.START_STORE_LOAD)
+    .switchMap(action => this.storeService.loadStore(action.payload.id)
+      .concatMap(store => of(new storeActions.LoadStoreAction({store: store}))));
+
 
 }

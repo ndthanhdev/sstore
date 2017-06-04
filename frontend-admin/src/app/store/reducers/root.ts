@@ -74,6 +74,7 @@ export const getStoreState = (state: State) => state.store;
 export const getStoreIsBusy = Reselect.createSelector(getStoreState, fromStore.getIsBusy);
 export const getStoreStores = Reselect.createSelector(getStoreState, fromStore.getStores);
 export const getStorePaginatedListOfStores = Reselect.createSelector(getStoreState, fromStore.getPaginatedListOfStores);
+export const getStoreStore = Reselect.createSelector(getStoreState, fromStore.getStore);
 
 
 // store
@@ -88,3 +89,4 @@ export const getOrderState = (state: State) => state.order;
 export const getOrderIsBusy = Reselect.createSelector(getOrderState, fromOrder.getIsBusy);
 export const getOrderPaginatedListOfProducts = Reselect.createSelector(getOrderState, fromOrder.getPaginatedListOfProducts);
 export const getOrderOrder = Reselect.createSelector(getOrderState, fromOrder.getOrder);
+

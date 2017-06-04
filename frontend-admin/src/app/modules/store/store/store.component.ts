@@ -43,7 +43,7 @@ export class StoreComponent implements OnInit, OnDestroy {
 
     this.routeSub = this.route.queryParams
       .subscribe(params => {
-        this.store.dispatch(new storeAction.StartStoreLoadAction({page: +params['page'] || 1}));
+        this.store.dispatch(new storeAction.StartStoresLoadAction({page: +params['page'] || 1}));
       });
 
     this.storesSub = this.store.select(rootReducer.getStoreStores).subscribe(

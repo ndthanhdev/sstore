@@ -28,4 +28,10 @@ export class StoreService extends GenericService {
     }));
   }
 
+  public loadStore(id: number): Observable<Stores> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/${id}`
+    }));
+  }
+
 }
