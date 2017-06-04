@@ -22,9 +22,12 @@ export class OrderComponent implements OnInit, OnDestroy {
   paginatedListOfOrders: PaginatedListOfOrders;
   paginatedListOfOrdersSub: Subscription;
 
+  now: Date;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private store: Store<rootReducer.State>) {
+    this.now=new Date();
   }
 
   ngOnInit() {

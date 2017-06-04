@@ -13,24 +13,8 @@
                     [page]="paginatedListOfOrders?.pageIndex">
     </ngb-pagination>
 
-    <!--<i *ngIf="(loading | async)" class="fa fa-spinner fa-pulse fa-2x fa-fw ml-2 align-self-start"></i>-->
+    <frontend-admin-loading-indicator [size]="2" *ngIf="isBusy | async"></frontend-admin-loading-indicator>
 
-    <!--<div [(ngModel)]="filterMode" ngbRadioGroup name="filter-groups"-->
-    <!--(ngModelChange)="onFilterModeChange()"-->
-    <!--class="btn-group btn-group-sm align-self-start ml-auto">-->
-    <!--<label class="btn btn-sm btn-outline-primary">-->
-    <!--<input type="radio" [value]="1"> All-->
-    <!--</label>-->
-    <!--<label class="btn btn-sm btn-outline-primary">-->
-    <!--<input type="radio" [value]="2"> Processing-->
-    <!--</label>-->
-    <!--<label class="btn btn-sm btn-outline-primary">-->
-    <!--<input type="radio" [value]="3"> Delivering-->
-    <!--</label>-->
-    <!--<label class="btn btn-sm btn-outline-primary">-->
-    <!--<input type="radio" [value]="4"> Done-->
-    <!--</label>-->
-    <!--</div>-->
   </div>
 
   <table class="table table-hover">
@@ -53,11 +37,14 @@
           [state]="order.state">
         </frontend-admin-order-state-button>
       </td>
-      <td>{{order.createdAt | amTimeAgo}}</td>
-      <td>{{order.updatedAt | amTimeAgo}}</td>
+      <td>
+        {{order.createdAt | amTimeAgo}}
+      </td>
+      <td>
+        {{order.updatedAt | amTimeAgo}}
+      </td>
       <td>{{order.shoppingCart.user.fullName}}</td>
     </tr>
-
     </tbody>
   </table>
 </div>

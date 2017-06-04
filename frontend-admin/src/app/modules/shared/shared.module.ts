@@ -8,6 +8,8 @@ import {PieChartComponent} from './pie-chart/pie-chart.component';
 import {FileDropDirective} from "ng2-file-upload";
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 import { RattingStarsComponent } from './ratting-stars/ratting-stars.component';
+import { ProductVariationValuesComponent } from './product-variation-values/product-variation-values.component';
+import { VNDPipe } from './vnd.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { RattingStarsComponent } from './ratting-stars/ratting-stars.component';
     PieChartComponent,
     FileDropDirective,
     LoadingIndicatorComponent,
-    RattingStarsComponent],
+    RattingStarsComponent,
+    ProductVariationValuesComponent,
+    VNDPipe],
   exports: [
     JumbotronComponent,
     ChartComponent,
@@ -29,7 +33,9 @@ import { RattingStarsComponent } from './ratting-stars/ratting-stars.component';
     PieChartComponent,
     FileDropDirective,
     LoadingIndicatorComponent,
-    RattingStarsComponent]
+    RattingStarsComponent,
+    ProductVariationValuesComponent,
+    VNDPipe]
 })
 export class SharedModule {
 }

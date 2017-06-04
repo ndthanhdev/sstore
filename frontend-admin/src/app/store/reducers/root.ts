@@ -66,6 +66,7 @@ export const getReviewState = (state: State) => state.review;
 
 export const getReviewIsBusy = Reselect.createSelector(getReviewState, fromReview.getIsBusy);
 export const getReviewReviews = Reselect.createSelector(getReviewState, fromReview.getPaginatedListOfReviews);
+export const getReviewReviewStatistic = Reselect.createSelector(getReviewState, fromReview.getReviewStatistic);
 
 // store
 export const getStoreState = (state: State) => state.store;
@@ -86,3 +87,4 @@ export const getOrderState = (state: State) => state.order;
 
 export const getOrderIsBusy = Reselect.createSelector(getOrderState, fromOrder.getIsBusy);
 export const getOrderPaginatedListOfProducts = Reselect.createSelector(getOrderState, fromOrder.getPaginatedListOfProducts);
+export const getOrderOrder = Reselect.createSelector(getOrderState, fromOrder.getOrder);

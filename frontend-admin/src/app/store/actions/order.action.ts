@@ -1,7 +1,7 @@
 import {type} from "../../util/helper";
 import {Action} from "@ngrx/store";
 import {
-  CustomAttributes, PaginatedListOfOrders,
+  CustomAttributes, Orders, PaginatedListOfOrders,
   PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
   StoreProductVariant
 } from "../../models/models";
@@ -11,6 +11,9 @@ export const ActionTypes = {
 
   START_ORDERS_LOAD: type('[Order] Start Orders Load'),
   LOAD_ORDERS: type('[Order] Load Orders'),
+
+  START_ORDER_LOAD: type('[Order] Start Order Load'),
+  LOAD_ORDER: type('[Order] Load Order'),
 
 };
 
@@ -26,5 +29,20 @@ export class LoadOrdersAction implements Action {
   type = ActionTypes.LOAD_ORDERS;
 
   constructor(public payload: { paginatedListOfOrders: PaginatedListOfOrders }) {
+  }
+}
+
+
+export class StartOrderLoadAction implements Action {
+  type = ActionTypes.START_ORDER_LOAD;
+
+  constructor(public payload: { id: number }) {
+  }
+}
+
+export class LoadOrderAction implements Action {
+  type = ActionTypes.LOAD_ORDER;
+
+  constructor(public payload: { order: Orders }) {
   }
 }

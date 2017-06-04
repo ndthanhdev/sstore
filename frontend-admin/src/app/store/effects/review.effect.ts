@@ -25,4 +25,11 @@ export class ReviewEffect {
     .switchMap(action => this.reviewService.loadPaginatedListOfReviews(action.payload.page)
       .concatMap(paginatedListOfReviews => of(new reviewActions.LoadReviewsAction({paginatedListOfReviews: paginatedListOfReviews}))));
 
+  @Effect()
+  reviewStatisticLoad$: Observable<Action> = this.actions$
+    .ofType(reviewActions.ActionTypes.START_REVIEW_STATISTIC_LOAD)
+    .switchMap(action => this.reviewService.loadReviewStatistic()
+      .concatMap(reviewStatistic => of(new reviewActions.LoadReviewStatisticAction({reviewStatistic: reviewStatistic}))));
+
+
 }

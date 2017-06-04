@@ -19,7 +19,7 @@ namespace BackendAdmin.Controllers
         public OrdersController(SStoreContext context)
         {
             _context = context;
-        }        
+        }
 
         // GET: api/Orders/All
         [HttpGet("/All")]
@@ -33,7 +33,8 @@ namespace BackendAdmin.Controllers
         public async Task<PaginatedList<Orders>> GetProducts(int page = 1, int size = 10)
         {
             var source = _context.Orders
-                .Include(order=>order.ShoppingCart.User);
+                .Include(order => order.ShoppingCart.User)
+                .OrderByDescending(order => order.UpdatedAt);
             return await PaginatedList<Orders>.CreateAsync(source, page, size);
         }
 
@@ -46,7 +47,16 @@ namespace BackendAdmin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var orders = await _context.Orders.SingleOrDefaultAsync(m => m.Id == id);
+            var orders = await _context.Orders
+                .Include(order => order.ShoppingCart)
+                .ThenInclude(shoppingCart => shoppingCart.ShoppingCartDetails)
+                .ThenInclude(shoppingCartDetail => shoppingCartDetail.StoreProductVariant)
+                .ThenInclude(storePorductVariant => storePorductVariant.ProductVariant)
+                .ThenInclude(productVariant => productVariant.ProductVariationValues)
+                .Include(order => order.ShoppingCart)
+                .ThenInclude(shoppingCart => shoppingCart.ShoppingCartDetails)
+                .ThenInclude(shoppingCartDetail => shoppingCartDetail.StoreProductVariant.ProductVariant.Product)
+                .SingleOrDefaultAsync(m => m.Id == id);
 
             if (orders == null)
             {

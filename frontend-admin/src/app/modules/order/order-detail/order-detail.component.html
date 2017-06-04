@@ -1,3 +1,89 @@
-<p>
-  order-detail works!
-</p>
+<frontend-admin-jumbotron [Header]="'Orders'"></frontend-admin-jumbotron>
+<ng-template #spinning>
+  <frontend-admin-loading-indicator></frontend-admin-loading-indicator>
+</ng-template>
+
+
+<div class="container mb-5" *ngIf="!(isBusy | async);else spinning">
+
+  <!--START DELIVERY INFORMATION -->
+  <span class="display-4">
+        <span>Delivery Information:</span>
+        <span *ngIf="!isOnStore()">Online</span>
+        <span *ngIf="isOnStore()">Onstore</span>
+      </span>
+  <hr>
+  <div class="row mx-3 mb-3" *ngIf="!isOnStore()">
+    <div class="col-6">
+      <agm-map
+        [latitude]="deliveredLocation.lat"
+        [longitude]="deliveredLocation.lng"
+        [zoom]="13">
+        <agm-marker
+          [latitude]="deliveredLocation.lat"
+          [longitude]="deliveredLocation.lng">
+        </agm-marker>
+      </agm-map>
+    </div>
+    <form class="col-6">
+      <div class="form-group">
+        <label for="address-input">Address:</label>
+        <input readonly type="text" class="form-control" id="address-input" [value]="order.address">
+      </div>
+      <div class="form-group">
+        <label for="latitude-input">Latitude:</label>
+        <input readonly type="text" class="form-control" id="latitude-input" [value]="order.latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude-input">Longitude:</label>
+        <input readonly type="text" class="form-control" id="longitude-input" [value]="order.longitude">
+      </div>
+      <div class="form-group">
+        <label for="tel-input">Tel:</label>
+        <input readonly type="tel" class="form-control" id="tel-input" [value]="order.tel">
+      </div>
+    </form>
+  </div>
+  <!--START DELIVERY INFORMATION -->
+
+  <br>
+
+
+  <span class="display-4">
+        Items:
+      </span>
+  <hr>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Variant</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let detail of order?.shoppingCart.shoppingCartDetails">
+      <th scope="row">1</th>
+      <td><a [routerLink]="['/products', detail.storeProductVariant.productVariant.productId]">
+        {{detail.storeProductVariant.productVariant.product.name}}
+      </a>
+      </td>
+      <td>
+        <frontend-admin-product-variation-values
+          [variationValues]="detail.storeProductVariant.productVariant.productVariationValues">
+        </frontend-admin-product-variation-values>
+      </td>
+      <td>{{detail.storeProductVariant.price | VND}}</td>
+      <td>{{detail.quantity}}</td>
+      <td>{{(detail.price * detail.quantity) | VND}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-end mr-5">
+    <span class="lead">Subtotal: {{subAmount() | VND}}</span>
+  </div>
+  <!--END ITEM LIST-->
+</div>

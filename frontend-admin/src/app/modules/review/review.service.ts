@@ -22,5 +22,10 @@ export class ReviewService extends GenericService {
     }));
   }
 
+  public loadReviewStatistic(): Observable<any[][]> {
+    return this.get(new RequestOptions({
+      url: `${this.BASE_URL}/Statistic`
+    }));
+  }
 
 }

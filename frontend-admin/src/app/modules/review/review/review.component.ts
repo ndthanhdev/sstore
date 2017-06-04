@@ -20,6 +20,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
   paginatedListOfReviewsSub: Subscription;
   paginatedListOfReviews: PaginatedListOfReviews;
 
+  reviewStatistic: Observable<any[][]>;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private store: Store<rootReducer.State>) {
@@ -32,9 +34,12 @@ export class ReviewComponent implements OnInit, OnDestroy {
         this.paginatedListOfReviews = paginatedListOfReviews;
       });
 
+    this.reviewStatistic = this.store.select(rootReducer.getReviewReviewStatistic);
+
     this.sub = this.route
       .queryParams
       .subscribe(params => {
+        this.store.dispatch(new reviewAction.StartReviewStatisticLoadAction());
         this.store.dispatch(new reviewAction.StartReviewsLoadAction({page: +params['page'] || 1}));
       });
   }

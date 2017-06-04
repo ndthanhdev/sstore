@@ -53,6 +53,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyACGaDxyjAqy8uZMSq7uGGqPcinO_Z0IsU'
+    }),
 
     AppRoutingModule,
     SharedModule,

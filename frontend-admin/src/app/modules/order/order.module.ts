@@ -9,6 +9,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MomentModule} from "angular2-moment";
 import {OrderStateButtonComponent} from './order-state-button/order-state-button.component';
 import {OrderService} from "./order.service";
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {OrderService} from "./order.service";
 
     NgbModule,
     SharedModule,
-    MomentModule
+    MomentModule,
+    AgmCoreModule
   ],
   declarations: [OrderComponent, OrderDetailComponent, OrderStateButtonComponent],
   exports: [OrderComponent, OrderDetailComponent, OrderStateButtonComponent],

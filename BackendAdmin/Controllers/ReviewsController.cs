@@ -19,7 +19,7 @@ namespace BackendAdmin.Controllers
         public ReviewsController(SStoreContext context)
         {
             _context = context;
-        }       
+        }
 
         // GET: api/Reviews/All
         [HttpGet("All")]
@@ -127,6 +127,23 @@ namespace BackendAdmin.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(reviews);
+        }
+
+        // GET: api/Reviews/Statistic
+        [HttpGet("Statistic")]
+        public IEnumerable<object> GetReviewStatistic()
+        {
+            var source = _context.Products
+                .Include(product => product.Reviews)
+                .OrderByDescending(product => product.Reviews.Count)
+                .Take(10);
+            return source.Select(product => new object[]
+            {
+                product.Name,
+                product.Reviews
+                .GroupBy(review => review.Rating)
+                .Sum(group => group.Key * group.Count())
+            });
         }
 
         private bool ReviewsExists(long id)

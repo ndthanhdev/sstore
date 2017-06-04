@@ -1,6 +1,10 @@
-export class AppConstants{
+export class AppConstants {
 
   public static readonly TokenName: string = 'id_token';
+  public static readonly HCMC_LOCATION = {
+    latitude: 10.762622,
+    longitude: 106.660172
+  }
 }
 
 export class JwtPayLoadKeys {

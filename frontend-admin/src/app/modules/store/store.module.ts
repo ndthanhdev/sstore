@@ -15,9 +15,7 @@ import {StoreService} from "./store.service";
   imports: [
     CommonModule,
     StoreRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyACGaDxyjAqy8uZMSq7uGGqPcinO_Z0IsU'
-    }),
+    AgmCoreModule,
     SharedModule,
     NgbModule
   ],

@@ -1,5 +1,14 @@
 <frontend-admin-jumbotron [Header]="'Review'"></frontend-admin-jumbotron>
 <div class="container">
+
+  <div class="row mb-3">
+    <frontend-admin-bar-chart class="col-12"
+                              [title]="'Popular Products'"
+                              [vAxis]="'Score'"
+                              [hAxis]="'Product'"
+                              [dataTable]="reviewStatistic | async"></frontend-admin-bar-chart>
+  </div>
+
   <div class="row mb-5">
     <div class="col-12">
       <div class="card">
