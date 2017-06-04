@@ -151,7 +151,7 @@
   <div class="row mb-5">
     <div class="col-6 offset-3">
       <div class="d-flex justify-content-end mb-5">
-        <button type="button" class="btn btn-link">Clear</button>
+        <button type="button" class="btn btn-link" (click)="resetButtonClicked()">Clear</button>
         <button type="button" class="btn btn-outline-primary" (click)="onSubmit()" [disabled]="!registerForm.valid">
           Register
           <!--<i class="fa fa-spinner fa-pulse fa-fw" *ngIf="registering | async"></i>-->
