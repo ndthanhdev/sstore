@@ -30,10 +30,11 @@
         </li>
       </ul>
     </div>
-    <frontend-admin-nav-bar-utilities
-      *ngIf="account"
-      [user]="account?.user"
-      (logoutButtonClicked)="onLogoutButtonClick()">
-    </frontend-admin-nav-bar-utilities>
+    <!--<frontend-admin-nav-bar-utilities-->
+      <!--*ngIf="account"-->
+      <!--[user]="account?.user"-->
+      <!--(logoutButtonClicked)="onLogoutButtonClick()">-->
+    <!--</frontend-admin-nav-bar-utilities>-->
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="button" (click)="onLogoutButtonClick()">Logout</button>
   </div>
 </nav>

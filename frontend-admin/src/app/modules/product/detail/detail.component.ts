@@ -5,7 +5,7 @@ import * as rootReducer from "../../../store/reducers/root";
 import {
   CustomAttributes,
   PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
-  StoreProductVariant
+  StoreProductVariant, Stores
 } from "../../../models/models";
 import {Store} from "@ngrx/store";
 import {
@@ -37,7 +37,11 @@ export class DetailComponent implements OnInit, OnDestroy {
   paginatedListOfProductVariantsSub: Subscription;
   paginatedListOfProductVariants: PaginatedListOfProductVariants;
 
+  stores:Observable<Stores>;
+
   isAddingCustomAttribute: boolean = false;
+
+  isAddingProductVariant: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -96,7 +100,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   onAddCustomAttribute($event: CustomAttributes) {
-    $event.productId=this.product.id;
+    $event.productId = this.product.id;
     this.store.dispatch(new StartCustomAttributeAddAction({customAttribute: $event}));
   }
 

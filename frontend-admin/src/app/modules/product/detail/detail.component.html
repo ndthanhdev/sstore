@@ -105,10 +105,14 @@
     </ngb-pagination>
     <frontend-admin-loading-indicator *ngIf="isBusy | async" [size]="2"
                                       class="align-self-center"></frontend-admin-loading-indicator>
-    <button class="btn btn-outline-primary ml-auto">Add Variant</button>
+    <button class="btn btn-outline-primary ml-auto" [disabled]="isAddingProductVariant"
+            (click)="isAddingProductVariant=true">Add Variant
+    </button>
   </div>
   <!--END PAGINATION-->
 
+  <!--ADD VARIANT CARD-->
+  <frontend-admin-add-product-variant *ngIf="isAddingProductVariant" (cancel)="isAddingProductVariant=false"></frontend-admin-add-product-variant>
   <!--START VARIANT CARD-->
   <frontend-admin-variant-item *ngFor="let productVariants of paginatedListOfProductVariants?.data"
                                [productVariant]="productVariants"

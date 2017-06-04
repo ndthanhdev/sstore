@@ -17,6 +17,9 @@ import { ProductTypeAttributeValueItemComponent } from './detail/product-type-at
 import {CustomAttributeItemComponent} from "./detail/custom-attribute-item/custom-attribute-item.component";
 import { ProductVariantValueItemComponent } from './detail/variant-item/product-variant-value-item/product-variant-value-item.component';
 import { AddCustomAttributeComponent } from './detail/add-custom-attribute/add-custom-attribute.component';
+import { AddProductVariantComponent } from './detail/add-product-variant/add-product-variant.component';
+import { AddVariantionValueComponent } from './detail/add-product-variant/add-variantion-value/add-variantion-value.component';
+import { AddStoreProductVariantComponent } from './detail/add-product-variant/add-store-product-variant/add-store-product-variant.component';
 
 @NgModule({
   imports: [
@@ -37,7 +40,10 @@ import { AddCustomAttributeComponent } from './detail/add-custom-attribute/add-c
     ProductTypeAttributeValueItemComponent,
     CustomAttributeItemComponent,
     ProductVariantValueItemComponent,
-    AddCustomAttributeComponent
+    AddCustomAttributeComponent,
+    AddProductVariantComponent,
+    AddVariantionValueComponent,
+    AddStoreProductVariantComponent
   ],
   providers: [
     ProductService
