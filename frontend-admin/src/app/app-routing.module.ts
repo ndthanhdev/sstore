@@ -33,6 +33,11 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: 'app/modules/auth/auth.module#AuthModule'
   }
+  , {
+    path: 'orders',
+    canActivate: [AuthGuard],
+    loadChildren: 'app/modules/order/order.module#OrderModule'
+  }
 ];
 
 @NgModule({

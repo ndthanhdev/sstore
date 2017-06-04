@@ -27,6 +27,8 @@ import {AuthModule} from "./modules/auth/auth.module";
 import {AuthConfig, AuthHttp, JwtHelper} from "angular2-jwt";
 import {AuthGuard} from "./util/auth.guard";
 import {AuthEffect} from "./store/effects/auth.effect";
+import {OrderModule} from "./modules/order/order.module";
+import {OrderEffect} from "./store/effects/order.effect";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -45,6 +47,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     EffectsModule.run(ProductEffect),
     EffectsModule.run(StoreEffect),
     EffectsModule.run(ReviewEffect),
+    EffectsModule.run(OrderEffect),
 
     BrowserModule,
     FormsModule,
@@ -59,7 +62,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ProductModule,
     ReviewModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    OrderModule
   ],
   providers: [
     {
