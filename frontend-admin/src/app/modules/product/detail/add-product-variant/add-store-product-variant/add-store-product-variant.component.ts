@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {StoreProductVariant} from "../../../../../models/models";
 
 @Component({
@@ -28,8 +28,20 @@ import {StoreProductVariant} from "../../../../../models/models";
 })
 export class AddStoreProductVariantComponent implements OnInit {
 
+  storeProductVariantValue: StoreProductVariant;
+
   @Input()
-  storeProductVariant: StoreProductVariant;
+  get storeProductVariant() {
+    return this.storeProductVariant;
+  }
+
+  set counter(val) {
+    this.storeProductVariantValue = val;
+    this.storeProductVariantChange.emit(this.storeProductVariantValue);
+  }
+
+  @Output()
+  storeProductVariantChange = new EventEmitter<StoreProductVariant>();
 
   constructor() {
   }

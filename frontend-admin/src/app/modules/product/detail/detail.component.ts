@@ -51,14 +51,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isBusy = this.store.select(rootReducer.getProductIsBusy);
 
-    this.routeSub = Observable.combineLatest(this.route.params, this.route.queryParams)
-      .filter(([route, query]) => route['id'])
-      .subscribe(([route, query]) => {
-        this.id = +route['id']; // (+) converts string 'id' to a number
-        this.store.dispatch(new StartProductDetailLoadAction({id: this.id}));
-        this.store.dispatch(new StartProductVariantsLoadAction({id: this.id, page: +query['page'] || 1}));
-      });
-
     this.productSub = this.store.select(rootReducer.getProductProduct).subscribe(product => {
       this.product = product;
     });
@@ -66,6 +58,16 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.paginatedListOfProductVariantsSub = this.store.select(rootReducer.getProductPaginatedListOfProductVariants)
       .subscribe(paginatedListOfProductVariants => {
         this.paginatedListOfProductVariants = paginatedListOfProductVariants;
+      });
+
+    this.stores = this.store.select(rootReducer.getStoreStores);
+
+    this.routeSub = Observable.combineLatest(this.route.params, this.route.queryParams)
+      .filter(([route, query]) => route['id'])
+      .subscribe(([route, query]) => {
+        this.id = +route['id']; // (+) converts string 'id' to a number
+        this.store.dispatch(new StartProductDetailLoadAction({id: this.id}));
+        this.store.dispatch(new StartProductVariantsLoadAction({id: this.id, page: +query['page'] || 1}));
       });
   }
 

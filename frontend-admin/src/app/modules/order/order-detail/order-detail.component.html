@@ -1,4 +1,30 @@
-<frontend-admin-jumbotron [Header]="'Orders'"></frontend-admin-jumbotron>
+<div class="jumbotron bg-primary text-white">
+  <div class="container">
+        <span class="d-flex align-items-start">
+            <span class="display-3 mr-2">Order: {{order?.code}}</span>
+            <frontend-admin-order-state-button
+              [state]="order?.state">
+            </frontend-admin-order-state-button>
+        </span>
+
+    <div *ngIf="order?.rating">
+      <span>{{order?.shoppingCart.user.fullName}}</span>
+      <span>
+                <frontend-admin-ratting-stars
+                  [rating]="order.rating">
+                </frontend-admin-ratting-stars>
+            </span>
+      <span> - {{order?.comment}}</span>
+    </div>
+
+    <div>
+      <span>Created at: {{order?.createdAt | amTimeAgo}}</span>
+      <span class="mx-2">-</span>
+      <span>Last updated: {{order?.updatedAt | amTimeAgo}}</span>
+    </div>
+
+  </div>
+</div>
 <ng-template #spinning>
   <frontend-admin-loading-indicator></frontend-admin-loading-indicator>
 </ng-template>
