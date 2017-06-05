@@ -7,6 +7,7 @@ import * as rootReducer from "../../../store/reducers/root";
 import * as orderAction from '../../../store/actions/order.action';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Store} from "@ngrx/store";
+import {StartOrderUpdateAction, UpdateOrderAction} from "../../../store/actions/order.action";
 
 @Component({
   selector: 'frontend-admin-order-detail',
@@ -25,6 +26,8 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     lng: AppConstants.HCMC_LOCATION.longitude
   };
 
+  newState: number;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private store: Store<rootReducer.State>) {
@@ -35,11 +38,12 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.orderSub = this.store.select(rootReducer.getOrderOrder)
       .filter(order => !!order)
       .subscribe(order => {
-        this.order = order;
+        this.order = Object.assign({},order);
         this.deliveredLocation = {
           lat: +this.order.latitude,
           lng: +this.order.longitude
         };
+        this.newState = order.state;
       });
     this.isBusy = this.store.select(rootReducer.getOrderIsBusy);
 
@@ -62,6 +66,10 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.orderSub.unsubscribe();
+  }
+
+  update() {
+    this.store.dispatch(new StartOrderUpdateAction({order: this.order}));
   }
 
 }

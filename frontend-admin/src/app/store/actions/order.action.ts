@@ -15,6 +15,8 @@ export const ActionTypes = {
   START_ORDER_LOAD: type('[Order] Start Order Load'),
   LOAD_ORDER: type('[Order] Load Order'),
 
+  START_ORDER_UPDATE: type('[Order] Start Order Update'),
+  UPDATE_ORDER: type('[Order] Update Order'),
 };
 
 
@@ -42,6 +44,20 @@ export class StartOrderLoadAction implements Action {
 
 export class LoadOrderAction implements Action {
   type = ActionTypes.LOAD_ORDER;
+
+  constructor(public payload: { order: Orders }) {
+  }
+}
+
+export class StartOrderUpdateAction implements Action {
+  type = ActionTypes.START_ORDER_UPDATE;
+
+  constructor(public payload: { order: Orders }) {
+  }
+}
+
+export class UpdateOrderAction implements Action {
+  type = ActionTypes.UPDATE_ORDER;
 
   constructor(public payload: { order: Orders }) {
   }

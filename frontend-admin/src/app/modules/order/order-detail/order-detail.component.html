@@ -8,7 +8,7 @@
         </span>
 
     <div *ngIf="order?.rating">
-      <span>{{order?.shoppingCart.user.fullName}}</span>
+      <span>{{order?.shoppingCart?.user?.fullName}}</span>
       <span>
                 <frontend-admin-ratting-stars
                   [rating]="order.rating">
@@ -112,4 +112,37 @@
     <span class="lead">Subtotal: {{subAmount() | VND}}</span>
   </div>
   <!--END ITEM LIST-->
+
+  <!--UPDATE STATE-->
+  <!--START ACCOUNT INFORMATION-->
+  <span class="col-12 display-4">
+        State:
+    </span>
+  <hr>
+  <div class="row mb-3">
+    <div class="col-6 offset-3">
+      <div class="form-group">
+        <select class="form-control"
+                #state="ngModel"
+                [(ngModel)]="order.state"
+                required>
+          <option [ngValue]="0">Processing</option>
+          <option [ngValue]="1">Delivering</option>
+          <option [ngValue]="2">Done</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-6 offset-3">
+      <div class="d-flex justify-content-end mb-5">
+        <button class="btn btn-outline-success"
+                type="submit"
+                (click)="update()">
+          Update
+          <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="isBusy | async"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

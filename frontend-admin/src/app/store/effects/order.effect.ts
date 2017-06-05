@@ -31,4 +31,10 @@ export class OrderEffect {
     .switchMap(action => this.orderService.getOrder(action.payload.id)
       .concatMap(order => of(new orderdActions.LoadOrderAction({order: order}))));
 
+  @Effect()
+  orderUpdate$: Observable<Action> = this.actions$
+    .ofType(orderdActions.ActionTypes.START_ORDER_UPDATE)
+    .switchMap(action => this.orderService.updateOrder(action.payload.order)
+      .concatMap(response => of(new orderdActions.UpdateOrderAction({order: action.payload.order}))));
+
 }

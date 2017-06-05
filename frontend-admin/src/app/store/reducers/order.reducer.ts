@@ -40,6 +40,18 @@ export function reducer(state: State = initialState, action: Action): State {
         order: action.payload.order
       });
 
+    case orderAction.ActionTypes.START_ORDER_UPDATE:
+      return Object.assign({}, state, {
+        isBusy: true
+      });
+    case orderAction.ActionTypes.UPDATE_ORDER:
+      return Object.assign({}, state, {
+        isBusy: false,
+        order: Object.assign({}, state.order, {
+          state: action.payload.order.state
+        })
+      });
+
     default:
       return state;
   }

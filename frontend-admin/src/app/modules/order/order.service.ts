@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {GenericService} from "../../generic.service";
-import {Http, RequestOptions} from "@angular/http";
+import {Http, RequestOptions, Response} from "@angular/http";
 import {AuthHttp} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
-import {PaginatedListOfOrders} from "../../models/models";
+import {Orders, PaginatedListOfOrders} from "../../models/models";
 
 @Injectable()
 export class OrderService extends GenericService {
@@ -25,6 +25,12 @@ export class OrderService extends GenericService {
     return this.get(new RequestOptions({
       url: `${this.BASE_URL}/${id}`
     }));
+  }
+
+  public updateOrder(order: Orders): Observable<Response> {
+    return this.put(new RequestOptions({
+      url: `${this.BASE_URL}/${order.id}`
+    }), order);
   }
 
 }
