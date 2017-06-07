@@ -1,0 +1,38 @@
+<ng-template [ngIf]="storeProductVariant.isEditing">
+  <th scope="row">#</th>
+  <td><a [routerLink]="['/stores',storeProductVariant?.store.id]">{{storeProductVariant?.store.name}}</a></td>
+  <td><input type="text"
+             pattern="[1-9]\d*"
+             class="form-control"
+             #price_add="ngModel"
+             [(ngModel)]="storeProductVariant.price"
+             required></td>
+  <td><input type="text"
+             pattern="[1-9]\d*"
+             class="form-control"
+             #inStock_add="ngModel"
+             [(ngModel)]="storeProductVariant.inStock"
+             required></td>
+  <td class="d-flex">
+    <button class="btn btn-sm btn-outline-success" [disabled]="!inStock_add.valid||!price_add.valid"
+            (click)="storeProductVariant.isEditing=false;"><i class="fa fa-check"></i>
+    </button>
+  </td>
+</ng-template>
+<ng-template [ngIf]="!storeProductVariant.isEditing">
+  <th scope="row">#</th>
+  <td><a [routerLink]="['/stores',storeProductVariant?.store.id]">{{storeProductVariant?.store.name}}</a></td>
+  <td><input type="text"
+             class="form-control"
+             value="{{storeProductVariant.price}}"
+             disabled></td>
+  <td><input type="text"
+             class="form-control"
+             value="{{storeProductVariant.inStock}}"
+             disabled></td>
+  <td class="d-flex">
+    <button class="btn btn-sm btn-outline-primary"
+            (click)="storeProductVariant.isEditing=true"><i class="fa fa-edit"></i>
+    </button>
+  </td>
+</ng-template>

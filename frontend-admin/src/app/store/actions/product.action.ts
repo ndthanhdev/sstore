@@ -2,7 +2,8 @@ import {type} from "../../util/helper";
 import {Action} from "@ngrx/store";
 import {
   CustomAttributes,
-  PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
+  PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariants,
+  ProductVariationValues,
   StoreProductVariant
 } from "../../models/models";
 import {Response} from "@angular/http";
@@ -35,6 +36,9 @@ export const ActionTypes = {
 
   START_CUSTOM_ATTRIBUTE_DELETE: type('[Product] Start Custom Attribute Delete'),
   DELETE_CUSTOM_ATTRIBUTE: type('[Product] Delete Custom Attribute'),
+
+  START_PRODUCT_VARIANT_ADD: type('[Product] Start Product Variant Add'),
+  ADD_PRODUCT_VARIANT: type('[Product] Add Product Variant'),
 
 };
 
@@ -167,6 +171,22 @@ export class StartCustomAttributeDeleteAction implements Action {
 export class DeleteCustomAttributeAction implements Action {
   type = ActionTypes.DELETE_CUSTOM_ATTRIBUTE;
 }
+
+
+export class StartProductVariantAddAction implements Action {
+  type = ActionTypes.START_PRODUCT_VARIANT_ADD;
+
+  constructor(public payload: { productVariant: ProductVariants }) {
+  }
+}
+
+export class AddProductVariantAction implements Action {
+  type = ActionTypes.ADD_PRODUCT_VARIANT;
+
+  constructor(public payload: { productVariant: ProductVariants }) {
+  }
+}
+
 
 export type Actions = StartProductsLoadAction
   | LoadProductsAction

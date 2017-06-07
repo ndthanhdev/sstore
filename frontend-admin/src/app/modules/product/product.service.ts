@@ -4,7 +4,8 @@ import {Http, RequestOptions, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {
   CustomAttributes,
-  PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariationValues,
+  PaginatedListOfProducts, PaginatedListOfProductVariants, Products, ProductTypeAttributeValues, ProductVariants,
+  ProductVariationValues,
   StoreProductVariant
 } from "../../models/models";
 import {AuthHttp} from "angular2-jwt";
@@ -74,5 +75,13 @@ export class ProductService extends GenericService {
     return this.delete(new RequestOptions({
       url: `${this.ORIGINAL_BASE_URL}/CustomAttributes/${id}`
     }));
+  }
+
+  public addProductVariant(productVariant: ProductVariants): Observable<ProductVariants> {
+    return this.post(new RequestOptions({
+        url: `${this.ORIGINAL_BASE_URL}/ProductVariants`
+      }),
+      productVariant
+    );
   }
 }

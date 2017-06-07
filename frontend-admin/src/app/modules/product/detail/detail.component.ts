@@ -17,6 +17,7 @@ import {
 
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/combineLatest';
+import {StartAllStoreLoadAction} from "../../../store/actions/store.action";
 
 @Component({
   selector: 'frontend-admin-detail',
@@ -68,6 +69,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.id = +route['id']; // (+) converts string 'id' to a number
         this.store.dispatch(new StartProductDetailLoadAction({id: this.id}));
         this.store.dispatch(new StartProductVariantsLoadAction({id: this.id, page: +query['page'] || 1}));
+        this.store.dispatch(new StartAllStoreLoadAction({}));
       });
   }
 

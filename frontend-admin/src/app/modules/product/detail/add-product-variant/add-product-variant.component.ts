@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {
+  Products,
   ProductTypeAttributes, ProductVariants, ProductVariationValues, StoreProductVariant,
   Stores
 } from "../../../../models/models";
@@ -9,7 +10,8 @@ import {
   template: `
     <div class="card-header d-flex">
       <span class="lead mr-2">#</span>
-      <button class="btn btn-sm btn-danger ml-auto" (click)="cancel.emit()"><i class="fa fa-times"></i></button>
+      <button class="btn btn-sm btn-success ml-auto" (click)="addProductVariant()"><i class="fa fa-check"></i></button>
+      <button class="btn btn-sm btn-danger ml-1" (click)="cancel.emit()"><i class="fa fa-times"></i></button>
     </div>
 
     <div class="card-block">
@@ -43,9 +45,10 @@ import {
             </tr>
             </thead>
             <tbody>
-            <tr frontend-admin-add-store-product-variant 
-                *ngFor="let spv of storeProductVariant"
-            [storeProductVariant]="spv"></tr>
+            <tr frontend-admin-add-store-product-variant
+                *ngFor="let spv of storeProductVariants"
+                [storeProductVariant]="spv"
+            ></tr>
             </tbody>
           </table>
         </div>
@@ -56,8 +59,8 @@ import {
 })
 export class AddProductVariantComponent implements OnInit, OnChanges {
 
-
-  productVariant: ProductVariants = {};
+  @Input()
+  product: Products;
 
   @Input()
   stores: Stores[];
@@ -66,7 +69,7 @@ export class AddProductVariantComponent implements OnInit, OnChanges {
   cancel = new EventEmitter();
 
   productVariationValues: ProductVariationValues[];
-  storeProductVariant: StoreProductVariant[];
+  storeProductVariants: StoreProductVariant[];
 
   constructor() {
   }
@@ -75,11 +78,21 @@ export class AddProductVariantComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.storeProductVariant = this.stores.map(store => {
+    this.storeProductVariants = [...this.stores.map(store => {
       let spv: StoreProductVariant = {
-        store: store
+        store: store,
+        storeId: store.id,
       };
+      (<any>spv).isEditing = true;
       return spv;
-    });
+    })];
+  }
+
+  addProductVariant() {
+    let productVariant:ProductVariants = {
+      productId: this.product.id,
+      storeProductVariant: this.storeProductVariants.filter(spv => !(<any>spv).isEditing)
+    };
+    console.log(productVariant);
   }
 }

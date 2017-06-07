@@ -100,4 +100,11 @@ export class ProductEffect {
     .switchMap(action => this.productService.deleteCustomAttribute(action.payload.customAttribute.id)
       .concatMap(response =>
         of(new productdActions.DeleteCustomAttributeAction())));
+
+  @Effect()
+  productVariantAdd$: Observable<Action> = this.actions$
+    .ofType(productdActions.ActionTypes.START_CUSTOM_ATTRIBUTE_DELETE)
+    .switchMap(action => this.productService.deleteCustomAttribute(action.payload.customAttribute.id)
+      .concatMap(response =>
+        of(new productdActions.DeleteCustomAttributeAction())));
 }

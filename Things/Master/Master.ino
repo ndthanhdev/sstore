@@ -16,7 +16,7 @@
 #define RX 8
 #define TX 9
 
-#define TOPIC_RECEIVE "s2d/2"
+#define TOPIC_RECEIVE "s2d/24"
 #define TOPIC_TRANSMIT "d2s"
 
 #include <SPI.h>
@@ -24,7 +24,7 @@
 #include <PubSubClient.h>
 
 byte mac[] = { 0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
-IPAddress server(172, 16, 20, 35);
+IPAddress server(172, 20, 10, 2);
 
 SoftwareSerial commandTransporter(RX, TX);
 

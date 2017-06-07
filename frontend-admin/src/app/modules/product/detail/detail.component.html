@@ -112,7 +112,10 @@
   <!--END PAGINATION-->
 
   <!--ADD VARIANT CARD-->
-  <frontend-admin-add-product-variant *ngIf="isAddingProductVariant" (cancel)="isAddingProductVariant=false"></frontend-admin-add-product-variant>
+  <frontend-admin-add-product-variant *ngIf="isAddingProductVariant"
+                                      (cancel)="isAddingProductVariant=false"
+                                      [stores]="stores| async"
+                                      [product]="product"></frontend-admin-add-product-variant>
   <!--START VARIANT CARD-->
   <frontend-admin-variant-item *ngFor="let productVariants of paginatedListOfProductVariants?.data"
                                [productVariant]="productVariants"
